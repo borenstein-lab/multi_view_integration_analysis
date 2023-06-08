@@ -1,0 +1,110 @@
+Dataset,Metagenomics type,Feature set,Feature selection method,Number of original features - T (Taxa),Number of original features - G (Genes),Number of original features - P (Pathways),Number of original features - M (Metabolites),Cross-validated average AUC
+cd_franzosa_2019,Shotgun,T,Altmann-based,156,0,0,0,0.95
+cd_franzosa_2019,Shotgun,G,Boruta-90,0,2128,0,0,0.935
+cd_franzosa_2019,Shotgun,P,Boruta-90,0,0,276,0,0.93
+cd_franzosa_2019,Shotgun,M,U-test,0,0,0,460,0.947
+cd_franzosa_2019,Shotgun,T+G+P+M,U-test,156,2128,276,460,0.958
+cdi_schubert_16s_2014,16S,T,Boruta-90,63,0,0,0,0.987
+cdi_schubert_16s_2014,16S,G,Altmann-based,0,1975,0,0,0.966
+cdi_schubert_16s_2014,16S,P,Altmann-based,0,0,233,0,0.961
+cdi_schubert_16s_2014,16S,T+G+P,Altmann-based,63,1976,228,0,0.971
+cirrhosis_qin_2014,Shotgun,T,Ensemble FS,163,0,0,0,0.942
+cirrhosis_qin_2014,Shotgun,G,Altmann-based,0,1852,0,0,0.92
+cirrhosis_qin_2014,Shotgun,P,Boruta-90,0,0,265,0,0.881
+cirrhosis_qin_2014,Shotgun,T+G+P,Altmann-based,163,1852,265,0,0.929
+crc_baxter_16s_2016,16S,T,Altmann-based,99,0,0,0,0.779
+crc_baxter_16s_2016,16S,G,Altmann-based,0,1830,0,0,0.67
+crc_baxter_16s_2016,16S,P,Boruta-90,0,0,230,0,0.66
+crc_baxter_16s_2016,16S,T+G+P,U-test,99,1830,223,0,0.708
+crc_feng_2015,Shotgun,T,Altmann-based,180,0,0,0,0.921
+crc_feng_2015,Shotgun,G,Boruta-90,0,2091,0,0,0.759
+crc_feng_2015,Shotgun,P,U-test,0,0,252,0,0.689
+crc_feng_2015,Shotgun,T+G+P,Altmann-based,180,2091,251,0,0.8
+crc_s0_yachida_2019,Shotgun,T,Altmann-based,605,0,0,0,0.708
+crc_s0_yachida_2019,Shotgun,G,Ensemble FS,0,1712,0,0,0.593
+crc_s0_yachida_2019,Shotgun,P,Ensemble FS,0,0,274,0,0.699
+crc_s0_yachida_2019,Shotgun,M,Boruta-90,0,0,0,275,0.656
+crc_s0_yachida_2019,Shotgun,T+G+P+M,Boruta-90,605,1712,274,275,0.693
+crc_s3_s4_yachida_2019,Shotgun,T,Ensemble FS,621,0,0,0,0.824
+crc_s3_s4_yachida_2019,Shotgun,G,Boruta-90,0,1715,0,0,0.646
+crc_s3_s4_yachida_2019,Shotgun,P,U-test,0,0,271,0,0.492
+crc_s3_s4_yachida_2019,Shotgun,M,Altmann-based,0,0,0,274,0.745
+crc_s3_s4_yachida_2019,Shotgun,T+G+P+M,Ensemble FS,621,1715,271,274,0.83
+crc_wang_16s_2012,16S,T,Boruta-90,30,0,0,0,0.902
+crc_wang_16s_2012,16S,G,Boruta-90,0,1826,0,0,0.778
+crc_wang_16s_2012,16S,P,Boruta-90,0,0,208,0,0.746
+crc_wang_16s_2012,16S,T+G+P,U-test,30,1826,204,0,0.794
+crc_wirbel_2018,Shotgun,T,Boruta-90,167,0,0,0,0.905
+crc_wirbel_2018,Shotgun,G,Altmann-based,0,1676,0,0,0.864
+crc_wirbel_2018,Shotgun,P,U-test,0,0,238,0,0.76
+crc_wirbel_2018,Shotgun,T+G+P,Altmann-based,167,1676,238,0,0.91
+crc_yu_2015,Shotgun,T,Boruta-90,182,0,0,0,0.858
+crc_yu_2015,Shotgun,G,Boruta-90,0,2383,0,0,0.659
+crc_yu_2015,Shotgun,P,U-test,0,0,267,0,0.777
+crc_yu_2015,Shotgun,T+G+P,Altmann-based,182,2383,267,0,0.76
+crc_zeller_2014,Shotgun,T,Ensemble FS,197,0,0,0,0.85
+crc_zeller_2014,Shotgun,G,Ensemble FS,0,1910,0,0,0.831
+crc_zeller_2014,Shotgun,P,Boruta-90,0,0,262,0,0.82
+crc_zeller_2014,Shotgun,T+G+P,Boruta-90,197,1909,262,0,0.843
+crc_zeller_16s_2014,16S,T,U-test,125,0,0,0,0.788
+crc_zeller_16s_2014,16S,G,Altmann-based,0,1951,0,0,0.709
+crc_zeller_16s_2014,16S,P,U-test,0,0,251,0,0.666
+crc_zeller_16s_2014,16S,T+G+P,Altmann-based,125,1952,244,0,0.742
+edd_singh_16s_2015,16S,T,Boruta-90,62,0,0,0,0.959
+edd_singh_16s_2015,16S,G,Ensemble FS,0,2050,0,0,0.946
+edd_singh_16s_2015,16S,P,Altmann-based,0,0,249,0,0.939
+edd_singh_16s_2015,16S,T+G+P,Altmann-based,62,2050,246,0,0.946
+esrd_wang_2020,Shotgun,T,Altmann-based,159,0,0,0,0.926
+esrd_wang_2020,Shotgun,G,Altmann-based,0,1887,0,0,0.829
+esrd_wang_2020,Shotgun,P,Altmann-based,0,0,267,0,0.77
+esrd_wang_2020,Shotgun,M,Altmann-based,0,0,0,255,1
+esrd_wang_2020,Shotgun,T+G+P+M,Altmann-based,159,1887,267,255,1
+igt_karlsson_2013,Shotgun,T,U-test,156,0,0,0,0.7
+igt_karlsson_2013,Shotgun,G,Boruta-90,0,1787,0,0,0.708
+igt_karlsson_2013,Shotgun,P,U-test,0,0,244,0,0.63
+igt_karlsson_2013,Shotgun,T+G+P,Altmann-based,156,1787,242,0,0.705
+me_cfs_nagySzakal_2017,Shotgun,T,Boruta-90,159,0,0,0,0.787
+me_cfs_nagySzakal_2017,Shotgun,G,Boruta-90,0,1558,0,0,0.754
+me_cfs_nagySzakal_2017,Shotgun,P,Boruta-90,0,0,236,0,0.736
+me_cfs_nagySzakal_2017,Shotgun,T+G+P,Boruta-90,159,1558,236,0,0.749
+noncdi_schubert_16s_2014,16S,T,U-test,63,0,0,0,0.981
+noncdi_schubert_16s_2014,16S,G,Altmann-based,0,1932,0,0,0.945
+noncdi_schubert_16s_2014,16S,P,Altmann-based,0,0,233,0,0.946
+noncdi_schubert_16s_2014,16S,T+G+P,Altmann-based,63,1932,225,0,0.951
+ob_turnbaugh_16s_2009,16S,T,Boruta-90,59,0,0,0,0.854
+ob_turnbaugh_16s_2009,16S,G,Ensemble FS,0,1685,0,0,0.731
+ob_turnbaugh_16s_2009,16S,P,Altmann-based,0,0,200,0,0.737
+ob_turnbaugh_16s_2009,16S,T+G+P,Altmann-based,59,1685,195,0,0.775
+par_scheperjans_16s_2015,16S,T,U-test,65,0,0,0,0.736
+par_scheperjans_16s_2015,16S,G,Boruta-90,0,1729,0,0,0.572
+par_scheperjans_16s_2015,16S,P,U-test,0,0,227,0,0.616
+par_scheperjans_16s_2015,16S,T+G+P,U-test,65,1729,221,0,0.613
+schizofrenia_zhu_2020,Shotgun,T,Boruta-90,136,0,0,0,0.81
+schizofrenia_zhu_2020,Shotgun,G,U-test,0,1848,0,0,0.664
+schizofrenia_zhu_2020,Shotgun,P,Boruta-90,0,0,252,0,0.604
+schizofrenia_zhu_2020,Shotgun,T+G+P,Ensemble FS,136,1848,252,0,0.707
+sth_rubel_2020,Shotgun,T,Boruta-90,105,0,0,0,0.891
+sth_rubel_2020,Shotgun,G,Altmann-based,0,2049,0,0,0.812
+sth_rubel_2020,Shotgun,P,Ensemble FS,0,0,251,0,0.813
+sth_rubel_2020,Shotgun,T+G+P,Altmann-based,105,2049,251,0,0.846
+t1d_alkanani_16s_2015,16S,T,Boruta-90,33,0,0,0,0.743
+t1d_alkanani_16s_2015,16S,G,Boruta-90,0,1229,0,0,0.634
+t1d_alkanani_16s_2015,16S,P,Ensemble FS,0,0,186,0,0.671
+t1d_alkanani_16s_2015,16S,T+G+P,Boruta-90,33,1230,181,0,0.639
+t2d_karlsson_2013,Shotgun,T,Boruta-90,152,0,0,0,0.78
+t2d_karlsson_2013,Shotgun,G,U-test,0,1867,0,0,0.628
+t2d_karlsson_2013,Shotgun,P,Boruta-90,0,0,252,0,0.549
+t2d_karlsson_2013,Shotgun,T+G+P,Ensemble FS,152,1866,251,0,0.627
+t2d_qin_2012,Shotgun,T,U-test,156,0,0,0,0.733
+t2d_qin_2012,Shotgun,G,U-test,0,2044,0,0,0.714
+t2d_qin_2012,Shotgun,P,U-test,0,0,259,0,0.725
+t2d_qin_2012,Shotgun,T+G+P,Boruta-90,156,2044,259,0,0.721
+uc_franzosa_2019,Shotgun,T,Ensemble FS,157,0,0,0,0.865
+uc_franzosa_2019,Shotgun,G,Boruta-90,0,2010,0,0,0.897
+uc_franzosa_2019,Shotgun,P,Boruta-90,0,0,263,0,0.815
+uc_franzosa_2019,Shotgun,M,Ensemble FS,0,0,0,461,0.863
+uc_franzosa_2019,Shotgun,T+G+P+M,Ensemble FS,157,2009,263,461,0.919
+uc_spain_nielsen_2014,Shotgun,T,Altmann-based,171,0,0,0,0.737
+uc_spain_nielsen_2014,Shotgun,G,Altmann-based,0,1633,0,0,0.684
+uc_spain_nielsen_2014,Shotgun,P,U-test,0,0,234,0,0.496
+uc_spain_nielsen_2014,Shotgun,T+G+P,U-test,171,1633,234,0,0.695

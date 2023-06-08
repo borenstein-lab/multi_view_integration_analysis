@@ -1,0 +1,71 @@
+default:
+  log_level: 'DEBUG'                                      # Optional values: TRACE, DEBUG, INFO, WARN...
+  outer_n_folds: 10                                       # Number of folds in cross-validation
+  outer_n_repeats: 5                                      # Number of cross-validation repetitions
+  tuning_n_folds: 10                                      # If hyper-parameter tuning enabled, number of inner folds for tuning
+  tuning_n_repeats: 1                                     # If hyper-parameter tuning enabled, number of CV repeats for tuning
+  use_tune_grid: false                                    # If true, uses grid-search for hyperparameter tuning. Otherwise uses Bayes
+  cluster_type: 'clustering99'                            # Can also be: "none"
+  ranger_n_threads: 16                                    # Number of threads for random forest training
+  params_combo: {                                         # A list of all pipeline parameters to check (will create all possible combinations)
+    'should_tune': [false],                               # Tuning: false, true, or both
+    'should_shuffle': [false, true],                      # Add label shuffling to get null models to compare to
+    'fs_type': ['Boruta90', 'altmann', 'ensemble', 'utest', 'none'], # Feature selection type. Other options: 'pertBoruta', 'Boruta80'
+    'feature_set_type': ['T','G','P','M','T+G+P','T+G+P+M'] # Feature sets (views) to try out
+  }
+  disease_labels: ['ASD', 'CD', 'CDI', 'nonCDI', 'CIRR', 'CRC', 'EDD', 'HIV',
+    'MHE', 'NASH', 'OB', 'PAR', 'PSA', 'RA', 'T1D', 'T2D', 'UC',
+    'Carcinoma', 'Adenoma', 'hypertension', 'adenoma', 'IGT',
+    'ME/CFS', 'T2D', 'cirrhosis', 'IBD', 'migraine', 'ESRD',
+    'Stage_I_II', 'Stage_0', 'MP', 'Stage_III_IV',
+    'otitis', 'pre-hypertension', 'schizofrenia', 'STH'] # All labels to consider as the "disease" group study
+  shotgun_datasets_not_in_CMD: ['esrd_wang_2020','cd_franzosa_2019','uc_franzosa_2019','adenomas_yachida_2019','crc_s0_yachida_2019','crc_s1_s2_yachida_2019','crc_s3_s4_yachida_2019']
+  unknown_taxa: ['(UG)']  
+  paths: {
+    'ml_input_dir': '../../data/ml_input',
+    'ml_output_dir': '../../data/ml_output',
+    'results_tables_dir': '../../data/ml_output/results_tables',
+    'logs_dir': '../../data/ml_output/logs',              # Relevant for run_pipeline_parallel.R only
+    'ko_names': '../../db/kegg/ko_to_name_map_partial.txt',
+    'humann_uniref_ko_map': '../../db/humann/map_ko_uniref90_long.txt',
+    'metacyc_pathways_hierarchy': '../../db/metacyc/metacyc_pathway_db.txt',
+    'metacyc_pathways2taxa': '../../db/metacyc/All-pathways-of-MetaCyc-and-their-associated-species.txt', 
+    'metacyc_bacterial_taxa': '../../db/metacyc/MetaCyc-bacteria.txt', 
+    'curatedMetagenomicData_study_list': '../../config/curatedMetagenomicData/studies_and_groups_to_include.csv',
+    'combined_cv_results': '../../data/ml_output/results_tables/cv_results_all_datasets.csv',
+    'combined_feature_importance': '../../data/ml_output/results_tables/feature_importance_all_datasets.tsv',
+    'results_rdata': '../../data/ml_output/results_tables/results_for_analysis.RData'
+  }
+  paths_templates: { # %s indicated dataset name
+    'metadata': '../../data/ml_input/%s/metadata.tsv',
+    'taxonomy': '../../data/ml_input/%s/taxonomy.tsv',
+    'pathways': '../../data/ml_input/%s/pathways.tsv',
+    'metabolites': '../../data/ml_input/%s/metabolites.tsv',
+    'metagenome': '../../data/ml_input/%s/KO_metagenome_unstrat.tsv',
+    'log': '../../data/ml_output/logs/%s_ml_pipeline.log', # Relevant for run_pipeline_parallel.R only
+    'clusters': '../../data/ml_output/results_tables/%s_clusters.csv',
+    'feature_importance_csv': '../../data/ml_output/results_tables/%s_feature_importance.csv',
+    'cv_results_csv': '../../data/ml_output/results_tables/%s_pipeline.csv',
+    'raw_oof_predictions': '../../data/ml_output/results_tables/%s_oof_predictions.csv',
+    'cross_ds_dir': '../../data/ml_output/results_tables/cross_%s',  # group_name
+    'cross_results_csv': '../../data/ml_output/results_tables/cross_%s/%s___%s__results.csv',  # group, train, test
+    'cross_clusters': '../../data/ml_output/results_tables/cross_%s/%s___%s__clusters.csv', # group, train, test
+    'cross_feature_importance_csv': '../../data/ml_output/results_tables/cross_%s/%s___%s__feature_importance.csv' # group, train, test
+  }
+  params_short_names: {
+    'should_tune': {'FALSE': '-T', 'TRUE': '+T'},
+    'should_shuffle': {'FALSE': '-Sh', 'TRUE': '+Sh'},
+    'fs_type': {'none': '-FS', 'Boruta90': '+FS_B90', 'Boruta80': '+FS_B80', 'utest': '+FS_U', 'ensemble': '+FS_ENS', 'pertBoruta': '+FS_PB90', 'RepeatBoruta90': '+FS_RB90', 'altmann': '+FS_A', 'altmann_top20': '+FS_A20'},
+    'feature_set_type': {'T': 'T','G': 'G','P': 'P','M': 'M','T+G': 'T+G','T+P': 'T+P','T+M': 'T+M','T+G+M': 'T+G+M','T+G+P': 'T+G+P', 'T+P+M': 'T+P+M','T+G+P+M': 'T+G+P+M'}
+  }
+  
+test:
+  outer_n_repeats: 2
+  outer_n_folds: 10
+  ranger_n_threads: 4
+  params_combo: {
+    'should_tune': [false],
+    'should_shuffle': [false], 
+    'fs_type': ['altmann'], 
+    'feature_set_type': ['T','G','P','M','T+G+P','T+G+P+M']
+  }

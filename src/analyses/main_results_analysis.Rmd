@@ -1,0 +1,624 @@
+---
+title: "Main results analysis"
+output:
+  html_document:
+    css: custom_notebook_formatting.css
+    toc: true
+    toc_depth: 3
+    df_print: paged
+    code_folding: hide
+---
+
+## Preparations
+
+```{r PREPS, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(ggpubr)
+library(grid)
+library(gridExtra)
+library(cowplot)
+library(rstatix)
+library(readr)
+library(stringr)
+library(dplyr)
+library(scales)
+library(colorspace)
+library(kableExtra)
+library(afex)
+library(ggpmisc)
+library(ggridges)
+
+options(scipen = 100)
+knitr::opts_chunk$set(results = "hold", fig.align = 'center')
+source('../analyses/plotting_functions.R')
+source('preprocessing.R')
+```
+
+## Load results
+
+Load data from previously organized rdata file.
+
+```{r LOAD_REUSLTS, results='hold'}
+best_fs_rdata <- '../../data/ml_output/results_tables/results_for_analysis_best_fs.RData'
+load(best_fs_rdata)
+cv_results_best_fs <- cv_results_best_fs %>% filter(dataset %in% datasets_to_analyze)
+cv_datasets_summary_best_fs <- cv_datasets_summary_best_fs %>% filter(dataset %in% datasets_to_analyze)
+feat_imp_best_fs <- feat_imp_best_fs %>% filter(dataset %in% datasets_to_analyze)
+feat_imp_sum_best_fs <- feat_imp_sum_best_fs %>% filter(dataset %in% datasets_to_analyze)
+all_clusters <- all_clusters %>% filter(dataset %in% datasets_to_analyze)
+```
+
+```{r CHOOSE_DATASETS, results='hold'}
+message("Only the following datasets will be analyzed (AUC >= 0.7):")
+message(paste(datasets_to_analyze, collapse = ", "))
+message(paste("==>", length(datasets_to_analyze),"total"))
+message("Discarded datasets:")
+message(paste(datasets_discarded, collapse = ", "))
+```
+
+```{r}
+# Name fixes
+cv_results <- cv_results_best_fs
+cv_datasets_summary <- cv_datasets_summary_best_fs
+feat_imp <- feat_imp_best_fs
+feat_imp_sum <- feat_imp_sum_best_fs
+rm(cv_results_best_fs, cv_datasets_summary_best_fs, feat_imp_best_fs, feat_imp_sum_best_fs)
+```
+
+### Descriptive statistics
+
+```{r FIRST_CV_STATS, results='hold'}
+cv_datasets_summary %>% 
+  filter(feature_set_type %in% c("T+G+P+M","T+G+P")) %>%
+  filter(!shuffled) %>%
+  select(-shuffled, -tuned) %>%
+  kbl(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) 
+```
+
+### Focus on specific runs
+
+Specific datasets:
+
+```{r}
+datasets_to_focus_on <- c(
+  'cd_franzosa_2019',
+  'uc_franzosa_2019',
+  'crc_s3_s4_yachida_2019',
+  'cirrhosis_qin_2014'
+)
+```
+
+Focus on a specific method / feature sets (if results included multiple pipeline settings):
+
+```{r}
+feat_sets_to_analyze <- c("T", "G", "P", "M", "T+G+P", "T+G+P+M")
+
+cv_results <- cv_results %>%
+  filter(feature_set_type %in% feat_sets_to_analyze) %>%
+  mutate(feature_set_type = factor(feature_set_type, levels = feat_sets_to_analyze))
+
+feat_imp <- feat_imp %>%
+  filter(feature_set_type %in% feat_sets_to_analyze) %>%
+  mutate(feature_set_type = factor(feature_set_type, levels = feat_sets_to_analyze))
+
+feat_imp_sum <- feat_imp_sum %>%
+  filter(feature_set_type %in% feat_sets_to_analyze) %>%
+  mutate(feature_set_type = factor(feature_set_type, levels = feat_sets_to_analyze))
+
+feature_type_color_map = 
+  c("T" = "firebrick4", 
+    "G" = "chartreuse4", 
+    "P" = "darkorange3", 
+    "M" = "midnightblue", 
+    "T+G+P" = "grey30",
+    "T+G+P+M" = "grey30")
+
+# Save number of folds/repeats
+n_folds <- n_distinct(cv_results$fold_id)
+```
+
+```{r}
+# Create a column with data source
+cv_results <- cv_results %>%
+  mutate(data_source = ifelse(metagenomics_type == "Shotgun", "Shotgun datasets - curatedMetagenomicData", "16S datasets - MicrobiomeHD")) %>%
+  mutate(data_source = ifelse(dataset %in% config::get("shotgun_datasets_not_in_CMD"), "Paired metagenomics-metabolomics datasets", data_source))
+
+# Save also as a named vector, for later use
+tmp <- cv_results %>%
+  select(dataset, data_source) %>%
+  distinct()
+dataset_to_source <- tmp$data_source
+names(dataset_to_source) <- tmp$dataset
+paired_datasets <- names(dataset_to_source)[dataset_to_source == "Paired metagenomics-metabolomics datasets"]
+rm(tmp)
+```
+
+### Load raw data for additional analyses
+
+Only for selected datasets.
+
+```{r LOAD_RAW, cache = TRUE}
+# Load processed data
+proc_data <- lapply(datasets_to_focus_on, FUN = function(d) { 
+  print(paste("Loading dataset:", d))
+  include_metabs <- ifelse(d %in% config::get('shotgun_datasets_not_in_CMD'), TRUE, FALSE)
+  
+  # File names
+  metadata_path <- sprintf(config::get("paths_templates")$metadata, d)
+  taxonomy_path <- sprintf(config::get("paths_templates")$taxonomy, d)
+  pathways_path <- sprintf(config::get("paths_templates")$pathways, d)
+  if (include_metabs) metabolites_path <- sprintf(config::get("paths_templates")$metabolites, d)
+  metagenome_path <- sprintf(config::get("paths_templates")$metagenome, d)
+  
+  # Load datasets and remove rare/constant features
+  metadata_df <- prep_load_metadata(metadata_path) # Only two columns retained: 'sample_id__' and 'DiseaseState'
+  taxonomy_df <- prep_sanitize_dataset(prep_load_taxonomy(taxonomy_path),d) 
+  pathways_df <- prep_sanitize_dataset(prep_load_pathways(pathways_path),d) 
+  if (include_metabs) metabolites_df <- prep_sanitize_dataset(prep_load_metabolites(metabolites_path),d) 
+  genes_df <- prep_sanitize_dataset(prep_load_metagenome(metagenome_path),d)
+  
+  # Fix names
+  colnames(taxonomy_df) <- make.names(colnames(taxonomy_df))
+  colnames(pathways_df) <- make.names(colnames(pathways_df))
+  if (include_metabs) colnames(metabolites_df) <- make.names(colnames(metabolites_df))
+  colnames(genes_df) <- make.names(colnames(genes_df))
+  
+  # Log transform metabolites
+  if (include_metabs) 
+    metabolites_df_log <- metabolites_df %>%
+      mutate_if(is.numeric, function(x) ifelse(x==0, NA, x)) %>%
+      mutate_if(is.numeric, function(x) ifelse(is.na(x), min(x, na.rm = T)/2, x)) %>%
+      mutate_if(is.numeric, log)
+  
+  # Join 
+  if (include_metabs) {
+    tmp <- metadata_df %>%
+      inner_join(taxonomy_df, by = "sample_id__") %>%
+      inner_join(pathways_df, by = "sample_id__") %>%
+      inner_join(metabolites_df_log, by = "sample_id__") %>%
+      inner_join(genes_df, by = "sample_id__") 
+  } else {
+    tmp <- metadata_df %>%
+      inner_join(taxonomy_df, by = "sample_id__") %>%
+      inner_join(pathways_df, by = "sample_id__") %>%
+      inner_join(genes_df, by = "sample_id__")
+  }
+  
+  # Return
+  return(tmp)
+})
+names(proc_data) <- datasets_to_focus_on
+message("Data loaded")
+```
+
+Also create a version with clr-transformed values (taxa, genes, and pathways, are each clr-transformed independently):
+
+```{r LOAD_CLR, message = FALSE}
+ps_count <- 0.0000001
+proc_data_with_clr <- lapply(proc_data, FUN = function(df) { 
+  include_metabs <- ifelse(sum(grepl('^M__', colnames(df)))>0, TRUE, FALSE)
+  # All features that should not be clr-transformed
+  metadata_df <- df %>% select(sample_id__, DiseaseState, starts_with('M__')) 
+  
+  # CLR-transformed tables
+  taxonomy_df_clr <- prep_clr_transpose(df %>% select(sample_id__, starts_with('T__')), ps_count)
+  genes_df_clr <- prep_clr_transpose(df %>% select(sample_id__, starts_with('G__')), ps_count)
+  pathways_df_clr <- prep_clr_transpose(df %>% select(sample_id__, starts_with('P__')), ps_count)
+  
+  # Join 
+  tmp <- metadata_df %>%
+    inner_join(taxonomy_df_clr, by = "sample_id__") %>%
+    inner_join(pathways_df_clr, by = "sample_id__") %>%
+    inner_join(genes_df_clr, by = "sample_id__")
+})
+```
+
+## Supplementary table S2
+
+```{r}
+cv_datasets_summary %>%
+  filter(!shuffled) %>%
+  select(dataset, metagenomics_type, feature_set_type, fs_type, starts_with("n_features_origin"), mean_out_of_fold_test_auc) %>%
+  mutate(mean_out_of_fold_test_auc = round(mean_out_of_fold_test_auc, 3)) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Feature set` = feature_set_type) %>%
+  rename(`Feature selection method` = fs_type) %>%
+  rename(`Metagenomics type` = metagenomics_type) %>%
+  rename(`Number of original features - T (Taxa)` = n_features_origin_T) %>%
+  rename(`Number of original features - G (Genes)` = n_features_origin_G) %>%
+  rename(`Number of original features - P (Pathways)` = n_features_origin_P) %>%
+  rename(`Number of original features - M (Metabolites)` = n_features_origin_M) %>%
+  rename(`Cross-validated average AUC` = mean_out_of_fold_test_auc) %>%
+  write_csv("../../docs/Table_S2.csv")
+```
+
+## Comparison of feature set performance
+
+### ANOVA and paired t-test
+
+```{r fig.height=5.5, fig.width=6}
+all_ps <- list()
+pairwise_paired_t_tests <- data.frame()
+
+for (d in unique(cv_results$dataset)) { # d <- "uc_franzosa_2019"
+  tmp <- cv_results %>% 
+    filter(dataset == d) %>%
+    filter(!shuffled) %>%
+    select(fold_id, feature_set_type, out_of_fold_test_auc) %>% 
+    group_by(fold_id) %>% 
+    filter(sum(!is.na(out_of_fold_test_auc)) == n()) %>%
+    ungroup()
+  
+  sorted_feat_sets <- tmp %>% 
+    group_by(feature_set_type) %>% 
+    summarise(mean_auc = mean(out_of_fold_test_auc, na.rm = T),
+              .groups = 'drop') %>% 
+    arrange(mean_auc) %>% 
+    pull(feature_set_type)
+  
+  tmp <- tmp %>% 
+    mutate(feature_set_type = factor(feature_set_type, 
+                                     levels = sorted_feat_sets))
+  
+  # Run repeated measures ANOVA
+  model_rmanova <- aov_ez(id = "fold_id", 
+                          dv = "out_of_fold_test_auc", 
+                          data = tmp, 
+                          within = c("feature_set_type"))
+  anova_p <- model_rmanova$anova_table$`Pr(>F)`
+  
+  # Perform paired t-test
+  paired_t_tests <- tmp %>%
+    rstatix::pairwise_t_test(
+      out_of_fold_test_auc ~ feature_set_type, 
+      paired = TRUE,
+      p.adjust.method = "fdr"
+      )
+  
+  pairwise_paired_t_tests <- bind_rows(
+    pairwise_paired_t_tests,
+    paired_t_tests %>%
+      mutate(dataset = d) %>%
+      mutate(rmanova_p = anova_p) %>%
+      select(dataset, group1, group2, p.adj, p.adj.signif, rmanova_p)
+  )
+    
+  # Visualization: box plots with p-values
+  if (d %in% datasets_to_focus_on) {
+    paired_t_tests <- paired_t_tests %>% 
+      add_xy_position(x = "feature_set_type")
+    
+    p <- ggboxplot(tmp, 
+                   x = "feature_set_type", 
+                   y = "out_of_fold_test_auc", 
+                   add = "jitter", 
+                   fill = "feature_set_type", 
+                   alpha = 0.5,
+                   add.params = list(size = 0.3)) +
+      stat_pvalue_manual(paired_t_tests, 
+                         label = 'p.adj.signif', 
+                         tip.length = 0.02, 
+                         bracket.nudge.y = 0.1, 
+                         step.increase = 0.1, 
+                         hide.ns = T) +
+      xlab(NULL) +
+      ylab('AUC') +
+      ggtitle(d) +
+      labs(subtitle = paste('ANOVA P value:', 
+                            ifelse(round(anova_p,4)==0, '< 0.0001',
+                                   round(anova_p,4)))) +
+      scale_fill_manual(values = feature_type_color_map) +
+      scale_y_continuous(label = function(nn) ifelse(nn <= 1, nn, '')) +
+      theme(legend.position = 'none') +
+      theme(plot.title = element_text(hjust = 0.5)) +
+      theme(plot.subtitle = element_text(size = 9, hjust = 0.5)) +
+      theme(axis.text = element_text(size = 9))
+    all_ps[[d]] <- p
+  }
+}
+
+plot_grid(plotlist = all_ps[datasets_to_focus_on], nrow = 2)
+
+rm(d, tmp, sorted_feat_sets, model_rmanova, anova_p, paired_t_tests)
+```
+
+### Supplementary table S3
+
+```{r}
+pairwise_paired_t_tests %>%
+  select(-p.adj.signif) %>%
+  mutate(p.adj = ifelse(round(p.adj, 5)==0, '< 0.00001', round(p.adj, 5))) %>%
+  mutate(rmanova_p = ifelse(round(rmanova_p, 5)==0, '< 0.00001', round(rmanova_p, 5))) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Model 1` = group1) %>%
+  rename(`Model 2` = group2) %>%
+  rename(`Adjusted paired T-test P value` = p.adj) %>%
+  rename(`ANOVA P value` = rmanova_p) %>%
+  write_csv("../../docs/Table_S3.csv")
+```
+
+
+### Plot: Number of samples, number of features, and AUC of each omic
+
+A. Number of samples per study. C, controls (dark grey); D, disease (light grey). 
+B. Average number of features from each type selected by the feature-selection process and used for final training. The average is over the cross-validation process.
+C. AUC from RF pipeline (cross validated, mean over folds and repeats). Error bars illustrate the standard deviations
+
+```{r, fig.height=4, fig.width=10, warning = FALSE}
+dataset_order <- datasets_to_focus_on
+
+plot_basic_stats(
+  cv_results = cv_results, 
+  mtg_type = "Shotgun", 
+  dataset_order = dataset_order, 
+  feature_type_color_map = feature_type_color_map
+  )
+```
+
+## Feature importance analysis
+
+### Supplementary table S4
+
+Only provided for models with an AUC > 0.7, and contributing features.
+
+```{r}
+feat_imp_sum %>%
+  filter(mean_out_of_fold_test_auc > 0.7) %>%
+  select(dataset, feature_set_type, feature, n_times_selected, mean_importance, combined_fdr, contributor) %>%
+  mutate(mean_importance = round(mean_importance, 5)) %>%
+  mutate(combined_fdr = ifelse(combined_fdr < 0.00001, '< 0.00001', round(combined_fdr, 5))) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Feature set` = feature_set_type) %>%
+  rename(`Feature name` = feature) %>%
+  rename(`RF permutation importance, averaged over folds` = mean_importance) %>%
+  rename(`Altmann FDR-corrected p value, aggregated over folds using Fisher's method` = combined_fdr) %>%
+  rename(`Number of times selected by feature selection (out of 50 repeats/folds)` = n_times_selected) %>%
+  filter(contributor) %>%
+  rename(`Overall contributor` = contributor) %>%
+  mutate(`Feature description` = get_feature_descriptions(`Feature name`)) %>%
+  write_csv("../../docs/Table_S4.csv")
+```
+
+
+### Univariate vs. multi-variate feature importance
+
+Fetch single-view and multi-view feature importance scores, for any feature defined as a contributor at least once (i.e. in either the single-view model or multi-view model).
+
+```{r}
+# Organize single-view importance scores
+tmp_single_omic <- feat_imp_sum %>%
+  filter(dataset %in% datasets_to_focus_on) %>%
+  # filter(contributor) %>%
+  filter(feature_set_type %in% c('T','G','P','M')) %>%
+  select(dataset,  
+         contributor, feature,  
+         mean_importance, combined_fdr) %>%
+  rename(single_omic_mean_importance = mean_importance) %>%
+  rename(single_omic_fdr = combined_fdr) %>%
+  rename(single_omic_contributor = contributor)  
+
+# Organize multi-view importance scores (assumes each dataset has either T+G+P or T+G+P+M but not both)
+tmp_multi_omic <- feat_imp_sum %>%
+  filter(dataset %in% datasets_to_focus_on) %>%
+  # filter(contributor) %>%
+  filter(feature_set_type %in% c('T+G+P+M','T+G+P')) %>%
+  select(dataset, 
+         feature,  contributor,
+         mean_importance, combined_fdr) %>%
+  rename(multi_omic_mean_importance = mean_importance) %>%
+  rename(multi_omic_fdr = combined_fdr)  %>%
+  rename(multi_omic_contributor = contributor)
+
+# Expand to original features (i.e. for each row representing a cluster of 
+#  features, we duplicate it to all original features, just to be able to 
+#  compare to multi-view models who might have slightly different clusters)
+tmp_single_omic <- tmp_single_omic %>%
+  left_join(all_clusters %>%
+              filter(feature_set_type %in% c('T','G','P','M')) %>%
+              select(-feature_set_type, -singleton), 
+            by = c('dataset', 'feature')) %>%
+  rename(cluster_single_omic = cluster) %>%
+  rename(feature_rep_single_omic = feature) %>%
+  mutate(is_clus_rep_single_omic = 
+           feature_orig == gsub('_Cluster[0-9]+$', '', 
+                                feature_rep_single_omic))
+
+tmp_multi_omic <- tmp_multi_omic %>%
+  left_join(all_clusters %>%
+              filter(feature_set_type %in% c('T+G+P+M','T+G+P')) %>%
+              select(-feature_set_type), 
+            by = c('dataset', 'feature')) %>%
+  rename(cluster_multi_omic = cluster) %>%
+  rename(singleton_multi_omic = singleton) %>%
+  rename(feature_rep_multi_omic = feature) %>%
+  mutate(is_clus_rep_multi_omic = 
+           feature_orig == gsub('_Cluster[0-9]+$', '', 
+                                feature_rep_multi_omic))
+
+# Join tables
+full_feature_importance <- full_join(
+  x = tmp_single_omic,
+  y = tmp_multi_omic,
+  by = c('dataset', 'feature_orig')
+)
+
+# For simplicity, take only features that were cluster representatives in 
+#  the multi-view pipeline (or not a multi-view contributor at all,
+#  and a representative in the single-view pipeline)
+full_feature_importance <- full_feature_importance %>%
+  filter((is.na(feature_rep_multi_omic) & is_clus_rep_single_omic) | 
+           is_clus_rep_multi_omic) %>%
+  mutate(feature_type = substr(feature_orig, 1, 1)) %>%
+  relocate(dataset, feature_orig, feature_type)
+
+# Add ranks
+full_feature_importance <- full_feature_importance %>%
+  group_by(dataset, feature_type) %>%
+  mutate(single_omic_rank = rank(single_omic_fdr, na.last = 'keep', ties.method = 'min')) %>%
+  ungroup() %>%
+  group_by(dataset) %>%
+  mutate(multi_omic_rank = rank(multi_omic_fdr, na.last = 'keep', ties.method = 'min')) %>%
+  ungroup()
+
+rm(tmp_single_omic, tmp_multi_omic)
+```
+
+#### U-tests
+
+To also compare to a univariate statistical test of association of each feature with the disease, we calculate u-tests for all relevant features found above (using relative abundances AND clr-transformed values, to partially account for large variability between DA approaches: https://www.nature.com/articles/s41467-022-28034-z).
+
+```{r}
+utests <- t(apply(full_feature_importance, MARGIN = 1, FUN = function(r) { # r = full_feature_importance[12,]
+  d <- r[['dataset']]
+  f <- r[['feature_orig']]
+  df <- proc_data[[d]]
+  h_vec <- df[[f]][df$DiseaseState == "healthy"]
+  d_vec <- df[[f]][df$DiseaseState != "healthy"]
+  utest <- wilcox.test(h_vec, d_vec, digits.rank = 7, exact = FALSE)
+  
+  # Also calcluate u-tests on clr-transformed values
+  df <- proc_data_with_clr[[d]]
+  h_vec_clr <- df[[f]][df$DiseaseState == "healthy"]
+  d_vec_clr <- df[[f]][df$DiseaseState != "healthy"]
+  utest_clr <- wilcox.test(h_vec_clr, d_vec_clr, digits.rank = 7, exact = FALSE)
+  
+  return(c(
+    "p" = utest$p.value,
+    "p_clr" = utest_clr$p.value, 
+    "mean_abun_healthy" = mean(h_vec), 
+    "mean_abun_disease" = mean(d_vec),
+    "mean_abun_healthy_clr" = mean(h_vec_clr),
+    "mean_abun_disease_clr" = mean(d_vec_clr)
+    ))
+})) %>% data.frame()
+
+full_feature_importance <- bind_cols(full_feature_importance, utests)
+
+# FDR
+full_feature_importance <- full_feature_importance %>%
+  group_by(dataset) %>%
+  mutate(fdr_utest = p.adjust(p, method = "fdr"), 
+         fdr_clr_utest = p.adjust(p_clr, method = "fdr")) %>%
+  ungroup() %>%
+  mutate(increased_in = ifelse(mean_abun_healthy > mean_abun_disease, "healthy", "disease")) %>%
+  mutate(increased_in = ifelse(fdr_clr_utest > 0.05 & fdr_utest > 0.05, "non-significant", increased_in)) %>%
+  select(-p, -p_clr)
+```
+
+Add feature descriptions where needed.
+
+```{r}
+full_feature_importance$pretty_name <- paste0(
+  '[', substr(full_feature_importance$feature_orig,1,1), '] ', 
+  get_feature_descriptions(full_feature_importance$feature_orig)
+)
+full_feature_importance$pretty_name <- gsub('superpathway', 'SP', full_feature_importance$pretty_name)
+```
+
+Remove low-performing models (where feature importance is unreliable)
+
+```{r}
+full_feature_importance <- full_feature_importance %>%
+  inner_join(
+    cv_datasets_summary %>% 
+      filter(!shuffled) %>% 
+      filter(mean_out_of_fold_test_auc > 0.6) %>% 
+      select(dataset, feature_set_type) %>% 
+      rename(feature_type = feature_set_type),
+    by = c("dataset", "feature_type"))
+```
+
+#### Visualize
+
+```{r fig.width=5.1, fig.height=10.5}
+tmp_cd <- plot_feat_importance_overview(
+  "cd_franzosa_2019", 
+  full_feature_importance, 
+  rank_cutoff_single_omic = 10, 
+  rank_cutoff_multi_omic = 10, 
+  w_p1 = 8.2,
+  limits_fill_p2_p3_p4 = c(0,10,6,45,0,45))
+```
+
+### Relationship between different importance measures
+
+Looking at features that were contributors in both single-view and multi-view models, how do the different importance metrics correlate with one another?
+
+```{r fig.width=7, fig.height=5, warning = FALSE}
+fi_names_map <- c(
+  "feature_orig" = "feature_orig",
+  "single_omic_mean_importance" = "Single-view\nRF importance",
+  "single_omic_fdr_log10" = "Single-view\nAltmann FDR",
+  "multi_omic_mean_importance" = "Multi-view\nRF importance",
+  "multi_omic_fdr_log10" = "Multi-view\nAltmann FDR",
+  "fdr_utest_log10" = "U-test FDR"
+)
+
+for (d in datasets_to_focus_on) {
+  tmp <- full_feature_importance %>%
+    filter(dataset == d) %>%
+    mutate(fdr_utest_log10 = -log10(fdr_utest)) %>%
+    mutate(single_omic_fdr_log10 = -log10(single_omic_fdr)) %>%
+    mutate(multi_omic_fdr_log10 = -log10(multi_omic_fdr)) %>%
+    select(feature_orig,
+           single_omic_mean_importance,
+           single_omic_fdr_log10,
+           multi_omic_mean_importance,
+           multi_omic_fdr_log10,
+           fdr_utest_log10) %>% 
+    rename_with(function(x) fi_names_map[x]) %>%
+    tidyr::pivot_longer(cols = -feature_orig, names_to = 'fi_method', values_to = 'val')
+  
+  tmp2 <- tmp %>%
+    full_join(tmp, by = 'feature_orig') %>%
+    filter(fi_method.x > fi_method.y)
+  
+  p <- ggplot(tmp2, aes(x = val.x, y = val.y)) +
+    geom_point(alpha = 0.2, size = 1) +
+    stat_poly_line(method=lm, color = 'darkred') +
+    stat_poly_eq(use_label(c("R2", "P")), size = 2.8, color = 'darkred') +
+    theme_bw() +
+    facet_grid(fi_method.y ~ fi_method.x, scales = 'free') +
+    ggtitle(d) +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(panel.grid.major = element_blank()) +
+    theme(panel.grid.minor = element_blank()) +
+    theme(axis.ticks = element_blank()) +
+    theme(axis.text = element_blank()) +
+    theme(axis.title = element_blank())
+  
+  print(p)
+}
+
+rm(tmp, d, p, fi_names_map)
+```
+
+## Supplementary table S8 (Clusters)
+
+Only non-singleton clusters are listed, and only if these clusters were selected by feature selection methods.
+
+```{r}
+all_clusters %>%
+  filter(!singleton) %>%
+  filter(feature %in% full_feature_importance$feature_rep_single_omic | 
+           feature %in% full_feature_importance$feature_rep_multi_omic) %>%
+  select(dataset, feature_set_type, feature_orig, cluster, feature) %>%
+  mutate(feature_set_type = 
+           factor(ifelse(feature_set_type %in% c('T+G+P','T+G+P+M'), 'All', feature_set_type), 
+                  levels = c('T','G','P','M','All'))) %>%
+  arrange(dataset, feature_set_type, cluster) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Feature set` = feature_set_type) %>%
+  rename(`Original feature name` = feature_orig) %>%
+  rename(`Cluster representative (randomly selected)` = feature) %>%
+  rename(`Cluster ID` = cluster) %>%
+  mutate(`Metagenomics transformation` = ifelse(`Feature set` == 'M', 'N/A', 'Relative abundances')) %>%
+  write_csv("../../docs/Table_S8_RELAB.csv")
+```
+
+## Session info
+
+```{r}
+sessionInfo()
+```

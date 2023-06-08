@@ -1,0 +1,177 @@
+Dataset,Model 1,Model 2,Adjusted paired T-test P value,ANOVA P value
+cd_franzosa_2019,P,G,0.752,0.0724
+cd_franzosa_2019,P,M,0.293,0.0724
+cd_franzosa_2019,P,T,0.278,0.0724
+cd_franzosa_2019,P,T+G+P+M,0.056,0.0724
+cd_franzosa_2019,G,M,0.404,0.0724
+cd_franzosa_2019,G,T,0.273,0.0724
+cd_franzosa_2019,G,T+G+P+M,0.034,0.0724
+cd_franzosa_2019,M,T,0.831,0.0724
+cd_franzosa_2019,M,T+G+P+M,0.293,0.0724
+cd_franzosa_2019,T,T+G+P+M,0.293,0.0724
+cdi_schubert_16s_2014,P,G,0.047,< 0.00001
+cdi_schubert_16s_2014,P,T+G+P,0.00043,< 0.00001
+cdi_schubert_16s_2014,P,T,< 0.00001,< 0.00001
+cdi_schubert_16s_2014,G,T+G+P,0.00019,< 0.00001
+cdi_schubert_16s_2014,G,T,< 0.00001,< 0.00001
+cdi_schubert_16s_2014,T+G+P,T,< 0.00001,< 0.00001
+cirrhosis_qin_2014,P,G,< 0.00001,< 0.00001
+cirrhosis_qin_2014,P,T+G+P,< 0.00001,< 0.00001
+cirrhosis_qin_2014,P,T,< 0.00001,< 0.00001
+cirrhosis_qin_2014,G,T+G+P,0.00094,< 0.00001
+cirrhosis_qin_2014,G,T,0.0006,< 0.00001
+cirrhosis_qin_2014,T+G+P,T,0.005,< 0.00001
+crc_baxter_16s_2016,P,G,0.32,< 0.00001
+crc_baxter_16s_2016,P,T+G+P,0.00031,< 0.00001
+crc_baxter_16s_2016,P,T,< 0.00001,< 0.00001
+crc_baxter_16s_2016,G,T+G+P,0.003,< 0.00001
+crc_baxter_16s_2016,G,T,< 0.00001,< 0.00001
+crc_baxter_16s_2016,T+G+P,T,< 0.00001,< 0.00001
+crc_feng_2015,P,G,0.003,< 0.00001
+crc_feng_2015,P,T+G+P,< 0.00001,< 0.00001
+crc_feng_2015,P,T,< 0.00001,< 0.00001
+crc_feng_2015,G,T+G+P,0.003,< 0.00001
+crc_feng_2015,G,T,< 0.00001,< 0.00001
+crc_feng_2015,T+G+P,T,< 0.00001,< 0.00001
+crc_s0_yachida_2019,G,M,0.232,0.00357
+crc_s0_yachida_2019,G,T+G+P+M,0.00073,0.00357
+crc_s0_yachida_2019,G,P,0.001,0.00357
+crc_s0_yachida_2019,G,T,0.001,0.00357
+crc_s0_yachida_2019,M,T+G+P+M,0.327,0.00357
+crc_s0_yachida_2019,M,P,0.389,0.00357
+crc_s0_yachida_2019,M,T,0.232,0.00357
+crc_s0_yachida_2019,T+G+P+M,P,0.835,0.00357
+crc_s0_yachida_2019,T+G+P+M,T,0.688,0.00357
+crc_s0_yachida_2019,P,T,0.835,0.00357
+crc_s3_s4_yachida_2019,P,G,< 0.00001,< 0.00001
+crc_s3_s4_yachida_2019,P,M,< 0.00001,< 0.00001
+crc_s3_s4_yachida_2019,P,T,< 0.00001,< 0.00001
+crc_s3_s4_yachida_2019,P,T+G+P+M,< 0.00001,< 0.00001
+crc_s3_s4_yachida_2019,G,M,0.00007,< 0.00001
+crc_s3_s4_yachida_2019,G,T,< 0.00001,< 0.00001
+crc_s3_s4_yachida_2019,G,T+G+P+M,< 0.00001,< 0.00001
+crc_s3_s4_yachida_2019,M,T,0.00013,< 0.00001
+crc_s3_s4_yachida_2019,M,T+G+P+M,0.00001,< 0.00001
+crc_s3_s4_yachida_2019,T,T+G+P+M,0.554,< 0.00001
+crc_wang_16s_2012,P,G,0.067,< 0.00001
+crc_wang_16s_2012,P,T+G+P,0.013,< 0.00001
+crc_wang_16s_2012,P,T,< 0.00001,< 0.00001
+crc_wang_16s_2012,G,T+G+P,0.067,< 0.00001
+crc_wang_16s_2012,G,T,< 0.00001,< 0.00001
+crc_wang_16s_2012,T+G+P,T,< 0.00001,< 0.00001
+crc_wirbel_2018,P,G,< 0.00001,< 0.00001
+crc_wirbel_2018,P,T,< 0.00001,< 0.00001
+crc_wirbel_2018,P,T+G+P,< 0.00001,< 0.00001
+crc_wirbel_2018,G,T,0.056,< 0.00001
+crc_wirbel_2018,G,T+G+P,0.00088,< 0.00001
+crc_wirbel_2018,T,T+G+P,0.675,< 0.00001
+crc_yu_2015,G,T+G+P,< 0.00001,< 0.00001
+crc_yu_2015,G,P,< 0.00001,< 0.00001
+crc_yu_2015,G,T,< 0.00001,< 0.00001
+crc_yu_2015,T+G+P,P,0.22,< 0.00001
+crc_yu_2015,T+G+P,T,< 0.00001,< 0.00001
+crc_yu_2015,P,T,0.00024,< 0.00001
+crc_zeller_2014,P,G,0.485,0.14446
+crc_zeller_2014,P,T+G+P,0.204,0.14446
+crc_zeller_2014,P,T,0.204,0.14446
+crc_zeller_2014,G,T+G+P,0.042,0.14446
+crc_zeller_2014,G,T,0.273,0.14446
+crc_zeller_2014,T+G+P,T,0.595,0.14446
+crc_zeller_16s_2014,P,G,0.012,0.00055
+crc_zeller_16s_2014,P,T+G+P,0.00014,0.00055
+crc_zeller_16s_2014,P,T,0.002,0.00055
+crc_zeller_16s_2014,G,T+G+P,0.014,0.00055
+crc_zeller_16s_2014,G,T,0.015,0.00055
+crc_zeller_16s_2014,T+G+P,T,0.064,0.00055
+edd_singh_16s_2015,P,T+G+P,0.016,0.00005
+edd_singh_16s_2015,P,G,0.027,0.00005
+edd_singh_16s_2015,P,T,0.00068,0.00005
+edd_singh_16s_2015,T+G+P,G,0.905,0.00005
+edd_singh_16s_2015,T+G+P,T,0.004,0.00005
+edd_singh_16s_2015,G,T,0.003,0.00005
+esrd_wang_2020,P,G,0.0003,< 0.00001
+esrd_wang_2020,P,T,< 0.00001,< 0.00001
+esrd_wang_2020,P,T+G+P+M,< 0.00001,< 0.00001
+esrd_wang_2020,P,M,< 0.00001,< 0.00001
+esrd_wang_2020,G,T,< 0.00001,< 0.00001
+esrd_wang_2020,G,T+G+P+M,< 0.00001,< 0.00001
+esrd_wang_2020,G,M,< 0.00001,< 0.00001
+esrd_wang_2020,T,T+G+P+M,< 0.00001,< 0.00001
+esrd_wang_2020,T,M,< 0.00001,< 0.00001
+esrd_wang_2020,T+G+P+M,M,0.322,< 0.00001
+igt_karlsson_2013,P,T,0.107,0.01673
+igt_karlsson_2013,P,T+G+P,0.001,0.01673
+igt_karlsson_2013,P,G,0.002,0.01673
+igt_karlsson_2013,T,T+G+P,0.832,0.01673
+igt_karlsson_2013,T,G,0.832,0.01673
+igt_karlsson_2013,T+G+P,G,0.832,0.01673
+me_cfs_nagySzakal_2017,P,T+G+P,0.584,0.05978
+me_cfs_nagySzakal_2017,P,G,0.584,0.05978
+me_cfs_nagySzakal_2017,P,T,0.069,0.05978
+me_cfs_nagySzakal_2017,T+G+P,G,0.584,0.05978
+me_cfs_nagySzakal_2017,T+G+P,T,0.069,0.05978
+me_cfs_nagySzakal_2017,G,T,0.214,0.05978
+noncdi_schubert_16s_2014,G,P,0.816,< 0.00001
+noncdi_schubert_16s_2014,G,T+G+P,0.009,< 0.00001
+noncdi_schubert_16s_2014,G,T,0.00001,< 0.00001
+noncdi_schubert_16s_2014,P,T+G+P,0.172,< 0.00001
+noncdi_schubert_16s_2014,P,T,0.00001,< 0.00001
+noncdi_schubert_16s_2014,T+G+P,T,0.00001,< 0.00001
+ob_turnbaugh_16s_2009,G,P,0.589,< 0.00001
+ob_turnbaugh_16s_2009,G,T+G+P,< 0.00001,< 0.00001
+ob_turnbaugh_16s_2009,G,T,< 0.00001,< 0.00001
+ob_turnbaugh_16s_2009,P,T+G+P,0.003,< 0.00001
+ob_turnbaugh_16s_2009,P,T,< 0.00001,< 0.00001
+ob_turnbaugh_16s_2009,T+G+P,T,< 0.00001,< 0.00001
+par_scheperjans_16s_2015,G,T+G+P,0.0008,< 0.00001
+par_scheperjans_16s_2015,G,P,0.003,< 0.00001
+par_scheperjans_16s_2015,G,T,< 0.00001,< 0.00001
+par_scheperjans_16s_2015,T+G+P,P,0.805,< 0.00001
+par_scheperjans_16s_2015,T+G+P,T,< 0.00001,< 0.00001
+par_scheperjans_16s_2015,P,T,< 0.00001,< 0.00001
+schizofrenia_zhu_2020,P,G,0.001,< 0.00001
+schizofrenia_zhu_2020,P,T+G+P,< 0.00001,< 0.00001
+schizofrenia_zhu_2020,P,T,< 0.00001,< 0.00001
+schizofrenia_zhu_2020,G,T+G+P,0.00003,< 0.00001
+schizofrenia_zhu_2020,G,T,< 0.00001,< 0.00001
+schizofrenia_zhu_2020,T+G+P,T,< 0.00001,< 0.00001
+sth_rubel_2020,G,P,0.956,< 0.00001
+sth_rubel_2020,G,T+G+P,< 0.00001,< 0.00001
+sth_rubel_2020,G,T,< 0.00001,< 0.00001
+sth_rubel_2020,P,T+G+P,0.003,< 0.00001
+sth_rubel_2020,P,T,< 0.00001,< 0.00001
+sth_rubel_2020,T+G+P,T,0.00001,< 0.00001
+t1d_alkanani_16s_2015,G,T+G+P,0.578,< 0.00001
+t1d_alkanani_16s_2015,G,P,0.076,< 0.00001
+t1d_alkanani_16s_2015,G,T,0.00002,< 0.00001
+t1d_alkanani_16s_2015,T+G+P,P,0.076,< 0.00001
+t1d_alkanani_16s_2015,T+G+P,T,0.00002,< 0.00001
+t1d_alkanani_16s_2015,P,T,0.003,< 0.00001
+t2d_karlsson_2013,P,T+G+P,0.007,< 0.00001
+t2d_karlsson_2013,P,G,0.009,< 0.00001
+t2d_karlsson_2013,P,T,< 0.00001,< 0.00001
+t2d_karlsson_2013,T+G+P,G,0.922,< 0.00001
+t2d_karlsson_2013,T+G+P,T,< 0.00001,< 0.00001
+t2d_karlsson_2013,G,T,0.00003,< 0.00001
+t2d_qin_2012,G,T+G+P,0.171,0.22516
+t2d_qin_2012,G,P,0.326,0.22516
+t2d_qin_2012,G,T,0.171,0.22516
+t2d_qin_2012,T+G+P,P,0.664,0.22516
+t2d_qin_2012,T+G+P,T,0.326,0.22516
+t2d_qin_2012,P,T,0.634,0.22516
+uc_franzosa_2019,P,M,0.109,0.00018
+uc_franzosa_2019,P,T,0.028,0.00018
+uc_franzosa_2019,P,G,0.001,0.00018
+uc_franzosa_2019,P,T+G+P+M,0.00003,0.00018
+uc_franzosa_2019,M,T,0.895,0.00018
+uc_franzosa_2019,M,G,0.236,0.00018
+uc_franzosa_2019,M,T+G+P+M,0.018,0.00018
+uc_franzosa_2019,T,G,0.18,0.00018
+uc_franzosa_2019,T,T+G+P+M,0.018,0.00018
+uc_franzosa_2019,G,T+G+P+M,0.156,0.00018
+uc_spain_nielsen_2014,P,G,< 0.00001,< 0.00001
+uc_spain_nielsen_2014,P,T+G+P,< 0.00001,< 0.00001
+uc_spain_nielsen_2014,P,T,< 0.00001,< 0.00001
+uc_spain_nielsen_2014,G,T+G+P,0.455,< 0.00001
+uc_spain_nielsen_2014,G,T,0.021,< 0.00001
+uc_spain_nielsen_2014,T+G+P,T,0.029,< 0.00001
