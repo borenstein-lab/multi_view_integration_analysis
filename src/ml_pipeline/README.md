@@ -4,11 +4,11 @@ This folder includes all code related to the machine learning (ML) pipeline.
 
 1. Prepare input data as follows:
 
-1.1. metadata file with 'sample_id' as the first column and 'DiseaseState' as an additional column in which one of two labels (e.g. 'Control' & 'Disease') appear per sample.
-1.2. taxonomy file with 'sample_id' as the first column and all other columns representing different taxa and their abundances (could be relative abundances or counts).
-1.3. pathways file with 'pathway' as the first column (pathway names/codes), and other columns corresponding to the sample_ids.
-1.4. gene family files with 'function' as the first column (gene family name/code), and other columns corresponding to the sample_ids.
-1.5. (optional) metabolite file with 'sample_id' as the first column and all other columns representing different metabolites and their abundances.
+1.1. metadata file with 'sample_id' as the first column and 'DiseaseState' as an additional column in which one of two labels (e.g. 'Control' & 'Disease') appear per sample.  
+1.2. taxonomy file with 'sample_id' as the first column and all other columns representing different taxa and their abundances (could be relative abundances or counts).  
+1.3. pathways file with 'pathway' as the first column (pathway names/codes), and other columns corresponding to the sample_ids.  
+1.4. gene family files with 'function' as the first column (gene family name/code), and other columns corresponding to the sample_ids.  
+1.5. (optional) metabolite file with 'sample_id' as the first column and all other columns representing different metabolites and their abundances.  
 
 All 4 (or 5) files should be placed in one folder. The folder's name is considered as the dataset's name. File names are not restricted, they just need to be updated in the configuration file (see next step).
 
