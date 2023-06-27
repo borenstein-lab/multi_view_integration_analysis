@@ -33,4 +33,4 @@ src/*/*/figure-html/*
 data/ml_input/*
 data/ml_input_archive/*
 data/ml_output/*
-
+data/intermediate_integration_results/*
