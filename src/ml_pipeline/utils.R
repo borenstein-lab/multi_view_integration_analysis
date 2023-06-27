@@ -57,3 +57,10 @@ utils_get_kegg_compound_names_mapping <- function() {
   
   return(kegg_metab_names_map)
 }
+
+# Combine features' importance p values using Fisher's method 
+post_combine_p_vals_fisher <- function(pvals) {
+  if (length(pvals) == 1) return(pvals)
+  if (sum(!is.na(pvals)) == 0) return(NA)
+  return(sumlog(p.adjust(pvals, method="fdr"))$p)
+}

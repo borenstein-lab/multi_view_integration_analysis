@@ -8,8 +8,8 @@ library(dplyr)
 library(collections)
 library(readr)
 
-setwd(getwd())
-
+# Read configuration file
+config <- config::get(file = "src/ml_pipeline/config.yml")
 
 # Reads the database from MetaCyc database path. The database is a text file
 # generated from MetaCyc smart tables (available in the website after registration).
@@ -18,10 +18,12 @@ setwd(getwd())
 # 1. leaves - a set of leaves in the database, i.e. the lower pathways in the pathways hierarchy.
 # 2. sub_to_super - a dictionary with a mapping between a subpathway to its superpathways set.
 # 3. super_to_sub - a dictionary with a mapping between a superpathway to its subpathways set.
-
 read_database <- function(metacyc_db_path) {
   data <- read.csv(file = metacyc_db_path,
-                   sep = '\t', header = TRUE, quote = "", check.names = FALSE)
+                   sep = '\t', 
+                   header = TRUE, 
+                   quote = "", 
+                   check.names = FALSE)
   
   # Build subpathway -> superpathways mapping
   all_superpathways <- sets::set()
@@ -125,7 +127,7 @@ filter_super_pathways <- function(pathways_df) {
 get_bacterial_pathways <- function() {
   require(readr)
   
-  all_pwys <- read_delim(config::get('paths')$metacyc_pathways2taxa, 
+  all_pwys <- read_delim(config$paths$metacyc_pathways2taxa, 
                          delim = "\t", escape_double = FALSE, 
                          col_select = c('Object ID', 'Taxonomic-Range'),
                          show_col_types = FALSE, trim_ws = TRUE)
@@ -135,7 +137,7 @@ get_bacterial_pathways <- function() {
     tidyr::pivot_longer(cols = -pwy, names_to = 'dummy', values_to = 'tax', values_drop_na = TRUE) %>%
     select(-dummy)
   
-  all_bacteria <- read_delim(config::get('paths')$metacyc_bacterial_taxa, 
+  all_bacteria <- read_delim(config$paths$metacyc_bacterial_taxa, 
                              delim = "\t", escape_double = FALSE, 
                              col_select = c('Object ID', 'Common-Name'), 
                              show_col_types = FALSE, trim_ws = TRUE)
@@ -161,7 +163,7 @@ filter_bacterial_pathways <- function(pathways_df) {
 
 # Load the database only once
 if (!exists('metacyc_db')) {
-  metacyc_db <- read_database(config::get('paths')$metacyc_pathways_hierarchy)
+  metacyc_db <- read_database(config$paths$metacyc_pathways_hierarchy)
 }
 
 

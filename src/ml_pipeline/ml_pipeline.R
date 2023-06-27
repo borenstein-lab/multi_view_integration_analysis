@@ -47,11 +47,15 @@ if (!exists("name__")) {
   setwd(args$work_dir)
 }
 
-source('utils.R')
-source('preprocessing.R')
-source('feature_selection.R')
-source('clustering.R')
-source('postprocess_results.R')
+
+source('src/ml_pipeline/utils.R')
+source('src/ml_pipeline/preprocessing.R')
+source('src/ml_pipeline/feature_selection.R')
+source('src/ml_pipeline/clustering.R')
+source('src/ml_pipeline/postprocess_results.R')
+
+# Read configuration file
+config <- config::get(file = "src/ml_pipeline/config.yml")
 
 # Creates a random forest model specification 
 #  (using the tidymodels framework).
@@ -59,9 +63,7 @@ source('postprocess_results.R')
 #  parameters are tuned here, otherwise, default 
 #  hyper-parameters are used.
 # Note: the model is not trained here, just defined.
-ml_create_rf_model <- function(run_name,
-                               train_df,
-                               should_tune) {
+ml_create_rf_model <- function(run_name, train_df, should_tune) {
   logs = list()
   
   # Create a recipe
@@ -73,8 +75,8 @@ ml_create_rf_model <- function(run_name,
     # Create nested folds for tuning
     set.seed(222)
     folds <- vfold_cv(train_df,
-                      v = config::get('tuning_n_folds'),
-                      repeats = config::get('tuning_n_repeats'))
+                      v = config$tuning_n_folds,
+                      repeats = config$tuning_n_repeats)
     
     # Create a random forest model and a workflow object
     tune_spec <- rand_forest(mtry = tune::tune(),
@@ -91,7 +93,7 @@ ml_create_rf_model <- function(run_name,
       add_model(tune_spec)
     
     set.seed(333)
-    if (config::get('use_tune_grid')) {
+    if (config$use_tune_grid) {
       tune_res <- data_workflow %>%
         tune_grid(
           resamples = folds,
@@ -366,8 +368,8 @@ ml_pipeline_single_run <- function(run_name,
   # Run the pipeline with cross validation
   set.seed(1111)
   folds <- vfold_cv(data_df,
-                    v = config::get('outer_n_folds'),
-                    repeats = config::get('outer_n_repeats'))
+                    v = config$outer_n_folds,
+                    repeats = config$outer_n_repeats)
   
   # If set to run without CV take only first split
   if (!should_cv)
@@ -419,7 +421,7 @@ ml_pipeline_single_run <- function(run_name,
 ml_build_run_name <- function(params_combo) {
   
   # Extract mapping of long to short names from config file
-  params_short_names <- lapply(config::get('params_short_names'), unlist)
+  params_short_names <- lapply(config$params_short_names, unlist)
   
   # Use mapping to get short names per pipeline setting
   run_name_l <- sapply(names(params_combo), function(p) { 
@@ -441,10 +443,10 @@ ml_main <- function(ds_name) {
   
   # Run the pipeline
   # Preprocess data, i.e. get feature sets
-  feature_sets <- prep_preprocess_dataset(ds_name, feature_set_types = config::get('params_combo')$feature_set_type)
+  feature_sets <- prep_preprocess_dataset(ds_name, feature_set_types = config$params_combo$feature_set_type)
   
   # Get pipeline settings from config (one or more) 
-  all_params_combo <- expand.grid(config::get('params_combo'))
+  all_params_combo <- expand.grid(config$params_combo)
   all_params_combo <- all_params_combo %>% filter(feature_set_type %in% names(feature_sets))
   
   # Run pipeline (test: params_combo = all_params_combo[1,])
@@ -476,7 +478,7 @@ ml_main <- function(ds_name) {
   all_results <- bind_rows(all_results)
   
   # Save a CSV file with the folds results
-  result_path <- sprintf(config::get('paths_templates')$cv_results_csv, ds_name)
+  result_path <- sprintf(config$paths_templates$cv_results_csv, ds_name)
   
   all_cv_results <-
     all_results %>% 
@@ -489,7 +491,7 @@ ml_main <- function(ds_name) {
   utils_save_tsv_table(all_cv_results, result_path, sep = ',')
   
   # Save a CSV file with features importance
-  feature_importance_path <- sprintf(config::get('paths_templates')$feature_importance_csv, ds_name)
+  feature_importance_path <- sprintf(config$paths_templates$feature_importance_csv, ds_name)
   
   all_results %>% 
     mutate(dataset = ds_name) %>%
@@ -500,7 +502,7 @@ ml_main <- function(ds_name) {
     utils_save_tsv_table(`feature_importance_path`, sep = ',')
   
   # Save a CSV file with out-of-fold raw predictions (for ROC plotting)
-  oof_preds_path <- sprintf(config::get('paths_templates')$raw_oof_predictions, ds_name)
+  oof_preds_path <- sprintf(config$paths_templates$raw_oof_predictions, ds_name)
   
   all_results %>% 
     mutate(dataset = ds_name) %>%
@@ -524,14 +526,14 @@ ml_main <- function(ds_name) {
 # -----------------------------------------------------------------------------------
 if (name__ == "ml_pipeline") {
   # Set log level (globally)
-  log_threshold(config::get('log_level'))
+  log_threshold(config$log_level)
   if (!is.null(args$dataset)) ml_main(args$dataset)
 }
 
 # Run manually, in test mode (i.e. use the 'test' configuration)
 # -----------------------------------------------------------------------------------
 if (FALSE) {
-  log_threshold(config::get('log_level'))
+  log_threshold(config$log_level)
   Sys.setenv(R_CONFIG_ACTIVE = "test")  # Set to test configuration mode globally (i.e. use 'test' configurations in config.yml)
   log_info('Running with test configuration...')
   ml_main('crc_s0_yachida_2019')

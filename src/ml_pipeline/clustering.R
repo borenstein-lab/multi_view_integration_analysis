@@ -2,7 +2,7 @@ require(config)
 require(logger)
 require(amap)
 
-source('utils.R')
+source('src/ml_pipeline/utils.R')
 
 cluster_calculate_clusters <- function(dataset,
                                        dist_method,

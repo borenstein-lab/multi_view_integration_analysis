@@ -15,22 +15,20 @@ require(readr)
 require(dplyr)
 require(stringr)
 
-source('utils.R')
+source('src/ml_pipeline/utils.R')
 
-# Combine features' importance p values using Fisher's method 
-post_combine_p_vals_fisher <- function(pvals) {
-  if (length(pvals) == 1) return(pvals)
-  if (sum(!is.na(pvals)) == 0) return(NA)
-  return(sumlog(p.adjust(pvals, method="fdr"))$p)
-}
+
+# Read configuration file
+config <- config::get(file = "src/ml_pipeline/config.yml")
+
 
 # Combine all cv_results (saved as one file per dataset) into a single table, 
 #  re-format some columns and add extra information.
 # Each row in the output represents a single fold/repeat in a specific dataset 
 #  using a specific setting ("run_name").
 # Also writes the table to a file by default.
-post_load_cv_results <- function(dir_path = config::get("paths")$results_tables_dir, 
-                                 output_file = config::get("paths")$combined_cv_results) {
+post_load_cv_results <- function(dir_path = config$paths$results_tables_dir, 
+                                 output_file = config$paths$combined_cv_results) {
   files <- list.files(dir_path, pattern = "\\_pipeline.csv$")
   all_data <- bind_rows(lapply(files, function(result_file_name) {
     cat('.')
@@ -46,7 +44,7 @@ post_load_cv_results <- function(dir_path = config::get("paths")$results_tables_
   all_data$run_name <- gsub("\"", "", all_data$run_name)
   
   # Order categories for consistent plotting
-  fsts <- names(config::get("params_short_names")$feature_set_type)
+  fsts <- names(config$params_short_names$feature_set_type)
   fsts <- fsts[fsts %in% unique(all_data$feature_set_type)]
   all_data <- all_data %>%
     mutate(run_name = factor(run_name)) %>%
@@ -54,13 +52,13 @@ post_load_cv_results <- function(dir_path = config::get("paths")$results_tables_
              factor(feature_set_type, levels = fsts))
   
   # Mark the shotgun studies using curatedMetagenomicData list of included studies
-  shotgun_studies <- read_csv(config::get("paths")$curatedMetagenomicData_study_list, 
+  shotgun_studies <- read_csv(config$paths$curatedMetagenomicData_study_list, 
                               comment = "#", 
                               show_col_types = FALSE)
   all_data$metagenomics_type <- 
     ifelse(all_data$dataset %in% 
              c(shotgun_studies$new_study_name, 
-               config::get("shotgun_datasets_not_in_CMD")), 
+               config$shotgun_datasets_not_in_CMD), 
            "Shotgun", 
            "16S")
   
@@ -77,8 +75,8 @@ post_load_cv_results <- function(dir_path = config::get("paths")$results_tables_
 # Combine all feature importance results (saved as one file per dataset) into a single table, 
 #  re-format some columns and add extra information.
 # Also writes the table to a file by default.
-post_load_feature_importance <- function(dir_path = config::get("paths")$results_tables_dir, 
-                                         output_file = config::get("paths")$combined_feature_importance,
+post_load_feature_importance <- function(dir_path = config$paths$results_tables_dir, 
+                                         output_file = config$paths$combined_feature_importance,
                                          cv_results = NULL) {
   
   # Read all feature importance files available in results folder
@@ -149,7 +147,7 @@ post_load_feature_importance <- function(dir_path = config::get("paths")$results
 post_summarize_feat_imp <- function(feat_imp,
                                     fdr_threshold = 0.1,
                                     n_times_selected_threshold = 0.5,
-                                    n_total_folds = config::get("outer_n_folds") * config::get("outer_n_repeats")) {
+                                    n_total_folds = config$outer_n_folds * config$outer_n_repeats) {
   feat_imp_sum <- feat_imp %>%
     dplyr::select(dataset, 
                    run_name, 
@@ -171,8 +169,8 @@ post_summarize_feat_imp <- function(feat_imp,
 }
 
 # Prepares an rdata object with all results in it, as well as saves text files with combined results (combined over all datasets)
-post_prepare_rdata <- function(dir_path = config::get("paths")$results_tables_dir, 
-                               output_file = config::get("paths")$results_rdata, 
+post_prepare_rdata <- function(dir_path = config$paths$results_tables_dir, 
+                               output_file = config$paths$results_rdata, 
                                auc_threshold = 0.6) {
   # 1. Load ML modelling results
   ######################################

@@ -5,7 +5,10 @@ library(conflicted)
 conflict_prefer("select", "dplyr")
 conflict_prefer("filter", "dplyr")
 
-source('pathways_db.R')
+source('src/ml_pipeline/pathways_db.R')
+
+# Read configuration file
+config <- config::get(file = "src/ml_pipeline/config.yml")
 
 prep_add_col_prefix <- function(df, prefix) {
   sample_id_col <- df %>% select(sample_id__)
@@ -48,7 +51,7 @@ prep_clr_transpose <- function(df, pseudo_count) {
 }
 
 prep_load_metadata <- function(path) {
-  valid_labels <- c('H', config::get('disease_labels'))
+  valid_labels <- c('H', config$disease_labels)
 
   metadata_df <- read.csv(file = path, sep = '\t', header = TRUE) %>%
       as_tibble() %>%
@@ -114,7 +117,7 @@ prep_load_metagenome <- function(path, convert_to_relab = TRUE) {
 
 prep_load_taxonomy <- function(path, convert_to_relab = TRUE) {
   df <- read.csv(file = path, sep = '\t', header = TRUE, check.names = FALSE) %>%
-    select(-any_of(config::get('unknown_taxa'))) %>%
+    select(-any_of(config$unknown_taxa)) %>%
     rename(sample_id__ = 1) %>%
     prep_add_col_prefix('T')
   
@@ -204,16 +207,16 @@ prep_sanitize_dataset <- function(df, feature_set, rare_feature_cutoff = 0.15, l
 # If NULL is supplied, the clustering config is used. Otherwise, the clustering
 # specifid by "override_clustering" arg is used.
 prep_preprocess_dataset <- function(ds_name, 
-                                    cluster_type = config::get('cluster_type'),
+                                    cluster_type = config$cluster_type,
                                     feature_set_types = c('T','G','P','M','T+G+P','T+G+P+M'), 
                                     clr_trans = FALSE) {
   # Get file paths
-  metadata_path <- sprintf(config::get('paths_templates')$metadata, ds_name)
-  taxonomy_path <- sprintf(config::get('paths_templates')$taxonomy, ds_name)
-  pathways_path <- sprintf(config::get('paths_templates')$pathways, ds_name)
-  metabolites_path <- sprintf(config::get('paths_templates')$metabolites, ds_name)
-  genes_path <- sprintf(config::get('paths_templates')$metagenome, ds_name)
-  clusters_output <- sprintf(config::get('paths_templates')$clusters, ds_name)
+  metadata_path <- sprintf(config$paths_templates$metadata, ds_name)
+  taxonomy_path <- sprintf(config$paths_templates$taxonomy, ds_name)
+  pathways_path <- sprintf(config$paths_templates$pathways, ds_name)
+  metabolites_path <- sprintf(config$paths_templates$metabolites, ds_name)
+  genes_path <- sprintf(config$paths_templates$metagenome, ds_name)
+  clusters_output <- sprintf(config$paths_templates$clusters, ds_name)
   
   # If there are no metabolomics available, update list of feature sets
   include_metabs <- ifelse(file.exists(metabolites_path), TRUE, FALSE)
