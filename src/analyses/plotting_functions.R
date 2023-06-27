@@ -766,62 +766,65 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
   print(p)
 }
 
-plot_module_sensitivity_analysis <- function(sens_analysis_components, base_comp, selected_settings) {
+plot_module_sensitivity_analysis <- function(sens_analysis_modules, base_module, selected_settings, settings_order = NULL) {
   # Final set of features for a given module
-  base_features <- sens_analysis_components %>% 
-    filter(dataset == base_comp$d) %>%
-    filter(component == paste0('comp', base_comp$mod_id)) %>%
+  base_features <- sens_analysis_modules %>% 
+    filter(dataset == base_module$d) %>%
+    filter(module == paste0('module', base_module$mod_id)) %>%
     filter(run_id == selected_settings) %>%
     pull(feature)
   
   # All relevant components/features
-  df <- sens_analysis_components %>% 
-    filter(dataset == base_comp$d) %>%
-    filter(!grepl('keep_15', run_id)) %>%
-    group_by(run_id, component) %>%
+  df <- sens_analysis_modules %>% 
+    filter(dataset == base_module$d) %>%
+    group_by(run_id, module) %>%
     filter(sum(feature %in% base_features) > 0) %>%
-    ungroup() %>%
-    mutate(run_id = factor(run_id, levels = settings_order))
+    ungroup() 
+  
+  if(!is.null(settings_order)) df <- df %>% mutate(run_id = factor(run_id, levels = settings_order))
   
   # Organize features order
   feats_order <- sort(base_features) 
   
-  for (i in 2:length(settings_order)) {
-    tmp_feats <- df %>% 
-      filter(run_id == settings_order[i]) %>%
-      pull(feature)
-    feats_order <- c(feats_order, tmp_feats[! tmp_feats %in% feats_order])
+  # Hack for nice ordering of features
+  if(!is.null(settings_order)) {
+    for (i in 2:length(settings_order)) {
+      tmp_feats <- df %>% 
+        filter(run_id == settings_order[i]) %>%
+        pull(feature)
+      feats_order <- c(feats_order, tmp_feats[! tmp_feats %in% feats_order])
+    }
   }
   
   df <- df %>%
     mutate(feature = factor(feature, levels = rev(feats_order)))
   
   # Control module colors
-  comp_color <- df %>%
-    select(run_id, component) %>%
+  module_color <- df %>%
+    select(run_id, module) %>%
     distinct() %>%
     group_by(run_id) %>%
     mutate(module_color = as.character(row_number())) %>%
     ungroup()
   
   # Add AUC's per module
-  comp_color$AUC <- NA
+  module_color$AUC <- NA
   
   # For each module plotted...
-  for (i in 1:nrow(comp_color)) {
+  for (i in 1:nrow(module_color)) {
     # Get PC1's of these modules
-    mod_id <- comp_color$component[i]
-    curr_run_id <- as.character(comp_color$run_id[i])
-    tmp <- latent_vars[[base_comp$d]][[curr_run_id]]$true
+    mod_id <- module_color$module[i]
+    curr_run_id <- as.character(module_color$run_id[i])
+    tmp <- latent_vars[[base_module$d]][[curr_run_id]]$true
     # Get ROC's
     tmp_roc <- roc(tmp$label, tmp[[mod_id]], levels = c('healthy', 'disease'), quiet = TRUE)
     # Save
-    comp_color$AUC[i] <- round(tmp_roc$auc, 3)
+    module_color$AUC[i] <- round(tmp_roc$auc, 3)
   }
   
   # Add new properties to data to plot
   df <- df %>%
-    left_join(comp_color, by = c("component", "run_id"))
+    left_join(module_color, by = c("module", "run_id"))
   
   p1 <- ggplot(df, aes(y = feature, x = run_id, fill = module_color)) +
     geom_point(size = 2.5, shape = 21, color = 'black') +
@@ -836,7 +839,7 @@ plot_module_sensitivity_analysis <- function(sens_analysis_components, base_comp
     theme(axis.text.y = element_text(size = 6)) +
     theme(plot.margin = unit(c(10,95,1,1), 'points')) 
   
-  p2 <- ggplot(comp_color %>%
+  p2 <- ggplot(module_color %>%
                  tidyr::complete(run_id, module_color) %>%
                  mutate(AUC = ifelse(is.na(AUC), 0.501, AUC)), 
                aes(y = AUC, x = run_id, fill = module_color, group = module_color)) +
