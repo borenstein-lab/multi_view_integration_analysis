@@ -635,7 +635,7 @@ plot_module_stats <- function(sens_analysis_components,
   # Combine plots
   tmp_rel_widths <- c(9, 3, 3)
   if (hide_y_axis_text) tmp_rel_widths <- c(7.2, 3, 3)
-  print(plot_grid(p1, p2, p3, 
+  print(plot_grid(p1, p3, p2, 
                   nrow = 1, 
                   rel_widths = tmp_rel_widths, 
                   align = 'h', axis = 'tb'))
@@ -652,12 +652,17 @@ plot_module_stats <- function(sens_analysis_components,
 }
 
 plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focus_on) {
+  
+  caption_early_integration <- "Early integration\n(Average no. of features after feature selection)"
+  caption_minttea <- "Intermediate integration with MintTea\n(No. of features [No. of modules])"
+  caption_minttea_shuf <- "Intermediate integration with MintTea - Shuffled"
+  
   tmp <- bind_rows(
     rf_results %>%
       mutate(label_n_features = as.character(round(mean_n_features_for_train, 1))) %>%
       select(dataset, mean_auc, sd_auc, label_n_features) %>%
       mutate(model = 'rf') %>%
-      mutate(pipeline = 'Raw features') %>%
+      mutate(pipeline = caption_early_integration) %>%
       mutate(shuf = FALSE),
     summary_aucs %>%
       filter(run == 'true') %>%
@@ -665,14 +670,14 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
       mutate(label_n_features = paste0(n_features, ' [', n_modules, ']')) %>%
       select(dataset, mean_auc, sd_auc, label_n_features) %>%
       mutate(model = 'rf') %>%
-      mutate(pipeline = 'Multi-view modules') %>%
+      mutate(pipeline = caption_minttea) %>%
       mutate(shuf = FALSE),
     summary_aucs %>%
       filter(run != 'true') %>%
       group_by(dataset) %>%
       summarize(mean_auc = mean(mean_comp_rf_auc), sd_auc = sqrt(wtd.var(mean_comp_rf_auc^2))) %>%
       mutate(model = 'rf') %>%
-      mutate(pipeline = 'Multi-view modules - Shuffled') %>%
+      mutate(pipeline = caption_minttea_shuf) %>%
       mutate(shuf = TRUE),
     summary_aucs %>%
       filter(run == 'true') %>%
@@ -680,25 +685,31 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
       mutate(label_n_features = paste0(n_features, ' [', n_modules, ']')) %>%
       select(dataset, mean_auc, sd_auc, label_n_features) %>%
       mutate(model = 'logit') %>%
-      mutate(pipeline = 'Multi-view modules') %>%
+      mutate(pipeline = caption_minttea) %>%
       mutate(shuf = FALSE),
     summary_aucs %>%
       filter(run != 'true') %>%
       group_by(dataset) %>%
       summarize(mean_auc = mean(mean_comp_glm_auc), sd_auc = sqrt(wtd.var(mean_comp_glm_auc^2))) %>%
       mutate(model = 'logit') %>%
-      mutate(pipeline = 'Multi-view modules - Shuffled') %>%
+      mutate(pipeline = caption_minttea_shuf) %>%
       mutate(shuf = TRUE)
   ) %>%
     filter(dataset %in% datasets_to_focus_on) %>%
     mutate(error_low = mean_auc-sd_auc) %>%
     mutate(error_high = pmin(1, mean_auc+sd_auc)) %>%
-    mutate(pipeline = factor(pipeline, levels = c('Multi-view modules - Shuffled','Multi-view modules','Raw features')))
+    mutate(pipeline = factor(pipeline, 
+                             levels = c(caption_minttea_shuf,
+                                        caption_minttea,
+                                        caption_early_integration)))
   
   p_dodging = 0.8
   
+  coloring <- c('lightgrey','goldenrod', 'darkred')
+  names(coloring) <- c(caption_minttea_shuf,caption_minttea,caption_early_integration)
+  
   p <- ggplot(tmp %>% filter(model == 'rf'), 
-         mapping = aes(x = dataset, group = pipeline)) +
+              mapping = aes(x = dataset, group = pipeline)) +
     # Long grey lines
     geom_linerange(aes(ymax = mean_auc), 
                    ymin = 0, color = 'darkgrey',
@@ -719,9 +730,7 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
               position = position_dodge(width = p_dodging)) +
     scale_y_continuous(breaks = seq(0.5,1,0.1), expand = expansion(mult = c(0, 0.15), add = 0)) +
     scale_x_discrete(expand = c(0, 0.5)) +
-    scale_fill_manual(name = "Pipeline", values = c('Multi-view modules - Shuffled' = 'lightgrey', 
-                                                    'Multi-view modules' = 'goldenrod', 
-                                                    'Raw features' = 'darkred')) +
+    scale_fill_manual(name = "Pipeline", values = coloring) +
     guides(fill = guide_legend(reverse=TRUE)) +
     coord_flip() +
     theme_classic() +
@@ -729,13 +738,14 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
     ylab("Random forest AUC") +
     theme(panel.grid.major.x = 
             element_line(linewidth = 0.5, color = "grey93")) +
+    theme(legend.spacing.y = unit(1.0, 'cm'))  +
     theme(axis.title.x = element_text(size = 11)) 
   print(p)
   
   p_dodging = 0.55
   
   p <- ggplot(tmp %>% filter(model == 'logit'), 
-         mapping = aes(x = dataset, group = pipeline)) +
+              mapping = aes(x = dataset, group = pipeline)) +
     # Long grey lines
     geom_linerange(aes(ymax = mean_auc), 
                    ymin = 0, color = 'darkgrey',
@@ -752,9 +762,7 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
                alpha = 0.85, position = position_dodge(width = p_dodging)) +
     scale_y_continuous(breaks = seq(0.5,1,0.1)) +
     scale_x_discrete(expand = c(0, 0.5)) +
-    scale_fill_manual(name = "Pipeline", values = c('Multi-view modules - Shuffled' = 'lightgrey', 
-                                                    'Multi-view modules' = 'goldenrod', 
-                                                    'Raw features' = 'darkred')) +
+    scale_fill_manual(name = "Pipeline", values = coloring) +
     guides(fill = guide_legend(reverse=TRUE)) +
     coord_flip() +
     theme_classic() +
