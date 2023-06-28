@@ -1,4 +1,4 @@
-This folder includes all code related to the analysis and visualization of the machine learning (ML) pipeline outputs.
+This folder includes all code related to the analysis and visualization of the machine learning (ML) pipeline outputs, as presented in the manuscript.
 
 Specifically, it includes the following scripts/notebooks: 
 
