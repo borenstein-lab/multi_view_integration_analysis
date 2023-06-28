@@ -11,9 +11,24 @@ This folder includes all code related to the intermediate integration (__MintTea
    * Features in each view should be pre-processed in advance, according to common practices;  
    * It is advised to remove rare features, and cluster highly correlated features;  
 
-3. Run the pipeline by sourcing `MintTea.R` script and then calling the `MintTea(data, ...)` function. 
+3. Run the pipeline by copying the `MintTea.R` script locally, sourcing it into your script, and then calling the `MintTea(data, ...)` function. 
  
-4. Optionally, edit the default pipeline parameters. MintTea supports running the pipeline with multiple parameter combinations, to encourage sensitivity analysis and enable the user to check which setting generated most informative modules.
+4. Optionally, edit the default pipeline parameters. MintTea supports running the pipeline with multiple parameter combinations, to encourage sensitivity analysis and enable the user to check which setting generated most informative modules. The full list of MintTea paramaters is given below:
 
-5. Outputs are all returned in a single R object. 
+     | Parameter | Description |
+     | --------- | ----------- |
+     | XXX       | YYY         |
 
+5. Pipeline results are all returned in a single R list, and contain the following outputs:
+
+     | Output    | Description |
+     | --------- | ----------- |
+     | XXX       | YYY         |
+
+6. To evaluate the obtained results, we recommend examining the following:
+
+   * XXX
+   * XXX
+   * XXX
+  
+For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
