@@ -92,6 +92,13 @@ source("src/intermediate_integration/utils.R")
 #'
 #' @return A list with multiple tables and objects describing the identified 
 #'   multi-view modules and various evaluations of these modules.
+#'   Main outputs include:
+#'   `sens_analysis_modules` - The table lists all identified modules (i.e., the full list of features in each module), for each pipeline setting.
+#'   `latent_vars` - 1st prinicipal component (PC) of each module, for each pipeline setting.
+#'   `module_variance_expl` - Variance explained by first PC of the true modules, as well as shuffled modules. True modules are expected to have significantly higher levels of variance explained in their first PC (compared to shuffled modules) as features are highly associated with one another.
+#'   `module_inter_omic_cors` - Average correlation between features from different views, per module and per pipeline setting. Again, compared to shuffled modules.
+#'   `summary_module_aucs` - AUROC of each module by itself, describing the module's association with the disease. Computed using its first PC and evaluated over repeated cross-validation. Compared to shuffled modules.
+#'   `summary_overall_aucs` - Combined AUROC of all modules of a dataset, using their first PC and a simple random forest or logistic regression model, and evaluated over repeated cross-validation. Describes the overall predictive power of all modules combined. Compared to shuffled modules.
 #'   
 #' @export
 #'
