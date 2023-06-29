@@ -1,5 +1,9 @@
 This folder includes all code related to the intermediate integration (__MintTea__) pipeline.
 
+<img src="[markdownmonstericon.png](https://github.com/borenstein-lab/multi_view_integration_analysis/blob/main/docs/wiki_figure.png)"
+     alt="MintTea input and output"
+     style="float: left; margin-right: 10px;" />
+     
 ## Instructions - Running MintTea (`MintTea.R`) on your own data
 
 1. Open an R script where MintTea function will be executed.
