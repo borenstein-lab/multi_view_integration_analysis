@@ -2,6 +2,8 @@
 # Plotting functions for manuscript figures and other explorations
 ###################################################################
 
+config <- config::get(file = "src/ml_pipeline/config.yml")
+
 # Adjust dataset names for final plots if needed
 fix_dataset_name <- function(df, datasets_names_to_fix) {
   for (i in 1:length(datasets_names_to_fix)) {
@@ -18,7 +20,7 @@ get_pwy_names <- function(pwy_codes) {
   pwy_codes <- make.names(pwy_codes)
   
   pwy_names <- read_delim(
-    config::get('paths')$metacyc_pathways2taxa, 
+    config$paths$metacyc_pathways2taxa, 
     delim = "\t", 
     escape_double = FALSE, 
     trim_ws = TRUE, 
@@ -39,7 +41,7 @@ get_pwy_names <- function(pwy_codes) {
 
 get_ko_names <- function(ko_codes) {
   ko_names <- read.table(
-    file = config::get('paths')$ko_names,
+    file = config$paths$ko_names,
     header = TRUE,
     quote="", 
     fill = TRUE,
@@ -454,17 +456,17 @@ plot_feat_importance_overview <- function(
 }
 
 # Same style as basic_stats plot, this time describing the diablo components in each dataset
-plot_module_stats <- function(sens_analysis_components, 
+plot_module_stats <- function(sens_analysis_modules, 
                               module_cross_view_corrs, 
-                              modules_aucs, 
+                              summary_module_aucs, 
                               feature_type_color_map,
                               dataset_order,
                               hide_y_axis_text = FALSE) {
   
   # ---- Strip 1: N features per dataset per module ---->
-  tmp1 <- sens_analysis_components %>%
+  tmp1 <- sens_analysis_modules %>%
     mutate(feature_type = substr(feature,1,1)) %>%
-    mutate(module = as.numeric(gsub('comp', '', component))) %>%
+    mutate(module = as.numeric(gsub('module', '', module))) %>%
     group_by(dataset, module, feature_type) %>%
     summarise(N = n(), .groups = "drop") 
   
@@ -510,20 +512,20 @@ plot_module_stats <- function(sens_analysis_components,
   
   if (hide_y_axis_text) p1 <- p1 + theme(axis.text.y = element_blank())
     
-  # ---- Strip 2: AUC ---->
-  tmp2 <- modules_aucs %>%
+  # ---- Strip 3: AUC ---->
+  tmp2 <- summary_module_aucs %>%
     filter(run == 'true') %>%
     left_join(
-      modules_aucs %>%
+      summary_module_aucs %>%
         filter(run != 'true') %>%
-        group_by(dataset, module) %>%
+        group_by(dataset, module_id) %>%
         summarise(N = n(), 
-                  mean_shuf_auc = mean(`auc`, na.rm = TRUE),
-                  sd_shuf_auc = stats::sd(`auc`, na.rm = TRUE),
+                  mean_shuf_auc = mean(mean_module_auc, na.rm = TRUE),
+                  sd_shuf_auc = stats::sd(mean_module_auc, na.rm = TRUE),
                   .groups = 'drop'),
-      by = c('dataset','module')
+      by = c('dataset','module_id')
     ) %>%
-    mutate(module = as.numeric(gsub('comp', '', module))) 
+    rename(module = module_id) 
   
   tmp2$module2 <- factor(paste('Module', tmp2$module),
                             levels = levels(tmp1$module2))
@@ -554,7 +556,7 @@ plot_module_stats <- function(sens_analysis_components,
     #                position = position_dodge(width = p3_dodging), 
     #                alpha = 0.35, linewidth = 2) + 
     # True AUCs
-    geom_point(aes(y = `auc`), fill = 'skyblue4',
+    geom_point(aes(y = mean_module_auc), fill = 'skyblue4',
                shape = 23, color = "black", 
                size = points_size, alpha = 0.9) +
     scale_y_continuous(breaks = seq(0.5,1,0.1)) +
@@ -585,8 +587,7 @@ plot_module_stats <- function(sens_analysis_components,
                   sd_shuf_corr = stats::sd(avg_pears_corr, na.rm = TRUE),
                   .groups = 'drop'),
       by = c('dataset','module')
-    ) %>%
-    mutate(module = as.numeric(gsub('comp', '', module))) 
+    ) 
   
   tmp3$module2 <- factor(paste('Module', tmp3$module),
                             levels = levels(tmp1$module2))
@@ -595,9 +596,11 @@ plot_module_stats <- function(sens_analysis_components,
                  filter(dataset %in% dataset_order) %>%
                  mutate(dataset = factor(dataset, levels = dataset_order)), 
                aes(x = module2)) + 
-    geom_rect(data = tmp1 %>% filter(dataset %in% dataset_order) %>% 
+    geom_rect(data = tmp1 %>% 
+                filter(dataset %in% dataset_order) %>% 
                 mutate(dataset = factor(dataset, levels = dataset_order)) %>%
-                select(dataset) %>% distinct(), 
+                select(dataset) %>% 
+                distinct(), 
               aes(alpha = dataset %>% as.numeric() %% 2 == 0), 
               xmin = -Inf, xmax = Inf, ymin = -Inf, 
               ymax = Inf, fill = 'gray80', inherit.aes = FALSE) +
@@ -643,7 +646,7 @@ plot_module_stats <- function(sens_analysis_components,
   df_summary <- tmp1 %>%
     group_by(dataset, module) %>%
     summarise(n_features = sum(N), .groups = 'drop') %>%
-    left_join(tmp2 %>% select(dataset, module, auc, mean_shuf_auc, sd_shuf_auc),
+    left_join(tmp2 %>% select(dataset, module, mean_module_auc, mean_shuf_auc, sd_shuf_auc),
               by = c('dataset', 'module')) %>%
     left_join(tmp3 %>% select(dataset, module, avg_pears_corr, mean_shuf_corr, sd_shuf_corr),
               by = c('dataset', 'module'))
@@ -651,7 +654,7 @@ plot_module_stats <- function(sens_analysis_components,
   return(df_summary)
 }
 
-plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focus_on) {
+plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_to_focus_on) {
   
   caption_early_integration <- "Early integration\n(Average no. of features after feature selection)"
   caption_minttea <- "Intermediate integration with MintTea\n(No. of features [No. of modules])"
@@ -666,7 +669,7 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
       mutate(shuf = FALSE),
     summary_aucs %>%
       filter(run == 'true') %>%
-      rename(mean_auc = mean_comp_rf_auc, sd_auc = sd_comp_rf_auc) %>%
+      rename(mean_auc = mean_overall_rf_auc, sd_auc = sd_overall_rf_auc) %>%
       mutate(label_n_features = paste0(n_features, ' [', n_modules, ']')) %>%
       select(dataset, mean_auc, sd_auc, label_n_features) %>%
       mutate(model = 'rf') %>%
@@ -675,13 +678,13 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
     summary_aucs %>%
       filter(run != 'true') %>%
       group_by(dataset) %>%
-      summarize(mean_auc = mean(mean_comp_rf_auc), sd_auc = sqrt(wtd.var(mean_comp_rf_auc^2))) %>%
+      summarize(mean_auc = mean(mean_overall_rf_auc), sd_auc = sqrt(wtd.var(mean_overall_rf_auc^2))) %>%
       mutate(model = 'rf') %>%
       mutate(pipeline = caption_minttea_shuf) %>%
       mutate(shuf = TRUE),
     summary_aucs %>%
       filter(run == 'true') %>%
-      rename(mean_auc = mean_comp_glm_auc, sd_auc = sd_comp_glm_auc) %>%
+      rename(mean_auc = mean_overall_lm_auc, sd_auc = sd_overall_lm_auc) %>%
       mutate(label_n_features = paste0(n_features, ' [', n_modules, ']')) %>%
       select(dataset, mean_auc, sd_auc, label_n_features) %>%
       mutate(model = 'logit') %>%
@@ -690,7 +693,7 @@ plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focu
     summary_aucs %>%
       filter(run != 'true') %>%
       group_by(dataset) %>%
-      summarize(mean_auc = mean(mean_comp_glm_auc), sd_auc = sqrt(wtd.var(mean_comp_glm_auc^2))) %>%
+      summarize(mean_auc = mean(mean_overall_lm_auc), sd_auc = sqrt(wtd.var(mean_overall_lm_auc^2))) %>%
       mutate(model = 'logit') %>%
       mutate(pipeline = caption_minttea_shuf) %>%
       mutate(shuf = TRUE)

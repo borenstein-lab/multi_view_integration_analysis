@@ -31,8 +31,11 @@ conflict_prefer("select", "dplyr")
 conflict_prefer("filter", "dplyr")
 conflict_prefer("summarize", "dplyr")
 
-source('../analyses/plotting_functions.R')
-source('preprocessing.R')
+source('src/analyses/plotting_functions.R')
+source('src/ml_pipeline/preprocessing.R')
+
+# Read configuration file
+config <- config::get(file = "src/ml_pipeline/config.yml")
 ```
 
 Some preliminary settings:
@@ -40,6 +43,7 @@ Some preliminary settings:
 ```{r}
 datasets_to_focus_on <- c(
   'cd_franzosa_2019',
+  'crc_s3_s4_yachida_2019',
   'cirrhosis_qin_2014'
 )
 ```
@@ -47,7 +51,7 @@ datasets_to_focus_on <- c(
 ## Load files from standard ML pipeline
 
 ```{r LOAD_MISC}
-load('../../data/ml_output/results_tables/results_for_analysis_best_fs.RData', 
+load('data/ml_output/results_tables/results_for_analysis_best_fs.RData', 
      tmp_env <- new.env())
 rf_results <- tmp_env$cv_results_best_fs %>%
   filter(!shuffled) %>%
@@ -67,28 +71,28 @@ datasets_discarded <- tmp_env$datasets_discarded
 rm(tmp_env)
 ```
 
-## Load intermediate integration results
+## Load MintTea results
 
 ```{r LOAD_RESULTS}
-res_dir <- '../../data/intermediate_integration_results'
-diab_rdata_ptrn <- "_R_objects\\.RData"
-diab_rdata_files <- list.files(path = res_dir, pattern = diab_rdata_ptrn)
+res_dir <- 'data/intermediate_integration_results'
+mint_rdata_ptrn <- "_results\\.RData"
+mint_rdata_files <- list.files(path = res_dir, pattern = mint_rdata_ptrn)
 
-# Place holders for DAIBLO results
+# Place holders for MintTea results
 datasets <- c()
 datasets_orig_names <- c()
-module_variance_expl <- list()
-inter_view_corr <- list()
 diablo_input <- list()
 feat_pairs <- list()
-latent_var_t_tests <- list()
 latent_vars <- list()
-sens_analysis_components <- data.frame()
+sens_analysis_modules <- data.frame()
+module_variance_expl <- list()
 sens_analysis_runs <- list()
 summary_aucs <- data.frame()
+summary_module_aucs <- data.frame()
+inter_view_corr <- list()
 
-for (f in diab_rdata_files) {
-  d <- gsub(diab_rdata_ptrn, "", f)
+for (f in mint_rdata_files) {
+  d <- gsub(mint_rdata_ptrn, "", f)
   datasets_orig_names <- c(datasets_orig_names, d)
   message('Loading diablo results for dataset: ', d)
   f_path <- file.path(res_dir, f) 
@@ -96,36 +100,36 @@ for (f in diab_rdata_files) {
   
   # Extract objects
   module_variance_expl[[d]] <- 
-    tmp_env$comp_variance_expl %>% 
+    tmp_env$minttea_results$module_variance_expl %>% 
     bind_rows(.id = 'settings') 
   inter_view_corr[[d]] <- 
-    tmp_env$comp_inter_omic_cors %>% 
+    tmp_env$minttea_results$module_inter_omic_cors %>% 
     bind_rows(.id = 'settings') 
-  diablo_input[[d]] <- tmp_env$diablo_input 
-  latent_var_t_tests[[d]] <- 
-    tmp_env$latent_var_t_tests %>% 
-    bind_rows(.id = 'settings')
-  latent_vars[[d]] <- tmp_env$latent_vars
+  diablo_input[[d]] <- tmp_env$minttea_results$diablo_input 
+  latent_vars[[d]] <- tmp_env$minttea_results$latent_vars
   
   # To reduce memory consumed we only keep this data for some selected datasets
   if (d %in% datasets_to_focus_on) {
-    feat_pairs[[d]] <- tmp_env$feat_pairs %>% 
-      filter(param_keepX != 15) 
+    feat_pairs[[d]] <- tmp_env$minttea_results$feat_pairs
   }
     
-  sens_analysis_components <- 
-    bind_rows(sens_analysis_components, 
-              tmp_env$sens_analysis_components %>% 
+  sens_analysis_modules <- 
+    bind_rows(sens_analysis_modules, 
+              tmp_env$minttea_results$sens_analysis_modules %>% 
                 mutate(dataset = d)) 
-  sens_analysis_runs[[d]] <- tmp_env$sens_analysis_runs 
+  sens_analysis_runs[[d]] <- tmp_env$minttea_results$sens_analysis_runs 
   summary_aucs <- 
     bind_rows(summary_aucs, 
-              tmp_env$summary_aucs %>% 
+              tmp_env$minttea_results$summary_overall_aucs %>% 
+                mutate(dataset = d)) 
+  summary_module_aucs <- 
+    bind_rows(summary_module_aucs, 
+              tmp_env$minttea_results$summary_module_aucs %>% 
                 mutate(dataset = d)) 
   datasets <- c(datasets, d)
   rm(tmp_env)
 }
-rm(d, f, f_path, diab_rdata_ptrn, diab_rdata_files)
+rm(d, f, f_path, mint_rdata_ptrn, mint_rdata_files)
 ```
 
 ## Load raw data for additional analyses
@@ -134,16 +138,15 @@ rm(d, f, f_path, diab_rdata_ptrn, diab_rdata_files)
 # Load processed data 
 proc_data <- lapply(datasets_orig_names, FUN = function(d) { 
   message("Loading raw data of dataset: ", d)
-  include_metabs <- ifelse(d %in% config::get('shotgun_datasets_not_in_CMD'), 
-                           TRUE, FALSE)
+  include_metabs <- ifelse(d %in% config$shotgun_datasets_not_in_CMD, TRUE, FALSE)
   
   # File names
-  metadata_path <- sprintf(config::get("paths_templates")$metadata, d)
-  taxonomy_path <- sprintf(config::get("paths_templates")$taxonomy, d)
-  pathways_path <- sprintf(config::get("paths_templates")$pathways, d)
+  metadata_path <- sprintf(config$paths_templates$metadata, d)
+  taxonomy_path <- sprintf(config$paths_templates$taxonomy, d)
+  pathways_path <- sprintf(config$paths_templates$pathways, d)
   if (include_metabs) 
-    metabolites_path <- sprintf(config::get("paths_templates")$metabolites, d)
-  metagenome_path <- sprintf(config::get("paths_templates")$metagenome, d)
+    metabolites_path <- sprintf(config$paths_templates$metabolites, d)
+  metagenome_path <- sprintf(config$paths_templates$metagenome, d)
   
   # Load datasets and remove rare/constant features
   metadata_df <- 
@@ -184,7 +187,7 @@ proc_data <- lapply(datasets_orig_names, FUN = function(d) {
   # Return
   return(tmp)
 })
-names(proc_data) <- shotgun_datasets
+names(proc_data) <- datasets_orig_names
 message("Data loaded")
 ```
 
@@ -230,21 +233,22 @@ feature_type_color_map =
 
 # 1. Pipeline overview
 
-```{r COMP_OVERVIEW}
-all_settings_overview <- sens_analysis_components %>%
+```{r OVERVIEW}
+all_settings_overview <- sens_analysis_modules %>%
   filter(dataset %in% datasets_to_analyze) %>%
-  group_by(dataset, run_id, component) %>%
+  group_by(dataset, run_id, module) %>%
   summarise(n_feats = n(), 
             multi_view = n_distinct(substr(feature, 1, 1)) > 1,
             .groups = "drop_last") %>%
-  left_join(bind_rows(latent_var_t_tests, .id = 'dataset') %>% 
-              filter(run == 'true') %>% select(-run),
-            by = c('dataset'='dataset', 
-                   'run_id'='settings', 
-                   'component'='variate')) %>%
+  left_join(summary_module_aucs %>% 
+              filter(run == 'true') %>% 
+              select(-run) %>%
+              rename(run_id = setting) %>% 
+              mutate(module = paste0('module', module_id)),
+            by = c('dataset', 'run_id', 'module')) %>%
   summarise(n_modules = n(), 
-            n_interesting_modules = 
-              sum(multi_view & t_test_p_value < 0.05 & n_feats %in% 5:15),
+            n_disease_associated_modules = 
+              sum(multi_view & mean_module_auc > 0.7),
             n_avg_feats = mean(n_feats), 
             n_feats_detail = paste0(n_feats, collapse = ','),
             .groups = "drop") %>%
@@ -252,16 +256,13 @@ all_settings_overview <- sens_analysis_components %>%
                   into = c('keep','des','nrep','nfol','ncom','edge'), 
                   remove = FALSE, sep = '//') %>%
   mutate(keep = factor(keep, levels = c('keep_5','keep_10','keep_15'))) %>%
-  mutate(n_avg_feats_bin = cut(n_avg_feats, right = FALSE, 
-                               breaks = c(0,5,20,40,100,100000), 
-                               labels = c('<5','5-19','20-39','40-99','>99'))) %>%
   left_join(summary_aucs %>% 
               filter(run == 'true') %>% 
-              rename(run_id = setting) %>% 
-              select(dataset, run_id, starts_with('mean_comp')), 
+              rename(run_id = setting), 
             by = c('run_id', 'dataset')) %>%
   mutate(selected_setting = 
-           ifelse(run_id == 'keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.7', '*', ''))
+           ifelse(run_id == "keep_10//des_0.5//nrep_10//nfol_10//ncom_5//edge_0.8", 
+                  '*', ''))
 
 # Print table
 all_settings_overview %>%
@@ -311,15 +312,15 @@ settings_order <- c(
 
 ```{r fig.width=8, fig.height=5}
 p_sens1 <- all_settings_overview %>%
-  filter(run_id %in% settings_order) %>%
-  mutate(run_id = factor(run_id, levels = settings_order)) %>%
+  #filter(run_id %in% settings_order) %>%
+  #mutate(run_id = factor(run_id, levels = settings_order)) %>%
   filter(dataset %in% datasets_to_focus_on) %>%
   tidyr::complete(dataset, run_id) %>%
   mutate(run_id2 = gsub('//', ' // ', run_id)) %>%
   mutate(run_id2 = gsub('// nfol', '//\nnfol', run_id2)) %>%
-  ggplot(aes(y = dataset, x = run_id2, fill = mean_comp_rf_auc)) +
+  ggplot(aes(y = dataset, x = run_id2, fill = mean_overall_rf_auc)) +
   geom_tile(color = 'black') +
-  geom_text(aes(label = round(mean_comp_rf_auc,2)), size = 3) +
+  geom_text(aes(label = round(mean_overall_rf_auc,2)), size = 3) +
   xlab(NULL) +
   ylab(NULL) +
   theme_classic() +
@@ -335,19 +336,19 @@ p_sens1 <- all_settings_overview %>%
 
 Visualize what happens to a single module over various pipeline settings:
 
-```{r}
-selected_settings <- "keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8"
-base_comp <- list(d = 'cirrhosis_qin_2014', mod_id = 2)
-p_sens23 <- plot_module_sensitivity_analysis(sens_analysis_components, base_comp, selected_settings)
+```{r eval = FALSE}
+selected_settings <- "keep_10//des_0.5//nrep_10//nfol_10//ncom_5//edge_0.8"
+base_module <- list(d = 'cd_franzosa_2019', mod_id = 2)
+p_sens23 <- plot_module_sensitivity_analysis(sens_analysis_modules, base_module, selected_settings)
 ```
 
-```{r fig.width=10, fig.height=12}
+```{r fig.width=6, fig.height=8}
 plot_grid(
   p_sens1 + theme(legend.position = 'none'), 
   p_sens23$p1 + theme(axis.text.x.top = element_blank()), 
   p_sens23$p2 + theme(axis.text.x = element_blank()), 
   ncol = 1, 
-  rel_heights = c(4.1,11, 1.4), 
+  rel_heights = c(4.1,11,2), 
   align = 'v'
   )
 ```
@@ -361,7 +362,7 @@ very_large_modules <- all_settings_overview %>%
   pull(dataset)
 
 # For these we'll take a more stringent pipeline:
-selected_settings2 <- "keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8"
+selected_settings2 <- "keep_5//des_0.5//nrep_10//nfol_10//ncom_5//edge_0.8"
 
 pipeline_params_per_dataset <- rep(selected_settings, length(datasets))
 names(pipeline_params_per_dataset) <- datasets
@@ -387,8 +388,6 @@ narrow_res_df_list <- function(lst, pipeline_params_per_dataset) {
 
 module_variance_expl <- 
   narrow_res_df_list(module_variance_expl, pipeline_params_per_dataset)
-latent_var_t_tests <- 
-  narrow_res_df_list(latent_var_t_tests, pipeline_params_per_dataset)
 inter_view_corr <- 
   narrow_res_df_list(inter_view_corr, pipeline_params_per_dataset)
 
@@ -398,13 +397,14 @@ tmp <- lapply(names(latent_vars),
 names(tmp) <- names(latent_vars)
 latent_vars <- tmp
 
-sens_analysis_components <- sens_analysis_components %>% 
+sens_analysis_modules <- sens_analysis_modules %>% 
   filter(run_id == pipeline_params_per_dataset[dataset])
-
+summary_module_aucs <- summary_module_aucs %>% 
+  filter(setting == pipeline_params_per_dataset[dataset])
 summary_aucs <- summary_aucs %>% 
   filter(setting == pipeline_params_per_dataset[dataset])
 
-# For faster filtering of a heavy object 
+# For faster filtering 
 tmp <- lapply(
   names(feat_pairs), 
   function(d) {
@@ -427,11 +427,9 @@ rm(tmp)
 
 ```{r}
 # Save component sizes
-module_sizes <- sens_analysis_components %>% 
-  group_by(dataset, run_id, component) %>% 
-  summarize(module_size = n(), .groups = 'drop') %>%
-  mutate(module = gsub('comp','Module ', component)) %>%
-  select(-component)
+module_sizes <- sens_analysis_modules %>% 
+  group_by(dataset, run_id, module) %>% 
+  summarize(module_size = n(), .groups = 'drop') 
 
 summary_aucs <- summary_aucs %>%
   left_join(module_sizes %>%
@@ -452,12 +450,11 @@ for(curr_dataset in datasets_to_focus_on) {
   # Only plot the features that were included in components
   # (To make plot readable)
   if (only_features_in_final_modules) {
-    feats_to_plot <- sens_analysis_components %>%
+    feats_to_plot <- sens_analysis_modules %>%
       filter(dataset == curr_dataset) %>%
       pull(feature) %>%
       unique()
   } else {
-    # Or just take those that were selected often with others at all
     feats_to_plot <- feat_pairs[[curr_dataset]] %>%
       group_by(feature.x) %>%
       summarise(N = n(), min_dist = min(dist)) %>%
@@ -466,11 +463,11 @@ for(curr_dataset in datasets_to_focus_on) {
   }
   
   # Mark final components to highlight in pheatmaps
-  final_modules <- sens_analysis_components %>%
+  final_modules <- sens_analysis_modules %>%
     filter(dataset == curr_dataset) %>%
-    select(feature, component) %>%
-    rename(Module = component) %>%
-    mutate(Module = gsub('comp','',Module)) %>%
+    select(feature, module) %>%
+    rename(Module = module) %>%
+    mutate(Module = gsub('module','',Module)) %>%
     full_join(data.frame(feature = feats_to_plot), by = 'feature') %>%
     tibble::column_to_rownames('feature')
   
@@ -555,10 +552,10 @@ rm(curr_dataset, feats_to_plot, ph, feat_pairs_mat, final_modules, tmp, cor_mat,
 
 ## 5.1. Variance explained by PC1 for components vs. shuffled
 
-```{r fig.height=3, fig.width=6}
+```{r fig.height=2.5, fig.width=6.5}
 for(curr_dataset in datasets_to_focus_on) {
   tmp <- module_variance_expl[[curr_dataset]] %>%
-    mutate(module = paste('Module', comp)) %>%
+    mutate(module = paste('Module', module)) %>%
     left_join(module_sizes %>% filter(dataset == curr_dataset), by = 'module') %>%
     mutate(module = paste0(module, ' (N=', module_size, ')'))
   
@@ -573,7 +570,7 @@ for(curr_dataset in datasets_to_focus_on) {
     labs(subtitle = paste('Dataset:', curr_dataset)) +
     ylab('Count') +
     xlab('Variance explained by PC1') +
-    facet_wrap(~ module, ncol = 3, nrow = 2)
+    facet_wrap(~ module, nrow = 1)
   
   print(p)
 }
@@ -582,22 +579,16 @@ rm(tmp, curr_dataset, p)
 
 ## 5.2. Average inter-view correlations
 
-```{r fig.height=3, fig.width=6}
+```{r fig.height=2.5, fig.width=6.5}
 module_cross_view_corrs <- data.frame()
 
-for(d in shotgun_datasets) {
-  module_cross_view_corrs <- bind_rows(
-    module_cross_view_corrs,
-    inter_view_corr[[d]] %>%
-      mutate(dataset = d) %>%
-      rename(module = comp) %>%
-      select(dataset, run, module, avg_pears_corr)
-  )
-  
-  if (! d %in% datasets_to_focus_on) next;
+for(d in datasets_to_focus_on) {
+  module_cross_view_corrs <- 
+    bind_rows(module_cross_view_corrs, 
+              inter_view_corr[[d]] %>% mutate(dataset = d))
   
   tmp <- inter_view_corr[[d]] %>%
-    mutate(module = paste('Module', comp)) %>%
+    mutate(module = paste('Module', module)) %>%
     left_join(module_sizes %>% 
                 select(-run_id) %>% 
                 filter(dataset == d), 
@@ -605,118 +596,36 @@ for(d in shotgun_datasets) {
     mutate(module = paste0(module, ' (N=', module_size, ')')) %>%
     filter(!is.na(avg_pears_corr))
   
+  if (nrow(tmp) == 0) next;
+    
   p <- ggplot(tmp %>% filter(run != 'true'), aes(x = avg_pears_corr)) +
     geom_histogram(color = 'black', fill = 'lightgrey', bins = 30) +
     geom_vline(data = tmp %>% filter(run == 'true'), 
                aes(xintercept = avg_pears_corr), 
-               color = 'darkred', linewidth = 1.5, alpha = 0.5) +
+               color = 'darkred', 
+               linewidth = 1.5, 
+               alpha = 0.5) +
     scale_y_continuous(expand = c(0,0)) +
     theme_bw() +
     ggtitle('Histograms of average cross-view correlations') +
     labs(subtitle = paste('Dataset:', d)) +
     ylab('Count') +
     xlab('Correlation') +
-    facet_wrap(~ module, ncol = 3, nrow = 2)
+    facet_wrap(~ module, nrow = 1)
   
   print(p)
 }
+
 rm(tmp, d, p)
 ```
 
-## 5.3. T-test against disease state, modules vs. shuffled
-
-```{r fig.height=3, fig.width=6}
-modules_t_tests <- data.frame()
-
-for(curr_dataset in shotgun_datasets) {
-  # Extract relevant data
-  tmp <- latent_var_t_tests[[curr_dataset]] %>%
-    mutate(module = gsub('comp', 'Module ', variate)) %>%
-    left_join(module_sizes %>% filter(dataset == curr_dataset), by = 'module') %>%
-    mutate(module = paste0(module, ' (N=', module_size, ')'))
-  
-  # Plot
-  if (curr_dataset %in% datasets_to_focus_on) {
-    p <- ggplot(tmp %>% filter(run != 'true'), aes(x = -log10(t_test_p_value))) +
-      geom_histogram(color = 'black', fill = 'lightgrey', bins = 40) +
-      geom_vline(data = tmp %>% filter(run == 'true'), 
-                 aes(xintercept = -log10(t_test_p_value)), 
-                 color = 'darkred', linewidth = 1.5, alpha = 0.5) +
-      geom_vline(xintercept = -log10(0.1), linetype = 'dashed', alpha = 0.5) +
-      scale_y_continuous(expand = c(0,0)) +
-      theme_bw() +
-      ggtitle('Histograms of PC1 t-test p values') +
-      labs(subtitle = paste('Dataset:', curr_dataset)) +
-      ylab('Count') +
-      xlab('P value (-log10)') +
-      facet_wrap(~ module, ncol = 3)
-    print(p)
-  }
-  
-  # Iterate over components, save summary stats about t-tests
-  tmp_trues <- tmp %>% filter(run == 'true')
-  for(modu in tmp_trues$variate) {
-    curr_p_val <- tmp_trues %>% filter(variate == modu) %>% pull(t_test_p_value)
-    shuffled_p_vals <- tmp %>% filter(variate == modu) %>% pull(t_test_p_value)
-    p_value_quantile <- ecdf(shuffled_p_vals)(curr_p_val)
-    
-    modules_t_tests <- bind_rows(
-      modules_t_tests,
-      data.frame(
-        dataset = curr_dataset,
-        module = modu,
-        t_test_p_value = curr_p_val,
-        p_value_quantile = p_value_quantile
-        )
-      )
-  }
-}
-rm(tmp, curr_dataset, p)
-```
-
-## 5.4. Predictivity of modules - AUC, modules vs. shuffled
-
-```{r}
-modules_aucs <- data.frame()
-
-for (d in shotgun_datasets) {
-  for (modu in colnames(latent_vars[[d]]$true)[-1]) {
-    roc_objs <- list()
-    
-    # Iterate over all shuffled versions
-    for (i in 0:99) {
-      run_i <- ifelse(i == 0, 'true', paste0('shuf', i))
-      
-      # Get data
-      tmp <- latent_vars[[d]][[run_i]]
-    
-      # Get ROC curve
-      roc_objs[[run_i]] <- roc(tmp$label, tmp[[modu]], 
-                               levels = c('healthy', 'disease'), 
-                               quiet = TRUE)
-      
-      # Record AUC
-      modules_aucs <- bind_rows(
-        modules_aucs,
-        data.frame('dataset' = d,
-                   'run' = as.character(run_i),
-                   'module' = modu,
-                   'auc' = round(roc_objs[[run_i]]$auc, 3))
-      )
-    }
-  }
-}
-
-rm(d, modu, tmp, roc_objs, run_i, i)
-```
-
-## 5.5. Overall AUC, components vs. shuffled
+## 5.3. Overall AUC, components vs. shuffled
 
 ```{r fig.height=2.6, fig.width=7}
 plot_overall_modules_aucs(rf_results, summary_aucs, datasets_to_focus_on)
 ```
 
-## 5.6. Summary plots
+## 5.4. Summary plots
 
 Panels, left to right:  
 
@@ -724,51 +633,21 @@ Panels, left to right:
 * Cross-view correlations  
 * Module AUC  
 
-```{r fig.height=6, fig.width=7}
+```{r fig.height=5, fig.width=6}
 module_stats_summary <- 
   plot_module_stats(
-    sens_analysis_components, 
+    sens_analysis_modules, 
     module_cross_view_corrs, 
-    modules_aucs,
+    summary_module_aucs, 
     feature_type_color_map,
     datasets_to_focus_on)
 
 module_stats_summary <- module_stats_summary %>%
-  filter(dataset %in% shotgun_datasets) %>%
   filter(dataset %in% datasets_to_analyze) %>%
   left_join(summary_aucs %>%
               filter(run == 'true') %>%
-              select(dataset, mean_comp_rf_auc, mean_comp_glm_auc),
-            by = 'dataset') %>%
-  rename(overall_modules_auc_rf = mean_comp_rf_auc) %>%
-  rename(overall_modules_auc_glm = mean_comp_glm_auc)
-```
-
-```{r fig.height=12, fig.width=5, warning = FALSE}
-tmp <- sens_analysis_components %>%
-  mutate(ft = substr(feature, 1, 1)) %>%
-  group_by(dataset, component) %>%
-  filter(n_distinct(ft) > 1) %>%
-  ungroup() %>%
-  select(dataset, component) %>%
-  distinct() %>%
-  mutate(module = as.numeric(gsub('comp', '', component)))
-
-tmp2 <- plot_module_stats(
-  sens_analysis_components %>%
-    inner_join(tmp, by = c("component", "dataset")) %>%
-    mutate(dataset = gsub('_20','_\'',dataset)) , 
-  module_cross_view_corrs %>%
-    inner_join(tmp, by = c("module", "dataset")) %>%
-    mutate(dataset = gsub('_20','_\'',dataset)), 
-  modules_aucs %>%
-    inner_join(tmp, by = c("module"="component", "dataset")) %>%
-    mutate(dataset = gsub('_20','_\'',dataset)),
-  feature_type_color_map,
-  gsub('_20','_\'',datasets[! datasets %in% datasets_to_focus_on]),
-  hide_y_axis_text = TRUE)
-
-rm(tmp, tmp2)
+              select(dataset, mean_overall_rf_auc, mean_overall_lm_auc),
+            by = 'dataset') 
 ```
 
 General statistics:
@@ -776,7 +655,7 @@ General statistics:
 ```{r results='hold'}
 message('Modules were identified for ', 
         n_distinct(module_stats_summary$dataset), 
-        ' datasets of ', length(shotgun_datasets), ' analyzed')
+        ' datasets of ', length(datasets_to_focus_on), ' analyzed')
 
 message(min(table(module_stats_summary$dataset)), '-',
         max(table(module_stats_summary$dataset)), 
@@ -791,7 +670,7 @@ message('Module sizes ranged between ',
 
 tmp_signif_comps_per_dataset <- module_stats_summary %>%
   mutate(dataset = factor(dataset)) %>%
-  filter(`auc` > 0.7 & `auc` > mean_shuf_auc) %>%
+  filter(mean_module_auc > 0.7 & mean_module_auc > mean_shuf_auc) %>%
   group_by(dataset, .drop = FALSE) %>%
   summarize(N = n())
   
@@ -806,9 +685,9 @@ rm(tmp_signif_comps_per_dataset)
 
 ```{r}
 # Expand to actual features within each module
-detailed_modules <- sens_analysis_components %>%
+detailed_modules <- sens_analysis_modules %>%
   select(-run_id) %>%
-  mutate(module = as.numeric(gsub('comp', '', component))) %>%
+  mutate(module = as.numeric(gsub('module', '', module))) %>%
   inner_join(module_stats_summary, 
              by = c('dataset','module')) 
 
@@ -863,38 +742,38 @@ detailed_modules %>%
 Which features are most common within modules?
 
 ```{r fig.height=7, fig.width=8}
-sens_analysis_components2 <- sens_analysis_components %>%
+sens_analysis_modules2 <- sens_analysis_modules %>%
   mutate(feature = gsub('T__([a-zA-Z]*)\\.([a-zA-Z]*)$', 'T__\\1_\\2', feature)) %>%
   mutate(feature = gsub('_Cluster[0-9]+$', '', feature)) 
 
-common_feats <- sens_analysis_components2 %>%
+common_feats <- sens_analysis_modules2 %>%
   group_by(feature) %>%
   summarise(N = n(), N_unique_datasets = n_distinct(dataset)) %>%
-  filter(N > 5) %>%
+  filter(N > 2) %>%
   pull(feature)
 
 all_plots <- list()
 
 for (fs in common_feats) {
-  tmp <- sens_analysis_components2 %>%
-    mutate(module = as.numeric(gsub('comp','',component))) %>%
-    group_by(dataset, component) %>%
+  tmp <- sens_analysis_modules2 %>%
+    mutate(module = as.numeric(gsub('module','',module))) %>%
+    group_by(dataset, module) %>%
     filter(sum(feature == fs) > 0) %>%
     ungroup() %>%
     mutate(feat_type = substr(feature, 1, 1)) %>%
-    left_join(module_stats_summary %>% filter(auc >= 0.7) %>% 
-                select(dataset, module, auc),
+    left_join(module_stats_summary %>% 
+                filter(mean_module_auc >= 0.7) %>% 
+                select(dataset, module, mean_module_auc),
               by = c("dataset", "module")) %>%
-    mutate(signif_module = !is.na(auc)) %>%
-    select(-auc, -run_id) %>%
-    mutate(description = paste0('[', feat_type, '] ', 
-                                get_feature_descriptions(feature))) %>%
+    mutate(signif_module = !is.na(mean_module_auc)) %>%
+    select(-mean_module_auc, -run_id) %>%
+    mutate(description = paste0('[', feat_type, '] ', get_feature_descriptions(feature))) %>%
     distinct() 
   
   # For adding lines
   tmp <- tmp %>% 
     arrange(description) %>%
-    group_by(dataset, component) %>% 
+    group_by(dataset, module) %>% 
     mutate(ymin = first(description), 
            ymax = last(description)) %>% 
     ungroup() %>%
@@ -926,14 +805,14 @@ for (fs in common_feats) {
   all_plots[[fs[1]]] <- p
 }
 
-rm(common_feats, fs, tmp, p)
+rm(common_feats, fs, tmp, p, fs_highlight_y)
 ```
 
-```{r fig.width=6, fig.height=6.8}
-all_plots$T__Bifidobacterium_longum
+```{r fig.width=6.5, fig.height=6.8}
+all_plots$T__Escherichia_coli
 ```
 
-# 10. Overlapping components
+# 8. Overlapping components
 
 ## Overlaps matrix
 
@@ -941,54 +820,51 @@ Components within the same dataset are not compared (not expected to overlap).
 
 ```{r COMP_INTERSECTIONS}
 module_intersections <- module_stats_summary %>% 
-  mutate(dataset_module = paste(dataset, module, sep = ' / ')) %>%
-  tidyr::expand(dataset_module, dataset_module) %>%
-  rename(module_left = 1, module_right = 2) %>%
-  filter(module_left > module_right)
+  tidyr::expand(tidyr::nesting(dataset, module), tidyr::nesting(dataset, module), .name_repair = "minimal") %>%
+  rename(ds_left = 1, module_left = 2, ds_right = 3, module_right = 4) %>%
+  filter(ds_left > ds_right)
 
 tmp <- apply(
   module_intersections, 1, 
   function(r) { # r = module_intersections %>% head(1) %>% unlist()
-    module_left <- strsplit(r['module_left'], split = ' / ', fixed = TRUE)[[1]]
-    module_right <- strsplit(r['module_right'], split = ' / ', fixed = TRUE)[[1]]
-  
-    feats_left <- full_feature_importance %>% 
-      filter(dataset == module_left[1]) %>% 
-      filter(diablo_module_id == module_left[2]) %>% 
-      pull(feature_orig)
-    feats_left <- sapply(feats_left, function(x) { if (x %in% names(feat_name_fixes)) {return(feat_name_fixes[x])} else return(x)})
+    ds_left = unname(r['ds_left'])
+    module_left = unname(r['module_left'])
+    ds_right = unname(r['ds_right'])
+    module_right = unname(r['module_right'])
     
-    feats_right <- full_feature_importance %>% 
-      filter(dataset == module_right[1]) %>% 
-      filter(diablo_module_id == module_right[2]) %>% 
-      pull(feature_orig)
-    feats_right <- sapply(feats_right, function(x) { if (x %in% names(feat_name_fixes)) {return(feat_name_fixes[x])} else return(x)})
+    # Lists of all features available in each dataset
+    feats_left <- sens_analysis_modules %>%
+      filter(dataset == ds_left) %>% 
+      filter(module == paste0('module', module_left)) %>% 
+      pull(feature)
+    
+    feats_right <- sens_analysis_modules %>%
+      filter(dataset == ds_right) %>% 
+      filter(module == paste0('module', module_right)) %>% 
+      pull(feature)
+    
+    # Quick fixes
+    feats_left <- ifelse(grepl('^T__', feats_left), gsub('\\.','_',feats_left), feats_left)
+    feats_right <- ifelse(grepl('^T__', feats_right), gsub('\\.','_',feats_right), feats_right)
     
     # All features shared between datasets, regardless of modules
-    all_left <- diablo_input[[module_left[1]]]$X %>% 
+    all_left <- diablo_input[[ds_left]]$X %>% 
                                 sapply(colnames) %>% 
                                 unlist() %>% 
                                 unname()
-    all_left <- sapply(all_left, function(x) { if (x %in% names(feat_name_fixes)) {return(feat_name_fixes[x])} else return(x)})
     
-    all_right <- diablo_input[[module_right[1]]]$X %>% 
+    all_right <- diablo_input[[ds_right]]$X %>% 
                                 sapply(colnames) %>% 
                                 unlist() %>% 
                                 unname()
-    all_right <- sapply(all_right, function(x) { if (x %in% names(feat_name_fixes)) {return(feat_name_fixes[x])} else return(x)})
+    
+    # Quick fixes
+    all_left <- ifelse(grepl('^T__', all_left), gsub('\\.','_',all_left), all_left)
+    all_right <- ifelse(grepl('^T__', all_right), gsub('\\.','_',all_right), all_right)
+    
+    # Get shared features
     shared_feats <- intersect(all_left, all_right)
   
-    # Patch - fix some names where _ was replaced with dots
-    fix_dots <- function(names_to_fix) 
-      return(unname(sapply(names_to_fix, 
-                           function(x) ifelse(grepl('^T__', x), 
-                                              gsub('\\.', '_', 
-                                                   gsub('\\.\\.', '_',
-                                                        gsub('T__\\.', 'T__', x))), x))))
-    feats_left <- fix_dots(feats_left)
-    feats_right <- fix_dots(feats_right)
-    shared_feats <- fix_dots(shared_feats)
-    
     feats_left2 <- intersect(feats_left, shared_feats)
     feats_right2 <- intersect(feats_right, shared_feats)
     
@@ -1015,20 +891,10 @@ tmp <- apply(
 
 module_intersections <- bind_cols(module_intersections, tmp) 
 module_intersections <- module_intersections %>% 
-  tidyr::separate(col = 'module_left', remove = FALSE, into = c('left_dataset','left_module_id'), sep = ' / ') %>%
-  tidyr::separate(col = 'module_right', remove = FALSE, into = c('right_dataset','right_module_id'), sep = ' / ') %>%
-  filter(left_dataset != right_dataset) %>%
   mutate(fisher_fdr = p.adjust(fisher_p, method = 'fdr'))
 
 # Print
-predictive_components <- module_stats_summary %>% 
-  filter(`auc` > 0.7 & avg_pears_corr > 0.2) %>% 
-  mutate(xxx = paste(dataset, module, sep = ' / ')) %>% 
-  pull(xxx)
 module_intersections %>%
-  filter(n_intersection >= 3 & fisher_fdr <= 0.1) %>%
-  filter(module_left %in% predictive_components & module_right %in% predictive_components) %>%
-  select(-starts_with(c('right_','left_'))) %>%
   arrange(fisher_fdr) %>%
   select(-fisher_p) %>%
   kbl() %>%
@@ -1044,7 +910,7 @@ Only component pairs with at least 3 common features and FDR < 0.1.
 ```{r}
 module_intersections %>%
   filter(n_intersection >= 3 & fisher_fdr <= 0.1) %>%
-  select(-starts_with(c('right_','left_')), -fisher_p) %>%
+  select(-fisher_p) %>%
   rename(`Module - left` = module_left) %>%
   rename(`Module - right` = module_right) %>%
   rename(`N features in intersection` = n_intersection) %>%
