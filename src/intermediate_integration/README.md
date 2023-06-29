@@ -45,10 +45,15 @@ This folder includes all code related to the intermediate integration (__MintTea
      | `summary_module_aucs`     | AUROC of each module by itself, describing the module's association with the disease. Computed using its first PC and evaluated over repeated cross-validation. Compared to shuffled modules. |
      | `summary_overall_aucs`    | Combined AUROC of all modules of a dataset, using their first PC and a simple random forest or logistic regression model, and evaluated over repeated cross-validation. Describes the overall predictive power of all modules combined. Compared to shuffled modules. |
   
-7. To evaluate the obtained results, we recommend examining the following:
+7. To evaluate the obtained results, we recommend starting by examining the following:
 
-   * XXX
-   * XXX
-   * XXX
+   * For each pipeline setting - how many modules were found, and what are the module sizes (i.e., number of features included)? See `sens_analysis_modules %>% group_by(module, run_id) %>% summzriae(N_features = n())`.
+   * What was the overall AUC achieved by all modules combined? (see `summary_overall_aucs`)
+   * What was the AUC achieved by each module alone? (see `summary_module_aucs`)
+
+   Tips:
+   
+   * Optimal module sizes depend on the downstream analysis. For manual interpretation for example, smaller modules may be favorable. If your modules came out too large, consider decreasing `param_diablo_keepX`, or decreasing `param_n_folds`, or increasing `param_edge_thresholds`. Symmetrically, if your modules are too small consider the opposite.
+   * If the overall AUC is low, and/or all individual module AUC's are low, you may want to consider decreasing `param_diablo_design`, effectively assigning a higher importance to associations with disease as opposed to associations in-between views.
   
 For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
