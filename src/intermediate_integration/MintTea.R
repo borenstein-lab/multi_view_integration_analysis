@@ -125,14 +125,14 @@ MintTea <- function(
     ) {
   
   # Required packages
-  require(dplyr)
-  require(mixOmics)
-  require(rsample)
-  require(pROC)
-  require(igraph)
-  require(ranger)
-  require(logger)
-  library(conflicted)
+  require(dplyr)      # Tested with version: 1.0.10
+  require(mixOmics)   # Tested with version: 6.18.1
+  require(rsample)    # Tested with version: 1.1.0
+  require(pROC)       # Tested with version: 1.18.0
+  require(igraph)     # Tested with version: 1.3.4
+  require(ranger)     # Tested with version: 0.14.1
+  require(logger)     # Tested with version: 0.2.2
+  require(conflicted) # Tested with version: 1.1.0
   conflict_prefer("select", "dplyr")
   conflict_prefer("filter", "dplyr")
   
