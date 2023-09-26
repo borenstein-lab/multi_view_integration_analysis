@@ -51,9 +51,17 @@ This folder includes all code related to the intermediate integration (__MintTea
    * What was the overall AUC achieved by all modules combined? (see `summary_overall_aucs`)
    * What was the AUC achieved by each module alone? (see `summary_module_aucs`)
 
-   Tips:
+
+Tips:
    
    * Optimal module sizes depend on the downstream analysis. For manual interpretation for example, smaller modules may be favorable. If your modules came out too large, consider decreasing `param_diablo_keepX`, or decreasing `param_n_folds`, or increasing `param_edge_thresholds`. Symmetrically, if your modules are too small consider the opposite.
    * If the overall AUC is low, and/or all individual module AUC's are low, you may want to consider decreasing `param_diablo_design`, effectively assigning a higher importance to associations with disease as opposed to associations in-between views.
   
 For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
+
+***
+
+Backlog:
+
+     * Support parallel running to shorten runtimes.
+     * Generalize to support any view-prefix (currently hard-coded to T_, G_, P_, M_).
