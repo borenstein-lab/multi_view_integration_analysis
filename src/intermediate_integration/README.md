@@ -11,7 +11,7 @@ This folder includes all code related to the intermediate integration (__MintTea
    * The dataframe should include two special columns: a column holding sample identifiers and a column holding study groups ("healthy" and "disease" labels);  
    * Features from each view should start with the following prefixes: 'T_' for taxonomy, 'G_' for genes, 'P_' for pathways, and optionally 'M_' for metabolites;  
    * Features in each view should be pre-processed in advance, according to common practices;  
-   * It is advised to remove rare features, and cluster highly correlated features;  
+   * It is highly recommended **to remove rare features, and cluster highly correlated features**;  
 
 3. Run the pipeline by copying the `MintTea.R` script locally, sourcing it into your script, and then calling the `MintTea(data, ...)` function. 
  
