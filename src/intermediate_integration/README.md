@@ -4,18 +4,18 @@ This folder includes all code related to the intermediate integration (__MintTea
      
 ## Instructions - Running MintTea (`MintTea.R`) on your own data
 
-1. Open an R script where MintTea function will be executed.
+1. Open an R script from which the MintTea function will be executed.
 
 2. Organize your input data in a *single* data.frame object, following these guidelines:
    * Rows represent samples and columns are features;  
    * The dataframe should include two special columns: a column holding sample identifiers and a column holding study groups ("healthy" and "disease" labels);  
    * Features from each view should start with the following prefixes: 'T_' for taxonomy, 'G_' for genes, 'P_' for pathways, and optionally 'M_' for metabolites;  
    * Features in each view should be pre-processed in advance, according to common practices;  
-   * It is advised to remove rare features, and cluster highly correlated features;  
+   * It is highly recommended **to remove rare features, and cluster highly correlated features**;  
 
-3. Run the pipeline by copying the `MintTea.R` script locally, sourcing it into your script, and then calling the `MintTea(data, ...)` function. 
+3. Run the pipeline by cloning the `multi_view_integration_analysis` repository to your local computer, and then sourcing `MintTea.R` into your script. The function `MintTea(data, ...)` can then be called. 
  
-4. Optionally, edit the default pipeline parameters. MintTea supports running the pipeline with multiple parameter combinations, to encourage sensitivity analysis and enable the user to check which setting generated most informative modules. The full list of MintTea paramaters is given below:
+4. Optionally, edit the default pipeline parameters. MintTea supports running the pipeline with multiple parameter combinations, to encourage sensitivity analysis and enable the user to check which settings generate the most informative modules. The full list of MintTea paramaters is given below:
 
      | Parameter            | Description                                                                                                    |
      | -------------------- | -------------------------------------------------------------------------------------------------------------- |
@@ -51,9 +51,17 @@ This folder includes all code related to the intermediate integration (__MintTea
    * What was the overall AUC achieved by all modules combined? (see `summary_overall_aucs`)
    * What was the AUC achieved by each module alone? (see `summary_module_aucs`)
 
-   Tips:
+
+Tips:
    
    * Optimal module sizes depend on the downstream analysis. For manual interpretation for example, smaller modules may be favorable. If your modules came out too large, consider decreasing `param_diablo_keepX`, or decreasing `param_n_folds`, or increasing `param_edge_thresholds`. Symmetrically, if your modules are too small consider the opposite.
    * If the overall AUC is low, and/or all individual module AUC's are low, you may want to consider decreasing `param_diablo_design`, effectively assigning a higher importance to associations with disease as opposed to associations in-between views.
   
 For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
+
+***
+
+Backlog:
+
+     * Support parallel running to shorten runtimes.
+     * Generalize to support any view-prefix (currently hard-coded to T_, G_, P_, M_).
