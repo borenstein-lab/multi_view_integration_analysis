@@ -105,12 +105,13 @@ source("src/intermediate_integration/utils.R")
 #' @examples
 #'  library(readr)
 #'  proc_data <- read_delim("data/example_data_for_minttea/proc_data.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
+#'  source('src/intermediate_integration/utils.R')
 #'  minttea_results <- MintTea(proc_data)
 #'  
 MintTea <- function(
     proc_data, 
-    study_group_column = "DiseaseState", 
-    sample_id_column = "sample_id__",
+    study_group_column = "disease_state", 
+    sample_id_column = "sample_id",
     param_diablo_keepX = c(5, 10),
     param_diablo_design = c(0.5),
     param_n_repeats = c(10),
@@ -124,6 +125,17 @@ MintTea <- function(
     seed = 27
     ) {
   
+  # Check that all required packages are installed
+  installed <- rownames(installed.packages())
+  if (! "dplyr" %in% installed)    stop("Please install package 'dplyr'")
+  if (! "mixOmics" %in% installed) stop("Please install package 'mixOmics'")
+  if (! "rsample" %in% installed)  stop("Please install package 'rsample'")
+  if (! "pROC" %in% installed)     stop("Please install package 'pROC'")
+  if (! "igraph" %in% installed)   stop("Please install package 'igraph'")
+  if (! "ranger" %in% installed)   stop("Please install package 'ranger'")
+  if (! "logger" %in% installed)   stop("Please install package 'logger'")
+  if (! "conflicted" %in% installed) stop("Please install package 'conflicted'")
+  
   # Required packages
   require(dplyr)      # Tested with version: 1.0.10
   require(mixOmics)   # Tested with version: 6.18.1
@@ -133,8 +145,8 @@ MintTea <- function(
   require(ranger)     # Tested with version: 0.14.1
   require(logger)     # Tested with version: 0.2.2
   require(conflicted) # Tested with version: 1.1.0
-  conflict_prefer("select", "dplyr")
-  conflict_prefer("filter", "dplyr")
+  conflict_prefer("select", "dplyr", quiet = T)
+  conflict_prefer("filter", "dplyr", quiet = T)
   
   log_threshold(log_level)
   
