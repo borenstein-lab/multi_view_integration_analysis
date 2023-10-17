@@ -6,6 +6,10 @@ require(BiocParallel)
 require(cowplot)
 require(logger)
 
+is_valid_r_name <- function(string) {
+  grepl("^((([[:alpha:]]|[.][._[:alpha:]])[._[:alnum:]]*)|[.])$", string)
+}
+
 # Gets a list of p values and returns significance stars
 get_signif_mark <- function(ps) {
   sapply(ps, function(p) {
@@ -17,21 +21,49 @@ get_signif_mark <- function(ps) {
   })
 }
 
-# Function for organizing data for MintTea for a given dataset
-organize_data_for_diablo <- function(proc_data, study_group_column, sample_id_column) {
+# Function for organizing data given in one wide table into an input suitable 
+#  for running the 'DIABLO' function.
+# The single table 'proc_data' is expected to have one sample_id column, one 
+#  label column, and features divided into 'views', each view represented by a 
+#  prefix to the feature name in the form of a single letter and two underscores 
+#  (e.g. 'T__' for taxonomy, 'P__' for pathways).
+# Note: MintTea was not tested for more than 4 views.
+organize_data_for_diablo <- function(
+    proc_data, 
+    study_group_column, 
+    sample_id_column, 
+    view_prefixes,
+    min_features_per_view = 5) {
+  
+  # Verify that sample_id and study_group columns are present
+  if (! study_group_column %in% colnames(proc_data)) log_fatal("Could not find study_group_column in data table") 
+  if (! sample_id_column %in% colnames(proc_data)) log_fatal("Could not find sample_id_column in data table")
   ds_label <- proc_data[[study_group_column]] 
   ds_sample_ids <- proc_data[[sample_id_column]]
-  ds_data_T <- proc_data %>% dplyr::select(starts_with("T__")) %>% as.matrix()
-  ds_data_G <- proc_data %>% dplyr::select(starts_with("G__")) %>% as.matrix() 
-  ds_data_P <- proc_data %>% dplyr::select(starts_with("P__")) %>% as.matrix()
-  ds_data_M <- proc_data %>% dplyr::select(starts_with("M__")) %>% as.matrix()
-  no_metabs <- ifelse(ncol(ds_data_M)==0, TRUE, FALSE)
   
-  ds_list <- list("T" = ds_data_T, "G" = ds_data_G, "P" = ds_data_P)  
-  if(!no_metabs) ds_list[['M']] <- ds_data_M
+  # Verify all feature names are valid names
+  feat_names <- colnames(proc_data)[! colnames(proc_data) %in% c(study_group_column, sample_id_column)]
+  if (any(! sapply(feat_names, is_valid_r_name)))
+    log_fatal('Found invalid feature names. See: https://www.w3schools.com/r/r_variables_name.asp')
+  
+  # Verify all features indeed start with one of the provided prefixes
+  is_prefix_valid <- function(feat_name, prefixes) { any(startsWith(feat_name, prefix = prefixes)) }
+  valid_prefix_check <- sapply(feat_names, is_prefix_valid, prefixes = paste0(view_prefixes, '__'))
+  if (any(!valid_prefix_check)) 
+    log_fatal('Found features that do not start with any of the given view-prefixes (followed by two underscores)')
+  
+  # Organize features by groups of views. Check sufficient number of features. 
+  ds_X_list <- list()
+  for (prfx in view_prefixes) {
+    tmp <- proc_data %>% dplyr::select(starts_with(paste0(prfx, "__"))) %>% as.matrix()
+    if (ncol(tmp) < min_features_per_view) 
+      stop("Not enough features in view: '", prfx, 
+           "'. Expecting a minimum of ", min_features_per_view)
+    ds_X_list[[prfx]] <- tmp
+  }
     
   return(list(
-    X = ds_list,
+    X = ds_X_list,
     Y = ds_label,
     sample_ids = ds_sample_ids
   ))

@@ -136,6 +136,7 @@ log_debug("Data loaded")
 
 minttea_results <- MintTea(
   proc_data, 
+  view_prefixes = c('T', 'G', 'P', 'M'), 
   return_main_results_only = FALSE
 )
 

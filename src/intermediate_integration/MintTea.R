@@ -1,6 +1,7 @@
 source("src/intermediate_integration/utils.R")
 
 #' MintTea - A multi-view integration tool for microbiome data
+#' Version 1.0
 #'
 #' The MintTea function receives a table containing multiple concatenated views, 
 #'  alongside sample ids and study groups. It identifies modules of features 
@@ -21,19 +22,18 @@ source("src/intermediate_integration/utils.R")
 #'  research objectives.
 #' 
 #' Future versions will include:
-#' - Support running in parallel on multiple threads.
-#' - Currently supports features starting with T_, G_, P_ and optionally M_. 
-#'   Future versions will support any prefixes, for any omic/view.
+#' - Support for running in parallel on multiple threads.
 #' - Currently supports only "healthy" and "disease" study groups. Will be 
 #'   relaxed to any arbitrary group names.
 #' - Support for more than 2 study groups.
+#' - Support for continuous labels.
 #'
 #' @param proc_data A single table containing all features of all views. Samples 
 #'   are rows and features are columns. Two special columns expected are a 
 #'   column holding sample identifiers and a column holding study groups 
-#'   ("healthy" and "disease"). Features from each view should start with the 
-#'   following prefixes: 'T_' for taxonomy, 'G_' for genes, 'P_' for pathways, 
-#'   and optionally 'M_' for metabolites. 
+#'   ("healthy" and "disease"). Features from each view should start with a 
+#'   prefix representing the specific view followed by two underscores, e.g. 
+#'   'T_' for taxonomy, 'G_' for genes, 'P_' for pathways, 'M_' for metabolites. 
 #'   Features in each view should be pre-processed according to common practices. 
 #'   It is advised to remove rare features.
 #'   Highly correlated features should preferably be clustered (see clustering.R 
@@ -42,6 +42,8 @@ source("src/intermediate_integration/utils.R")
 #' @param study_group_column Name of column holding study groups 
 #' 
 #' @param sample_id_column Name of column holding sample identifiers
+#' 
+#' @param view_prefixes
 #' 
 #' @param param_diablo_keepX Number of features to select from each view, 
 #'   serving as a constraint for the sparse CCA. Note: these are sparsity 
@@ -90,9 +92,15 @@ source("src/intermediate_integration/utils.R")
 #' 
 #' @param seed For result replicability
 #'
-#' @return A list with multiple tables and objects describing the identified 
-#'   multi-view modules and various evaluations of these modules.
-#'   Main outputs include:
+#' @return A list of MintTea's multi-view modules, for each MintTea pipeline 
+#'   setting used. For each module, the following properties are returned: 
+#'   Module size, list of module features, module's AUROC and shuffled modules' 
+#'   AUROC, average correlations between features from different views, same for 
+#'   shuffled modules, and a list of edge weights in case the user wants to draw 
+#'   the module as a network. 
+#' 
+#' If `return_main_results_only=FALSE`, then raw results are returned. 
+#'   These include: 
 #'   `sens_analysis_modules` - The table lists all identified modules (i.e., the full list of features in each module), for each pipeline setting.
 #'   `latent_vars` - 1st prinicipal component (PC) of each module, for each pipeline setting.
 #'   `module_variance_expl` - Variance explained by first PC of the true modules, as well as shuffled modules. True modules are expected to have significantly higher levels of variance explained in their first PC (compared to shuffled modules) as features are highly associated with one another.
@@ -106,19 +114,20 @@ source("src/intermediate_integration/utils.R")
 #'  library(readr)
 #'  proc_data <- read_delim("data/example_data_for_minttea/proc_data.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
 #'  source('src/intermediate_integration/utils.R')
-#'  minttea_results <- MintTea(proc_data)
+#'  minttea_results <- MintTea(proc_data, view_prefixes = c('T', 'G', 'P', 'M'), param_diablo_keepX = c(5))
 #'  
 MintTea <- function(
     proc_data, 
     study_group_column = "disease_state", 
     sample_id_column = "sample_id",
-    param_diablo_keepX = c(5, 10),
+    view_prefixes,
+    param_diablo_keepX = c(10),
     param_diablo_design = c(0.5),
     param_n_repeats = c(10),
     param_n_folds = c(10),
-    param_diablo_ncomp = c(5),
+    param_diablo_ncomp = c(3),
     param_edge_thresholds = c(0.8),
-    n_evaluation_repeats = 3,
+    n_evaluation_repeats = 5,
     n_evaluation_folds = 10,
     log_level = 'DEBUG',
     return_main_results_only = TRUE,
@@ -135,6 +144,13 @@ MintTea <- function(
   if (! "ranger" %in% installed)   stop("Please install package 'ranger'")
   if (! "logger" %in% installed)   stop("Please install package 'logger'")
   if (! "conflicted" %in% installed) stop("Please install package 'conflicted'")
+  if (! "stringr" %in% installed) stop("Please install package 'stringr'")
+  
+  # Check that 'utils.R' was sourced
+  if ((!exists('is_valid_r_name')) |
+      (!exists('organize_data_for_diablo')) |
+      (!exists('get_auc')) ) 
+    stop("Please make sure you succesfully ran `source('src/intermediate_integration/utils.R')` before executing MintTea")
   
   # Required packages
   require(dplyr)      # Tested with version: 1.0.10
@@ -145,12 +161,14 @@ MintTea <- function(
   require(ranger)     # Tested with version: 0.14.1
   require(logger)     # Tested with version: 0.2.2
   require(conflicted) # Tested with version: 1.1.0
+  require(stringr)    # Tested with version: 1.4.1
   conflict_prefer("select", "dplyr", quiet = T)
   conflict_prefer("filter", "dplyr", quiet = T)
   
   log_threshold(log_level)
+  log_debug("Starting MintTea")
   
-  # Paramaeter validations
+  # Parameter validations
   if (! is.numeric(param_diablo_keepX)) log_fatal('Invalid argument to *param_diablo_keepX*')
   if (min(param_diablo_keepX) < 3) log_fatal('Invalid argument to *param_diablo_keepX* (values should be >= 3)')
   if (! is.numeric(param_diablo_design)) log_fatal('Invalid argument to *param_diablo_design*')
@@ -164,20 +182,26 @@ MintTea <- function(
   if (! is.numeric(param_edge_thresholds)) log_fatal('Invalid argument to *param_edge_thresholds*')
   if (max(param_edge_thresholds) >= 1) log_fatal('Invalid argument to *param_edge_thresholds* (values should be between 0 to 1)')
   if (min(param_edge_thresholds) <= 0) log_fatal('Invalid argument to *param_edge_thresholds* (values should be between 0 to 1)')
-  
+  if (length(view_prefixes) > 4) log_warn('MintTea was not tested for more than 4 views.')
+  if (length(view_prefixes) > 4) log_warn('MintTea was not tested for more than 4 views.')
+  if (any(str_length(view_prefixes) == 0)) log_fatal('Invalid view prefix (empty character)')
+  if (any(! sapply(view_prefixes, is_valid_r_name))) log_fatal('Invalid view prefix (should comply to valid R variable names. See: www.w3schools.com/r/r_variables_name.asp)')
+    
   # 1. Organize input to DIABLO
   # ----------------------------------------------------------------
   diablo_input <- organize_data_for_diablo(
     proc_data, 
     study_group_column, 
-    sample_id_column)
-  log_debug("Completed data preparations for DIABLO")
+    sample_id_column,
+    view_prefixes,
+    min_features_per_view = param_diablo_keepX)
+  log_debug("Completed data preparations")
   
   # 2. Wrap DIABLO in a repeated sub-sampling procedure 
   #    to identify robust modules
   # ----------------------------------------------------------------
   
-  log_debug('Running repeated sCCA')
+  log_debug('Running repeated sGCCA')
   
   # Function for wrapping DIABLO using specific pipeline parameters, eventually 
   #  returning a list of pairs of features and how often did they appear 
@@ -268,10 +292,7 @@ MintTea <- function(
       dplyr::select(feature.x, feature_set.x, feature.y, feature_set.y, fold_id) %>% 
       distinct() %>%
       group_by(feature.x, feature.y) %>%
-      summarise(N = n(), .groups = "drop") %>%
-      # Compute a distance between each pair, where 1 = never appeared together, 
-      #  i.e. maximal distance, 0 = always appear together, minimal distance
-      mutate(dist = ((n_repeats * n_folds) - N) / (n_repeats * n_folds)) 
+      summarise(N = n(), .groups = "drop") 
     
     return(list(feat_pairs = feat_pairs))
   }
@@ -386,7 +407,7 @@ MintTea <- function(
     
     if(nrow(edges) == 0) {
       cat('\n')
-      log_debug('No modules identified with setting {curr_run}')
+      log_debug('No modules identified for MintTea setting: {curr_run}')
       next
     }
     
@@ -469,13 +490,13 @@ MintTea <- function(
         # (take only features in this module from each omic)
         xlist <- lapply(diablo_input$X, function(x) {x[,colnames(x) %in% tmp$feature,drop=FALSE]})
         
-        # Remove omics without features in this module
+        # Remove views without features in this module
         rem <- sapply(xlist, ncol) == 0
         xlist <- xlist[!rem]
         
         # Shuffle if needed 
         if (shuf) {
-          # For each omic, sample same amount of features as in true module
+          # For each view, sample same amount of features as in true module
           xlist <- lapply(
             names(diablo_input$X),
             function(fs) {
@@ -502,7 +523,7 @@ MintTea <- function(
             tibble::remove_rownames()
         ) 
         
-        # Record mean correlations between features from different omics
+        # Record mean correlations between features from different views
         tmp_inter_omic_cors <- get_all_inter_omic_corrs(module_raw_data)
         module_inter_omic_cors[[curr_run]][[run]] <- bind_rows(
           module_inter_omic_cors[[curr_run]][[run]],
@@ -657,17 +678,70 @@ MintTea <- function(
     summarise(mean_module_auc = mean(auc, na.rm = TRUE),
               sd_module_auc = sd(auc, na.rm = TRUE),
               .groups = "drop")
+  log_debug("Completed MintTea")
   
-  # 6. Return a list with all results & summary tables
+  # 6. Return a list of identified modules or summary tables
   # ----------------------------------------------------------------
+  
+  # Re-organize results in tables into a list of MintTea modules
+  modules_list <- list()
+  # Iterate over MintTea settings (for cases when MintTea was executed with 
+  #  several optional settings)
+  for (curr_run in unique(sens_analysis_modules$run_id)) {
+    modules_list[[curr_run]] <- list()
+    
+    # Iterate over modules identified 
+    for (module_id in (sens_analysis_modules %>% 
+                       filter(run_id == curr_run) %>% 
+                       pull(module) %>% 
+                       unique())) {
+      
+      # Extract list of features of this module
+      module_feats <- sens_analysis_modules %>% 
+        filter(run_id == curr_run) %>% 
+        filter(module == module_id) %>%
+        pull(feature)
+      module_id_num <- gsub('module','',module_id) %>% as.integer()
+        
+      # Populate module properties and evaluation statistics 
+      #  (extract info from the various result tables)
+      modules_list[[curr_run]][[module_id]] <- list()
+      modules_list[[curr_run]][[module_id]][['module_size']] <- length(module_feats)
+      modules_list[[curr_run]][[module_id]][['features']] <- module_feats
+      modules_list[[curr_run]][[module_id]][['module_edges']] <- 
+        tmp_feat_pairs %>% 
+          filter(run_id == curr_run) %>%
+          filter((feature.x %in% module_feats) & (feature.y %in% module_feats)) %>%
+          filter(feature.x < feature.y) %>%
+          select(feature.x, feature.y, N) %>%
+          mutate(edge_weight = round(N / (n_repeats * n_folds),4))
+      modules_list[[curr_run]][[module_id]][['auroc']] <- 
+        summary_module_aucs %>%
+          filter(setting == curr_run) %>% 
+          filter(module_id == module_id_num) %>% 
+          filter(run == 'true') %>% 
+          pull(mean_module_auc)
+      modules_list[[curr_run]][[module_id]][['shuffled_auroc']] <- 
+        summary_module_aucs %>%
+          filter(setting == curr_run) %>% 
+          filter(module_id == module_id_num) %>% 
+          filter(run != 'true') %>% 
+          pull(mean_module_auc)
+      modules_list[[curr_run]][[module_id]][['inter_view_corr']] <- 
+        module_inter_omic_cors[[curr_run]] %>% 
+          filter(module == module_id_num) %>% 
+          filter(run == 'true') %>% 
+          pull(avg_pears_corr)
+      modules_list[[curr_run]][[module_id]][['shuffled_inter_view_corr']] <- 
+        module_inter_omic_cors[[curr_run]] %>% 
+          filter(module == module_id_num) %>% 
+          filter(run != 'true') %>% 
+          pull(avg_pears_corr)
+    }
+  }
+  
   if (return_main_results_only)
-    return(list(sens_analysis_modules = sens_analysis_modules,
-                sens_analysis_runs = sens_analysis_runs,
-                latent_vars = latent_vars,
-                module_variance_expl = module_variance_expl,
-                module_inter_omic_cors = module_inter_omic_cors,
-                summary_module_aucs = summary_module_aucs,
-                summary_overall_aucs = summary_overall_aucs))
+    return(modules_list)
     
   return(list(diablo_input = diablo_input, 
               feat_pairs = feat_pairs,
