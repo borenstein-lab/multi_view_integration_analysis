@@ -114,7 +114,7 @@ source("src/intermediate_integration/utils.R")
 #'  source('src/intermediate_integration/MintTea.R')
 #'  library(readr)
 #'  proc_data <- read_delim("data/example_data_for_minttea/proc_data.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
-#'  minttea_results <- MintTea(proc_data, view_prefixes = c('T', 'G', 'P', 'M'), param_diablo_design = c(1), param_diablo_ncomp = c(1), param_edge_thresholds = c(0.98), param_diablo_keepX = c(3))
+#'  minttea_results <- MintTea(proc_data, view_prefixes = c('T', 'G', 'P', 'M'))
 #'  
 MintTea <- function(
     proc_data, 
