@@ -111,10 +111,10 @@ source("src/intermediate_integration/utils.R")
 #' @export
 #'
 #' @examples
+#'  source('src/intermediate_integration/MintTea.R')
 #'  library(readr)
 #'  proc_data <- read_delim("data/example_data_for_minttea/proc_data.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
-#'  source('src/intermediate_integration/utils.R')
-#'  minttea_results <- MintTea(proc_data, view_prefixes = c('T', 'G', 'P', 'M'), param_diablo_keepX = c(5))
+#'  minttea_results <- MintTea(proc_data, view_prefixes = c('T', 'G', 'P', 'M'), param_diablo_design = c(1), param_diablo_ncomp = c(1), param_edge_thresholds = c(0.98), param_diablo_keepX = c(3))
 #'  
 MintTea <- function(
     proc_data, 
@@ -437,6 +437,8 @@ MintTea <- function(
   # Discard settings for which no modules were identified
   sens_analysis_runs <- sens_analysis_runs %>%
     filter(run_id %in% unique(sens_analysis_modules$run_id))
+  
+  if (nrow(sens_analysis_runs) == 0) return(list())
   
   # 4. Compute module summaries (1st PC), per setting
   # ----------------------------------------------------------------
