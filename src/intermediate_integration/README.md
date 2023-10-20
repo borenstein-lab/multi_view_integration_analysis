@@ -1,8 +1,21 @@
 This folder includes all code related to the intermediate integration (__MintTea__) pipeline.
 
+**Table of content:**
+ - [MintTea overview](#ch1)
+ - [Instructions - Running MintTea on your own data](#ch2)
+ - [Usage example](#ch3)
+
+<a id="ch1"></a>
+## MintTea overview
+
+MintTea is a method for identifying multi-view modules of features that are both associated with a disease state and present strong associations between the different views. It is based on sparse generalized canonical correlation analysis (sgCCA) and the specific extension introduced by Singh et al., 2019<sup>1</sup>, named [DIABLO](http://mixomics.org/mixdiablo/). For further details see: https://www.biorxiv.org/content/10.1101/2023.07.03.547607v2.
+
 <img src="https://github.com/borenstein-lab/multi_view_integration_analysis/blob/main/docs/wiki_figure.png" width="700">
+
+***
      
-## Instructions - Running MintTea (`MintTea.R`) on your own data
+<a id="ch2"></a>
+## Instructions - Running MintTea on your own data
 
 1. Open an R script from which the MintTea function will be executed.
 
@@ -19,9 +32,10 @@ This folder includes all code related to the intermediate integration (__MintTea
 
      | Parameter            | Description                                                                                                    |
      | -------------------- | -------------------------------------------------------------------------------------------------------------- |
-     | `proc_data`          | A single table containing all features of all views. Samples are rows and features are columns. Two special columns expected to be included in the table are a column holding sample identifiers and a column holding study groups ("healthy" and "disease"). Features from each view should start with the following prefixes: 'T_' for taxonomy, 'G_' for genes, 'P_' for pathways, and optionally 'M_' for metabolites (future versions will support arbitrary prefixes). Features in each view should be pre-processed according to common practices. It is advised to remove rare features, and cluster highly correlated features. |
+     | `proc_data`          | A single table containing all features of all views. Samples are rows and features are columns. Two special columns expected to be included in the table are a column holding sample identifiers and a column holding study groups ("healthy" and "disease"). Features from each view should start with the a prefix indicating which view are they related to, followed by two underscores, e.g. 'T_' for taxonomy, 'P_' for pathways, and 'M_' for metabolites. Features in each view should be pre-processed according to common practices. It is advised to remove rare features, and cluster highly correlated features. |
      | `study_group_column` | Name of column holding study groups. |
      | `sample_id_column`   | Name of column holding sample identifiers. |
+     | `view_prefixes`      | Feature prefixes differentiating the different views, e.g. `c('T','P','M')` (for Taxonomy, Pathways, Metabolites, respectively). All feature names should start with one of the given prefixes followed by two underscores. |
      | `param_diablo_keepX` | Number of features to select from each view, serving as a constraint for the sparse CCA. Note: these are sparsity constraints for the CCA modules, not the final consensus modules. Higher values will produce larger modules. More than one value can be provided if sensitivity analysis is desired. |
      | `param_diablo_design` | A prior on expected relations between different views. Supports values between 0 and 1 (inclusive). 0 indicates no association between views is expected, and modules should maximize association with disease only. 1 indicates expected inter-view association and modules should therefore maximize both disease-association and between-view associations. More than one value can be provided if sensitivity analysis is desired. |
      | `param_n_repeats`     | Number of sCCA repeats on data subsamples. More than one value can be provided if sensitivity analysis is desired. |
@@ -31,37 +45,56 @@ This folder includes all code related to the intermediate integration (__MintTea
      | `n_evaluation_repeats` | Number of cross-validation repeats for overall AUROC estimation. |
      | `n_evaluation_folds`  | Number of cross-validation folds for overall AUROC estimation. |
      | `log_level`           | See `library(logger); ?log_levels` |
-     | `seed`                | For result replicability. |
+     | `seed`                | For reproducability. |
 
 
-6. Pipeline results are all returned in a single R list, and contain both the detailed modules and various evaluations and statistics about them. Main outputs include:
+6. Pipeline results are returned as a list of multi-view modules, given for each MintTea pipeline setting requested. For each module, the following properties are returned: 
 
-     | Output                    | Description                                                                                                         |
+     | Module property           | Details                                                                                                             |
      | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-     | `sens_analysis_modules`   | The table lists all identified modules (i.e., the full list of features in each module), for each pipeline setting. |
-     | `latent_vars`             | 1st prinicipal component (PC) of each module, for each pipeline setting.                                            |
-     | `module_variance_expl`    | Variance explained by first PC of the true modules, as well as shuffled modules. True modules are expected to have significantly higher levels of variance explained in their first PC (compared to shuffled modules) as features are highly associated with one another. |
-     | `module_inter_omic_cors`  | Average correlation between features from different views, per module and per pipeline setting. Again, compared to shuffled modules. |
-     | `summary_module_aucs`     | AUROC of each module by itself, describing the module's association with the disease. Computed using its first PC and evaluated over repeated cross-validation. Compared to shuffled modules. |
-     | `summary_overall_aucs`    | Combined AUROC of all modules of a dataset, using their first PC and a simple random forest or logistic regression model, and evaluated over repeated cross-validation. Describes the overall predictive power of all modules combined. Compared to shuffled modules. |
+     | `module_size`             | The number of features in this module.                                                                              |
+     | `features`                | 1st prinicipal component (PC) of each module, for each pipeline setting.                                            |
+     | `module_edges`            | Edge weights for every pair of features in this module that co-occured in sGCCA components at least once. Edge weights are calculated as the number of times each pair co-occured in the same sGCCA component, divided by `param_n_repeats` * `param_n_folds`. These weights are given in case the user wants to draw the module as a network.  |
+     | `auroc`                   | AUROC of each module by itself, describing the module's association with the disease. Computed using its first PC and evaluated over repeated cross-validation. Note: It is warmly advised to further evaluate module-disease associations using an independent test set. |
+     | `shuffled_auroc`          | As above, but using 99 randomly sampled modules of the same size and same proprtions of views.                      |
+     | `inter_view_corr`         | Average correlation between features from different views.                                                          |
+     | `shuffled_inter_view_corr` | As above, but using 99 randomly sampled modules of the same size and same proprtions of views.                     |
   
 7. To evaluate the obtained results, we recommend starting by examining the following:
 
-   * For each pipeline setting - how many modules were found, and what are the module sizes (i.e., number of features included)? See `sens_analysis_modules %>% group_by(module, run_id) %>% summzriae(N_features = n())`.
-   * What was the overall AUC achieved by all modules combined? (see `summary_overall_aucs`)
-   * What was the AUC achieved by each module alone? (see `summary_module_aucs`)
+   * For each pipeline setting - how many modules were found, and what are the module sizes (i.e., number of features included)? 
+   * What was the AUC achieved by each module? (see `auroc`)
+   * How does this AUC compare to the random-modules AUC's?
 
-
-Tips:
+**Tips:**
    
    * Optimal module sizes depend on the downstream analysis. For manual interpretation for example, smaller modules may be favorable. If your modules came out too large, consider decreasing `param_diablo_keepX`, or decreasing `param_n_folds`, or increasing `param_edge_thresholds`. Symmetrically, if your modules are too small consider the opposite.
    * If the overall AUC is low, and/or all individual module AUC's are low, you may want to consider decreasing `param_diablo_design`, effectively assigning a higher importance to associations with disease as opposed to associations in-between views.
-  
+
+***
+
+<a id="ch3"></a>
+## Usage example
+
+```
+source('src/intermediate_integration/MintTea.R')
+library(readr)
+preprocessed_data <- read_delim("data/example_data_for_minttea/proc_data.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
+minttea_results <- MintTea(preprocessed_data, view_prefixes = c('T', 'G', 'P', 'M'))
+```
+
+*** 
+
 For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
 
 ***
 
-Backlog:
+**Backlog:**
 
      * Support parallel running to shorten runtimes.
-     * Generalize to support any view-prefix (currently hard-coded to T_, G_, P_, M_).
+     * Generalize to support any categorical label (currently hard-coded to 'healthy' and 'disease').
+     * Generalize to support continuous labels.
+     
+***
+
+<sup>1</sup> Singh, Amrit, et al. "DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays." Bioinformatics 35.17 (2019): 3055-3062.
