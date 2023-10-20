@@ -1,8 +1,21 @@
 This folder includes all code related to the intermediate integration (__MintTea__) pipeline.
 
+**Table of content:**
+ - [MintTea overview](#ch1)
+ - [Instructions - Running MintTea on your own data](#ch2)
+ - [Usage example](#ch3)
+
+<a id="ch1"></a>
+## MintTea overview
+
+MintTea is a method for identifying multi-view modules of features that are both associated with a disease state and present strong associations between the different views. It is based on sparse generalized canonical correlation analysis (sgCCA) and the specific extension introduced by Singh et al., 2019<sup>1</sup>, named [DIABLO](http://mixomics.org/mixdiablo/). For further details see: https://www.biorxiv.org/content/10.1101/2023.07.03.547607v2.
+
 <img src="https://github.com/borenstein-lab/multi_view_integration_analysis/blob/main/docs/wiki_figure.png" width="700">
+
+***
      
-## Instructions - Running MintTea (`MintTea.R`) on your own data
+<a id="ch2"></a>
+## Instructions - Running MintTea on your own data
 
 1. Open an R script from which the MintTea function will be executed.
 
@@ -32,7 +45,7 @@ This folder includes all code related to the intermediate integration (__MintTea
      | `n_evaluation_repeats` | Number of cross-validation repeats for overall AUROC estimation. |
      | `n_evaluation_folds`  | Number of cross-validation folds for overall AUROC estimation. |
      | `log_level`           | See `library(logger); ?log_levels` |
-     | `seed`                | For result replicability. |
+     | `seed`                | For reproducability. |
 
 
 6. Pipeline results are returned as a list of multi-view modules, given for each MintTea pipeline setting requested. For each module, the following properties are returned: 
@@ -47,18 +60,31 @@ This folder includes all code related to the intermediate integration (__MintTea
      | `inter_view_corr`         | Average correlation between features from different views.                                                          |
      | `shuffled_inter_view_corr` | As above, but using 99 randomly sampled modules of the same size and same proprtions of views.                     |
   
-13. To evaluate the obtained results, we recommend starting by examining the following:
+7. To evaluate the obtained results, we recommend starting by examining the following:
 
    * For each pipeline setting - how many modules were found, and what are the module sizes (i.e., number of features included)? 
-   * What was the AUC achieved by each module alone? (see `auroc`)
+   * What was the AUC achieved by each module? (see `auroc`)
    * How does this AUC compare to the random-modules AUC's?
 
-
-Tips:
+**Tips:**
    
    * Optimal module sizes depend on the downstream analysis. For manual interpretation for example, smaller modules may be favorable. If your modules came out too large, consider decreasing `param_diablo_keepX`, or decreasing `param_n_folds`, or increasing `param_edge_thresholds`. Symmetrically, if your modules are too small consider the opposite.
    * If the overall AUC is low, and/or all individual module AUC's are low, you may want to consider decreasing `param_diablo_design`, effectively assigning a higher importance to associations with disease as opposed to associations in-between views.
-  
+
+***
+
+<a id="ch3"></a>
+## Usage example
+
+```
+source('src/intermediate_integration/MintTea.R')
+library(readr)
+preprocessed_data <- read_delim("data/example_data_for_minttea/proc_data.tsv", delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
+minttea_results <- MintTea(preprocessed_data, view_prefixes = c('T', 'G', 'P', 'M'))
+```
+
+*** 
+
 For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
 
 ***
@@ -69,3 +95,6 @@ For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
      * Generalize to support any categorical label (currently hard-coded to 'healthy' and 'disease').
      * Generalize to support continuous labels.
      
+***
+
+<sup>1</sup> Singh, Amrit, et al. "DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays." Bioinformatics 35.17 (2019): 3055-3062.
