@@ -186,6 +186,28 @@ MintTea <- function(
   if (length(view_prefixes) > 4) log_warn('MintTea was not tested for more than 4 views.')
   if (any(str_length(view_prefixes) == 0)) log_fatal('Invalid view prefix (empty character)')
   if (any(! sapply(view_prefixes, is_valid_r_name))) log_fatal('Invalid view prefix (should comply to valid R variable names. See: www.w3schools.com/r/r_variables_name.asp)')
+  
+  # Data validations
+  ## Verify required columns are included
+  if (! study_group_column %in% colnames(proc_data)) log_fatal("Could not find study_group_column in data table") 
+  if (! sample_id_column %in% colnames(proc_data)) log_fatal("Could not find sample_id_column in data table")
+  
+  ## Verify no missing fields
+  if (sum(is.na(proc_data)) > 0) log_fatal("Missing values currently not supported.")
+  
+  ## Verify unique sample ID
+  if (sum(duplicated(proc_data[[sample_id_column]])) > 0) log_fatal("Sample ID's are not unique.")
+  
+  ## Verify supported study group labels (TODO: support arbitrary labels)
+  if (sum(! proc_data[[study_group_column]] %in% c('healthy','disease')) > 0) log_fatal("Study-group labels currently supported: 'healthy' and 'disease' only.")
+  if (n_distinct(proc_data[[study_group_column]]) == 1) log_fatal("Only one study group provided. 2 required.")
+  
+  ## Verify all columns are numeric
+  if (sum(apply(proc_data %>% 
+                select(-all_of(c(study_group_column, sample_id_column))), 
+                MARGIN = 2, 
+                FUN = is.numeric)) < (ncol(proc_data)-2))
+    log_fatal("Found non-numeric features. Only numeric features are supported.")
     
   # 1. Organize input to DIABLO
   # ----------------------------------------------------------------
