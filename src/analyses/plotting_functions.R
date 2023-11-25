@@ -470,6 +470,15 @@ plot_module_stats <- function(sens_analysis_modules,
     group_by(dataset, module, feature_type) %>%
     summarise(N = n(), .groups = "drop") 
   
+  # Only plot modules with at least 2 types of features and >3 total features
+  modules_to_plot <- tmp1 %>% 
+    group_by(dataset,module) %>% 
+    summarise(N=sum(N), N_feat_type=n(), .groups='drop') %>%
+    filter(N>3 & N_feat_type>1) %>%
+    select(dataset, module)
+ 
+  tmp1 <- inner_join(tmp1, modules_to_plot, by = c('dataset','module'))
+     
   tmp1$module2 <- factor(paste('Module', tmp1$module),
                             levels = paste('Module', max(tmp1$module):1))
   
@@ -526,6 +535,8 @@ plot_module_stats <- function(sens_analysis_modules,
       by = c('dataset','module_id')
     ) %>%
     rename(module = module_id) 
+  
+  tmp2 <- inner_join(tmp2, modules_to_plot, by = c('dataset','module'))
   
   tmp2$module2 <- factor(paste('Module', tmp2$module),
                             levels = levels(tmp1$module2))
@@ -588,6 +599,8 @@ plot_module_stats <- function(sens_analysis_modules,
                   .groups = 'drop'),
       by = c('dataset','module')
     ) 
+  
+  tmp3 <- inner_join(tmp3, modules_to_plot, by = c('dataset','module'))
   
   tmp3$module2 <- factor(paste('Module', tmp3$module),
                             levels = levels(tmp1$module2))
@@ -777,7 +790,7 @@ plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_
   print(p)
 }
 
-plot_module_sensitivity_analysis <- function(sens_analysis_modules, base_module, selected_settings, settings_order = NULL) {
+plot_module_sensitivity_analysis <- function(sens_analysis_modules, latent_vars, base_module, selected_settings, settings_order = NULL) {
   # Final set of features for a given module
   base_features <- sens_analysis_modules %>% 
     filter(dataset == base_module$d) %>%
@@ -792,21 +805,25 @@ plot_module_sensitivity_analysis <- function(sens_analysis_modules, base_module,
     filter(sum(feature %in% base_features) > 0) %>%
     ungroup() 
   
-  if(!is.null(settings_order)) df <- df %>% mutate(run_id = factor(run_id, levels = settings_order))
-  
-  # Organize features order
-  feats_order <- sort(base_features) 
+  if (is.null(settings_order)) {
+    # Make the selected setting first in order
+    tmp_settings <- unique(sens_analysis_modules$run_id)
+    settings_order <- c(selected_settings, tmp_settings[tmp_settings != selected_settings])
+  }
+  df <- df %>% 
+    mutate(run_id = factor(
+      run_id, 
+      levels = settings_order
+      ))
   
   # Hack for nice ordering of features
-  if(!is.null(settings_order)) {
-    for (i in 2:length(settings_order)) {
-      tmp_feats <- df %>% 
-        filter(run_id == settings_order[i]) %>%
-        pull(feature)
-      feats_order <- c(feats_order, tmp_feats[! tmp_feats %in% feats_order])
-    }
+  feats_order <- sort(base_features) 
+  for (i in 2:length(settings_order)) {
+    tmp_feats <- df %>% 
+      filter(run_id == settings_order[i]) %>%
+      pull(feature)
+    feats_order <- c(feats_order, tmp_feats[! tmp_feats %in% feats_order])
   }
-  
   df <- df %>%
     mutate(feature = factor(feature, levels = rev(feats_order)))
   
@@ -837,11 +854,23 @@ plot_module_sensitivity_analysis <- function(sens_analysis_modules, base_module,
   df <- df %>%
     left_join(module_color, by = c("module", "run_id"))
   
+  settings_order_labels <- gsub('// nfol', '//\nnfol', gsub('//', ' // ', settings_order))
+  
+  df <- df %>% 
+    mutate(run_id = factor(
+      run_id, 
+      levels = settings_order, 
+      labels = settings_order_labels
+    ))
+  
   p1 <- ggplot(df, aes(y = feature, x = run_id, fill = module_color)) +
     geom_point(size = 2.5, shape = 21, color = 'black') +
     annotate("rect", xmin = 0.6, xmax = 1.6, ymin = 0, ymax = 1+n_distinct(df$feature), alpha = .1, fill = "cadetblue4") +
     scale_x_discrete(position = 'top') +
-    scale_fill_manual(values = c('1' = '#9AD2CB', '2' = '#E0D68A', '3' = '#8E443D', '4' = '#511730')) +
+    scale_fill_manual(values = c('1' = '#9AD2CB', 
+                                 '2' = '#E0D68A', 
+                                 '3' = '#8E443D', 
+                                 '4' = '#511730')) +
     theme_classic() +
     xlab(NULL) +
     ylab(NULL) +
@@ -852,6 +881,11 @@ plot_module_sensitivity_analysis <- function(sens_analysis_modules, base_module,
   
   p2 <- ggplot(module_color %>%
                  tidyr::complete(run_id, module_color) %>%
+                 mutate(run_id = factor(
+                   run_id, 
+                   levels = settings_order, 
+                   labels = settings_order_labels
+                 )) %>%
                  mutate(AUC = ifelse(is.na(AUC), 0.501, AUC)), 
                aes(y = AUC, x = run_id, fill = module_color, group = module_color)) +
     geom_col(width = 0.7, color = 'black', position = 'dodge') +
