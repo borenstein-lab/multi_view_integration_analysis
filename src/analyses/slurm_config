@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # To execute: 
-# cd /specific/elhanan/PROJECTS/DOG_AGING_PROJECT/PROCESSED_DATA/batch_1_22122022/metagenomics
-# sbatch slurm_for_process_single_sample
+# cd /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses
+# sbatch slurm_config
 # Check queue: squeue
 
 ########################
