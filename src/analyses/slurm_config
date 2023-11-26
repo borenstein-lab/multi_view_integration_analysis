@@ -26,7 +26,7 @@ mkdir -p slurm_logs
 
 echo "SLURM DEBUG: now working on task number ${SLURM_ARRAY_TASK_ID}"
 
-BASE_DIR=/specific/elhanan/PROJECTS/DOG_AGING_PROJECT/PROCESSED_DATA/batch_1_22122022/metagenomics
+BASE_DIR=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis
 SRUN_OUT=${BASE_DIR}/slurm_logs/slurm.${SLURM_ARRAY_JOB_ID}.${SLURM_ARRAY_TASK_ID}.log
 cd ${BASE_DIR}
 
