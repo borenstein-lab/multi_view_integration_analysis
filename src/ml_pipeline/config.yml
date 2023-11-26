@@ -41,6 +41,7 @@ default:
     'raw_oof_predictions': 'data/ml_output/results_tables/%s_oof_predictions.csv'
   }
   params_short_names: {
+    'feature_set_type': {'All': 'All'},
     'should_tune': {'FALSE': '-T', 'TRUE': '+T'},
     'should_shuffle': {'FALSE': '-Sh', 'TRUE': '+Sh'},
     'fs_type': {'none': '-FS', 'Boruta90': '+FS_B90', 'Boruta80': '+FS_B80', 'utest': '+FS_U', 'ensemble': '+FS_ENS', 'pertBoruta': '+FS_PB90', 'RepeatBoruta90': '+FS_RB90', 'altmann': '+FS_A', 'altmann_top20': '+FS_A20'}
