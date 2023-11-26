@@ -10,43 +10,6 @@
 library(config)
 library(tidymodels)
 library(parallel)
-library(optparse)
-
-# Parse command line arguments
-ml_parse_args <- function() {
-  option_list <- list(
-    make_option(
-      c("-d", "--dataset"), 
-      type = "character", 
-      default = NULL, 
-      help = "dataset name", 
-      metavar = "character"
-    ),
-    make_option(
-      c("-w", "--work_dir"), 
-      type = "character", 
-      default = getwd(), 
-      help = "working directory (should be set to the ml_pipeline directory)", 
-      metavar = "character"
-    )
-  ); 
-  
-  opt_parser <- OptionParser(option_list = option_list);
-  opts <- parse_args(opt_parser);
-  return(opts)
-}
-
-if (!exists("name__")) {
-  # Indicates the script was ran directly (and not sourced by another)
-  name__ = "ml_pipeline"
-  
-  # Parse arguments (will take default values if none given)
-  args <- ml_parse_args()
-  
-  # Set working directory 
-  setwd(args$work_dir)
-}
-
 
 source('src/ml_pipeline/utils.R')
 source('src/ml_pipeline/preprocessing.R')
@@ -133,7 +96,7 @@ ml_create_rf_model <- function(run_name, train_df, should_tune) {
       set_engine(
         "ranger", 
         importance = "permutation", 
-        num.threads = config::get("ranger_n_threads")
+        num.threads = config$ranger_n_threads
       )
   }
   
@@ -194,7 +157,7 @@ ml_evaluate_test <- function(run_name,
     bind_cols(test_df)
   
   out_of_fold_test_auc <- final_result %>%
-    roc_auc(DiseaseState, .pred_disease)
+    roc_auc(truth = DiseaseState, .pred_disease, event_level = 'second')
   logs[['out_of_fold_test_auc']] <- out_of_fold_test_auc$.estimate
   
   # Save predictions for later ROC-AUC plotting
@@ -219,7 +182,7 @@ ml_select_features <- function(train_df,
   # Record feature counts
   logs[['n_features_origin']] <- ncol(train_df) - 1
   logs[['n_features_origin_T']] <- sum(startsWith(colnames(train_df), 'T__'))
-  logs[['n_features_origin_G']] <- sum(startsWith(colnames(train_df), 'G__'))
+  logs[['n_features_origin_S']] <- sum(startsWith(colnames(train_df), 'S__'))
   logs[['n_features_origin_P']] <- sum(startsWith(colnames(train_df), 'P__'))
   logs[['n_features_origin_M']] <- sum(startsWith(colnames(train_df), 'M__'))
   
@@ -233,7 +196,7 @@ ml_select_features <- function(train_df,
   
   logs[['n_features_for_train_final']] <- ncol(train_df) - 1
   logs[['n_features_for_train_final_T']] <- sum(startsWith(colnames(train_df), 'T__'))
-  logs[['n_features_for_train_final_G']] <- sum(startsWith(colnames(train_df), 'G__'))
+  logs[['n_features_for_train_final_S']] <- sum(startsWith(colnames(train_df), 'S__'))
   logs[['n_features_for_train_final_P']] <- sum(startsWith(colnames(train_df), 'P__'))
   logs[['n_features_for_train_final_M']] <- sum(startsWith(colnames(train_df), 'M__'))
   log_debug("N features original: {logs[['n_features_origin']]}, after FS: {logs[['n_features_for_train_final']]}")
@@ -441,13 +404,15 @@ ml_main <- function(ds_name) {
   # Create output directories
   utils_create_output_dirs()
   
-  # Run the pipeline
-  # Preprocess data, i.e. get feature sets
-  feature_sets <- prep_preprocess_dataset(ds_name, feature_set_types = config$params_combo$feature_set_type)
+  # Load processed data
+  input_data <- sprintf(config$paths_templates$all_data_preprocessed, ds_name)
+  proc_data <- read_delim(input_data, delim = "\t", escape_double = FALSE, trim_ws = TRUE, show_col_types = FALSE)
+  proc_data$sample_id__ <- NULL
+  proc_data$DiseaseState <- factor(proc_data$DiseaseState, levels = c('healthy','disease'))
+  feature_sets <- list('All' = proc_data)
   
   # Get pipeline settings from config (one or more) 
-  all_params_combo <- expand.grid(config$params_combo)
-  all_params_combo <- all_params_combo %>% filter(feature_set_type %in% names(feature_sets))
+  all_params_combo <- expand.grid(config$params_combo) %>% mutate(feature_set_type = 'All')
   
   # Run pipeline (test: params_combo = all_params_combo[1,])
   all_results <- apply(all_params_combo, 1, function (params_combo) {
@@ -466,6 +431,19 @@ ml_main <- function(ds_name) {
     )
     
     results <- do.call('ml_pipeline_single_run', func_params)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     # Add some additional columns to the result table
     results$run_name = run_name
@@ -499,7 +477,7 @@ ml_main <- function(ds_name) {
     select(c(dataset, run_name, feature_importance)) %>%
     unnest(cols = feature_importance) %>%
     mutate(run_name = paste0('+"', run_name, '"')) %>%  # so that excel won't show this as a formula
-    utils_save_tsv_table(`feature_importance_path`, sep = ',')
+    utils_save_tsv_table(feature_importance_path, sep = ',')
   
   # Save a CSV file with out-of-fold raw predictions (for ROC plotting)
   oof_preds_path <- sprintf(config$paths_templates$raw_oof_predictions, ds_name)
@@ -522,31 +500,23 @@ ml_main <- function(ds_name) {
 # Main 
 ###################################
 
-# Running the ML pipeline on a specific dataset, using the "-d" command line argument
-# -----------------------------------------------------------------------------------
-if (name__ == "ml_pipeline") {
-  # Set log level (globally)
-  log_threshold(config$log_level)
-  if (!is.null(args$dataset)) ml_main(args$dataset)
-}
+log_threshold(config$log_level)
+# Sys.setenv(R_CONFIG_ACTIVE = "test")  # Set to test configuration mode
 
-# Run manually, in test mode (i.e. use the 'test' configuration)
-# -----------------------------------------------------------------------------------
-if (FALSE) {
-  log_threshold(config$log_level)
-  Sys.setenv(R_CONFIG_ACTIVE = "test")  # Set to test configuration mode globally (i.e. use 'test' configurations in config.yml)
-  log_info('Running with test configuration...')
-  ml_main('crc_s0_yachida_2019')
-  ml_main('crc_feng_2015') 
-  ml_main('crc_zeller_2014')
-  ml_main('ht_li_2017')
-  ml_main('adenomas_feng_2015') 
-  ml_main('crc_s3_s4_yachida_2019')
-  ml_main('cirrhosis_qin_2014') 
-  ml_main('esrd_wang_2020') 
-  ml_main('uc_franzosa_2019')
-  ml_main('cd_franzosa_2019')
-  post_prepare_rdata()
-}
-  
-# To run the pipeline on all datasets, in parallel, use the 'run_pipeline_parallel.R' script.
+# ml_main('crc_s3_s4_yachida_2019')
+# ml_main('cirrhosis_qin_2014')
+# ml_main('esrd_wang_2020')
+# ml_main('uc_franzosa_2019')
+# ml_main('cd_franzosa_2019')
+# ml_main('crc_feng_2015')
+# ml_main('crc_yu_2015')
+# ml_main('metacardis_1_8')
+# ml_main('metacardis_3_8')
+# ml_main('sth_rubel_2020')
+# ml_main('uc_spain_nielsen_2014')
+# post_prepare_rdata()
+
+args = commandArgs(trailingOnly=TRUE)
+if (length(args)==0) stop("At least one argument must be supplied (dataset name).", call.=FALSE)
+ml_main(args[1])
+log_debug('ML pipeline completed.')
