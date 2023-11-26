@@ -16,9 +16,9 @@ utils_write_excel <- function(df, row.names = FALSE, col.names = TRUE, ...) {
 
 
 utils_create_output_dirs <- function() {
-  dir.create(config::get('paths')$ml_output_dir, showWarnings = FALSE)
-  dir.create(config::get('paths')$logs_dir, showWarnings = FALSE)
-  dir.create(config::get('paths')$results_tables_dir, showWarnings = FALSE)
+  dir.create(config$paths$ml_output_dir, showWarnings = FALSE)
+  dir.create(config$paths$logs_dir, showWarnings = FALSE)
+  dir.create(config$paths$results_tables_dir, showWarnings = FALSE)
 }
 
 
@@ -28,14 +28,14 @@ utils_save_tsv_table <- function(data, path, quote = FALSE, sep = '\t', append =
 
 
 utils_get_available_ds <- function() {
-  return(list.dirs(path = config::get('paths')$ml_input_dir,
+  return(list.dirs(path = config$paths$ml_input_dir,
                    recursive = FALSE,
                    full.names = FALSE))
 }
 
 utils_get_kegg_compound_names_mapping <- function() {
   # Read mapping from KEGG compound ID's to names
-  kegg_metab_names <- read_delim(config::get("paths")$kegg_metabolites_names, 
+  kegg_metab_names <- read_delim(config$paths$kegg_metabolites_names, 
                                  delim = "\t", 
                                  escape_double = FALSE, 
                                  col_names = c("id","name"), 
