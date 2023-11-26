@@ -1,3 +1,9 @@
+setwd('/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis')
+args = commandArgs(trailingOnly=TRUE)
+if (length(args)==0) stop("At least one argument must be supplied (dataset name).", call.=FALSE)
+d <- args[1]
+# d <- 'cd_franzosa_2019'
+
 # Preperations
 library(mixOmics)
 library(dplyr)
@@ -13,7 +19,6 @@ source("src/analyses/scca_and_diablo_utils.R")
 source("src/intermediate_integration/MintTea.R")
 
 # Load some dataset (after processing)
-d <- 'cd_franzosa_2019'
 res_dir <- 'data/intermediate_integration_results'
 f_path <- file.path(res_dir, paste0(d,'_results.RData')) 
 load(f_path, envir = tmp_env <- new.env())
@@ -26,7 +31,7 @@ n_samples_tot <- length(data_sample_ids)
 n_comps <- 3
 
 # Number of repeats
-n_repeats <- 50
+n_repeats <- 100
 
 # Two shuffling approaches
 shuffle_within_omic <- F
@@ -110,7 +115,7 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
 ####################################################################
 
 # Iterate over a few different params
-for (penalty_factor in c(1, 1.5, 1.8, 2)) { 
+for (penalty_factor in c(1.5, 1.8, 2)) { 
   log_debug('MultiCCA: penalty_factor = ', penalty_factor)
   
   # Format to diablo's requirement
