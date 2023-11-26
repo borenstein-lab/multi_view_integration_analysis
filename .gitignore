@@ -35,4 +35,5 @@ data/ml_input_archive/*
 data/ml_output/*
 data/intermediate_integration_results/*
 src/analyses/slurm_logs/*
+src/ml_pipeline/slurm_logs/*
 slurm_logs/*
