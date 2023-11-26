@@ -2,7 +2,7 @@
 
 # To execute: 
 # cd /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/ml_pipeline
-# sbatch slurm_config
+# sbatch slurm_ml_config
 # Check queue: squeue
 
 ########################
