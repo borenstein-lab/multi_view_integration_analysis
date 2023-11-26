@@ -11,7 +11,7 @@ library(config)
 library(tidymodels)
 library(parallel)
 
-getwd()
+setwd('/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis')
 
 source('src/ml_pipeline/utils.R')
 source('src/ml_pipeline/preprocessing.R')
