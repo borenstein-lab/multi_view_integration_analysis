@@ -11,6 +11,8 @@ library(config)
 library(tidymodels)
 library(parallel)
 
+getwd()
+
 source('src/ml_pipeline/utils.R')
 source('src/ml_pipeline/preprocessing.R')
 source('src/ml_pipeline/feature_selection.R')
