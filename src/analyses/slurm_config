@@ -26,7 +26,6 @@
 echo "SLURM DEBUG: now working on task number ${SLURM_ARRAY_TASK_ID}"
 
 BASE_DIR=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis
-SRUN_OUT=${BASE_DIR}/slurm_logs/slurm.${SLURM_ARRAY_JOB_ID}.${SLURM_ARRAY_TASK_ID}.log
 cd ${BASE_DIR}
 
 case ${SLURM_ARRAY_TASK_ID} in
@@ -34,55 +33,55 @@ case ${SLURM_ARRAY_TASK_ID} in
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_module_associations.R \
-    cd_franzosa_2019 >> ${SRUN_OUT}
+    cd_franzosa_2019 
     ;;
   1)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_module_associations.R \
-    metacardis_3_8 >> ${SRUN_OUT}
+    metacardis_3_8 
     ;;
   2)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_module_associations.R \
-    cirrhosis_qin_2014 >> ${SRUN_OUT}
+    cirrhosis_qin_2014 
     ;;
   3)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/false_discovery_analysis.R \
-    cd_franzosa_2019 >> ${SRUN_OUT}
+    cd_franzosa_2019 
     ;;
   4)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/false_discovery_analysis.R \
-    metacardis_3_8 >> ${SRUN_OUT}
+    metacardis_3_8 
     ;;
   5)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/false_discovery_analysis.R \
-    cirrhosis_qin_2014 >> ${SRUN_OUT}
+    cirrhosis_qin_2014 
     ;;
   6)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_stability_analysis.R \
-    cd_franzosa_2019 >> ${SRUN_OUT}
+    cd_franzosa_2019 
     ;;
   7)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_stability_analysis.R \
-    metacardis_3_8 >> ${SRUN_OUT}
+    metacardis_3_8 
     ;;
   8)
     srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_stability_analysis.R \
-    cirrhosis_qin_2014 >> ${SRUN_OUT}
+    cirrhosis_qin_2014 
     ;;
 esac
 
