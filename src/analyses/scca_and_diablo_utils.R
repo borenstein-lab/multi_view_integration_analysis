@@ -288,7 +288,7 @@ get_z_score_shared_links <- function(loadings_1, loadings_2, join_by = 'componen
     common_links <- intersect(feat_pairs_1, feat_pairs_2)
     perc_shared_links <- c(perc_shared_links, 100 * length(common_links) / n1)
   }
-  if (sd(perc_shared_links[-1]) == 0) return(0)
+  if (is.na(sd(perc_shared_links[-1])) | sd(perc_shared_links[-1]) == 0) return(0)
   zscore = (perc_shared_links[1] - mean(perc_shared_links[-1])) / sd(perc_shared_links[-1])
   return(zscore)
 }
