@@ -9,7 +9,7 @@
 # - GENERAL SETTINGS - #
 ########################
 
-#SBATCH --job-name=process_single_sample_v2
+#SBATCH --job-name=misc_efrat
 #SBATCH --partition=cpu-elbo 			
 #SBATCH --ntasks=1 									         
 #SBATCH --cpus-per-task=17                   
