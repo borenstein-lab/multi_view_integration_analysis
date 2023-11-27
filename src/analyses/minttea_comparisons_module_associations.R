@@ -295,6 +295,7 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
     latent_vars <- list()
     for (j in module_names) {
       pca_data <- proc_data_test %>% select(all_of(tmp_minttea_res[[1]][[j]]$features))
+      pca_data <- pca_data[ , which(apply(pca_data, 2, var) != 0)] # Remove 0-variance columns
       if (ncol(pca_data) == 0) { latent_vars[[j]] <- NA; next }
       pca <- prcomp(pca_data, center = TRUE, scale. = TRUE) 
       latent_vars[[j]] <- pca$x[,'PC1']
