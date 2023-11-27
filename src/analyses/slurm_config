@@ -17,7 +17,7 @@
 #SBATCH --time=3-00:00 # Max running time 
 #SBATCH --output=slurm_logs/slurm.%A.%a.out
 #SBATCH --error=slurm_logs/slurm.%A.%a.err
-#SBATCH --array=6-8
+#SBATCH --array=0
 
 ########################
 # ------- JOBS ------- #
