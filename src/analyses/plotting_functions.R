@@ -76,6 +76,40 @@ get_feature_descriptions <- function(features) {
   return(unname(feature_name_map[features]))
 }
 
+get_u_tests <- function(df, diablo_input) {
+  all_utests <- data.frame()
+  for (d in unique(df$dataset)) {
+    feats_to_test <- df$original_feature[df$dataset == d]
+    proc_data <- bind_cols(lapply(diablo_input[[d]]$X, as.data.frame))
+    dis_labels <- diablo_input[[d]]$Y
+    for (f in feats_to_test) {
+      h_vec <- proc_data[[f]][dis_labels == "healthy"]
+      d_vec <- proc_data[[f]][dis_labels != "healthy"]
+      utest <- wilcox.test(h_vec, d_vec, digits.rank = 7, exact = FALSE)
+      
+      all_utests <- bind_rows(
+        all_utests,
+        data.frame(
+          dataset = d,
+          feature = f,
+          p = utest$p.value,
+          mean_abun_healthy = mean(h_vec), 
+          mean_abun_disease = mean(d_vec)
+        )
+      )
+    }
+  }
+  
+  all_utests <- all_utests %>%
+    group_by(dataset) %>%
+    mutate(fdr_utest = p.adjust(p, method = "fdr")) %>%
+    ungroup() %>%
+    mutate(increased_in = ifelse(mean_abun_healthy > mean_abun_disease, "healthy", "disease")) %>%
+    mutate(increased_in = ifelse(fdr_utest > 0.05, "non-significant", increased_in)) %>%
+    select(-p)
+  return(all_utests)
+}
+
 # Plot basic statistics about datasets and ml pipeline results
 plot_basic_stats <- function(cv_results,  
                              dataset_order = NULL, 
