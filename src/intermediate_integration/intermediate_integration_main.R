@@ -54,7 +54,7 @@ for (d in names(DATASETS)) {
     view_prefixes = DATASETS[[d]], 
     return_main_results_only = FALSE,
     param_diablo_keepX = c(10,15),
-    param_diablo_design = c(0.4,0.6),
+    param_diablo_design = c(0.3,0.5),
     param_edge_thresholds = c(0.7,0.8)
   )
 
