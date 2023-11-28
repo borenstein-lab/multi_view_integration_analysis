@@ -5,6 +5,7 @@
 # To run MintTea on your own data, please refer to MintTea.R script.
 ########################################################################
 
+# udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis efrat_ubun_r Rscript /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/intermediate_integration/intermediate_integration_main.R
 # Preparations
 library(dplyr)
 library(readr)
@@ -26,7 +27,6 @@ DATASETS <- list(
   'sth_rubel_2020' = c('T','P'),
   'uc_spain_nielsen_2014' = c('T','P'),
   'cd_franzosa_2019' = c('T','P','M'),
-  'crc_s1_s2_yachida_2019' = c('T','P','M'),
   'crc_s3_s4_yachida_2019' = c('T','P','M'),
   'esrd_wang_2020' = c('T','P','M'),
   'uc_franzosa_2019' = c('T','P','M'),
