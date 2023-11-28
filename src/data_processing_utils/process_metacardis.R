@@ -144,7 +144,7 @@ mtb <- bind_rows(serum_mtb_ms_raw, serum_mtb_nmr_raw, serum_tmao_raw) %>%
   select(SampleID, Feature, FeatureValue) %>%
   rename(sample_id__ = SampleID) %>%
   mutate(Feature = make.names(Feature)) %>%
-  mutate(Feature = chartr("???���??????????????????", "0123456789", Feature)) %>%
+  mutate(Feature = chartr("⁰¹²³⁴⁵⁶⁷⁸⁹", "0123456789", Feature)) %>%
   pivot_wider(id_cols = sample_id__, names_from = Feature, values_from = FeatureValue) %>%
   na.omit()
 
@@ -180,6 +180,7 @@ all_data_1_8_clustered <- cluster_cluster_features(
 )
 all_data_1_8 <- bind_cols(all_data_1_8 %>% select(sample_id__), all_data_1_8_clustered)
 
+# ---
 all_data_3_8 <- metadata_3_8 %>%
   select(sample_id__, DiseaseState) %>%
   inner_join(species_3_8, by = 'sample_id__') %>%
@@ -190,7 +191,7 @@ all_data_3_8_clustered <- cluster_cluster_features(
   dataset = all_data_3_8 %>% select(-sample_id__),
   feature_set_type = 'T+P+S',
   cluster_type = 'clustering99',
-  clusters_output = clusters_1_8_file
+  clusters_output = clusters_3_8_file
 )
 all_data_3_8 <- bind_cols(all_data_3_8 %>% select(sample_id__), all_data_3_8_clustered)
 
