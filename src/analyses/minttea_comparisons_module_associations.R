@@ -41,7 +41,7 @@ n_repeats <- 100
 
 # Additional parameters
 perc_samples_to_exclude <- 30
-diablo_design <- .6 # To make the comparison against MultiCCA (that ignores study group) more fair
+diablo_design <- .5 # To make the comparison against MultiCCA (that ignores study group) more fair
 minttea_edge_threshold <- .7
 n_minttea_repeats <- 10
 
@@ -147,7 +147,7 @@ for (diablo_keepX in c(7, 10)) { # diablo_keepX <- 10
 # MultiCCA
 ####################################################################
 
-for (penalty_factor in c(1.5, 1.8, 2)) { # penalty_factor <- 2 
+for (penalty_factor in c(1.8, 2)) { # penalty_factor <- 2 
   log_debug('penalty_factor = ', penalty_factor)
   
   # Run 100 times 
@@ -215,7 +215,6 @@ for (penalty_factor in c(1.5, 1.8, 2)) { # penalty_factor <- 2
       component_associations,
       data.frame(
         method = 'MultiCCA',
-        design = round(diablo_design,2),
         perc_samples_excluded = perc_samples_to_exclude,
         n_samples_train = n_kept,
         keepX = penalty_factor,

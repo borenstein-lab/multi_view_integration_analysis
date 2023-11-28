@@ -273,26 +273,6 @@ MintTea <- function(
         design = diablo_design
       )
       
-      # Make prediction on held out samples using DIABLO's approach 
-      # predictions <- predict(tmp_diablo_out, held_out_data$X)
-      #
-      # Calculate auroc on held out data
-      # tmp <- data.frame(
-      #   preds = predictions$AveragedPredict[,1,], 
-      #   true_label = held_out_data$Y
-      #   )
-      # cv_aucs_v <- lapply(
-      #   1:diablo_ncomp, 
-      #   function(i) get_auc(paste0("preds.dim", i), tmp)
-      #   )
-      # names(cv_aucs_v) <- paste0("auc_comp", 1:diablo_ncomp)
-      # 
-      # cv_aucs <- bind_rows(
-      #   cv_aucs, 
-      #   data.frame(cv_aucs_v) %>%
-      #     mutate(fold_id = fold_id) 
-      # )
-      
       # Save all non-zero loadings
       tmp_loadings <- organize_diablo_loadings(tmp_diablo_out) %>%
         # Add full component identifiers (i.e. component number + specific fold)

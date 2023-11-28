@@ -37,7 +37,7 @@ n_repeats <- 100
 shuffle_within_omic <- F
 
 # We use a diablo_design as used in the stability analysis
-diablo_design <- .6
+diablo_design <- .5
 minttea_edge_threshold <- .7
 
 # Results place holder
@@ -48,7 +48,7 @@ false_discovery_results <- data.frame()
 ####################################################################
 
 # Iterate over a few different diablo keepX params
-for (diablo_keepX in c(10)) { # diablo_keepX <- 10 
+for (diablo_keepX in c(7,10)) { # diablo_keepX <- 10 
   log_debug('DIABLO: diablo_keepX = ', diablo_keepX)
   
   # Format to diablo's requirement
@@ -115,7 +115,7 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
 ####################################################################
 
 # Iterate over a few different params
-for (penalty_factor in c(1.5, 1.8, 2)) { 
+for (penalty_factor in c(1.8, 2)) { 
   log_debug('MultiCCA: penalty_factor = ', penalty_factor)
   
   # Format to diablo's requirement

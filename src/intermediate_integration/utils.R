@@ -195,27 +195,27 @@ get_cor_btwn_variates <- function(diablo_out, block1, block2, comp_id) {
 #   }))
 # }
 # 
-# # Re-organizes the loadings from a diablo model object into a single compact table
-# organize_diablo_loadings <- function(diablo_out) {
-#   loadings_per_block <- lapply(
-#     1:(length(diablo_out$loadings)-1), # Ignore the last table (dummy loadings for Y)
-#     function(i) {
-#       df <- diablo_out$loadings[[i]]
-#       comp_cols <- colnames(df)
-#       df <- df %>% 
-#         as.data.frame() %>%
-#         tibble::rownames_to_column("feature") %>%
-#         mutate(feature_set = names(diablo_out$loadings)[i]) %>%
-#         tidyr::pivot_longer(cols = all_of(comp_cols), 
-#                             names_to = "component", 
-#                             values_to = "loading", 
-#                             names_prefix = "comp") %>%
-#         mutate(component = as.numeric(component)) %>%
-#         filter(loading != 0)
-#     })
-#   return(bind_rows(loadings_per_block))
-# }
-# 
+# Re-organizes the loadings from a diablo model object into a single compact table
+organize_diablo_loadings <- function(diablo_out) {
+  loadings_per_block <- lapply(
+    1:(length(diablo_out$loadings)-1), # Ignore the last table (dummy loadings for Y)
+    function(i) {
+      df <- diablo_out$loadings[[i]]
+      comp_cols <- colnames(df)
+      df <- df %>%
+        as.data.frame() %>%
+        tibble::rownames_to_column("feature") %>%
+        mutate(feature_set = names(diablo_out$loadings)[i]) %>%
+        tidyr::pivot_longer(cols = all_of(comp_cols),
+                            names_to = "component",
+                            values_to = "loading",
+                            names_prefix = "comp") %>%
+        mutate(component = as.numeric(component)) %>%
+        filter(loading != 0)
+    })
+  return(bind_rows(loadings_per_block))
+}
+
 # organize_cv_feature_stability <- function(diablo_out, diablo_cv) {
 #   stab_per_repeat <- bind_rows(
 #     # Iterate over the number of CV repeats

@@ -35,7 +35,7 @@ n_comps <- 3
 n_repeats <- 50
 
 # Additional parameters
-diablo_design <- .6 
+diablo_design <- .5 
 minttea_edge_threshold <- .7
 n_minttea_repeats <- 10
 
@@ -66,7 +66,7 @@ debug <- data.frame()
 stability_results <- data.frame()
 
 # Iterate over a few different diablo keepX params
-for (diablo_keepX in c(7,10)) { # diablo_keepX <- 7 
+for (diablo_keepX in c(7, 10)) { # diablo_keepX <- 7 
   log_debug('diablo_keepX = ', diablo_keepX)
   
   # Format to diablo's requirement
@@ -180,7 +180,7 @@ for (diablo_keepX in c(7,10)) { # diablo_keepX <- 7
 ####################################################################
 
 # Iterate over a few different MultiCCA penalties
-for (penalty_factor in c(1.5, 1.8, 2)) { # penalty_factor <- 1 
+for (penalty_factor in c(1.8, 2)) { # penalty_factor <- 1 
   log_debug('penalty_factor = ', penalty_factor)
   
   # Iterate over percent samples to exclude
