@@ -1,120 +1,554 @@
-Module - left,Module - right,N features in intersection,N features in left component only,N features in right component only,"N features in left component only, completely missing from right dataset","N features in right component only, completely missing from left dataset",Odds ratio,FDR of Fisher's exact test
-crc_feng_2015 / 3,cirrhosis_qin_2014 / 2,4,2,9,3,5,760.7498590144871,1.5151326365750249e-7
-crc_s0_yachida_2019 / 6,cirrhosis_qin_2014 / 3,3,2,4,2,7,1250.288622756018,2.6664227667950164e-6
-crc_s0_yachida_2019 / 7,cd_franzosa_2019 / 4,3,4,1,0,8,2647.029620135978,8.999926834614515e-7
-crc_s3_s4_yachida_2019 / 1,cd_franzosa_2019 / 4,4,10,0,11,8,Inf,1.2211054524198241e-8
-crc_s3_s4_yachida_2019 / 1,crc_s0_yachida_2019 / 7,7,15,0,3,0,Inf,1.0789706955218484e-15
-crc_s3_s4_yachida_2019 / 3,cirrhosis_qin_2014 / 2,3,5,11,3,4,191.86537714240177,9.894565771029341e-5
-crc_s3_s4_yachida_2019 / 3,crc_feng_2015 / 3,3,3,3,5,3,1094.6804686971907,2.832688545677353e-6
-crc_s3_s4_yachida_2019 / 3,crc_s0_yachida_2019 / 3,4,5,1,2,2,5428.605416602345,9.61260116270787e-10
-crc_s3_s4_yachida_2019 / 4,cirrhosis_qin_2014 / 3,3,4,3,2,8,826.1281392067091,4.518903480482352e-6
-crc_s3_s4_yachida_2019 / 4,crc_s0_yachida_2019 / 6,5,2,0,2,2,Inf,1.0394810665269329e-13
-crc_wirbel_2018 / 2,cirrhosis_qin_2014 / 1,4,32,14,16,4,30.29338594222901,8.714950785472032e-4
-crc_wirbel_2018 / 4,cd_franzosa_2019 / 4,3,6,0,8,9,Inf,9.490042102854096e-7
-crc_wirbel_2018 / 4,crc_s0_yachida_2019 / 7,3,6,4,8,0,405.0005418693371,1.8774345943782898e-5
-crc_wirbel_2018 / 4,crc_s3_s4_yachida_2019 / 1,4,5,8,8,13,326.9242980418389,7.898034661508315e-7
-crc_yu_2015 / 1,cd_franzosa_2019 / 4,3,5,0,9,9,Inf,5.95094581676347e-7
-crc_yu_2015 / 1,crc_s0_yachida_2019 / 7,3,6,4,8,0,446.92794469560823,1.4714112500847204e-5
-crc_yu_2015 / 1,crc_s3_s4_yachida_2019 / 1,4,5,7,8,14,407.38777279234364,4.27044326968413e-7
-crc_yu_2015 / 1,crc_wirbel_2018 / 4,5,7,6,5,6,404.58534435347116,1.0824236982101437e-8
-crc_yu_2015 / 2,cirrhosis_qin_2014 / 3,9,2,3,2,2,4199.488522832176,1.264987814755596e-19
-crc_yu_2015 / 2,crc_s0_yachida_2019 / 6,4,3,1,6,2,4266.763655160802,3.443590631906455e-9
-crc_yu_2015 / 2,crc_s3_s4_yachida_2019 / 4,5,1,2,7,2,7272.883582715701,6.119813275824592e-12
-crc_yu_2015 / 3,cirrhosis_qin_2014 / 2,6,2,9,2,3,1212.8037768163447,9.794443755449316e-12
-crc_yu_2015 / 3,crc_s3_s4_yachida_2019 / 3,3,3,5,4,3,708.8292660594177,6.3307010819227046e-6
-crc_yu_2015 / 6,crc_wirbel_2018 / 2,3,6,38,1,11,46.22747057803447,0.0031775718911543718
-crc_zeller_2014 / 1,crc_feng_2015 / 2,4,3,4,0,0,1103.3085346461166,3.238935385283815e-8
-crc_zeller_2014 / 3,crc_wirbel_2018 / 4,6,2,5,4,6,1880.8232297395193,1.8906804576479512e-12
-crc_zeller_2014 / 3,crc_yu_2015 / 1,5,3,8,4,4,721.4981889363629,1.9148591584455847e-9
-crc_zeller_2014 / 4,cirrhosis_qin_2014 / 2,3,0,10,2,5,Inf,2.2229254992404347e-6
-crc_zeller_2014 / 4,crc_feng_2015 / 3,3,0,4,2,2,Inf,3.451798335878222e-7
-crc_zeller_2014 / 5,crc_wirbel_2018 / 1,3,0,12,1,2,Inf,3.0372725966224543e-6
-esrd_wang_2020 / 1,cd_franzosa_2019 / 2,4,6,2,5,5,1280.3574889649965,2.6974066826660483e-8
-esrd_wang_2020 / 2,crc_s0_yachida_2019 / 3,3,2,1,7,3,4398.689281913788,3.1762108940467787e-7
-esrd_wang_2020 / 2,crc_s3_s4_yachida_2019 / 3,3,2,5,7,3,1146.7468944672237,2.7927951667034653e-6
-esrd_wang_2020 / 5,cirrhosis_qin_2014 / 3,3,0,3,7,8,Inf,2.5119916937329846e-7
-esrd_wang_2020 / 5,crc_s0_yachida_2019 / 6,3,2,2,5,2,2441.0657907418235,6.842780960953463e-7
-esrd_wang_2020 / 5,crc_s3_s4_yachida_2019 / 4,3,2,4,5,2,1332.278272220078,1.922256239985636e-6
-esrd_wang_2020 / 5,crc_yu_2015 / 2,3,0,3,7,7,Inf,2.3827035671228935e-7
-esrd_wang_2020 / 6,cd_franzosa_2019 / 4,5,4,1,1,6,4741.568236224846,1.544930173082761e-11
-esrd_wang_2020 / 6,crc_s0_yachida_2019 / 7,5,2,2,3,0,4348.555191178318,1.2215541937698657e-11
-esrd_wang_2020 / 6,crc_s3_s4_yachida_2019 / 1,6,1,7,3,12,2951.4329843332466,1.0270066760973427e-12
-esrd_wang_2020 / 6,crc_wirbel_2018 / 4,4,3,5,3,8,837.6396994548968,9.003288044095144e-8
-esrd_wang_2020 / 6,crc_yu_2015 / 1,3,4,5,3,9,508.4321403419398,1.1162060005723266e-5
-igt_karlsson_2013 / 2,crc_s0_yachida_2019 / 7,3,8,4,5,0,295.59553531036266,3.932281549605999e-5
-igt_karlsson_2013 / 2,crc_s3_s4_yachida_2019 / 1,4,7,7,5,14,259.1915242811395,1.411349857309663e-6
-igt_karlsson_2013 / 2,crc_wirbel_2018 / 4,4,7,7,5,6,270.79721458557145,1.2117318797034574e-6
-igt_karlsson_2013 / 2,crc_yu_2015 / 1,8,4,5,4,4,1273.3849745467876,1.459029485619559e-15
-igt_karlsson_2013 / 2,crc_zeller_2014 / 3,4,8,4,4,4,414.814971267057,4.4842374223129046e-7
-igt_karlsson_2013 / 5,crc_wirbel_2018 / 1,3,1,10,6,4,990.9070011300838,7.708523894752743e-6
-me_cfs_nagySzakal_2017 / 3,cirrhosis_qin_2014 / 3,3,5,0,5,11,Inf,6.750601955641894e-7
-me_cfs_nagySzakal_2017 / 3,crc_wirbel_2018 / 2,4,2,34,7,14,195.8423808990144,8.822302357054878e-6
-me_cfs_nagySzakal_2017 / 3,crc_yu_2015 / 2,3,6,2,4,8,794.115648400467,6.040246253747781e-6
-schizofrenia_zhu_2020 / 2,cirrhosis_qin_2014 / 2,4,31,9,18,5,52.81485254492895,1.5524367411261453e-4
-schizofrenia_zhu_2020 / 2,cirrhosis_qin_2014 / 3,8,27,4,18,2,269.51673846823377,4.049936909295093e-12
-schizofrenia_zhu_2020 / 2,crc_s0_yachida_2019 / 6,3,23,2,27,2,236.33560540317941,1.1494478450147075e-4
-schizofrenia_zhu_2020 / 2,crc_s3_s4_yachida_2019 / 4,4,22,3,27,2,219.30869963707042,3.4738172549021466e-6
-schizofrenia_zhu_2020 / 2,crc_yu_2015 / 2,8,29,3,16,2,343.8696662145757,2.385615587151433e-12
-schizofrenia_zhu_2020 / 2,crc_yu_2015 / 3,3,34,5,16,2,66.59903009329676,0.0013232317294366047
-schizofrenia_zhu_2020 / 2,esrd_wang_2020 / 5,3,17,0,33,7,Inf,6.9190674434261416e-6
-schizofrenia_zhu_2020 / 2,me_cfs_nagySzakal_2017 / 3,4,19,4,30,5,175.76049081122204,5.2980878826101306e-6
-schizofrenia_zhu_2020 / 4,igt_karlsson_2013 / 1,3,0,11,0,3,Inf,3.0372725966224543e-6
-schizofrenia_zhu_2020 / 6,cirrhosis_qin_2014 / 1,3,2,14,0,5,389.8240289255746,3.2379423853139547e-5
-sth_rubel_2020 / 2,cirrhosis_qin_2014 / 1,5,3,6,1,11,883.9578801987036,1.2458148539036623e-9
-sth_rubel_2020 / 5,cirrhosis_qin_2014 / 3,4,0,1,0,9,Inf,2.019889701854439e-10
-sth_rubel_2020 / 5,crc_yu_2015 / 2,4,0,3,0,6,Inf,1.1370165551255614e-9
-sth_rubel_2020 / 5,me_cfs_nagySzakal_2017 / 3,3,0,5,1,5,Inf,7.465414671238414e-7
-sth_rubel_2020 / 5,schizofrenia_zhu_2020 / 2,4,0,21,0,28,Inf,2.1987639227629576e-7
-t2d_karlsson_2013 / 1,crc_feng_2015 / 2,4,13,4,0,0,268.9902366185027,1.4561420434189767e-6
-t2d_karlsson_2013 / 1,crc_wirbel_2018 / 2,3,14,34,0,15,22.04184389398804,0.016071333806139423
-t2d_karlsson_2013 / 1,crc_zeller_2014 / 1,4,13,3,0,0,357.52298049937065,8.243350456357092e-7
-t2d_karlsson_2013 / 1,igt_karlsson_2013 / 3,5,12,5,0,1,280.90399199292403,3.853559549422207e-8
-t2d_karlsson_2013 / 2,cirrhosis_qin_2014 / 2,4,8,6,4,8,276.53186875690255,1.1812109215064109e-6
-t2d_karlsson_2013 / 2,crc_feng_2015 / 3,4,10,3,2,2,462.5358270945219,4.201379113613325e-7
-t2d_karlsson_2013 / 2,crc_s3_s4_yachida_2019 / 3,3,9,1,4,7,1084.0082909168636,6.507981094547759e-6
-t2d_karlsson_2013 / 2,crc_zeller_2014 / 4,3,11,0,2,2,Inf,2.700453514324672e-6
-t2d_karlsson_2013 / 2,esrd_wang_2020 / 2,3,4,1,9,8,2099.3962225304986,1.4543093758109248e-6
-t2d_karlsson_2013 / 3,crc_wirbel_2018 / 4,4,1,7,6,6,1848.591078696898,2.9643299556721665e-8
-t2d_karlsson_2013 / 3,crc_yu_2015 / 1,3,2,10,6,4,502.6060415081062,1.6683547074914852e-5
-t2d_karlsson_2013 / 3,crc_zeller_2014 / 3,3,2,5,6,4,967.6055206729507,3.670432422455999e-6
-t2d_karlsson_2013 / 3,igt_karlsson_2013 / 2,6,1,8,4,2,2409.8109364933507,3.07067584362797e-12
-t2d_karlsson_2013 / 4,crc_wirbel_2018 / 1,5,3,10,4,2,551.432921749841,5.529940702944464e-9
-t2d_karlsson_2013 / 4,crc_zeller_2014 / 5,4,8,0,0,0,Inf,1.0210627355523665e-8
-t2d_karlsson_2013 / 4,igt_karlsson_2013 / 5,3,6,1,3,6,1516.1850181712562,2.7276042654952763e-6
-t2d_karlsson_2013 / 5,igt_karlsson_2013 / 1,4,0,10,2,3,Inf,2.007274527558363e-8
-t2d_qin_2012 / 1,cirrhosis_qin_2014 / 1,9,0,9,2,4,Inf,2.974619264223294e-19
-t2d_qin_2012 / 1,sth_rubel_2020 / 2,5,3,3,3,1,1597.0926184301936,1.9472109275428024e-10
-t2d_qin_2012 / 3,cirrhosis_qin_2014 / 3,5,2,7,2,2,1261.3904562788787,5.56485415309315e-10
-t2d_qin_2012 / 3,crc_s0_yachida_2019 / 6,3,1,2,5,2,3946.0266795916205,4.4062651578971603e-7
-t2d_qin_2012 / 3,crc_s3_s4_yachida_2019 / 4,3,1,4,5,2,2336.815678668921,1.2190710329555597e-6
-t2d_qin_2012 / 3,crc_yu_2015 / 2,6,1,5,2,2,3562.428567581888,5.15699867009869e-13
-t2d_qin_2012 / 3,schizofrenia_zhu_2020 / 2,5,2,30,2,18,302.1918308900284,1.1521082994377541e-7
-t2d_qin_2012 / 3,sth_rubel_2020 / 5,3,3,1,3,0,2683.18260008615,8.999926834614515e-7
-t2d_qin_2012 / 4,cd_franzosa_2019 / 4,3,2,0,6,9,Inf,1.4771633853697445e-7
-t2d_qin_2012 / 4,crc_s0_yachida_2019 / 7,3,2,4,6,0,1231.531059057572,2.700453514324672e-6
-t2d_qin_2012 / 4,crc_s3_s4_yachida_2019 / 1,4,1,5,6,16,2544.7988773740003,1.2211054524198241e-8
-t2d_qin_2012 / 4,crc_wirbel_2018 / 4,4,1,7,6,6,1791.7477852583945,3.238935385283815e-8
-t2d_qin_2012 / 4,crc_yu_2015 / 1,6,0,6,5,5,Inf,1.720948167570581e-13
-t2d_qin_2012 / 4,crc_zeller_2014 / 3,3,3,5,5,4,656.8969524485198,6.9190674434261416e-6
-t2d_qin_2012 / 4,esrd_wang_2020 / 6,3,2,4,6,3,1198.0238337433273,2.7927951667034653e-6
-t2d_qin_2012 / 4,igt_karlsson_2013 / 2,6,1,7,4,3,2602.9823751144786,2.536775534226029e-12
-t2d_qin_2012 / 4,t2d_karlsson_2013 / 3,4,3,2,4,5,2040.960927025784,1.2211054524198241e-8
-uc_franzosa_2019 / 2,cd_franzosa_2019 / 3,5,15,14,3,2,107.9603442434228,7.465414671238414e-7
-uc_franzosa_2019 / 5,cd_franzosa_2019 / 4,4,3,4,0,4,1379.9791309682737,1.6533809234494298e-8
-uc_franzosa_2019 / 5,crc_s0_yachida_2019 / 7,5,1,2,1,0,7559.745083721585,5.4487297484575244e-12
-uc_franzosa_2019 / 5,crc_s3_s4_yachida_2019 / 1,5,1,9,1,11,2075.2386489067276,3.296399990060291e-10
-uc_franzosa_2019 / 5,crc_wirbel_2018 / 4,3,3,6,1,8,510.60827544552035,1.2454337749393831e-5
-uc_franzosa_2019 / 5,crc_yu_2015 / 1,3,3,5,1,9,631.9946356388035,7.708523894752743e-6
-uc_franzosa_2019 / 5,esrd_wang_2020 / 6,5,2,4,0,1,2194.968394243211,6.167912612736719e-11
-uc_franzosa_2019 / 5,igt_karlsson_2013 / 2,4,2,7,1,5,831.7207392697086,1.1521082994377541e-7
-uc_franzosa_2019 / 5,t2d_karlsson_2013 / 3,3,3,3,1,5,962.1112977594873,3.6277302382263596e-6
-uc_franzosa_2019 / 5,t2d_qin_2012 / 4,3,3,2,1,6,1482.75435471065,2.0401227046007572e-6
-uc_spain_nielsen_2014 / 1,crc_feng_2015 / 1,4,15,6,2,0,129.8632821283782,1.069198366599572e-5
-uc_spain_nielsen_2014 / 1,crc_wirbel_2018 / 2,3,16,34,2,15,16.40088632689992,0.032970177577859056
-uc_spain_nielsen_2014 / 1,igt_karlsson_2013 / 1,4,14,10,3,3,82.54149646599998,3.832578322428613e-5
-uc_spain_nielsen_2014 / 1,me_cfs_nagySzakal_2017 / 1,3,16,7,2,2,75.68035907377872,8.882577607533656e-4
-uc_spain_nielsen_2014 / 2,crc_wirbel_2018 / 1,4,14,9,2,4,93.8825833100021,2.5588824652559397e-5
-uc_spain_nielsen_2014 / 2,crc_zeller_2014 / 5,3,14,0,3,1,Inf,6.9190674434261416e-6
-uc_spain_nielsen_2014 / 2,igt_karlsson_2013 / 5,3,10,1,7,6,841.3907783987809,1.1874240171873397e-5
-uc_spain_nielsen_2014 / 2,t2d_karlsson_2013 / 4,3,13,8,4,1,84.40256339406791,6.584947833164555e-4
-uc_spain_nielsen_2014 / 4,crc_wirbel_2018 / 3,3,1,6,2,1,1309.6958645271545,3.7868829072178696e-6
+Dataset,Original feature name,Cluster ID,Cluster representative (randomly selected)
+"CD (Franzosa, 2019)",T__Streptococcus_parasanguinis,60,T__Streptococcus_parasanguinis_Cluster60
+"CD (Franzosa, 2019)",T__Haemophilus_parainfluenzae,60,T__Streptococcus_parasanguinis_Cluster60
+"CD (Franzosa, 2019)",P__ARGSYN.PWY,163,P__ARGSYN.PWY_Cluster163
+"CD (Franzosa, 2019)",P__ARGSYNBSUB.PWY,163,P__ARGSYN.PWY_Cluster163
+"CD (Franzosa, 2019)",P__BIOTIN.BIOSYNTHESIS.PWY,167,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster167
+"CD (Franzosa, 2019)",P__PWY.6519,167,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster167
+"CD (Franzosa, 2019)",P__BRANCHED.CHAIN.AA.SYN.PWY,168,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster168
+"CD (Franzosa, 2019)",P__ILEUSYN.PWY,168,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster168
+"CD (Franzosa, 2019)",P__CENTFERM.PWY,170,P__CENTFERM.PWY_Cluster170
+"CD (Franzosa, 2019)",P__PWY.6590,170,P__CENTFERM.PWY_Cluster170
+"CD (Franzosa, 2019)",P__FASYN.ELONG.PWY,181,P__FASYN.ELONG.PWY_Cluster181
+"CD (Franzosa, 2019)",P__PWY.6282,181,P__FASYN.ELONG.PWY_Cluster181
+"CD (Franzosa, 2019)",P__PWY.7664,181,P__FASYN.ELONG.PWY_Cluster181
+"CD (Franzosa, 2019)",P__PWY0.862,181,P__FASYN.ELONG.PWY_Cluster181
+"CD (Franzosa, 2019)",P__FOLSYN.PWY,184,P__FOLSYN.PWY_Cluster184
+"CD (Franzosa, 2019)",P__PWY.6612,184,P__FOLSYN.PWY_Cluster184
+"CD (Franzosa, 2019)",P__GALACTARDEG.PWY,188,P__GALACTARDEG.PWY_Cluster188
+"CD (Franzosa, 2019)",P__GLUCARGALACTSUPER.PWY,188,P__GALACTARDEG.PWY_Cluster188
+"CD (Franzosa, 2019)",P__MET.SAM.PWY,220,P__MET.SAM.PWY_Cluster220
+"CD (Franzosa, 2019)",P__METSYN.PWY,220,P__MET.SAM.PWY_Cluster220
+"CD (Franzosa, 2019)",P__PWY.5347,220,P__MET.SAM.PWY_Cluster220
+"CD (Franzosa, 2019)",P__P41.PWY,236,P__P41.PWY_Cluster236
+"CD (Franzosa, 2019)",P__PWY.5100,236,P__P41.PWY_Cluster236
+"CD (Franzosa, 2019)",P__PWY.5667,277,P__PWY.5667_Cluster277
+"CD (Franzosa, 2019)",P__PWY0.1319,277,P__PWY.5667_Cluster277
+"CD (Franzosa, 2019)",P__PWY.5686,281,P__PWY.5686_Cluster281
+"CD (Franzosa, 2019)",P__PWY.7790,281,P__PWY.5686_Cluster281
+"CD (Franzosa, 2019)",P__PWY.7791,281,P__PWY.5686_Cluster281
+"CD (Franzosa, 2019)",P__PWY.5838,286,P__PWY.5838_Cluster286
+"CD (Franzosa, 2019)",P__PWY.5861,286,P__PWY.5838_Cluster286
+"CD (Franzosa, 2019)",P__PWY.5845,288,P__PWY.5845_Cluster288
+"CD (Franzosa, 2019)",P__PWY.5862,288,P__PWY.5845_Cluster288
+"CD (Franzosa, 2019)",P__PWY.5850,289,P__PWY.5850_Cluster289
+"CD (Franzosa, 2019)",P__PWY.5860,289,P__PWY.5850_Cluster289
+"CD (Franzosa, 2019)",P__PWY.5896,289,P__PWY.5850_Cluster289
+"CD (Franzosa, 2019)",P__PWY.5897,291,P__PWY.5897_Cluster291
+"CD (Franzosa, 2019)",P__PWY.5898,291,P__PWY.5897_Cluster291
+"CD (Franzosa, 2019)",P__PWY.5899,291,P__PWY.5897_Cluster291
+"CD (Franzosa, 2019)",P__PWY.6122,303,P__PWY.6122_Cluster303
+"CD (Franzosa, 2019)",P__PWY.6277,303,P__PWY.6122_Cluster303
+"CD (Franzosa, 2019)",P__PWY.6125,305,P__PWY.6125_Cluster305
+"CD (Franzosa, 2019)",P__PWY.7228,305,P__PWY.6125_Cluster305
+"CD (Franzosa, 2019)",P__PWY.6386,319,P__PWY.6386_Cluster319
+"CD (Franzosa, 2019)",P__PWY.6387,319,P__PWY.6386_Cluster319
+"CD (Franzosa, 2019)",P__PWY.7220,357,P__PWY.7220_Cluster357
+"CD (Franzosa, 2019)",P__PWY.7222,357,P__PWY.7220_Cluster357
+"CD (Franzosa, 2019)",P__PWY.7371,369,P__PWY.7371_Cluster369
+"CD (Franzosa, 2019)",P__PWY.7992,369,P__PWY.7371_Cluster369
+"CD (Franzosa, 2019)",P__PWY4FS.7,414,P__PWY4FS.7_Cluster414
+"CD (Franzosa, 2019)",P__PWY4FS.8,414,P__PWY4FS.7_Cluster414
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_0354..arachidonic.acid,455,M__C18.neg_Cluster_0354..arachidonic.acid_Cluster455
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_0709..arachidonic.acid,455,M__C18.neg_Cluster_0354..arachidonic.acid_Cluster455
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_0863..docosapentaenoic.acid,474,M__C18.neg_Cluster_0863..docosapentaenoic.acid_Cluster474
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_1324..docosapentaenoic.acid,474,M__C18.neg_Cluster_0863..docosapentaenoic.acid_Cluster474
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_0930..cholate,478,M__C18.neg_Cluster_0930..cholate_Cluster478
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_1258..cholate,478,M__C18.neg_Cluster_0930..cholate_Cluster478
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_1372..cholate,490,M__C18.neg_Cluster_1372..cholate_Cluster490
+"CD (Franzosa, 2019)",M__C18.neg_Cluster_1621..cholate,490,M__C18.neg_Cluster_1372..cholate_Cluster490
+"CD (Franzosa, 2019)",M__HILIC.pos_Cluster_0038..N.acetylputrescine,793,M__HILIC.pos_Cluster_0038..N.acetylputrescine_Cluster793
+"CD (Franzosa, 2019)",M__HILIC.pos_Cluster_0086..N.acetylputrescine,793,M__HILIC.pos_Cluster_0038..N.acetylputrescine_Cluster793
+"Cirrhosis (Qin, 2014)",P__ARGDEG.PWY,169,P__ARGDEG.PWY_Cluster169
+"Cirrhosis (Qin, 2014)",P__ORNARGDEG.PWY,169,P__ARGDEG.PWY_Cluster169
+"Cirrhosis (Qin, 2014)",P__ARGSYN.PWY,170,P__ARGSYN.PWY_Cluster170
+"Cirrhosis (Qin, 2014)",P__PWY.7400,170,P__ARGSYN.PWY_Cluster170
+"Cirrhosis (Qin, 2014)",P__BIOTIN.BIOSYNTHESIS.PWY,175,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster175
+"Cirrhosis (Qin, 2014)",P__PWY.6519,175,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster175
+"Cirrhosis (Qin, 2014)",P__BRANCHED.CHAIN.AA.SYN.PWY,176,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster176
+"Cirrhosis (Qin, 2014)",P__PWY.5103,176,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster176
+"Cirrhosis (Qin, 2014)",P__CATECHOL.ORTHO.CLEAVAGE.PWY,178,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster178
+"Cirrhosis (Qin, 2014)",P__PWY.5417,178,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster178
+"Cirrhosis (Qin, 2014)",P__PWY.5431,178,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster178
+"Cirrhosis (Qin, 2014)",P__CENTFERM.PWY,179,P__CENTFERM.PWY_Cluster179
+"Cirrhosis (Qin, 2014)",P__PWY.6590,179,P__CENTFERM.PWY_Cluster179
+"Cirrhosis (Qin, 2014)",P__FASYN.ELONG.PWY,190,P__FASYN.ELONG.PWY_Cluster190
+"Cirrhosis (Qin, 2014)",P__PWY.5989,190,P__FASYN.ELONG.PWY_Cluster190
+"Cirrhosis (Qin, 2014)",P__PWY.6282,190,P__FASYN.ELONG.PWY_Cluster190
+"Cirrhosis (Qin, 2014)",P__PWY.7664,190,P__FASYN.ELONG.PWY_Cluster190
+"Cirrhosis (Qin, 2014)",P__PWY0.862,190,P__FASYN.ELONG.PWY_Cluster190
+"Cirrhosis (Qin, 2014)",P__FOLSYN.PWY,193,P__FOLSYN.PWY_Cluster193
+"Cirrhosis (Qin, 2014)",P__PWY.6612,193,P__FOLSYN.PWY_Cluster193
+"Cirrhosis (Qin, 2014)",P__GALACTARDEG.PWY,197,P__GALACTARDEG.PWY_Cluster197
+"Cirrhosis (Qin, 2014)",P__GLUCARGALACTSUPER.PWY,197,P__GALACTARDEG.PWY_Cluster197
+"Cirrhosis (Qin, 2014)",P__GLYOXYLATE.BYPASS,211,P__GLYOXYLATE.BYPASS_Cluster211
+"Cirrhosis (Qin, 2014)",P__TCA.GLYOX.BYPASS,211,P__GLYOXYLATE.BYPASS_Cluster211
+"Cirrhosis (Qin, 2014)",P__HCAMHPDEG.PWY,213,P__HCAMHPDEG.PWY_Cluster213
+"Cirrhosis (Qin, 2014)",P__PWY.6690,213,P__HCAMHPDEG.PWY_Cluster213
+"Cirrhosis (Qin, 2014)",P__MET.SAM.PWY,226,P__MET.SAM.PWY_Cluster226
+"Cirrhosis (Qin, 2014)",P__METSYN.PWY,226,P__MET.SAM.PWY_Cluster226
+"Cirrhosis (Qin, 2014)",P__P4.PWY,244,P__P4.PWY_Cluster244
+"Cirrhosis (Qin, 2014)",P__PWY0.781,244,P__P4.PWY_Cluster244
+"Cirrhosis (Qin, 2014)",P__PEPTIDOGLYCANSYN.PWY,250,P__PEPTIDOGLYCANSYN.PWY_Cluster250
+"Cirrhosis (Qin, 2014)",P__PWY.6387,250,P__PEPTIDOGLYCANSYN.PWY_Cluster250
+"Cirrhosis (Qin, 2014)",P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY,256,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster256
+"Cirrhosis (Qin, 2014)",P__PWY.5181,256,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster256
+"Cirrhosis (Qin, 2014)",P__PWY.5667,288,P__PWY.5667_Cluster288
+"Cirrhosis (Qin, 2014)",P__PWY0.1319,288,P__PWY.5667_Cluster288
+"Cirrhosis (Qin, 2014)",P__PWY.5838,296,P__PWY.5838_Cluster296
+"Cirrhosis (Qin, 2014)",P__PWY.5861,296,P__PWY.5838_Cluster296
+"Cirrhosis (Qin, 2014)",P__PWY.5845,298,P__PWY.5845_Cluster298
+"Cirrhosis (Qin, 2014)",P__PWY.5862,298,P__PWY.5845_Cluster298
+"Cirrhosis (Qin, 2014)",P__PWY.5850,299,P__PWY.5850_Cluster299
+"Cirrhosis (Qin, 2014)",P__PWY.5860,299,P__PWY.5850_Cluster299
+"Cirrhosis (Qin, 2014)",P__PWY.5896,299,P__PWY.5850_Cluster299
+"Cirrhosis (Qin, 2014)",P__PWY.5855,300,P__PWY.5855_Cluster300
+"Cirrhosis (Qin, 2014)",P__PWY.5856,300,P__PWY.5855_Cluster300
+"Cirrhosis (Qin, 2014)",P__PWY.5857,300,P__PWY.5855_Cluster300
+"Cirrhosis (Qin, 2014)",P__PWY.6708,300,P__PWY.5855_Cluster300
+"Cirrhosis (Qin, 2014)",P__UBISYN.PWY,300,P__PWY.5855_Cluster300
+"Cirrhosis (Qin, 2014)",P__PWY.5897,302,P__PWY.5897_Cluster302
+"Cirrhosis (Qin, 2014)",P__PWY.5898,302,P__PWY.5897_Cluster302
+"Cirrhosis (Qin, 2014)",P__PWY.5899,302,P__PWY.5897_Cluster302
+"Cirrhosis (Qin, 2014)",P__PWY.5910,303,P__PWY.5910_Cluster303
+"Cirrhosis (Qin, 2014)",P__PWY.922,303,P__PWY.5910_Cluster303
+"Cirrhosis (Qin, 2014)",P__PWY.6122,312,P__PWY.6122_Cluster312
+"Cirrhosis (Qin, 2014)",P__PWY.6277,312,P__PWY.6122_Cluster312
+"Cirrhosis (Qin, 2014)",P__PWY.6125,314,P__PWY.6125_Cluster314
+"Cirrhosis (Qin, 2014)",P__PWY.7228,314,P__PWY.6125_Cluster314
+"Cirrhosis (Qin, 2014)",P__PWY.6147,317,P__PWY.6147_Cluster317
+"Cirrhosis (Qin, 2014)",P__PWY.7539,317,P__PWY.6147_Cluster317
+"Cirrhosis (Qin, 2014)",P__PWY.6182,320,P__PWY.6182_Cluster320
+"Cirrhosis (Qin, 2014)",P__PWY.6185,320,P__PWY.6182_Cluster320
+"Cirrhosis (Qin, 2014)",P__PWY.7220,372,P__PWY.7220_Cluster372
+"Cirrhosis (Qin, 2014)",P__PWY.7222,372,P__PWY.7220_Cluster372
+"Cirrhosis (Qin, 2014)",P__PWY4FS.7,408,P__PWY4FS.7_Cluster408
+"Cirrhosis (Qin, 2014)",P__PWY4FS.8,408,P__PWY4FS.7_Cluster408
+"CRC (Feng, 2015)",P__ARGDEG.PWY,186,P__ARGDEG.PWY_Cluster186
+"CRC (Feng, 2015)",P__ORNARGDEG.PWY,186,P__ARGDEG.PWY_Cluster186
+"CRC (Feng, 2015)",P__ARGSYN.PWY,187,P__ARGSYN.PWY_Cluster187
+"CRC (Feng, 2015)",P__ARGSYNBSUB.PWY,187,P__ARGSYN.PWY_Cluster187
+"CRC (Feng, 2015)",P__PWY.7400,187,P__ARGSYN.PWY_Cluster187
+"CRC (Feng, 2015)",P__BIOTIN.BIOSYNTHESIS.PWY,191,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster191
+"CRC (Feng, 2015)",P__PWY.6519,191,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster191
+"CRC (Feng, 2015)",P__BRANCHED.CHAIN.AA.SYN.PWY,192,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster192
+"CRC (Feng, 2015)",P__PWY.5103,192,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster192
+"CRC (Feng, 2015)",P__CENTFERM.PWY,194,P__CENTFERM.PWY_Cluster194
+"CRC (Feng, 2015)",P__PWY.6590,194,P__CENTFERM.PWY_Cluster194
+"CRC (Feng, 2015)",P__FASYN.ELONG.PWY,205,P__FASYN.ELONG.PWY_Cluster205
+"CRC (Feng, 2015)",P__PWY.6282,205,P__FASYN.ELONG.PWY_Cluster205
+"CRC (Feng, 2015)",P__PWY.7664,205,P__FASYN.ELONG.PWY_Cluster205
+"CRC (Feng, 2015)",P__PWY0.862,205,P__FASYN.ELONG.PWY_Cluster205
+"CRC (Feng, 2015)",P__GALACTARDEG.PWY,212,P__GALACTARDEG.PWY_Cluster212
+"CRC (Feng, 2015)",P__GLUCARGALACTSUPER.PWY,212,P__GALACTARDEG.PWY_Cluster212
+"CRC (Feng, 2015)",P__GLYOXYLATE.BYPASS,226,P__GLYOXYLATE.BYPASS_Cluster226
+"CRC (Feng, 2015)",P__TCA.GLYOX.BYPASS,226,P__GLYOXYLATE.BYPASS_Cluster226
+"CRC (Feng, 2015)",P__HCAMHPDEG.PWY,228,P__HCAMHPDEG.PWY_Cluster228
+"CRC (Feng, 2015)",P__PWY.6690,228,P__HCAMHPDEG.PWY_Cluster228
+"CRC (Feng, 2015)",P__PWY0.1277,228,P__HCAMHPDEG.PWY_Cluster228
+"CRC (Feng, 2015)",P__HEME.BIOSYNTHESIS.II,229,P__HEME.BIOSYNTHESIS.II_Cluster229
+"CRC (Feng, 2015)",P__PWY.5918,229,P__HEME.BIOSYNTHESIS.II_Cluster229
+"CRC (Feng, 2015)",P__MET.SAM.PWY,241,P__MET.SAM.PWY_Cluster241
+"CRC (Feng, 2015)",P__METSYN.PWY,241,P__MET.SAM.PWY_Cluster241
+"CRC (Feng, 2015)",P__P105.PWY,249,P__P105.PWY_Cluster249
+"CRC (Feng, 2015)",P__PWY.7254,249,P__P105.PWY_Cluster249
+"CRC (Feng, 2015)",P__PWY.5101,287,P__PWY.5101_Cluster287
+"CRC (Feng, 2015)",P__PWY.5198,287,P__PWY.5101_Cluster287
+"CRC (Feng, 2015)",P__PWY.5667,302,P__PWY.5667_Cluster302
+"CRC (Feng, 2015)",P__PWY0.1319,302,P__PWY.5667_Cluster302
+"CRC (Feng, 2015)",P__PWY.5747,308,P__PWY.5747_Cluster308
+"CRC (Feng, 2015)",P__PWY0.42,308,P__PWY.5747_Cluster308
+"CRC (Feng, 2015)",P__PWY.5838,310,P__PWY.5838_Cluster310
+"CRC (Feng, 2015)",P__PWY.5861,310,P__PWY.5838_Cluster310
+"CRC (Feng, 2015)",P__PWY.5897,310,P__PWY.5838_Cluster310
+"CRC (Feng, 2015)",P__PWY.5898,310,P__PWY.5838_Cluster310
+"CRC (Feng, 2015)",P__PWY.5899,310,P__PWY.5838_Cluster310
+"CRC (Feng, 2015)",P__PWY.5840,311,P__PWY.5840_Cluster311
+"CRC (Feng, 2015)",P__PWY.5845,311,P__PWY.5840_Cluster311
+"CRC (Feng, 2015)",P__PWY.5850,311,P__PWY.5840_Cluster311
+"CRC (Feng, 2015)",P__PWY.5860,311,P__PWY.5840_Cluster311
+"CRC (Feng, 2015)",P__PWY.5862,311,P__PWY.5840_Cluster311
+"CRC (Feng, 2015)",P__PWY.5896,311,P__PWY.5840_Cluster311
+"CRC (Feng, 2015)",P__PWY.5855,312,P__PWY.5855_Cluster312
+"CRC (Feng, 2015)",P__PWY.5856,312,P__PWY.5855_Cluster312
+"CRC (Feng, 2015)",P__PWY.5857,312,P__PWY.5855_Cluster312
+"CRC (Feng, 2015)",P__PWY.6708,312,P__PWY.5855_Cluster312
+"CRC (Feng, 2015)",P__UBISYN.PWY,312,P__PWY.5855_Cluster312
+"CRC (Feng, 2015)",P__PWY.6125,326,P__PWY.6125_Cluster326
+"CRC (Feng, 2015)",P__PWY.7228,326,P__PWY.6125_Cluster326
+"CRC (Feng, 2015)",P__PWY.6147,328,P__PWY.6147_Cluster328
+"CRC (Feng, 2015)",P__PWY.7539,328,P__PWY.6147_Cluster328
+"CRC (Feng, 2015)",P__PWY.7220,377,P__PWY.7220_Cluster377
+"CRC (Feng, 2015)",P__PWY.7222,377,P__PWY.7220_Cluster377
+"CRC (Feng, 2015)",P__PWY4FS.7,411,P__PWY4FS.7_Cluster411
+"CRC (Feng, 2015)",P__PWY4FS.8,411,P__PWY4FS.7_Cluster411
+"CRC (Yachida, 2019)",T__Bifidobacterium.longum.subsp..infantis,6,T__Bifidobacterium.longum.subsp..infantis_Cluster6
+"CRC (Yachida, 2019)",T__Bifidobacterium.longum.subsp..longum,6,T__Bifidobacterium.longum.subsp..infantis_Cluster6
+"CRC (Yachida, 2019)",T__Pantoea.rodasii,32,T__Pantoea.rodasii_Cluster32
+"CRC (Yachida, 2019)",T__Lelliottia.amnigena,32,T__Pantoea.rodasii_Cluster32
+"CRC (Yachida, 2019)",T__Pantoea.rwandensis,32,T__Pantoea.rodasii_Cluster32
+"CRC (Yachida, 2019)",T__Kluyvera.intermedia,32,T__Pantoea.rodasii_Cluster32
+"CRC (Yachida, 2019)",T__Clostridium.chauvoei,43,T__Clostridium.chauvoei_Cluster43
+"CRC (Yachida, 2019)",T__Sarcina.ventriculi,43,T__Clostridium.chauvoei_Cluster43
+"CRC (Yachida, 2019)",T__Sarcina.maxima,43,T__Clostridium.chauvoei_Cluster43
+"CRC (Yachida, 2019)",T__Streptococcus.gallolyticus.subsp..pasteurianus,44,T__Streptococcus.gallolyticus.subsp..pasteurianus_Cluster44
+"CRC (Yachida, 2019)",T__Streptococcus.alactolyticus,44,T__Streptococcus.gallolyticus.subsp..pasteurianus_Cluster44
+"CRC (Yachida, 2019)",T__Streptococcus.gallolyticus.subsp..macedonicus,44,T__Streptococcus.gallolyticus.subsp..pasteurianus_Cluster44
+"CRC (Yachida, 2019)",T__Streptococcus.gallolyticus.subsp..gallolyticus,44,T__Streptococcus.gallolyticus.subsp..pasteurianus_Cluster44
+"CRC (Yachida, 2019)",T__Porphyromonas.uenonis,61,T__Porphyromonas.uenonis_Cluster61
+"CRC (Yachida, 2019)",T__Porphyromonas.asaccharolytica,61,T__Porphyromonas.uenonis_Cluster61
+"CRC (Yachida, 2019)",T__Clostridium.diolis,63,T__Clostridium.diolis_Cluster63
+"CRC (Yachida, 2019)",T__Clostridium.roseum,63,T__Clostridium.diolis_Cluster63
+"CRC (Yachida, 2019)",T__Clostridium.rectum,75,T__Clostridium.rectum_Cluster75
+"CRC (Yachida, 2019)",T__Fusobacterium.mortiferum,75,T__Clostridium.rectum_Cluster75
+"CRC (Yachida, 2019)",T__Bifidobacterium.adolescentis,79,T__Bifidobacterium.adolescentis_Cluster79
+"CRC (Yachida, 2019)",T__Bifidobacterium.faecale,79,T__Bifidobacterium.adolescentis_Cluster79
+"CRC (Yachida, 2019)",T__Streptococcus.infantarius.subsp..coli,86,T__Streptococcus.infantarius.subsp..coli_Cluster86
+"CRC (Yachida, 2019)",T__Streptococcus.infantarius.subsp..infantarius,86,T__Streptococcus.infantarius.subsp..coli_Cluster86
+"CRC (Yachida, 2019)",T__Veillonella.criceti,93,T__Veillonella.criceti_Cluster93
+"CRC (Yachida, 2019)",T__Veillonella.ratti,93,T__Veillonella.criceti_Cluster93
+"CRC (Yachida, 2019)",T__Veillonella.seminalis,93,T__Veillonella.criceti_Cluster93
+"CRC (Yachida, 2019)",T__Klebsiella.pneumoniae.subsp..rhinoscleromatis,131,T__Klebsiella.pneumoniae.subsp..rhinoscleromatis_Cluster131
+"CRC (Yachida, 2019)",T__Kosakonia.radicincitans,131,T__Klebsiella.pneumoniae.subsp..rhinoscleromatis_Cluster131
+"CRC (Yachida, 2019)",T__Streptococcus.vestibularis,171,T__Streptococcus.vestibularis_Cluster171
+"CRC (Yachida, 2019)",T__Streptococcus.salivarius.subsp..salivarius,171,T__Streptococcus.vestibularis_Cluster171
+"CRC (Yachida, 2019)",T__Paenibacillus.sputi,205,T__Paenibacillus.sputi_Cluster205
+"CRC (Yachida, 2019)",T__Paenibacillus.graminis,205,T__Paenibacillus.sputi_Cluster205
+"CRC (Yachida, 2019)",T__Paenibacillus.jilunlii,205,T__Paenibacillus.sputi_Cluster205
+"CRC (Yachida, 2019)",T__Asaccharobacter.celatus,220,T__Asaccharobacter.celatus_Cluster220
+"CRC (Yachida, 2019)",T__Adlercreutzia.equolifaciens,220,T__Asaccharobacter.celatus_Cluster220
+"CRC (Yachida, 2019)",T__Fusobacterium.nucleatum.subsp..fusiforme,257,T__Fusobacterium.nucleatum.subsp..fusiforme_Cluster257
+"CRC (Yachida, 2019)",T__Filifactor.alocis,257,T__Fusobacterium.nucleatum.subsp..fusiforme_Cluster257
+"CRC (Yachida, 2019)",T__Prevotella.dentalis,277,T__Prevotella.dentalis_Cluster277
+"CRC (Yachida, 2019)",T__Hallella.seregens,277,T__Prevotella.dentalis_Cluster277
+"CRC (Yachida, 2019)",T__Shigella.flexneri,280,T__Shigella.flexneri_Cluster280
+"CRC (Yachida, 2019)",T__Pantoea.wallisii,280,T__Shigella.flexneri_Cluster280
+"CRC (Yachida, 2019)",T__Shigella.dysenteriae,280,T__Shigella.flexneri_Cluster280
+"CRC (Yachida, 2019)",T__Escherichia.fergusonii,280,T__Shigella.flexneri_Cluster280
+"CRC (Yachida, 2019)",T__Streptococcus.loxodontisalivarius,289,T__Streptococcus.loxodontisalivarius_Cluster289
+"CRC (Yachida, 2019)",T__Streptococcus.saliviloxodontae,289,T__Streptococcus.loxodontisalivarius_Cluster289
+"CRC (Yachida, 2019)",T__Salmonella.subterranea,317,T__Salmonella.subterranea_Cluster317
+"CRC (Yachida, 2019)",T__Salmonella.enterica.subsp..salamae,317,T__Salmonella.subterranea_Cluster317
+"CRC (Yachida, 2019)",T__Shigella.sonnei,317,T__Salmonella.subterranea_Cluster317
+"CRC (Yachida, 2019)",T__Salmonella.enterica.subsp..indica,317,T__Salmonella.subterranea_Cluster317
+"CRC (Yachida, 2019)",T__Clostridium.quinii,340,T__Clostridium.quinii_Cluster340
+"CRC (Yachida, 2019)",T__Clostridium.cadaveris,340,T__Clostridium.quinii_Cluster340
+"CRC (Yachida, 2019)",T__Oscillibacter.ruminantium,348,T__Oscillibacter.ruminantium_Cluster348
+"CRC (Yachida, 2019)",T__Oscillibacter.valericigenes,348,T__Oscillibacter.ruminantium_Cluster348
+"CRC (Yachida, 2019)",T__Fusobacterium.necrophorum.subsp..funduliforme,356,T__Fusobacterium.necrophorum.subsp..funduliforme_Cluster356
+"CRC (Yachida, 2019)",T__Fusobacterium.necrophorum.subsp..necrophorum,356,T__Fusobacterium.necrophorum.subsp..funduliforme_Cluster356
+"CRC (Yachida, 2019)",T__Clostridium.termitidis,397,T__Clostridium.termitidis_Cluster397
+"CRC (Yachida, 2019)",T__Clostridium.cellobioparum,397,T__Clostridium.termitidis_Cluster397
+"CRC (Yachida, 2019)",T__Pantoea.gaviniae,445,T__Pantoea.gaviniae_Cluster445
+"CRC (Yachida, 2019)",T__Pantoea.deleyi,445,T__Pantoea.gaviniae_Cluster445
+"CRC (Yachida, 2019)",P__BRANCHED.CHAIN.AA.SYN.PWY,633,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster633
+"CRC (Yachida, 2019)",P__ILEUSYN.PWY,633,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster633
+"CRC (Yachida, 2019)",P__PWY.5103,633,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster633
+"CRC (Yachida, 2019)",P__CENTFERM.PWY,635,P__CENTFERM.PWY_Cluster635
+"CRC (Yachida, 2019)",P__PWY.6590,635,P__CENTFERM.PWY_Cluster635
+"CRC (Yachida, 2019)",P__FASYN.ELONG.PWY,646,P__FASYN.ELONG.PWY_Cluster646
+"CRC (Yachida, 2019)",P__PWY.6282,646,P__FASYN.ELONG.PWY_Cluster646
+"CRC (Yachida, 2019)",P__PWY.7664,646,P__FASYN.ELONG.PWY_Cluster646
+"CRC (Yachida, 2019)",P__PWY0.862,646,P__FASYN.ELONG.PWY_Cluster646
+"CRC (Yachida, 2019)",P__FOLSYN.PWY,649,P__FOLSYN.PWY_Cluster649
+"CRC (Yachida, 2019)",P__PWY.6612,649,P__FOLSYN.PWY_Cluster649
+"CRC (Yachida, 2019)",P__GALACTARDEG.PWY,653,P__GALACTARDEG.PWY_Cluster653
+"CRC (Yachida, 2019)",P__GLUCARGALACTSUPER.PWY,653,P__GALACTARDEG.PWY_Cluster653
+"CRC (Yachida, 2019)",P__MET.SAM.PWY,683,P__MET.SAM.PWY_Cluster683
+"CRC (Yachida, 2019)",P__METSYN.PWY,683,P__MET.SAM.PWY_Cluster683
+"CRC (Yachida, 2019)",P__PWY.5347,683,P__MET.SAM.PWY_Cluster683
+"CRC (Yachida, 2019)",P__P4.PWY,698,P__P4.PWY_Cluster698
+"CRC (Yachida, 2019)",P__PWY0.781,698,P__P4.PWY_Cluster698
+"CRC (Yachida, 2019)",P__PROPFERM.PWY,712,P__PROPFERM.PWY_Cluster712
+"CRC (Yachida, 2019)",P__PWY.8188,712,P__PROPFERM.PWY_Cluster712
+"CRC (Yachida, 2019)",P__PWY.8189,712,P__PROPFERM.PWY_Cluster712
+"CRC (Yachida, 2019)",P__PWY.5667,740,P__PWY.5667_Cluster740
+"CRC (Yachida, 2019)",P__PWY0.1319,740,P__PWY.5667_Cluster740
+"CRC (Yachida, 2019)",P__PWY.5686,744,P__PWY.5686_Cluster744
+"CRC (Yachida, 2019)",P__PWY.7790,744,P__PWY.5686_Cluster744
+"CRC (Yachida, 2019)",P__PWY.7791,744,P__PWY.5686_Cluster744
+"CRC (Yachida, 2019)",P__PWY.5838,749,P__PWY.5838_Cluster749
+"CRC (Yachida, 2019)",P__PWY.5861,749,P__PWY.5838_Cluster749
+"CRC (Yachida, 2019)",P__PWY.5845,751,P__PWY.5845_Cluster751
+"CRC (Yachida, 2019)",P__PWY.5862,751,P__PWY.5845_Cluster751
+"CRC (Yachida, 2019)",P__PWY.5850,752,P__PWY.5850_Cluster752
+"CRC (Yachida, 2019)",P__PWY.5860,752,P__PWY.5850_Cluster752
+"CRC (Yachida, 2019)",P__PWY.5896,752,P__PWY.5850_Cluster752
+"CRC (Yachida, 2019)",P__PWY.5897,754,P__PWY.5897_Cluster754
+"CRC (Yachida, 2019)",P__PWY.5898,754,P__PWY.5897_Cluster754
+"CRC (Yachida, 2019)",P__PWY.5899,754,P__PWY.5897_Cluster754
+"CRC (Yachida, 2019)",P__PWY.6122,766,P__PWY.6122_Cluster766
+"CRC (Yachida, 2019)",P__PWY.6277,766,P__PWY.6122_Cluster766
+"CRC (Yachida, 2019)",P__PWY.6125,768,P__PWY.6125_Cluster768
+"CRC (Yachida, 2019)",P__PWY.7228,768,P__PWY.6125_Cluster768
+"CRC (Yachida, 2019)",P__PWY.7220,819,P__PWY.7220_Cluster819
+"CRC (Yachida, 2019)",P__PWY.7222,819,P__PWY.7220_Cluster819
+"CRC (Yachida, 2019)",P__PWY4FS.7,874,P__PWY4FS.7_Cluster874
+"CRC (Yachida, 2019)",P__PWY4FS.8,874,P__PWY4FS.7_Cluster874
+"CRC (Yu, 2015)",T__Streptococcus.vestibularis,148,T__Streptococcus.vestibularis_Cluster148
+"CRC (Yu, 2015)",T__Streptococcus.cristatus,148,T__Streptococcus.vestibularis_Cluster148
+"CRC (Yu, 2015)",P__ARGDEG.PWY,189,P__ARGDEG.PWY_Cluster189
+"CRC (Yu, 2015)",P__ORNARGDEG.PWY,189,P__ARGDEG.PWY_Cluster189
+"CRC (Yu, 2015)",P__ARGSYN.PWY,190,P__ARGSYN.PWY_Cluster190
+"CRC (Yu, 2015)",P__PWY.7400,190,P__ARGSYN.PWY_Cluster190
+"CRC (Yu, 2015)",P__BRANCHED.CHAIN.AA.SYN.PWY,196,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster196
+"CRC (Yu, 2015)",P__PWY.5103,196,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster196
+"CRC (Yu, 2015)",P__CENTFERM.PWY,199,P__CENTFERM.PWY_Cluster199
+"CRC (Yu, 2015)",P__PWY.6590,199,P__CENTFERM.PWY_Cluster199
+"CRC (Yu, 2015)",P__GALACTARDEG.PWY,217,P__GALACTARDEG.PWY_Cluster217
+"CRC (Yu, 2015)",P__GLUCARGALACTSUPER.PWY,217,P__GALACTARDEG.PWY_Cluster217
+"CRC (Yu, 2015)",P__GLYCOLYSIS.TCA.GLYOX.BYPASS,229,P__GLYCOLYSIS.TCA.GLYOX.BYPASS_Cluster229
+"CRC (Yu, 2015)",P__GLYOXYLATE.BYPASS,229,P__GLYCOLYSIS.TCA.GLYOX.BYPASS_Cluster229
+"CRC (Yu, 2015)",P__TCA.GLYOX.BYPASS,229,P__GLYCOLYSIS.TCA.GLYOX.BYPASS_Cluster229
+"CRC (Yu, 2015)",P__P105.PWY,253,P__P105.PWY_Cluster253
+"CRC (Yu, 2015)",P__PWY.7254,253,P__P105.PWY_Cluster253
+"CRC (Yu, 2015)",P__PWY.5667,309,P__PWY.5667_Cluster309
+"CRC (Yu, 2015)",P__PWY0.1319,309,P__PWY.5667_Cluster309
+"CRC (Yu, 2015)",P__PWY.5855,321,P__PWY.5855_Cluster321
+"CRC (Yu, 2015)",P__PWY.5856,321,P__PWY.5855_Cluster321
+"CRC (Yu, 2015)",P__PWY.5857,321,P__PWY.5855_Cluster321
+"CRC (Yu, 2015)",P__PWY.6708,321,P__PWY.5855_Cluster321
+"CRC (Yu, 2015)",P__UBISYN.PWY,321,P__PWY.5855_Cluster321
+"CRC (Yu, 2015)",P__PWY.6071,329,P__PWY.6071_Cluster329
+"CRC (Yu, 2015)",P__PWY0.321,329,P__PWY.6071_Cluster329
+"CRC (Yu, 2015)",P__PWY.6122,332,P__PWY.6122_Cluster332
+"CRC (Yu, 2015)",P__PWY.6277,332,P__PWY.6122_Cluster332
+"CRC (Yu, 2015)",P__PWY.7220,391,P__PWY.7220_Cluster391
+"CRC (Yu, 2015)",P__PWY.7222,391,P__PWY.7220_Cluster391
+"CRC (Yu, 2015)",P__PWY4FS.7,428,P__PWY4FS.7_Cluster428
+"CRC (Yu, 2015)",P__PWY4FS.8,428,P__PWY4FS.7_Cluster428
+"ESRD (Wang, 2020)",P__BIOTIN.BIOSYNTHESIS.PWY,170,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster170
+"ESRD (Wang, 2020)",P__PWY.6519,170,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster170
+"ESRD (Wang, 2020)",P__BRANCHED.CHAIN.AA.SYN.PWY,171,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster171
+"ESRD (Wang, 2020)",P__ILEUSYN.PWY,171,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster171
+"ESRD (Wang, 2020)",P__FASYN.ELONG.PWY,184,P__FASYN.ELONG.PWY_Cluster184
+"ESRD (Wang, 2020)",P__PWY.6282,184,P__FASYN.ELONG.PWY_Cluster184
+"ESRD (Wang, 2020)",P__PWY.7664,184,P__FASYN.ELONG.PWY_Cluster184
+"ESRD (Wang, 2020)",P__PWY0.862,184,P__FASYN.ELONG.PWY_Cluster184
+"ESRD (Wang, 2020)",P__FOLSYN.PWY,187,P__FOLSYN.PWY_Cluster187
+"ESRD (Wang, 2020)",P__PWY.6612,187,P__FOLSYN.PWY_Cluster187
+"ESRD (Wang, 2020)",P__GALACTARDEG.PWY,191,P__GALACTARDEG.PWY_Cluster191
+"ESRD (Wang, 2020)",P__GLUCARGALACTSUPER.PWY,191,P__GALACTARDEG.PWY_Cluster191
+"ESRD (Wang, 2020)",P__HCAMHPDEG.PWY,208,P__HCAMHPDEG.PWY_Cluster208
+"ESRD (Wang, 2020)",P__PWY.6690,208,P__HCAMHPDEG.PWY_Cluster208
+"ESRD (Wang, 2020)",P__MET.SAM.PWY,222,P__MET.SAM.PWY_Cluster222
+"ESRD (Wang, 2020)",P__METSYN.PWY,222,P__MET.SAM.PWY_Cluster222
+"ESRD (Wang, 2020)",P__PWY.5347,222,P__MET.SAM.PWY_Cluster222
+"ESRD (Wang, 2020)",P__P41.PWY,238,P__P41.PWY_Cluster238
+"ESRD (Wang, 2020)",P__PWY.5100,238,P__P41.PWY_Cluster238
+"ESRD (Wang, 2020)",P__PEPTIDOGLYCANSYN.PWY,244,P__PEPTIDOGLYCANSYN.PWY_Cluster244
+"ESRD (Wang, 2020)",P__PWY.6386,244,P__PEPTIDOGLYCANSYN.PWY_Cluster244
+"ESRD (Wang, 2020)",P__PWY.6387,244,P__PEPTIDOGLYCANSYN.PWY_Cluster244
+"ESRD (Wang, 2020)",P__PWY.5667,277,P__PWY.5667_Cluster277
+"ESRD (Wang, 2020)",P__PWY0.1319,277,P__PWY.5667_Cluster277
+"ESRD (Wang, 2020)",P__PWY.5686,281,P__PWY.5686_Cluster281
+"ESRD (Wang, 2020)",P__PWY.7790,281,P__PWY.5686_Cluster281
+"ESRD (Wang, 2020)",P__PWY.7791,281,P__PWY.5686_Cluster281
+"ESRD (Wang, 2020)",P__PWY.5838,285,P__PWY.5838_Cluster285
+"ESRD (Wang, 2020)",P__PWY.5861,285,P__PWY.5838_Cluster285
+"ESRD (Wang, 2020)",P__PWY.5897,285,P__PWY.5838_Cluster285
+"ESRD (Wang, 2020)",P__PWY.5898,285,P__PWY.5838_Cluster285
+"ESRD (Wang, 2020)",P__PWY.5899,285,P__PWY.5838_Cluster285
+"ESRD (Wang, 2020)",P__PWY.5845,287,P__PWY.5845_Cluster287
+"ESRD (Wang, 2020)",P__PWY.5862,287,P__PWY.5845_Cluster287
+"ESRD (Wang, 2020)",P__PWY.6122,301,P__PWY.6122_Cluster301
+"ESRD (Wang, 2020)",P__PWY.6277,301,P__PWY.6122_Cluster301
+"ESRD (Wang, 2020)",P__PWY.7094,343,P__PWY.7094_Cluster343
+"ESRD (Wang, 2020)",P__PWY0.1337,343,P__PWY.7094_Cluster343
+"ESRD (Wang, 2020)",P__PWY.7220,354,P__PWY.7220_Cluster354
+"ESRD (Wang, 2020)",P__PWY.7222,354,P__PWY.7220_Cluster354
+"ESRD (Wang, 2020)",P__PWY4FS.7,408,P__PWY4FS.7_Cluster408
+"ESRD (Wang, 2020)",P__PWY4FS.8,408,P__PWY4FS.7_Cluster408
+MS (MetaCardis),P__M00452,287,P__M00452_Cluster287
+MS (MetaCardis),P__M00745,287,P__M00452_Cluster287
+MS (MetaCardis),P__M00210,288,P__M00210_Cluster288
+MS (MetaCardis),P__M00669,288,P__M00210_Cluster288
+MS (MetaCardis),P__M00670,288,P__M00210_Cluster288
+MS (MetaCardis),P__M00245,293,P__M00245_Cluster293
+MS (MetaCardis),P__M00246,293,P__M00245_Cluster293
+MS (MetaCardis),P__M00563,294,P__M00563_Cluster294
+MS (MetaCardis),P__M00356,294,P__M00563_Cluster294
+MS (MetaCardis),P__M00325,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00326,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00720,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00571,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00339,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00575,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00697,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00696,303,P__M00325_Cluster303
+MS (MetaCardis),P__M00197,314,P__M00197_Cluster314
+MS (MetaCardis),P__M00605,314,P__M00197_Cluster314
+MS (MetaCardis),P__M00200,324,P__M00200_Cluster324
+MS (MetaCardis),P__M00206,324,P__M00200_Cluster324
+MS (MetaCardis),P__M00606,324,P__M00200_Cluster324
+MS (MetaCardis),P__M00201,324,P__M00200_Cluster324
+MS (MetaCardis),P__M00169,350,P__M00169_Cluster350
+MS (MetaCardis),P__M00172,350,P__M00169_Cluster350
+MS (MetaCardis),P__M00699,364,P__M00699_Cluster364
+MS (MetaCardis),P__M00718,364,P__M00699_Cluster364
+MS (MetaCardis),P__M00077,367,P__M00077_Cluster367
+MS (MetaCardis),P__M00076,367,P__M00077_Cluster367
+MS (MetaCardis),P__M00573,370,P__M00573_Cluster370
+MS (MetaCardis),P__M00577,370,P__M00573_Cluster370
+MS (MetaCardis),P__M00123,370,P__M00573_Cluster370
+MS (MetaCardis),P__M00450,398,P__M00450_Cluster398
+MS (MetaCardis),P__M00645,398,P__M00450_Cluster398
+MS (MetaCardis),P__M00360,472,P__M00360_Cluster472
+MS (MetaCardis),P__M00359,472,P__M00360_Cluster472
+"STH (Rubel, 2020)",P__ARGDEG.PWY,111,P__ARGDEG.PWY_Cluster111
+"STH (Rubel, 2020)",P__ORNARGDEG.PWY,111,P__ARGDEG.PWY_Cluster111
+"STH (Rubel, 2020)",P__ARGSYN.PWY,112,P__ARGSYN.PWY_Cluster112
+"STH (Rubel, 2020)",P__PWY.7400,112,P__ARGSYN.PWY_Cluster112
+"STH (Rubel, 2020)",P__BIOTIN.BIOSYNTHESIS.PWY,117,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster117
+"STH (Rubel, 2020)",P__PWY.6519,117,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster117
+"STH (Rubel, 2020)",P__BRANCHED.CHAIN.AA.SYN.PWY,118,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster118
+"STH (Rubel, 2020)",P__PWY.5103,118,P__BRANCHED.CHAIN.AA.SYN.PWY_Cluster118
+"STH (Rubel, 2020)",P__CENTFERM.PWY,120,P__CENTFERM.PWY_Cluster120
+"STH (Rubel, 2020)",P__PWY.6590,120,P__CENTFERM.PWY_Cluster120
+"STH (Rubel, 2020)",P__FOLSYN.PWY,134,P__FOLSYN.PWY_Cluster134
+"STH (Rubel, 2020)",P__PWY.6612,134,P__FOLSYN.PWY_Cluster134
+"STH (Rubel, 2020)",P__GALACTARDEG.PWY,138,P__GALACTARDEG.PWY_Cluster138
+"STH (Rubel, 2020)",P__GLUCARGALACTSUPER.PWY,138,P__GALACTARDEG.PWY_Cluster138
+"STH (Rubel, 2020)",P__GLYCOLYSIS.TCA.GLYOX.BYPASS,150,P__GLYCOLYSIS.TCA.GLYOX.BYPASS_Cluster150
+"STH (Rubel, 2020)",P__TCA.GLYOX.BYPASS,150,P__GLYCOLYSIS.TCA.GLYOX.BYPASS_Cluster150
+"STH (Rubel, 2020)",P__HCAMHPDEG.PWY,154,P__HCAMHPDEG.PWY_Cluster154
+"STH (Rubel, 2020)",P__PWY.6690,154,P__HCAMHPDEG.PWY_Cluster154
+"STH (Rubel, 2020)",P__MET.SAM.PWY,167,P__MET.SAM.PWY_Cluster167
+"STH (Rubel, 2020)",P__METSYN.PWY,167,P__MET.SAM.PWY_Cluster167
+"STH (Rubel, 2020)",P__PWY.5347,167,P__MET.SAM.PWY_Cluster167
+"STH (Rubel, 2020)",P__P4.PWY,182,P__P4.PWY_Cluster182
+"STH (Rubel, 2020)",P__PWY0.781,182,P__P4.PWY_Cluster182
+"STH (Rubel, 2020)",P__PEPTIDOGLYCANSYN.PWY,188,P__PEPTIDOGLYCANSYN.PWY_Cluster188
+"STH (Rubel, 2020)",P__PWY.6387,188,P__PEPTIDOGLYCANSYN.PWY_Cluster188
+"STH (Rubel, 2020)",P__PWY.5667,222,P__PWY.5667_Cluster222
+"STH (Rubel, 2020)",P__PWY0.1319,222,P__PWY.5667_Cluster222
+"STH (Rubel, 2020)",P__PWY.5838,230,P__PWY.5838_Cluster230
+"STH (Rubel, 2020)",P__PWY.5861,230,P__PWY.5838_Cluster230
+"STH (Rubel, 2020)",P__PWY.5845,232,P__PWY.5845_Cluster232
+"STH (Rubel, 2020)",P__PWY.5862,232,P__PWY.5845_Cluster232
+"STH (Rubel, 2020)",P__PWY.5850,233,P__PWY.5850_Cluster233
+"STH (Rubel, 2020)",P__PWY.5860,233,P__PWY.5850_Cluster233
+"STH (Rubel, 2020)",P__PWY.5896,233,P__PWY.5850_Cluster233
+"STH (Rubel, 2020)",P__PWY.5855,234,P__PWY.5855_Cluster234
+"STH (Rubel, 2020)",P__PWY.5856,234,P__PWY.5855_Cluster234
+"STH (Rubel, 2020)",P__PWY.5857,234,P__PWY.5855_Cluster234
+"STH (Rubel, 2020)",P__PWY.6708,234,P__PWY.5855_Cluster234
+"STH (Rubel, 2020)",P__PWY.5897,236,P__PWY.5897_Cluster236
+"STH (Rubel, 2020)",P__PWY.5898,236,P__PWY.5897_Cluster236
+"STH (Rubel, 2020)",P__PWY.5899,236,P__PWY.5897_Cluster236
+"STH (Rubel, 2020)",P__PWY.6122,246,P__PWY.6122_Cluster246
+"STH (Rubel, 2020)",P__PWY.6277,246,P__PWY.6122_Cluster246
+"STH (Rubel, 2020)",P__PWY.6147,250,P__PWY.6147_Cluster250
+"STH (Rubel, 2020)",P__PWY.7539,250,P__PWY.6147_Cluster250
+"STH (Rubel, 2020)",P__PWY.6282,256,P__PWY.6282_Cluster256
+"STH (Rubel, 2020)",P__PWY.7664,256,P__PWY.6282_Cluster256
+"STH (Rubel, 2020)",P__PWY0.862,256,P__PWY.6282_Cluster256
+"STH (Rubel, 2020)",P__PWY.7220,298,P__PWY.7220_Cluster298
+"STH (Rubel, 2020)",P__PWY.7222,298,P__PWY.7220_Cluster298
+"STH (Rubel, 2020)",P__PWY4FS.7,335,P__PWY4FS.7_Cluster335
+"STH (Rubel, 2020)",P__PWY4FS.8,335,P__PWY4FS.7_Cluster335
+T2D (MetaCardis),P__M00452,279,P__M00452_Cluster279
+T2D (MetaCardis),P__M00745,279,P__M00452_Cluster279
+T2D (MetaCardis),P__M00210,280,P__M00210_Cluster280
+T2D (MetaCardis),P__M00669,280,P__M00210_Cluster280
+T2D (MetaCardis),P__M00670,280,P__M00210_Cluster280
+T2D (MetaCardis),P__M00245,285,P__M00245_Cluster285
+T2D (MetaCardis),P__M00246,285,P__M00245_Cluster285
+T2D (MetaCardis),P__M00563,286,P__M00563_Cluster286
+T2D (MetaCardis),P__M00356,286,P__M00563_Cluster286
+T2D (MetaCardis),P__M00325,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00326,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00720,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00571,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00339,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00575,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00697,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00696,295,P__M00325_Cluster295
+T2D (MetaCardis),P__M00197,306,P__M00197_Cluster306
+T2D (MetaCardis),P__M00206,306,P__M00197_Cluster306
+T2D (MetaCardis),P__M00606,306,P__M00197_Cluster306
+T2D (MetaCardis),P__M00605,306,P__M00197_Cluster306
+T2D (MetaCardis),P__M00201,306,P__M00197_Cluster306
+T2D (MetaCardis),P__M00039,333,P__M00039_Cluster333
+T2D (MetaCardis),P__M00350,333,P__M00039_Cluster333
+T2D (MetaCardis),P__M00699,356,P__M00699_Cluster356
+T2D (MetaCardis),P__M00718,356,P__M00699_Cluster356
+T2D (MetaCardis),P__M00077,359,P__M00077_Cluster359
+T2D (MetaCardis),P__M00076,359,P__M00077_Cluster359
+T2D (MetaCardis),P__M00573,362,P__M00573_Cluster362
+T2D (MetaCardis),P__M00577,362,P__M00573_Cluster362
+T2D (MetaCardis),P__M00123,362,P__M00573_Cluster362
+T2D (MetaCardis),P__M00403,385,P__M00403_Cluster385
+T2D (MetaCardis),P__M00400,385,P__M00403_Cluster385
+T2D (MetaCardis),P__M00450,390,P__M00450_Cluster390
+T2D (MetaCardis),P__M00645,390,P__M00450_Cluster390
+T2D (MetaCardis),P__M00360,465,P__M00360_Cluster465
+T2D (MetaCardis),P__M00359,465,P__M00360_Cluster465
+"UC (Franzosa, 2019)",P__ARGSYN.PWY,162,P__ARGSYN.PWY_Cluster162
+"UC (Franzosa, 2019)",P__ARGSYNBSUB.PWY,162,P__ARGSYN.PWY_Cluster162
+"UC (Franzosa, 2019)",P__BIOTIN.BIOSYNTHESIS.PWY,166,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster166
+"UC (Franzosa, 2019)",P__PWY.6519,166,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster166
+"UC (Franzosa, 2019)",P__FASYN.ELONG.PWY,180,P__FASYN.ELONG.PWY_Cluster180
+"UC (Franzosa, 2019)",P__PWY.6282,180,P__FASYN.ELONG.PWY_Cluster180
+"UC (Franzosa, 2019)",P__PWY.7664,180,P__FASYN.ELONG.PWY_Cluster180
+"UC (Franzosa, 2019)",P__FOLSYN.PWY,183,P__FOLSYN.PWY_Cluster183
+"UC (Franzosa, 2019)",P__PWY.6612,183,P__FOLSYN.PWY_Cluster183
+"UC (Franzosa, 2019)",P__GALACTARDEG.PWY,187,P__GALACTARDEG.PWY_Cluster187
+"UC (Franzosa, 2019)",P__GLUCARGALACTSUPER.PWY,187,P__GALACTARDEG.PWY_Cluster187
+"UC (Franzosa, 2019)",P__HEME.BIOSYNTHESIS.II.1,205,P__HEME.BIOSYNTHESIS.II.1_Cluster205
+"UC (Franzosa, 2019)",P__PWY0.1415,205,P__HEME.BIOSYNTHESIS.II.1_Cluster205
+"UC (Franzosa, 2019)",P__MET.SAM.PWY,218,P__MET.SAM.PWY_Cluster218
+"UC (Franzosa, 2019)",P__METSYN.PWY,218,P__MET.SAM.PWY_Cluster218
+"UC (Franzosa, 2019)",P__PWY.5347,218,P__MET.SAM.PWY_Cluster218
+"UC (Franzosa, 2019)",P__P41.PWY,233,P__P41.PWY_Cluster233
+"UC (Franzosa, 2019)",P__PWY.5100,233,P__P41.PWY_Cluster233
+"UC (Franzosa, 2019)",P__PEPTIDOGLYCANSYN.PWY,240,P__PEPTIDOGLYCANSYN.PWY_Cluster240
+"UC (Franzosa, 2019)",P__PWY.6387,240,P__PEPTIDOGLYCANSYN.PWY_Cluster240
+"UC (Franzosa, 2019)",P__PWY.5198,263,P__PWY.5198_Cluster263
+"UC (Franzosa, 2019)",P__PWY.8113,263,P__PWY.5198_Cluster263
+"UC (Franzosa, 2019)",P__PWY.5667,272,P__PWY.5667_Cluster272
+"UC (Franzosa, 2019)",P__PWY0.1319,272,P__PWY.5667_Cluster272
+"UC (Franzosa, 2019)",P__PWY.5686,276,P__PWY.5686_Cluster276
+"UC (Franzosa, 2019)",P__PWY.7790,276,P__PWY.5686_Cluster276
+"UC (Franzosa, 2019)",P__PWY.7791,276,P__PWY.5686_Cluster276
+"UC (Franzosa, 2019)",P__PWY.5838,280,P__PWY.5838_Cluster280
+"UC (Franzosa, 2019)",P__PWY.5861,280,P__PWY.5838_Cluster280
+"UC (Franzosa, 2019)",P__PWY.5897,280,P__PWY.5838_Cluster280
+"UC (Franzosa, 2019)",P__PWY.5898,280,P__PWY.5838_Cluster280
+"UC (Franzosa, 2019)",P__PWY.5899,280,P__PWY.5838_Cluster280
+"UC (Franzosa, 2019)",P__PWY.5845,282,P__PWY.5845_Cluster282
+"UC (Franzosa, 2019)",P__PWY.5862,282,P__PWY.5845_Cluster282
+"UC (Franzosa, 2019)",P__PWY.6122,296,P__PWY.6122_Cluster296
+"UC (Franzosa, 2019)",P__PWY.6277,296,P__PWY.6122_Cluster296
+"UC (Franzosa, 2019)",P__PWY.6125,298,P__PWY.6125_Cluster298
+"UC (Franzosa, 2019)",P__PWY.7228,298,P__PWY.6125_Cluster298
+"UC (Franzosa, 2019)",P__PWY.6126,299,P__PWY.6126_Cluster299
+"UC (Franzosa, 2019)",P__PWY.7229,299,P__PWY.6126_Cluster299
+"UC (Franzosa, 2019)",P__PWY.7220,349,P__PWY.7220_Cluster349
+"UC (Franzosa, 2019)",P__PWY.7222,349,P__PWY.7220_Cluster349
+"UC (Franzosa, 2019)",P__PWY.7371,360,P__PWY.7371_Cluster360
+"UC (Franzosa, 2019)",P__PWY.7992,360,P__PWY.7371_Cluster360
+"UC (Franzosa, 2019)",P__PWY0.845,400,P__PWY0.845_Cluster400
+"UC (Franzosa, 2019)",P__PYRIDOXSYN.PWY,400,P__PWY0.845_Cluster400
+"UC (Franzosa, 2019)",P__PWY4FS.7,403,P__PWY4FS.7_Cluster403
+"UC (Franzosa, 2019)",P__PWY4FS.8,403,P__PWY4FS.7_Cluster403
+"UC (Franzosa, 2019)",M__C18.neg_Cluster_0354..arachidonic.acid,443,M__C18.neg_Cluster_0354..arachidonic.acid_Cluster443
+"UC (Franzosa, 2019)",M__C18.neg_Cluster_0709..arachidonic.acid,443,M__C18.neg_Cluster_0354..arachidonic.acid_Cluster443
+"UC (Franzosa, 2019)",M__C18.neg_Cluster_0930..cholate,466,M__C18.neg_Cluster_0930..cholate_Cluster466
+"UC (Franzosa, 2019)",M__C18.neg_Cluster_1258..cholate,466,M__C18.neg_Cluster_0930..cholate_Cluster466
+"UC (Franzosa, 2019)",M__C18.neg_Cluster_1275..oleanolic.acid,476,M__C18.neg_Cluster_1275..oleanolic.acid_Cluster476
+"UC (Franzosa, 2019)",M__C18.neg_Cluster_1596..oleanolic.acid,476,M__C18.neg_Cluster_1275..oleanolic.acid_Cluster476
+"UC (Nielsen, 2014)",P__CENTFERM.PWY,183,P__CENTFERM.PWY_Cluster183
+"UC (Nielsen, 2014)",P__PWY.6590,183,P__CENTFERM.PWY_Cluster183
+"UC (Nielsen, 2014)",P__FOLSYN.PWY,196,P__FOLSYN.PWY_Cluster196
+"UC (Nielsen, 2014)",P__PWY.6612,196,P__FOLSYN.PWY_Cluster196
+"UC (Nielsen, 2014)",P__GALACTARDEG.PWY,200,P__GALACTARDEG.PWY_Cluster200
+"UC (Nielsen, 2014)",P__GLUCARGALACTSUPER.PWY,200,P__GALACTARDEG.PWY_Cluster200
+"UC (Nielsen, 2014)",P__PWY.5667,282,P__PWY.5667_Cluster282
+"UC (Nielsen, 2014)",P__PWY0.1319,282,P__PWY.5667_Cluster282
+"UC (Nielsen, 2014)",P__PWY.5973,298,P__PWY.5973_Cluster298
+"UC (Nielsen, 2014)",P__PWY.7663,298,P__PWY.5973_Cluster298
+"UC (Nielsen, 2014)",P__PWY.6122,303,P__PWY.6122_Cluster303
+"UC (Nielsen, 2014)",P__PWY.6277,303,P__PWY.6122_Cluster303
+"UC (Nielsen, 2014)",P__PWY4FS.7,386,P__PWY4FS.7_Cluster386
+"UC (Nielsen, 2014)",P__PWY4FS.8,386,P__PWY4FS.7_Cluster386

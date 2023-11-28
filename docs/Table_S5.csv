@@ -1,100 +1,427 @@
-Dataset,Module,Module size,Module AUC,Average shuffled module AUC (Null model),SD shuffled module AUC (Null model),Average inter-view correlations,Average shuffled inter-view correlations (Null model),SD shuffled inter-view correlations (Null model),All modules AUC (Random Forest),All modules AUC (Logistic Regression),Pipeline settings
-cd_franzosa_2019,1,20,0.564,0.87,0.044,0.34709870785958424,0.15014036505911585,0.022409354098605876,0.961,0.968,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cd_franzosa_2019,2,10,0.751,0.827,0.066,0.39514291571632776,0.15930012181323336,0.03497358046689472,0.961,0.968,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cd_franzosa_2019,3,21,0.951,0.863,0.045,0.5531087468859778,0.1571112489340978,0.023282039714777228,0.961,0.968,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cd_franzosa_2019,4,9,0.462,0.789,0.075,0.27570208721850803,0.13438701362054,0.031735346645737336,0.961,0.968,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cd_franzosa_2019,5,6,0.639,0.806,0.077,0.18293947935431554,0.13860998469424304,0.05415994650242041,0.961,0.968,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cirrhosis_qin_2014,1,20,0.54,0.76,0.049,0.31661503956492903,0.1649174269318417,0.026633274895869495,0.905,0.926,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cirrhosis_qin_2014,2,17,0.916,0.793,0.055,0.5825733906205354,0.14904067322981462,0.029574443701110002,0.905,0.926,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-cirrhosis_qin_2014,3,13,0.591,0.74,0.046,0.5533129082739088,0.16308226656483674,0.042554048413702715,0.905,0.926,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_feng_2015,1,10,0.599,0.618,0.051,0.5727721518997915,0.1877788655910803,0.04152616535561185,0.715,0.807,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_feng_2015,2,8,0.732,0.622,0.057,0.596424454029244,0.16727533342994916,0.04172134878387443,0.715,0.807,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_feng_2015,3,9,0.663,0.618,0.052,0.5512198399679158,0.17560570081307378,0.04884730028142093,0.715,0.807,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_feng_2015,4,2,0.625,0.586,0.064,0.7021996824900011,0.10806196919665831,0.08261304723545691,0.715,0.807,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,1,10,0.649,0.535,0.031,0.5471529780740247,0.23845635843676888,0.07205139588642585,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,2,2,0.576,0.551,0.07,NA,NA,NA,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,3,6,0.528,0.526,0.032,0.13014515275398275,0.09548094975302746,0.04873450752776881,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,4,5,0.623,0.535,0.038,0.30463106621365343,0.1186335501176032,0.04635890080165362,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,5,2,0.573,0.568,0.062,NA,NA,NA,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,6,6,0.629,0.524,0.034,NA,NA,NA,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,7,7,0.545,0.523,0.027,NA,NA,NA,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,8,2,0.598,0.538,0.04,NA,NA,NA,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s0_yachida_2019,9,2,0.537,0.539,0.045,NA,NA,NA,0.637,0.703,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s3_s4_yachida_2019,1,24,0.519,0.524,0.02,0.5433928571545813,0.17615055605158375,0.03160167323308871,0.634,0.697,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s3_s4_yachida_2019,2,7,0.704,0.527,0.024,0.32034790350560177,0.20340776597751137,0.07812937036039175,0.634,0.697,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s3_s4_yachida_2019,3,10,0.586,0.516,0.021,0.578524549523684,0.2110095429251375,0.0868190216412832,0.634,0.697,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_s3_s4_yachida_2019,4,8,0.542,0.519,0.021,NA,NA,NA,0.634,0.697,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_wirbel_2018,1,17,0.546,0.572,0.049,0.3611431550401614,0.1402380930229359,0.02624284129320216,0.592,0.64,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_wirbel_2018,2,46,0.643,0.579,0.031,0.347962228381314,0.15354231326423254,0.01579204508905447,0.592,0.64,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_wirbel_2018,3,10,0.637,0.567,0.042,0.3818349698723358,0.1857988724082242,0.03982087134205602,0.592,0.64,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_wirbel_2018,4,14,0.571,0.569,0.044,0.6129644630787244,0.19631801389688755,0.047229145736732404,0.592,0.64,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_wirbel_2018,5,2,0.612,0.561,0.06,0.26023334341758525,0.09230226643918933,0.06851380815587596,0.592,0.64,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_wirbel_2018,6,2,0.597,0.566,0.067,0.3638659380566774,0.08332815217195842,0.0735117530568593,0.592,0.64,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,1,15,0.548,0.511,0.023,0.46996143471218155,0.1643008890163575,0.03142896356474491,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,2,12,0.561,0.513,0.029,0.5020156344756626,0.10611114116570282,0.02971275094183885,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,3,9,0.572,0.519,0.03,0.33624245852936036,0.10043736896782836,0.032377475375176865,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,4,3,0.53,0.537,0.045,0.5342405404652039,0.09356659368817004,0.05290774434589516,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,5,2,0.582,0.557,0.051,0.2663233984050199,0.1098680519355818,0.08731087252152948,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,6,10,0.854,0.534,0.056,0.2848680636810502,0.09867339354132157,0.02510153771931335,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,7,2,0.63,0.552,0.054,0.30227395070493307,0.10355876379766639,0.09244211195423796,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_yu_2015,8,2,0.629,0.569,0.062,NA,NA,NA,0.823,0.846,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_zeller_2014,1,7,0.703,0.61,0.048,0.5472375462920778,0.1369543978086544,0.04343554861152976,0.755,0.817,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_zeller_2014,2,8,0.653,0.592,0.061,0.30833723596407703,0.1201291015812625,0.032385703503402564,0.755,0.817,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_zeller_2014,3,10,0.632,0.618,0.041,0.5399741618244853,0.1575276605966946,0.0394089463185297,0.755,0.817,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_zeller_2014,4,4,0.629,0.609,0.046,0.3648309631086496,0.09174152094258992,0.050390132394242046,0.755,0.817,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-crc_zeller_2014,5,4,0.509,0.597,0.048,0.6980274109266669,0.09769757520463677,0.06530824381169113,0.755,0.817,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,1,15,0.946,0.576,0.054,0.31410017721706424,0.0948065497384981,0.01485626505130289,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,2,11,0.448,0.566,0.042,0.3990159072198884,0.12672650488459908,0.028956940682322675,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,3,6,0.72,0.563,0.051,0.4177235505605884,0.14170915480894603,0.05585348487290207,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,4,3,0.624,0.592,0.06,0.7527277049151814,0.16439077642733038,0.08755405465260926,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,5,9,0.625,0.56,0.036,0.6941780345203153,0.15963861418076233,0.044562402987505245,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,6,10,0.506,0.563,0.031,0.4799579172343384,0.14761566697270195,0.0384848435274607,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,7,3,0.544,0.644,0.108,NA,NA,NA,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-esrd_wang_2020,8,4,0.549,0.615,0.084,0.30742292354677286,0.08330185066545835,0.03554446753293586,0.958,0.954,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,1,16,0.567,0.606,0.05,0.3832526821392565,0.16114237576290744,0.02592962704926162,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,2,15,0.64,0.594,0.048,0.5055061367323396,0.18864321369791612,0.04299797814567016,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,3,11,0.741,0.606,0.068,0.34273840101596487,0.1012099456754413,0.022587501521721752,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,4,2,0.539,0.585,0.044,NA,NA,NA,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,5,5,0.587,0.591,0.051,0.5439242530938112,0.09538885986629625,0.04140388293286522,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,6,4,0.499,0.591,0.057,0.5058917589128599,0.10768657955249038,0.04758856817365869,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-igt_karlsson_2013,7,2,0.598,0.573,0.053,NA,NA,NA,0.706,0.755,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-me_cfs_nagySzakal_2017,1,11,0.605,0.527,0.051,0.40087560674357076,0.1591279069264426,0.033440268761378726,0.806,0.858,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-me_cfs_nagySzakal_2017,2,8,0.73,0.555,0.059,0.2990828913288114,0.13754962698959883,0.03300077915715619,0.806,0.858,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-me_cfs_nagySzakal_2017,3,11,0.604,0.531,0.05,0.44587973708939777,0.11188444212667083,0.02437421539872845,0.806,0.858,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-me_cfs_nagySzakal_2017,4,5,0.638,0.564,0.074,0.4082250712893314,0.10999225808166768,0.0458092427518812,0.806,0.858,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-schizofrenia_zhu_2020,1,16,0.541,0.513,0.022,0.7552851572793103,0.21298327794041752,0.04730589578951628,0.595,0.667,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-schizofrenia_zhu_2020,2,44,0.537,0.52,0.017,0.2330908730273085,0.14982346461129623,0.017976416312432335,0.595,0.667,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-schizofrenia_zhu_2020,3,2,0.562,0.545,0.039,NA,NA,NA,0.595,0.667,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-schizofrenia_zhu_2020,4,3,0.55,0.558,0.043,0.4685545249229197,0.0920552537143684,0.053211615097003256,0.595,0.667,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-schizofrenia_zhu_2020,5,2,0.613,0.542,0.038,NA,NA,NA,0.595,0.667,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-schizofrenia_zhu_2020,6,5,0.608,0.547,0.046,0.5126673145565094,0.10007811582232849,0.047243171550709,0.595,0.667,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-sth_rubel_2020,1,14,0.711,0.55,0.077,0.37680585726997073,0.13500755599398187,0.028302218927349455,0.845,0.865,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-sth_rubel_2020,2,9,0.819,0.542,0.046,0.5740618357915465,0.1445316499850853,0.040864179333844695,0.845,0.865,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-sth_rubel_2020,3,9,0.604,0.546,0.042,0.35689077029470156,0.1603898015661589,0.04615664716485691,0.845,0.865,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-sth_rubel_2020,4,2,0.869,0.63,0.087,NA,NA,NA,0.845,0.865,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-sth_rubel_2020,5,4,0.513,0.665,0.091,NA,NA,NA,0.845,0.865,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_karlsson_2013,1,17,0.599,0.514,0.032,0.46714775581376855,0.16300475045759197,0.030408428212000606,0.69,0.747,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_karlsson_2013,2,15,0.72,0.514,0.03,0.27596412950391014,0.14730228886845606,0.028128030532850668,0.69,0.747,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_karlsson_2013,3,9,0.544,0.514,0.035,0.5017574898705588,0.0889480504246264,0.036808186409776726,0.69,0.747,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_karlsson_2013,4,12,0.644,0.514,0.038,0.3030900433573523,0.09455678433363633,0.022696975315982255,0.69,0.747,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_karlsson_2013,5,5,0.489,0.522,0.038,0.4721232919873424,0.10141602954847267,0.06795258397778503,0.69,0.747,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_karlsson_2013,6,3,0.586,0.536,0.044,0.44596100648579307,0.09827111889674887,0.053140268272380484,0.69,0.747,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_qin_2012,1,10,0.493,0.551,0.022,0.5387137176180181,0.15788013418296107,0.042987208324782075,0.679,0.709,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_qin_2012,2,8,0.583,0.554,0.026,0.666266255507258,0.1733175711034532,0.05010226680053237,0.679,0.709,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_qin_2012,3,8,0.538,0.554,0.026,0.7069534233693795,0.12197169268681662,0.03764136442700825,0.679,0.709,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_qin_2012,4,9,0.552,0.553,0.024,0.45947653670477573,0.13359379762754045,0.045516236931656434,0.679,0.709,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-t2d_qin_2012,5,4,0.713,0.546,0.038,0.13185179707454017,0.09145488049161352,0.05061814995866935,0.679,0.709,keep_5//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_franzosa_2019,1,9,0.596,0.651,0.053,0.43384084081251406,0.17304086929626056,0.04463404597381997,0.797,0.845,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_franzosa_2019,2,22,0.796,0.714,0.049,0.5566066307251746,0.16059660298251788,0.024874937898376907,0.797,0.845,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_franzosa_2019,3,10,0.509,0.633,0.047,0.6849903221400735,0.23382753480295645,0.060861808004603946,0.797,0.845,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_franzosa_2019,4,6,0.782,0.703,0.076,0.3148207103386738,0.1398202252284526,0.04773054439562798,0.797,0.845,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_franzosa_2019,5,7,0.483,0.606,0.043,0.5367907722126948,0.14017143010125216,0.06338199485989411,0.797,0.845,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_franzosa_2019,6,2,0.472,0.588,0.05,NA,NA,NA,0.797,0.845,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,1,21,0.564,0.527,0.034,0.3654682063964814,0.1251173169647089,0.016753834185554144,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,2,19,0.653,0.539,0.036,0.40280239277716345,0.12212460655936466,0.018317606107381448,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,3,21,0.58,0.533,0.035,0.5257683428349503,0.11445652421421172,0.015439838028005656,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,4,5,0.521,0.532,0.037,0.2690812739194191,0.08994016169819859,0.048340549443449204,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,5,3,0.5,0.541,0.042,0.3646636094721264,0.09869377617529848,0.06376041755483057,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,6,2,0.604,0.523,0.036,NA,NA,NA,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,7,2,0.65,0.545,0.047,0.13311523801126302,0.09537307053466049,0.09057441109723913,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
-uc_spain_nielsen_2014,8,2,0.599,0.542,0.046,0.6605663101316994,0.09798057721624687,0.09926714148379841,0.643,0.743,keep_10//des_0.666//nrep_10//nfol_10//ncom_5//edge_0.8
+Dataset,Module,Feature,Feature description
+"CD (Franzosa, 2019)",1,M__C18.neg_Cluster_2021..urobilin,C18.neg_Cluster_2021..urobilin
+"CD (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0441..sebacate,HILIC.neg_Cluster_0441..sebacate
+"CD (Franzosa, 2019)",1,M__HILIC.pos_Cluster_1486..C16.carnitine,HILIC.pos_Cluster_1486..C16.carnitine
+"CD (Franzosa, 2019)",1,M__HILIC.pos_Cluster_2093..urobilin.,HILIC.pos_Cluster_2093..urobilin.
+"CD (Franzosa, 2019)",1,P__ARGSYN.PWY_Cluster163,L-arginine biosynthesis I (via L-ornithine) [Clustered features]
+"CD (Franzosa, 2019)",1,P__HISTSYN.PWY,L-histidine biosynthesis
+"CD (Franzosa, 2019)",1,P__NONMEVIPP.PWY,methylerythritol phosphate pathway I
+"CD (Franzosa, 2019)",1,P__PWY.6163,chorismate biosynthesis from 3-dehydroquinate
+"CD (Franzosa, 2019)",1,P__PWY.6292,superpathway of L-cysteine biosynthesis (mammalian)
+"CD (Franzosa, 2019)",1,P__PWY.6385,peptidoglycan biosynthesis III (mycobacteria)
+"CD (Franzosa, 2019)",1,P__PWY.6700,queuosine biosynthesis I (_de novo_)
+"CD (Franzosa, 2019)",1,P__PWY.7953,UDP-_N_-acetylmuramoyl-pentapeptide biosynthesis III (_meso_-diaminopimelate containing)
+"CD (Franzosa, 2019)",1,P__PWY0.1298,superpathway of pyrimidine deoxyribonucleosides degradation
+"CD (Franzosa, 2019)",1,T__Alistipes_shahii,Alistipes_shahii
+"CD (Franzosa, 2019)",1,T__Asaccharobacter_celatus,Asaccharobacter_celatus
+"CD (Franzosa, 2019)",1,T__Coprococcus_catus,Coprococcus_catus
+"CD (Franzosa, 2019)",1,T__Enterorhabdus_caecimuris,Enterorhabdus_caecimuris
+"CD (Franzosa, 2019)",1,T__Gemmiger_formicilis,Gemmiger_formicilis
+"CD (Franzosa, 2019)",1,T__Roseburia_hominis,Roseburia_hominis
+"CD (Franzosa, 2019)",1,T__Ruminococcus_bicirculans,Ruminococcus_bicirculans
+"CD (Franzosa, 2019)",2,M__C8.pos_Cluster_1817..C34.2.PC,C8.pos_Cluster_1817..C34.2.PC
+"CD (Franzosa, 2019)",2,M__C8.pos_Cluster_1902..C46.2.TAG.,C8.pos_Cluster_1902..C46.2.TAG.
+"CD (Franzosa, 2019)",2,M__C8.pos_Cluster_2022..C49.1.TAG,C8.pos_Cluster_2022..C49.1.TAG
+"CD (Franzosa, 2019)",2,M__HILIC.pos_Cluster_2372..C36.2.PC.,HILIC.pos_Cluster_2372..C36.2.PC.
+"CD (Franzosa, 2019)",2,P__PWY.5265,peptidoglycan biosynthesis II (staphylococci)
+"CD (Franzosa, 2019)",2,P__PWY.6396,"superpathway of 2,3-butanediol biosynthesis"
+"CD (Franzosa, 2019)",2,P__PWY.7761,"NAD salvage pathway II (PNC IV cycle)"
+"CD (Franzosa, 2019)",2,T__Bifidobacterium_dentium,Bifidobacterium_dentium
+"CD (Franzosa, 2019)",2,T__Enterococcus_faecalis,Enterococcus_faecalis
+"CD (Franzosa, 2019)",2,T__Lachnospira_pectinoschiza,Lachnospira_pectinoschiza
+"CD (Franzosa, 2019)",2,T__Prevotella_copri,Prevotella_copri
+"CD (Franzosa, 2019)",2,T__Streptococcus_lutetiensis,Streptococcus_lutetiensis
+"CD (Franzosa, 2019)",2,T__Veillonella_dispar,Veillonella_dispar
+"CD (Franzosa, 2019)",2,T__Veillonella_infantium,Veillonella_infantium
+"CD (Franzosa, 2019)",3,M__HILIC.neg_Cluster_0003..propionate,HILIC.neg_Cluster_0003..propionate
+"CD (Franzosa, 2019)",3,M__HILIC.neg_Cluster_0013..butyrate...isobutytare.,HILIC.neg_Cluster_0013..butyrate...isobutytare.
+"CD (Franzosa, 2019)",3,T__Actinomyces_sp_oral_taxon_181,Actinomyces_sp_oral_taxon_181
+"CD (Franzosa, 2019)",3,T__Enterococcus_faecium,Enterococcus_faecium
+"CD (Franzosa, 2019)",3,T__Leuconostoc_citreum,Leuconostoc_citreum
+"CD (Franzosa, 2019)",3,T__Streptococcus_thermophilus,Streptococcus_thermophilus
+"Cirrhosis (Qin, 2014)",1,P__ASPASN.PWY,superpathway of L-aspartate and L-asparagine biosynthesis
+"Cirrhosis (Qin, 2014)",1,P__AST.PWY,L-arginine degradation II (AST pathway)
+"Cirrhosis (Qin, 2014)",1,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster178,catechol degradation to &beta;-ketoadipate [Clustered features]
+"Cirrhosis (Qin, 2014)",1,P__GOLPDLCAT.PWY,"superpathway of glycerol degradation to 1,3-propanediol"
+"Cirrhosis (Qin, 2014)",1,P__P221.PWY,octane oxidation
+"Cirrhosis (Qin, 2014)",1,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster256,protocatechuate degradation II (ortho-cleavage pathway) [Clustered features]
+"Cirrhosis (Qin, 2014)",1,P__PWY.2941,L-lysine biosynthesis II
+"Cirrhosis (Qin, 2014)",1,P__PWY.3801,sucrose degradation II (sucrose synthase)
+"Cirrhosis (Qin, 2014)",1,P__PWY.6182_Cluster320,superpathway of salicylate degradation [Clustered features]
+"Cirrhosis (Qin, 2014)",1,P__PWY.7013,"(_S_)-propane-1,2-diol degradation"
+"Cirrhosis (Qin, 2014)",1,P__PWY.7200,superpathway of pyrimidine deoxyribonucleoside salvage
+"Cirrhosis (Qin, 2014)",1,P__PWY0.1586,peptidoglycan maturation (_meso_-diaminopimelate containing)
+"Cirrhosis (Qin, 2014)",1,P__THREOCAT.PWY,superpathway of L-threonine metabolism
+"Cirrhosis (Qin, 2014)",1,T__.Clostridium..symbiosum, Clostridium  symbiosum
+"Cirrhosis (Qin, 2014)",1,T__.Ruminococcus..gnavus, Ruminococcus  gnavus
+"Cirrhosis (Qin, 2014)",1,T__Adlercreutzia.equolifaciens,Adlercreutzia equolifaciens
+"Cirrhosis (Qin, 2014)",1,T__Anaerobutyricum.hallii,Anaerobutyricum hallii
+"Cirrhosis (Qin, 2014)",1,T__Coprococcus.catus,Coprococcus catus
+"Cirrhosis (Qin, 2014)",1,T__Klebsiella.pneumoniae,Klebsiella pneumoniae
+"Cirrhosis (Qin, 2014)",1,T__Klebsiella.quasipneumoniae,Klebsiella quasipneumoniae
+"Cirrhosis (Qin, 2014)",1,T__Klebsiella.variicola,Klebsiella variicola
+"Cirrhosis (Qin, 2014)",2,P__FOLSYN.PWY_Cluster193,superpathway of tetrahydrofolate biosynthesis and salvage [Clustered features]
+"Cirrhosis (Qin, 2014)",2,P__HEME.BIOSYNTHESIS.II,heme _b_ biosynthesis I (aerobic)
+"Cirrhosis (Qin, 2014)",2,P__HOMOSER.METSYN.PWY,L-methionine biosynthesis I
+"Cirrhosis (Qin, 2014)",2,P__MET.SAM.PWY_Cluster226,superpathway of _S_-adenosyl-L-methionine biosynthesis [Clustered features]
+"Cirrhosis (Qin, 2014)",2,P__PWY.5347,superpathway of L-methionine biosynthesis (transsulfuration)
+"Cirrhosis (Qin, 2014)",2,P__PWY.5837,"2-carboxy-1,4-naphthoquinol biosynthesis"
+"Cirrhosis (Qin, 2014)",2,P__PWY.5863,superpathway of phylloquinol biosynthesis
+"Cirrhosis (Qin, 2014)",2,P__PWY.5897_Cluster302,superpathway of menaquinol-11 biosynthesis [Clustered features]
+"Cirrhosis (Qin, 2014)",2,T__Campylobacter.concisus,Campylobacter concisus
+"Cirrhosis (Qin, 2014)",2,T__Haemophilus.parainfluenzae,Haemophilus parainfluenzae
+"Cirrhosis (Qin, 2014)",2,T__Megasphaera.micronuciformis,Megasphaera micronuciformis
+"Cirrhosis (Qin, 2014)",2,T__Veillonella.atypica,Veillonella atypica
+"Cirrhosis (Qin, 2014)",2,T__Veillonella.dispar,Veillonella dispar
+"Cirrhosis (Qin, 2014)",2,T__Veillonella.infantium,Veillonella infantium
+"Cirrhosis (Qin, 2014)",2,T__Veillonella.parvula,Veillonella parvula
+"Cirrhosis (Qin, 2014)",2,T__Veillonella.sp..T11011.6,Veillonella sp  T11011 6
+"CRC (Feng, 2015)",1,P__PWY.4984,urea cycle
+"CRC (Feng, 2015)",1,P__PWY.5100,pyruvate fermentation to acetate and lactate II
+"CRC (Feng, 2015)",1,P__PWY.5973,_cis_-vaccenate biosynthesis
+"CRC (Feng, 2015)",1,P__PWY.7663,gondoate biosynthesis (anaerobic)
+"CRC (Feng, 2015)",1,P__PWY0.845,superpathway of pyridoxal 5'-phosphate biosynthesis and salvage
+"CRC (Feng, 2015)",1,P__PYRIDOXSYN.PWY,pyridoxal 5'-phosphate biosynthesis I
+"CRC (Feng, 2015)",1,P__THISYN.PWY,superpathway of thiamine diphosphate biosynthesis I
+"CRC (Feng, 2015)",1,T__Bacteroides.ovatus,Bacteroides ovatus
+"CRC (Feng, 2015)",1,T__Bacteroides.uniformis,Bacteroides uniformis
+"CRC (Feng, 2015)",1,T__Parabacteroides.distasonis,Parabacteroides distasonis
+"CRC (Feng, 2015)",2,P__PWY.5101_Cluster287,L-isoleucine biosynthesis II [Clustered features]
+"CRC (Feng, 2015)",2,T__Gemella.morbillorum,Gemella morbillorum
+"CRC (Feng, 2015)",2,T__Oscillibacter.sp..CAG.241,Oscillibacter sp  CAG 241
+"CRC (Feng, 2015)",2,T__Parvimonas.micra,Parvimonas micra
+"CRC (Feng, 2015)",3,P__PWY.6284,superpathway of unsaturated fatty acids biosynthesis (_E. coli_)
+"CRC (Feng, 2015)",3,P__PWY.6285,superpathway of fatty acids biosynthesis (_E. coli_)
+"CRC (Feng, 2015)",3,T__.Ruminococcus..torques, Ruminococcus  torques
+"CRC (Feng, 2015)",3,T__Escherichia.coli,Escherichia coli
+"CRC (Yachida, 2019)",1,M__C00073_Met,C00073_Met
+"CRC (Yachida, 2019)",1,M__C00082_Tyr,C00082_Tyr
+"CRC (Yachida, 2019)",1,M__C00122_Fumarate,C00122_Fumarate
+"CRC (Yachida, 2019)",1,M__C00123_Leu,C00123_Leu
+"CRC (Yachida, 2019)",1,M__C00127_Glutathione.ox.,C00127_Glutathione.ox.
+"CRC (Yachida, 2019)",1,M__C00152_Asn,C00152_Asn
+"CRC (Yachida, 2019)",1,M__C00183_Val,C00183_Val
+"CRC (Yachida, 2019)",1,M__C00407_Ile,C00407_Ile
+"CRC (Yachida, 2019)",1,M__C01425_Glu.Glu,C01425_Glu.Glu
+"CRC (Yachida, 2019)",1,M__C05984_2.Hydroxybutyrate,C05984_2.Hydroxybutyrate
+"CRC (Yachida, 2019)",1,M__Cysteine.glutathione.disulphide..Divalent,Cysteine.glutathione.disulphide..Divalent
+"CRC (Yachida, 2019)",1,P__DARABCATK12.PWY,D-arabinose degradation II
+"CRC (Yachida, 2019)",1,P__FAO.PWY,fatty acid &beta;-oxidation I (generic)
+"CRC (Yachida, 2019)",1,P__GALACTARDEG.PWY_Cluster653,D-galactarate degradation I [Clustered features]
+"CRC (Yachida, 2019)",1,P__GLUCARDEG.PWY,_D_-glucarate degradation I
+"CRC (Yachida, 2019)",1,P__GLYCOL.GLYOXDEG.PWY,superpathway of glycol metabolism and degradation
+"CRC (Yachida, 2019)",1,P__GLYOXYLATE.BYPASS,glyoxylate cycle
+"CRC (Yachida, 2019)",1,P__PWY.5189,tetrapyrrole biosynthesis II (from glycine)
+"CRC (Yachida, 2019)",1,P__PWY.5675,nitrate reduction V (assimilatory)
+"CRC (Yachida, 2019)",1,P__PWY.5705,allantoin degradation to glyoxylate III
+"CRC (Yachida, 2019)",1,P__PWY.5918,superpathway of heme _b_ biosynthesis from glutamate
+"CRC (Yachida, 2019)",1,P__PWY.6961,"L-ascorbate degradation II (bacterial, aerobic)"
+"CRC (Yachida, 2019)",1,P__PWY0.42,2-methylcitrate cycle I
+"CRC (Yachida, 2019)",1,P__TCA.GLYOX.BYPASS,superpathway of glyoxylate bypass and TCA
+"CRC (Yachida, 2019)",1,T__Enterobacter.hormaechei,Enterobacter hormaechei
+"CRC (Yachida, 2019)",1,T__Pantoea.coffeiphila,Pantoea coffeiphila
+"CRC (Yachida, 2019)",1,T__Pantoea.gaviniae_Cluster445,Pantoea gaviniae [Clustered features]
+"CRC (Yachida, 2019)",1,T__Salmonella.bongori,Salmonella bongori
+"CRC (Yachida, 2019)",1,T__Salmonella.enterica.subsp..enterica,Salmonella enterica subsp  enterica
+"CRC (Yachida, 2019)",1,T__Salmonella.subterranea_Cluster317,Salmonella subterranea [Clustered features]
+"CRC (Yachida, 2019)",1,T__Serratia.marcescens.subsp..sakuensis,Serratia marcescens subsp  sakuensis
+"CRC (Yachida, 2019)",1,T__Shigella.flexneri_Cluster280,Shigella flexneri [Clustered features]
+"CRC (Yachida, 2019)",1,T__Shimwellia.pseudoproteus,Shimwellia pseudoproteus
+"CRC (Yachida, 2019)",1,T__Tatumella.citrea,Tatumella citrea
+"CRC (Yachida, 2019)",1,T__Tatumella.morbirosei,Tatumella morbirosei
+"CRC (Yachida, 2019)",1,T__Trabulsiella.guamensis,Trabulsiella guamensis
+"CRC (Yachida, 2019)",2,M__C00099_beta.Ala,C00099_beta.Ala
+"CRC (Yachida, 2019)",2,M__C00134_Putrescine,C00134_Putrescine
+"CRC (Yachida, 2019)",2,M__C00263_Homoserine,C00263_Homoserine
+"CRC (Yachida, 2019)",2,M__C00334_GABA,C00334_GABA
+"CRC (Yachida, 2019)",2,M__C00612_N1.Acetylspermidine,C00612_N1.Acetylspermidine
+"CRC (Yachida, 2019)",2,M__C02714_N.Acetylputrescine,C02714_N.Acetylputrescine
+"CRC (Yachida, 2019)",2,M__C03413_N1.N12.Diacetylspermine,C03413_N1.N12.Diacetylspermine
+"CRC (Yachida, 2019)",2,M__C03793_N6.N6.N6.Trimethyllysine,C03793_N6.N6.N6.Trimethyllysine
+"CRC (Yachida, 2019)",2,M__C05135_4..beta.Acetylaminoethyl.imidazole,C05135_4..beta.Acetylaminoethyl.imidazole
+"CRC (Yachida, 2019)",2,M__C06103_6.Hydroxyhexanoate,C06103_6.Hydroxyhexanoate
+"CRC (Yachida, 2019)",2,M__C16741_5.Hydroxylysine,C16741_5.Hydroxylysine
+"CRC (Yachida, 2019)",2,M__N1.N8.Diacetylspermidine,N1.N8.Diacetylspermidine
+"CRC (Yachida, 2019)",2,P__GLYCOCAT.PWY,glycogen degradation I
+"CRC (Yachida, 2019)",2,P__PROPFERM.PWY_Cluster712,superpathway of L-alanine fermentation (Stickland reaction) [Clustered features]
+"CRC (Yachida, 2019)",2,P__PWY.5005,biotin biosynthesis II
+"CRC (Yachida, 2019)",2,P__PWY.5130,2-oxobutanoate degradation I
+"CRC (Yachida, 2019)",2,P__PWY.5677,succinate fermentation to butanoate
+"CRC (Yachida, 2019)",2,P__PWY.6969,TCA cycle V (2-oxoglutarate synthase)
+"CRC (Yachida, 2019)",2,P__PWY.7254,TCA cycle VII (acetate-producers)
+"CRC (Yachida, 2019)",2,P__PWY.7328,superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis
+"CRC (Yachida, 2019)",2,P__PWY.7400,L-arginine biosynthesis IV (archaea)
+"CRC (Yachida, 2019)",2,T__Alistipes.finegoldii,Alistipes finegoldii
+"CRC (Yachida, 2019)",2,T__Alistipes.shahii,Alistipes shahii
+"CRC (Yachida, 2019)",2,T__Butyricimonas.virosa,Butyricimonas virosa
+"CRC (Yachida, 2019)",2,T__Clostridium.viride,Clostridium viride
+"CRC (Yachida, 2019)",2,T__Intestinimonas.butyriciproducens,Intestinimonas butyriciproducens
+"CRC (Yachida, 2019)",2,T__Oscillibacter.ruminantium_Cluster348,Oscillibacter ruminantium [Clustered features]
+"CRC (Yachida, 2019)",2,T__Paenibacillus.sputi_Cluster205,Paenibacillus sputi [Clustered features]
+"CRC (Yachida, 2019)",2,T__Papillibacter.cinnamivorans,Papillibacter cinnamivorans
+"CRC (Yachida, 2019)",2,T__Pseudoflavonifractor.capillosus,Pseudoflavonifractor capillosus
+"CRC (Yachida, 2019)",2,T__Sporobacter.termitidis,Sporobacter termitidis
+"CRC (Yachida, 2019)",3,M__C00315_Spermidine,C00315_Spermidine
+"CRC (Yachida, 2019)",3,P__P125.PWY,"superpathway of (_R,R_)-butanediol biosynthesis"
+"CRC (Yachida, 2019)",3,P__P621.PWY,nylon-6 oligomer degradation
+"CRC (Yachida, 2019)",3,P__PWY.5910,superpathway of geranylgeranyldiphosphate biosynthesis I (via mevalonate)
+"CRC (Yachida, 2019)",3,P__PWY.7111,pyruvate fermentation to isobutanol (engineered)
+"CRC (Yachida, 2019)",3,P__PWY.922,mevalonate pathway I (eukaryotes and bacteria)
+"CRC (Yachida, 2019)",3,P__PWY.I9,L-cysteine biosynthesis VI (reverse transsulfuration)
+"CRC (Yachida, 2019)",4,M__C00398_Tryptamine,C00398_Tryptamine
+"CRC (Yachida, 2019)",4,M__C00483_Tyramine,C00483_Tyramine
+"CRC (Yachida, 2019)",4,M__C02678_Dodecanedioate,C02678_Dodecanedioate
+"CRC (Yachida, 2019)",4,M__C02735_Phenylethanolamine,C02735_Phenylethanolamine
+"CRC (Yachida, 2019)",4,M__C05332_Phenethylamine,C05332_Phenethylamine
+"CRC (Yachida, 2019)",4,P__ARGSYN.PWY,L-arginine biosynthesis I (via L-ornithine)
+"CRC (Yachida, 2019)",4,P__ARGSYNBSUB.PWY,L-arginine biosynthesis II (acetyl cycle)
+"CRC (Yachida, 2019)",4,P__GLUTORN.PWY,L-ornithine biosynthesis I
+"CRC (Yachida, 2019)",4,P__PWY.5941,glycogen degradation II
+"CRC (Yachida, 2019)",4,P__PWY.6125_Cluster768,superpathway of guanosine nucleotides _de novo_ biosynthesis II [Clustered features]
+"CRC (Yachida, 2019)",4,P__PWY.7220_Cluster819,adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features]
+"CRC (Yachida, 2019)",4,T__Anaerofilum.agile,Anaerofilum agile
+"CRC (Yachida, 2019)",4,T__Anaerofilum.pentosovorans,Anaerofilum pentosovorans
+"CRC (Yachida, 2019)",4,T__Clostridium.citroniae,Clostridium citroniae
+"CRC (Yachida, 2019)",4,T__Clostridium.straminisolvens,Clostridium straminisolvens
+"CRC (Yachida, 2019)",4,T__Faecalibacterium.prausnitzii,Faecalibacterium prausnitzii
+"CRC (Yachida, 2019)",4,T__Lachnospira.multipara,Lachnospira multipara
+"CRC (Yu, 2015)",1,P__ARGSYN.PWY_Cluster190,L-arginine biosynthesis I (via L-ornithine) [Clustered features]
+"CRC (Yu, 2015)",1,P__COBALSYN.PWY,superpathway of adenosylcobalamin salvage from cobinamide I
+"CRC (Yu, 2015)",1,P__GLUCUROCAT.PWY,superpathway of &beta;-D-glucuronosides degradation
+"CRC (Yu, 2015)",1,P__GLUTORN.PWY,L-ornithine biosynthesis I
+"CRC (Yu, 2015)",1,P__GLYCOGENSYNTH.PWY,glycogen biosynthesis I (from ADP-D-Glucose)
+"CRC (Yu, 2015)",1,P__P163.PWY,L-lysine fermentation to acetate and butanoate
+"CRC (Yu, 2015)",1,P__PWY.4981,L-proline biosynthesis II (from arginine)
+"CRC (Yu, 2015)",1,P__PWY.5177,glutaryl-CoA degradation
+"CRC (Yu, 2015)",1,P__PWY.6263,superpathway of menaquinol-8 biosynthesis II
+"CRC (Yu, 2015)",1,P__PWY.6317,D-galactose degradation I (Leloir pathway)
+"CRC (Yu, 2015)",1,P__PWY.7242,D-fructuronate degradation
+"CRC (Yu, 2015)",1,T__Agathobaculum.butyriciproducens,Agathobaculum butyriciproducens
+"CRC (Yu, 2015)",1,T__Alistipes.indistinctus,Alistipes indistinctus
+"CRC (Yu, 2015)",1,T__Cloacibacillus.porcorum,Cloacibacillus porcorum
+"CRC (Yu, 2015)",1,T__Coprococcus.comes,Coprococcus comes
+"CRC (Yu, 2015)",1,T__Dialister.pneumosintes,Dialister pneumosintes
+"CRC (Yu, 2015)",1,T__Enterocloster.citroniae,Enterocloster citroniae
+"CRC (Yu, 2015)",1,T__Escherichia.coli,Escherichia coli
+"CRC (Yu, 2015)",1,T__Eubacterium.ventriosum,Eubacterium ventriosum
+"CRC (Yu, 2015)",1,T__Faecalibacterium.prausnitzii,Faecalibacterium prausnitzii
+"CRC (Yu, 2015)",1,T__Fusicatenibacter.saccharivorans,Fusicatenibacter saccharivorans
+"CRC (Yu, 2015)",1,T__Fusobacterium.nucleatum,Fusobacterium nucleatum
+"CRC (Yu, 2015)",1,T__Haemophilus.parainfluenzae,Haemophilus parainfluenzae
+"CRC (Yu, 2015)",1,T__Intestinimonas.butyriciproducens,Intestinimonas butyriciproducens
+"CRC (Yu, 2015)",1,T__Roseburia.faecis,Roseburia faecis
+"CRC (Yu, 2015)",2,P__LACTOSECAT.PWY,lactose and galactose degradation I
+"CRC (Yu, 2015)",2,P__P164.PWY,purine nucleobases degradation I (anaerobic)
+"CRC (Yu, 2015)",2,T__Collinsella.aerofaciens,Collinsella aerofaciens
+"CRC (Yu, 2015)",2,T__Dorea.formicigenerans,Dorea formicigenerans
+"CRC (Yu, 2015)",2,T__Eggerthella.lenta,Eggerthella lenta
+"CRC (Yu, 2015)",3,P__P221.PWY,octane oxidation
+"CRC (Yu, 2015)",3,P__THREOCAT.PWY,superpathway of L-threonine metabolism
+"CRC (Yu, 2015)",3,T__Klebsiella.pneumoniae,Klebsiella pneumoniae
+"CRC (Yu, 2015)",3,T__Klebsiella.quasipneumoniae,Klebsiella quasipneumoniae
+"CRC (Yu, 2015)",3,T__Klebsiella.variicola,Klebsiella variicola
+"ESRD (Wang, 2020)",1,M__....Menthone,....Menthone
+"ESRD (Wang, 2020)",1,M__1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane,1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane
+"ESRD (Wang, 2020)",1,M__2.Heptanone..5.methyl.,2.Heptanone..5.methyl.
+"ESRD (Wang, 2020)",1,M__2.Oxohexane,2.Oxohexane
+"ESRD (Wang, 2020)",1,M__Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..,Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..
+"ESRD (Wang, 2020)",1,M__Benzene..1.ethyl.4.methyl.,Benzene..1.ethyl.4.methyl.
+"ESRD (Wang, 2020)",1,M__Butanoic.acid..butyl.ester,Butanoic.acid..butyl.ester
+"ESRD (Wang, 2020)",1,M__Pentadecanal,Pentadecanal
+"ESRD (Wang, 2020)",1,M__Pentanal..2.4.dimethyl.,Pentanal..2.4.dimethyl.
+"ESRD (Wang, 2020)",1,M__Propionic.acid,Propionic.acid
+"ESRD (Wang, 2020)",1,P__PWY.5484,glycolysis II (from fructose 6-phosphate)
+"ESRD (Wang, 2020)",1,P__PWY.5676,acetyl-CoA fermentation to butanoate
+"ESRD (Wang, 2020)",1,P__PWY.5686_Cluster281,UMP biosynthesis I [Clustered features]
+"ESRD (Wang, 2020)",1,P__PWY.6385,peptidoglycan biosynthesis III (mycobacteria)
+"ESRD (Wang, 2020)",1,P__PWY.6897,thiamine diphosphate salvage II
+"ESRD (Wang, 2020)",1,P__PWY.6901,superpathway of glucose and xylose degradation
+"ESRD (Wang, 2020)",1,P__PWY.7237,"_myo_-, _chiro_- and _scyllo_-inositol degradation"
+"ESRD (Wang, 2020)",1,P__PWY.7953,UDP-_N_-acetylmuramoyl-pentapeptide biosynthesis III (_meso_-diaminopimelate containing)
+"ESRD (Wang, 2020)",1,P__PWY.8004,Entner-Doudoroff pathway I
+"ESRD (Wang, 2020)",1,T__Coprococcus_eutactus,Coprococcus_eutactus
+"ESRD (Wang, 2020)",1,T__Eggerthella_lenta,Eggerthella_lenta
+"ESRD (Wang, 2020)",1,T__Eubacterium_ramulus,Eubacterium_ramulus
+"ESRD (Wang, 2020)",1,T__Flavonifractor_plautii,Flavonifractor_plautii
+"ESRD (Wang, 2020)",1,T__Gordonibacter_pamelaeae,Gordonibacter_pamelaeae
+"ESRD (Wang, 2020)",1,T__Lachnospira_pectinoschiza,Lachnospira_pectinoschiza
+"ESRD (Wang, 2020)",1,T__Megamonas_funiformis,Megamonas_funiformis
+"ESRD (Wang, 2020)",1,T__Prevotella_copri,Prevotella_copri
+"ESRD (Wang, 2020)",1,T__Roseburia_faecis,Roseburia_faecis
+"ESRD (Wang, 2020)",1,T__Ruthenibacterium_lactatiformans,Ruthenibacterium_lactatiformans
+"ESRD (Wang, 2020)",2,M__.S..3.4.Dimethylpentanol,.S..3.4.Dimethylpentanol
+"ESRD (Wang, 2020)",2,M__13.Methyltetradecanal,13.Methyltetradecanal
+"ESRD (Wang, 2020)",2,M__3.Phenylpropanol,3.Phenylpropanol
+"ESRD (Wang, 2020)",2,M__5.Tetradecene...E..,5.Tetradecene...E..
+"ESRD (Wang, 2020)",2,M__Cyclohexanol..4.ethenyl.4.methyl.3..1.methylethenyl..,Cyclohexanol..4.ethenyl.4.methyl.3..1.methylethenyl..
+"ESRD (Wang, 2020)",2,M__E.2.Hexadecacen.1.ol,E.2.Hexadecacen.1.ol
+"ESRD (Wang, 2020)",2,M__n.Pentadecanol,n.Pentadecanol
+"ESRD (Wang, 2020)",2,P__PWY.7220_Cluster354,adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features]
+"ESRD (Wang, 2020)",2,T__Alistipes_putredinis,Alistipes_putredinis
+"ESRD (Wang, 2020)",2,T__Oscillibacter_sp_57_20,Oscillibacter_sp_57_20
+"ESRD (Wang, 2020)",2,T__Ruminococcus_gnavus,Ruminococcus_gnavus
+"ESRD (Wang, 2020)",6,M__Indole,Indole
+"ESRD (Wang, 2020)",6,T__Anaerostipes_hadrus,Anaerostipes_hadrus
+"ESRD (Wang, 2020)",6,T__Bifidobacterium_longum,Bifidobacterium_longum
+"ESRD (Wang, 2020)",6,T__Bifidobacterium_pseudocatenulatum,Bifidobacterium_pseudocatenulatum
+MS (MetaCardis),1,P__M00376,3-Hydroxypropionate bi-cycle
+MS (MetaCardis),1,P__M00485,DEPRECATED PATHWAY/MODULE
+MS (MetaCardis),1,S__SERUM_ABS_alpha_ketoglutaric_acid,SERUM_ABS_alpha_ketoglutaric_acid
+MS (MetaCardis),1,S__SERUM_ABS_D_glucose_1,SERUM_ABS_D_glucose_1
+MS (MetaCardis),1,S__SERUM_ABS_D_mannose_1,SERUM_ABS_D_mannose_1
+MS (MetaCardis),1,S__SERUM_ABS_lactose_1,SERUM_ABS_lactose_1
+MS (MetaCardis),1,S__SERUM_ABS_pyruvic_acid,SERUM_ABS_pyruvic_acid
+MS (MetaCardis),1,S__SERUM_NMR_ABSOLUTE_Glutamic_acid,SERUM_NMR_ABSOLUTE_Glutamic_acid
+MS (MetaCardis),1,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,SERUM_NMR_ABSOLUTE_Pyruvic_acid
+MS (MetaCardis),1,T__Bacteroides_dorei_vulgatus,Bacteroides_dorei_vulgatus
+MS (MetaCardis),1,T__Bilophila_wadsworthia,Bilophila_wadsworthia
+MS (MetaCardis),1,T__motu_linkage_group_349,motu_linkage_group_349
+MS (MetaCardis),1,T__motu_linkage_group_456,motu_linkage_group_456
+MS (MetaCardis),1,T__Parabacteroides_merdae,Parabacteroides_merdae
+MS (MetaCardis),1,T__Pseudoflavonifractor_capillosus,Pseudoflavonifractor_capillosus
+MS (MetaCardis),1,T__Ruminococcus_sp__5_1_39BFAA,Ruminococcus_sp__5_1_39BFAA
+MS (MetaCardis),2,S__SERUM_ABS_citric_acid,SERUM_ABS_citric_acid
+MS (MetaCardis),2,S__SERUM_ABS_methyl_linolenate,SERUM_ABS_methyl_linolenate
+MS (MetaCardis),2,S__SERUM_ABS_phytanic_acid,SERUM_ABS_phytanic_acid
+MS (MetaCardis),2,T__motu_linkage_group_226,motu_linkage_group_226
+MS (MetaCardis),2,T__motu_linkage_group_646,motu_linkage_group_646
+"STH (Rubel, 2020)",1,P__ARGSYN.PWY_Cluster112,L-arginine biosynthesis I (via L-ornithine) [Clustered features]
+"STH (Rubel, 2020)",1,P__ARGSYNBSUB.PWY,L-arginine biosynthesis II (acetyl cycle)
+"STH (Rubel, 2020)",1,P__PWY.4981,L-proline biosynthesis II (from arginine)
+"STH (Rubel, 2020)",1,P__PWY0.1296,purine ribonucleosides degradation
+"STH (Rubel, 2020)",1,T__Faecalibacterium.prausnitzii,Faecalibacterium prausnitzii
+"STH (Rubel, 2020)",1,T__Firmicutes.bacterium.CAG.110,Firmicutes bacterium CAG 110
+"STH (Rubel, 2020)",1,T__Oscillibacter.sp..57_20,Oscillibacter sp  57_20
+"STH (Rubel, 2020)",1,T__Oscillibacter.sp..CAG.241,Oscillibacter sp  CAG 241
+"STH (Rubel, 2020)",2,P__COBALSYN.PWY,superpathway of adenosylcobalamin salvage from cobinamide I
+"STH (Rubel, 2020)",2,P__PENTOSE.P.PWY,pentose phosphate pathway
+"STH (Rubel, 2020)",2,P__PWY.2941,L-lysine biosynthesis II
+"STH (Rubel, 2020)",2,P__PWY.5941,glycogen degradation II
+"STH (Rubel, 2020)",2,P__PWY.7323,superpathway of GDP-mannose-derived O-antigen building blocks biosynthesis
+"STH (Rubel, 2020)",2,T__Alistipes.shahii,Alistipes shahii
+"STH (Rubel, 2020)",2,T__Bacteroides.thetaiotaomicron,Bacteroides thetaiotaomicron
+"STH (Rubel, 2020)",2,T__Bacteroides.uniformis,Bacteroides uniformis
+"STH (Rubel, 2020)",2,T__Fusicatenibacter.saccharivorans,Fusicatenibacter saccharivorans
+"STH (Rubel, 2020)",2,T__Parabacteroides.merdae,Parabacteroides merdae
+"STH (Rubel, 2020)",2,T__Phocaeicola.vulgatus,Phocaeicola vulgatus
+"STH (Rubel, 2020)",3,P__DENOVOPURINE2.PWY,superpathway of purine nucleotides _de novo_ biosynthesis II
+"STH (Rubel, 2020)",3,P__PWY.7187,pyrimidine deoxyribonucleotides _de novo_ biosynthesis II
+"STH (Rubel, 2020)",3,P__PWY.841,superpathway of purine nucleotides _de novo_ biosynthesis I
+"STH (Rubel, 2020)",3,P__PWY0.162,superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis
+"STH (Rubel, 2020)",3,T__Lachnospira.eligens,Lachnospira eligens
+"STH (Rubel, 2020)",3,T__Phascolarctobacterium.succinatutens,Phascolarctobacterium succinatutens
+"STH (Rubel, 2020)",3,T__Prevotella.copri,Prevotella copri
+"STH (Rubel, 2020)",3,T__Prevotella.sp..CAG.1092,Prevotella sp  CAG 1092
+"STH (Rubel, 2020)",3,T__Treponema.succinifaciens,Treponema succinifaciens
+"STH (Rubel, 2020)",4,P__GLUCOSE1PMETAB.PWY,glucose and glucose-1-phosphate degradation
+"STH (Rubel, 2020)",4,T__Clostridium.sp..CAG.167,Clostridium sp  CAG 167
+"STH (Rubel, 2020)",4,T__Escherichia.coli,Escherichia coli
+"STH (Rubel, 2020)",4,T__Klebsiella.pneumoniae,Klebsiella pneumoniae
+"STH (Rubel, 2020)",4,T__Klebsiella.quasipneumoniae,Klebsiella quasipneumoniae
+"STH (Rubel, 2020)",4,T__Klebsiella.variicola,Klebsiella variicola
+T2D (MetaCardis),1,P__M00009,"Citrate cycle (TCA cycle, Krebs cycle)"
+T2D (MetaCardis),1,P__M00035,Methionine degradation
+T2D (MetaCardis),1,P__M00168,"CAM (Crassulacean acid metabolism), dark"
+T2D (MetaCardis),1,P__M00171,"C4-dicarboxylic acid cycle, NAD - malic enzyme type"
+T2D (MetaCardis),1,P__M00189,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),1,P__M00429,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),1,S__SERUM_ABS_D_glucose_1,SERUM_ABS_D_glucose_1
+T2D (MetaCardis),1,S__SERUM_ABS_D_mannose_1,SERUM_ABS_D_mannose_1
+T2D (MetaCardis),1,S__SERUM_ABS_indolepropionic_acid,SERUM_ABS_indolepropionic_acid
+T2D (MetaCardis),1,S__SERUM_ABS_L_P_lactic_acid,SERUM_ABS_L_P_lactic_acid
+T2D (MetaCardis),1,S__SERUM_ABS_lactamide_1,SERUM_ABS_lactamide_1
+T2D (MetaCardis),1,S__SERUM_ABS_lactose_1,SERUM_ABS_lactose_1
+T2D (MetaCardis),1,S__SERUM_ABS_talose_2,SERUM_ABS_talose_2
+T2D (MetaCardis),1,T__Bacteroides_dorei_vulgatus,Bacteroides_dorei_vulgatus
+T2D (MetaCardis),1,T__Bilophila_wadsworthia,Bilophila_wadsworthia
+T2D (MetaCardis),1,T__Clostridium_bolteae,Clostridium_bolteae
+T2D (MetaCardis),1,T__motu_linkage_group_103,motu_linkage_group_103
+T2D (MetaCardis),1,T__motu_linkage_group_307,motu_linkage_group_307
+T2D (MetaCardis),1,T__motu_linkage_group_517,motu_linkage_group_517
+T2D (MetaCardis),1,T__motu_linkage_group_551,motu_linkage_group_551
+T2D (MetaCardis),4,P__M00568,"Catechol ortho-cleavage, catechol => 3-oxoadipate"
+T2D (MetaCardis),4,P__M00641,"Multidrug resistance, efflux pump MexEF-OprN"
+T2D (MetaCardis),4,T__Bacteroides_uniformis,Bacteroides_uniformis
+T2D (MetaCardis),4,T__Prevotella_copri,Prevotella_copri
+"UC (Franzosa, 2019)",1,M__C18.neg_Cluster_0079..undecanedionate,C18.neg_Cluster_0079..undecanedionate
+"UC (Franzosa, 2019)",1,M__C18.neg_Cluster_2021..urobilin,C18.neg_Cluster_2021..urobilin
+"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0082..nicotinate,HILIC.neg_Cluster_0082..nicotinate
+"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate,HILIC.neg_Cluster_0220..3.methyladipate.pimelate
+"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0441..sebacate,HILIC.neg_Cluster_0441..sebacate
+"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_1303..lithocholate,HILIC.neg_Cluster_1303..lithocholate
+"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0062..nicotinic.acid,HILIC.pos_Cluster_0062..nicotinic.acid
+"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0090..creatine,HILIC.pos_Cluster_0090..creatine
+"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0184..pyridoxamine,HILIC.pos_Cluster_0184..pyridoxamine
+"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0268..pyridoxamine,HILIC.pos_Cluster_0268..pyridoxamine
+"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.,HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.
+"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_2093..urobilin.,HILIC.pos_Cluster_2093..urobilin.
+"UC (Franzosa, 2019)",1,P__1CMET2.PWY,folate transformations III (_E. coli_)
+"UC (Franzosa, 2019)",1,P__COMPLETE.ARO.PWY,superpathway of aromatic amino acid biosynthesis
+"UC (Franzosa, 2019)",1,P__METHGLYUT.PWY,superpathway of methylglyoxal degradation
+"UC (Franzosa, 2019)",1,P__PANTO.PWY,phosphopantothenate biosynthesis I
+"UC (Franzosa, 2019)",1,P__PANTOSYN.PWY,superpathway of coenzyme A biosynthesis I (bacteria)
+"UC (Franzosa, 2019)",1,P__PWY.6163,chorismate biosynthesis from 3-dehydroquinate
+"UC (Franzosa, 2019)",1,P__PWY0.1298,superpathway of pyrimidine deoxyribonucleosides degradation
+"UC (Franzosa, 2019)",1,T__Alistipes_shahii,Alistipes_shahii
+"UC (Franzosa, 2019)",1,T__Dorea_formicigenerans,Dorea_formicigenerans
+"UC (Franzosa, 2019)",1,T__Escherichia_coli,Escherichia_coli
+"UC (Franzosa, 2019)",1,T__Eubacterium_hallii,Eubacterium_hallii
+"UC (Franzosa, 2019)",1,T__Fusicatenibacter_saccharivorans,Fusicatenibacter_saccharivorans
+"UC (Franzosa, 2019)",1,T__Gemmiger_formicilis,Gemmiger_formicilis
+"UC (Franzosa, 2019)",1,T__Roseburia_hominis,Roseburia_hominis
+"UC (Franzosa, 2019)",1,T__Ruminococcus_torques,Ruminococcus_torques
+"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0036..glycerate,HILIC.neg_Cluster_0036..glycerate
+"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0079..4.hydroxybenzaldehyde,HILIC.neg_Cluster_0079..4.hydroxybenzaldehyde
+"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0552..pantothete,HILIC.neg_Cluster_0552..pantothete
+"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0562..ethyl.glucuronide,HILIC.neg_Cluster_0562..ethyl.glucuronide
+"UC (Franzosa, 2019)",2,M__HILIC.pos_Cluster_0295..arginine,HILIC.pos_Cluster_0295..arginine
+"UC (Franzosa, 2019)",2,M__HILIC.pos_Cluster_0524..N.acetyl.L.arginine,HILIC.pos_Cluster_0524..N.acetyl.L.arginine
+"UC (Franzosa, 2019)",2,P__ANAEROFRUCAT.PWY,homolactic fermentation
+"UC (Franzosa, 2019)",2,P__GLYCOLYSIS,glycolysis I (from glucose 6-phosphate)
+"UC (Franzosa, 2019)",2,P__LACTOSECAT.PWY,lactose and galactose degradation I
+"UC (Franzosa, 2019)",2,P__OANTIGEN.PWY,_O_-antigen building blocks biosynthesis (_E. coli_)
+"UC (Franzosa, 2019)",2,P__P124.PWY,glucose fermentation to lactic acid (Bifidobacteria)
+"UC (Franzosa, 2019)",2,P__PWY.2941,L-lysine biosynthesis II
+"UC (Franzosa, 2019)",2,P__PWY.5484,glycolysis II (from fructose 6-phosphate)
+"UC (Franzosa, 2019)",2,P__PWY.622,starch biosynthesis
+"UC (Franzosa, 2019)",2,P__PWY.8187,L-arginine degradation XIII (reductive Stickland reaction)
+"UC (Franzosa, 2019)",2,P__SER.GLYSYN.PWY,superpathway of L-serine and glycine biosynthesis I
+"UC (Franzosa, 2019)",2,T__Actinomyces_odontolyticus,Actinomyces_odontolyticus
+"UC (Franzosa, 2019)",2,T__Actinomyces_oris,Actinomyces_oris
+"UC (Franzosa, 2019)",2,T__Bifidobacterium_adolescentis,Bifidobacterium_adolescentis
+"UC (Franzosa, 2019)",2,T__Bifidobacterium_longum,Bifidobacterium_longum
+"UC (Franzosa, 2019)",2,T__Blautia_hydrogenotrophica,Blautia_hydrogenotrophica
+"UC (Franzosa, 2019)",2,T__Collinsella_aerofaciens,Collinsella_aerofaciens
+"UC (Franzosa, 2019)",2,T__Collinsella_massiliensis,Collinsella_massiliensis
+"UC (Franzosa, 2019)",2,T__Collinsella_stercoris,Collinsella_stercoris
+"UC (Franzosa, 2019)",2,T__Eggerthella_lenta,Eggerthella_lenta
+"UC (Franzosa, 2019)",3,M__HILIC.neg_Cluster_0133..4.nitrophenol,HILIC.neg_Cluster_0133..4.nitrophenol
+"UC (Franzosa, 2019)",3,P__P108.PWY,pyruvate fermentation to propanoate I
+"UC (Franzosa, 2019)",3,P__PWY.5677,succinate fermentation to butanoate
+"UC (Franzosa, 2019)",3,T__Blautia_producta,Blautia_producta
+"UC (Franzosa, 2019)",3,T__Blautia_wexlerae,Blautia_wexlerae
+"UC (Franzosa, 2019)",3,T__Dorea_sp_CAG_317,Dorea_sp_CAG_317
+"UC (Franzosa, 2019)",3,T__Flavonifractor_plautii,Flavonifractor_plautii
+"UC (Franzosa, 2019)",4,P__NONOXIPENT.PWY,pentose phosphate pathway (non-oxidative branch) I
+"UC (Franzosa, 2019)",4,P__PWY.5973,_cis_-vaccenate biosynthesis
+"UC (Franzosa, 2019)",4,P__PWY.8178,pentose phosphate pathway (non-oxidative branch) II
+"UC (Franzosa, 2019)",4,T__Alistipes_putredinis,Alistipes_putredinis
+"UC (Franzosa, 2019)",4,T__Odoribacter_splanchnicus,Odoribacter_splanchnicus
+"UC (Franzosa, 2019)",5,P__PWY.5022,4-aminobutanoate degradation V
+"UC (Franzosa, 2019)",5,T__Bacteroides_dorei,Bacteroides_dorei
+"UC (Franzosa, 2019)",5,T__Coprobacter_fastidiosus,Coprobacter_fastidiosus
+"UC (Franzosa, 2019)",5,T__Eubacterium_siraeum,Eubacterium_siraeum
+"UC (Nielsen, 2014)",1,P__GALACTARDEG.PWY_Cluster200,D-galactarate degradation I [Clustered features]
+"UC (Nielsen, 2014)",1,P__GLUCARDEG.PWY,_D_-glucarate degradation I
+"UC (Nielsen, 2014)",1,P__KETOGLUCONMET.PWY,ketogluconate metabolism
+"UC (Nielsen, 2014)",1,P__PWY.6478,GDP-D-_glycero_-&alpha;-D-_manno_-heptose biosynthesis
+"UC (Nielsen, 2014)",1,P__PWY.6629,superpathway of L-tryptophan biosynthesis
+"UC (Nielsen, 2014)",1,P__PWY.6630,superpathway of L-tyrosine biosynthesis
+"UC (Nielsen, 2014)",1,T__.Clostridium..innocuum, Clostridium  innocuum
+"UC (Nielsen, 2014)",1,T__.Clostridium..symbiosum, Clostridium  symbiosum
+"UC (Nielsen, 2014)",1,T__.Ruminococcus..gnavus, Ruminococcus  gnavus
+"UC (Nielsen, 2014)",1,T__Bacteroides.eggerthii,Bacteroides eggerthii
+"UC (Nielsen, 2014)",1,T__Clostridium.bolteae.CAG.59,Clostridium bolteae CAG 59
+"UC (Nielsen, 2014)",1,T__Enterocloster.bolteae,Enterocloster bolteae
+"UC (Nielsen, 2014)",1,T__Enterocloster.citroniae,Enterocloster citroniae
+"UC (Nielsen, 2014)",1,T__Erysipelatoclostridium.ramosum,Erysipelatoclostridium ramosum
