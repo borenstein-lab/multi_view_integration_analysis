@@ -1,0 +1,203 @@
+---
+title: "Main results analysis"
+output:
+  html_document:
+    css: custom_notebook_formatting.css
+    toc: true
+    toc_depth: 3
+    df_print: paged
+    code_folding: hide
+---
+
+## Preparations
+
+```{r PREPS, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(cowplot)
+library(readr)
+library(stringr)
+library(dplyr)
+library(kableExtra)
+library(afex)
+
+options(scipen = 100)
+knitr::opts_chunk$set(results = "hold", fig.align = 'center')
+source('src/analyses/plotting_functions.R')
+#source('src/ml_pipeline/preprocessing.R')
+```
+
+## Load results
+
+Load data from previously organized rdata file.
+
+```{r LOAD_REUSLTS, results='hold'}
+all_rdata_path <- 'data/ml_output/results_tables/results_for_analysis.RData'
+load(all_rdata_path)
+rm(all_rdata_path)
+```
+
+Change to "pretty" dataset names:
+
+```{r}
+new_dataset_names <-c(
+  "cd_franzosa_2019"="CD (Franzosa, 2019)",
+  "cirrhosis_qin_2014"="Cirrhosis (Qin, 2014)",
+  "crc_feng_2015"="CRC (Feng, 2015)",
+  "crc_s3_s4_yachida_2019"="CRC (Yachida, 2019)",
+  "crc_yu_2015"="CRC (Yu, 2015)",
+  "esrd_wang_2020"="ESRD (Wang, 2020)",
+  "metacardis_1_8"="MS (MetaCardis)",
+  "metacardis_3_8"="T2D (MetaCardis)",
+  "sth_rubel_2020"="STH (Rubel, 2020)",
+  "uc_franzosa_2019"="UC (Franzosa, 2019)",
+  "uc_spain_nielsen_2014"="UC (Nielsen, 2014)"
+  )
+
+cv_datasets_summary$dataset <- new_dataset_names[cv_datasets_summary$dataset]
+cv_results$dataset <- new_dataset_names[cv_results$dataset]
+feat_imp$dataset <- new_dataset_names[feat_imp$dataset]
+feat_imp_sum$dataset <- new_dataset_names[feat_imp_sum$dataset]
+```
+
+
+### Descriptive statistics
+
+```{r FIRST_CV_STATS, results='hold'}
+cv_datasets_summary %>% 
+  filter(!shuffled) %>%
+  select(-shuffled, -tuned, -feature_set_type, -fs_type) %>%
+  kbl(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) 
+```
+
+### More settings
+
+```{r}
+# datasets_to_focus_on <- c(
+#   'cd_franzosa_2019',
+#   'uc_franzosa_2019',
+#   'crc_s3_s4_yachida_2019',
+#   'cirrhosis_qin_2014'
+# )
+```
+
+```{r}
+feature_type_color_map = 
+  c("T" = "firebrick4", 
+    "S" = "chartreuse4", 
+    "P" = "darkorange3", 
+    "M" = "midnightblue", 
+    "All" = "grey30")
+
+# Save number of folds/repeats
+n_folds <- n_distinct(cv_results$fold_id)
+```
+
+## Supplementary Table S2: Random forest model performance results using early integration
+
+```{r}
+cv_datasets_summary %>%
+  filter(!shuffled) %>%
+  select(dataset, feature_set_type, fs_type, 
+         n_features_origin_T, n_features_origin_P, n_features_origin_M, n_features_origin_S,
+         mean_out_of_fold_test_auc) %>%
+  mutate(mean_out_of_fold_test_auc = round(mean_out_of_fold_test_auc, 3)) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Features used` = feature_set_type) %>%
+  rename(`Feature selection method` = fs_type) %>%
+  rename(`Number of original features - T (Taxa)` = n_features_origin_T) %>%
+  rename(`Number of original features - S (Serum metabolites)` = n_features_origin_S) %>%
+  rename(`Number of original features - P (Pathways)` = n_features_origin_P) %>%
+  rename(`Number of original features - M (Fecal metabolites)` = n_features_origin_M) %>%
+  rename(`Cross-validated average AUC` = mean_out_of_fold_test_auc) %>%
+  write_csv("docs/Table_S2.csv")
+```
+
+## Plot: Number of samples and number of features
+
+A. Number of samples per study. C, controls (dark grey); D, disease (light grey). 
+B. Average number of original features from each type. 
+(Or: number of features selected by the feature-selection process and used for final training. The average is over the cross-validation process).
+
+```{r, fig.height=5.1, fig.width=6, warning = FALSE}
+plot_basic_stats(
+  cv_results = cv_results, 
+  feature_type_color_map = feature_type_color_map
+  )
+```
+
+## Feature importance analysis
+
+### Supplementary Table S3
+
+Only provided for models with an AUC > 0.7, and contributing features.
+
+```{r}
+feat_imp_sum %>%
+  filter(mean_out_of_fold_test_auc > 0.7) %>%
+  select(dataset, feature_set_type, feature, 
+         n_times_selected, mean_importance, 
+         combined_fdr, contributor) %>%
+  mutate(mean_importance = round(mean_importance, 5)) %>%
+  mutate(combined_fdr = ifelse(
+    combined_fdr < 0.00001, '< 0.00001', 
+    round(combined_fdr, 5))) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Feature set` = feature_set_type) %>%
+  rename(`Feature name` = feature) %>%
+  rename(`RF permutation importance, averaged over folds` = mean_importance) %>%
+  rename(`Altmann FDR-corrected p value, aggregated over folds using Fisher's method` = combined_fdr) %>%
+  rename(`Number of times selected by feature selection (out of 100 repeats/folds)` = n_times_selected) %>%
+  filter(contributor) %>%
+  rename(`Overall contributor` = contributor) %>%
+  mutate(`Feature description` = get_feature_descriptions(`Feature name`)) %>%
+  write_csv("docs/Table_S3.csv")
+```
+
+## U-tests [ARCHIVE]
+
+To also compare to a univariate statistical test of association of each feature with the disease, we calculate u-tests for all relevant features found above (using relative abundances AND clr-transformed values, to partially account for large variability between DA approaches: https://www.nature.com/articles/s41467-022-28034-z).
+
+```{r eval=F}
+utests <- t(apply(full_feature_importance, MARGIN = 1, FUN = function(r) { # r = full_feature_importance[12,]
+  d <- r[['dataset']]
+  f <- r[['feature_orig']]
+  df <- proc_data[[d]]
+  h_vec <- df[[f]][df$DiseaseState == "healthy"]
+  d_vec <- df[[f]][df$DiseaseState != "healthy"]
+  utest <- wilcox.test(h_vec, d_vec, digits.rank = 7, exact = FALSE)
+  
+  # Also calcluate u-tests on clr-transformed values
+  df <- proc_data_with_clr[[d]]
+  h_vec_clr <- df[[f]][df$DiseaseState == "healthy"]
+  d_vec_clr <- df[[f]][df$DiseaseState != "healthy"]
+  utest_clr <- wilcox.test(h_vec_clr, d_vec_clr, digits.rank = 7, exact = FALSE)
+  
+  return(c(
+    "p" = utest$p.value,
+    "p_clr" = utest_clr$p.value, 
+    "mean_abun_healthy" = mean(h_vec), 
+    "mean_abun_disease" = mean(d_vec),
+    "mean_abun_healthy_clr" = mean(h_vec_clr),
+    "mean_abun_disease_clr" = mean(d_vec_clr)
+    ))
+})) %>% data.frame()
+
+full_feature_importance <- bind_cols(full_feature_importance, utests)
+
+# FDR
+full_feature_importance <- full_feature_importance %>%
+  group_by(dataset) %>%
+  mutate(fdr_utest = p.adjust(p, method = "fdr"), 
+         fdr_clr_utest = p.adjust(p_clr, method = "fdr")) %>%
+  ungroup() %>%
+  mutate(increased_in = ifelse(mean_abun_healthy > mean_abun_disease, "healthy", "disease")) %>%
+  mutate(increased_in = ifelse(fdr_clr_utest > 0.05 & fdr_utest > 0.05, "non-significant", increased_in)) %>%
+  select(-p, -p_clr)
+```
+
+## Session info
+
+```{r}
+sessionInfo()
+```
