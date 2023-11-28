@@ -19,7 +19,7 @@ default:
     'ml_output_dir': 'data/ml_output',
     'results_tables_dir': 'data/ml_output/results_tables',
     'logs_dir': 'data/ml_output/logs',              # Relevant for run_pipeline_parallel.R only
-    'ko_names': 'db/kegg/ko_to_name_map_partial.txt',
+    'kegg_module_names': 'db/kegg/module_names.txt',
     'humann_uniref_ko_map': 'db/humann/map_ko_uniref90_long.txt',
     'metacyc_pathways_hierarchy': 'db/metacyc/metacyc_pathway_db.txt',
     'metacyc_pathways2taxa': 'db/metacyc/All-pathways-of-MetaCyc-and-their-associated-species.txt', 

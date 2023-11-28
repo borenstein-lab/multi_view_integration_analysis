@@ -1,10 +1,6 @@
 ########################################################################
 # This script includes functions for post-processing of result files
 #  generated from the ml_pipeline.R script.
-# These result files include cross-validation results (performance of 
-#  trained classifiers per dataset), feature importance metrics (per 
-#  fold), and some pre-processing logs such as preliminary clustering
-#  of highly-correlated features.
 # The post_prepare_rdata() function saves summarized results text files 
 #  and an R data file for convenience.
 ########################################################################
@@ -31,36 +27,17 @@ post_load_cv_results <- function(dir_path = config$paths$results_tables_dir,
                                  output_file = config$paths$combined_cv_results) {
   files <- list.files(dir_path, pattern = "\\_pipeline.csv$")
   all_data <- bind_rows(lapply(files, function(result_file_name) {
-    cat('.')
     df <- read_csv(file.path(dir_path, result_file_name), 
                    col_types = cols(.default = "?", feature_set_type = "c"), 
                    show_col_types = FALSE)
     return(df)
   }))
-  cat('\n')
   
   # Remove the extra plus at the beginning, added by ml_pipeline.R for excel
   all_data$run_name <- substring(all_data$run_name, 2, nchar(all_data$run_name))
   all_data$run_name <- gsub("\"", "", all_data$run_name)
-  
-  # Order categories for consistent plotting
-  fsts <- names(config$params_short_names$feature_set_type)
-  fsts <- fsts[fsts %in% unique(all_data$feature_set_type)]
   all_data <- all_data %>%
-    mutate(run_name = factor(run_name)) %>%
-    mutate(feature_set_type = 
-             factor(feature_set_type, levels = fsts))
-  
-  # Mark the shotgun studies using curatedMetagenomicData list of included studies
-  shotgun_studies <- read_csv(config$paths$curatedMetagenomicData_study_list, 
-                              comment = "#", 
-                              show_col_types = FALSE)
-  all_data$metagenomics_type <- 
-    ifelse(all_data$dataset %in% 
-             c(shotgun_studies$new_study_name, 
-               config$shotgun_datasets_not_in_CMD), 
-           "Shotgun", 
-           "16S")
+    mutate(run_name = factor(run_name)) 
   
   # Write to file
   if (! is.null(output_file)) {
@@ -82,12 +59,10 @@ post_load_feature_importance <- function(dir_path = config$paths$results_tables_
   # Read all feature importance files available in results folder
   files <- list.files(dir_path, pattern = "\\_feature_importance.csv$")
   all_data <- bind_rows(lapply(files, function(result_file_name) {
-    cat('.')
     df <- read_csv(file.path(dir_path, result_file_name), 
                    show_col_types = FALSE)
     return(df)
   }))
-  cat('\n')
   
   # Remove the extra plus at the beginning, added by ml_pipeline.R for excel
   all_data$run_name <- substring(all_data$run_name, 2, nchar(all_data$run_name))
@@ -95,11 +70,11 @@ post_load_feature_importance <- function(dir_path = config$paths$results_tables_
   
   # Join extra data from cv results
   if (is.null(cv_results)) cv_results <- post_load_cv_results(dir_path, output_file = NULL)
-  cv_results <- cv_results %>%
+  tmp_cv_results <- cv_results %>%
     dplyr::select(dataset, run_name, mean_out_of_fold_test_auc) %>%
     distinct()
   all_data <- all_data %>%
-    inner_join(cv_results, by = c('dataset', 'run_name'))
+    inner_join(tmp_cv_results, by = c('dataset', 'run_name'))
   
   # Add flag if a feature was part of a cluster
   all_data <- all_data %>% 
@@ -171,6 +146,7 @@ post_summarize_feat_imp <- function(feat_imp,
 # Prepares an rdata object with all results in it, as well as saves text files with combined results (combined over all datasets)
 post_prepare_rdata <- function(dir_path = config$paths$results_tables_dir, 
                                output_file = config$paths$results_rdata, 
+                               input_files_dir = config$paths$ml_input_dir,
                                auc_threshold = 0.6) {
   # 1. Load ML modelling results
   ######################################
@@ -193,9 +169,8 @@ post_prepare_rdata <- function(dir_path = config$paths$results_tables_dir,
   cv_datasets_summary <- cv_results %>% 
     dplyr::select(dataset, feature_set_type,
                   tuned, shuffled,
-                  fs_type, metagenomics_type, 
-                  n_healthy, n_disease, 
-                  n_features_origin_T, n_features_origin_G, 
+                  fs_type, n_healthy, n_disease, 
+                  n_features_origin_T, n_features_origin_S, 
                   n_features_origin_P, n_features_origin_M, 
                   mean_out_of_fold_test_auc) %>% 
     distinct() 
@@ -204,7 +179,6 @@ post_prepare_rdata <- function(dir_path = config$paths$results_tables_dir,
   ######################################
   
   datasets_to_analyze <- cv_results %>%
-    filter(feature_set_type %in% c("T+G+P", "T+G+P+M")) %>%
     group_by(dataset) %>%
     filter(max(mean_out_of_fold_test_auc, na.rm = TRUE) >= auc_threshold) %>%
     pull(dataset) %>%
@@ -219,9 +193,6 @@ post_prepare_rdata <- function(dir_path = config$paths$results_tables_dir,
   message("Discarded datasets: ",
           paste(datasets_discarded, collapse = ", "))
   
-  # cv_results <- cv_results %>%
-  #   filter(dataset %in% datasets_to_analyze)
-  
   feat_imp <- feat_imp %>%
     filter(dataset %in% datasets_to_analyze) 
   
@@ -232,12 +203,13 @@ post_prepare_rdata <- function(dir_path = config$paths$results_tables_dir,
   ######################################
   
   all_clusters <- bind_rows(
-    lapply(list.files(dir_path, pattern = "_clusters.csv$"),
+    lapply(list.files(input_files_dir, pattern = "clusters.tsv$", recursive = T),
            function (result_file_name) {
-             df <- read_csv(file.path(dir_path, result_file_name), 
+             d <- dirname(result_file_name)
+             df <- read_csv(file.path(input_files_dir, result_file_name), 
                             col_types = cols(.default = "?", feature_set_type = "c"), 
                             show_col_types = FALSE)
-             df$dataset <- str_split(result_file_name, "_clusters.csv")[[1]][1]
+             df$dataset <- d
              return(df)
            })) %>%
     filter(dataset %in% datasets_to_analyze) %>%
