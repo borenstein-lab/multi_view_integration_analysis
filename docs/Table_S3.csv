@@ -1,177 +1,636 @@
-Dataset,Model 1,Model 2,Adjusted paired T-test P value,ANOVA P value
-cd_franzosa_2019,P,G,0.752,0.0724
-cd_franzosa_2019,P,M,0.293,0.0724
-cd_franzosa_2019,P,T,0.278,0.0724
-cd_franzosa_2019,P,T+G+P+M,0.056,0.0724
-cd_franzosa_2019,G,M,0.404,0.0724
-cd_franzosa_2019,G,T,0.273,0.0724
-cd_franzosa_2019,G,T+G+P+M,0.034,0.0724
-cd_franzosa_2019,M,T,0.831,0.0724
-cd_franzosa_2019,M,T+G+P+M,0.293,0.0724
-cd_franzosa_2019,T,T+G+P+M,0.293,0.0724
-cdi_schubert_16s_2014,P,G,0.047,< 0.00001
-cdi_schubert_16s_2014,P,T+G+P,0.00043,< 0.00001
-cdi_schubert_16s_2014,P,T,< 0.00001,< 0.00001
-cdi_schubert_16s_2014,G,T+G+P,0.00019,< 0.00001
-cdi_schubert_16s_2014,G,T,< 0.00001,< 0.00001
-cdi_schubert_16s_2014,T+G+P,T,< 0.00001,< 0.00001
-cirrhosis_qin_2014,P,G,< 0.00001,< 0.00001
-cirrhosis_qin_2014,P,T+G+P,< 0.00001,< 0.00001
-cirrhosis_qin_2014,P,T,< 0.00001,< 0.00001
-cirrhosis_qin_2014,G,T+G+P,0.00094,< 0.00001
-cirrhosis_qin_2014,G,T,0.0006,< 0.00001
-cirrhosis_qin_2014,T+G+P,T,0.005,< 0.00001
-crc_baxter_16s_2016,P,G,0.32,< 0.00001
-crc_baxter_16s_2016,P,T+G+P,0.00031,< 0.00001
-crc_baxter_16s_2016,P,T,< 0.00001,< 0.00001
-crc_baxter_16s_2016,G,T+G+P,0.003,< 0.00001
-crc_baxter_16s_2016,G,T,< 0.00001,< 0.00001
-crc_baxter_16s_2016,T+G+P,T,< 0.00001,< 0.00001
-crc_feng_2015,P,G,0.003,< 0.00001
-crc_feng_2015,P,T+G+P,< 0.00001,< 0.00001
-crc_feng_2015,P,T,< 0.00001,< 0.00001
-crc_feng_2015,G,T+G+P,0.003,< 0.00001
-crc_feng_2015,G,T,< 0.00001,< 0.00001
-crc_feng_2015,T+G+P,T,< 0.00001,< 0.00001
-crc_s0_yachida_2019,G,M,0.232,0.00357
-crc_s0_yachida_2019,G,T+G+P+M,0.00073,0.00357
-crc_s0_yachida_2019,G,P,0.001,0.00357
-crc_s0_yachida_2019,G,T,0.001,0.00357
-crc_s0_yachida_2019,M,T+G+P+M,0.327,0.00357
-crc_s0_yachida_2019,M,P,0.389,0.00357
-crc_s0_yachida_2019,M,T,0.232,0.00357
-crc_s0_yachida_2019,T+G+P+M,P,0.835,0.00357
-crc_s0_yachida_2019,T+G+P+M,T,0.688,0.00357
-crc_s0_yachida_2019,P,T,0.835,0.00357
-crc_s3_s4_yachida_2019,P,G,< 0.00001,< 0.00001
-crc_s3_s4_yachida_2019,P,M,< 0.00001,< 0.00001
-crc_s3_s4_yachida_2019,P,T,< 0.00001,< 0.00001
-crc_s3_s4_yachida_2019,P,T+G+P+M,< 0.00001,< 0.00001
-crc_s3_s4_yachida_2019,G,M,0.00007,< 0.00001
-crc_s3_s4_yachida_2019,G,T,< 0.00001,< 0.00001
-crc_s3_s4_yachida_2019,G,T+G+P+M,< 0.00001,< 0.00001
-crc_s3_s4_yachida_2019,M,T,0.00013,< 0.00001
-crc_s3_s4_yachida_2019,M,T+G+P+M,0.00001,< 0.00001
-crc_s3_s4_yachida_2019,T,T+G+P+M,0.554,< 0.00001
-crc_wang_16s_2012,P,G,0.067,< 0.00001
-crc_wang_16s_2012,P,T+G+P,0.013,< 0.00001
-crc_wang_16s_2012,P,T,< 0.00001,< 0.00001
-crc_wang_16s_2012,G,T+G+P,0.067,< 0.00001
-crc_wang_16s_2012,G,T,< 0.00001,< 0.00001
-crc_wang_16s_2012,T+G+P,T,< 0.00001,< 0.00001
-crc_wirbel_2018,P,G,< 0.00001,< 0.00001
-crc_wirbel_2018,P,T,< 0.00001,< 0.00001
-crc_wirbel_2018,P,T+G+P,< 0.00001,< 0.00001
-crc_wirbel_2018,G,T,0.056,< 0.00001
-crc_wirbel_2018,G,T+G+P,0.00088,< 0.00001
-crc_wirbel_2018,T,T+G+P,0.675,< 0.00001
-crc_yu_2015,G,T+G+P,< 0.00001,< 0.00001
-crc_yu_2015,G,P,< 0.00001,< 0.00001
-crc_yu_2015,G,T,< 0.00001,< 0.00001
-crc_yu_2015,T+G+P,P,0.22,< 0.00001
-crc_yu_2015,T+G+P,T,< 0.00001,< 0.00001
-crc_yu_2015,P,T,0.00024,< 0.00001
-crc_zeller_2014,P,G,0.485,0.14446
-crc_zeller_2014,P,T+G+P,0.204,0.14446
-crc_zeller_2014,P,T,0.204,0.14446
-crc_zeller_2014,G,T+G+P,0.042,0.14446
-crc_zeller_2014,G,T,0.273,0.14446
-crc_zeller_2014,T+G+P,T,0.595,0.14446
-crc_zeller_16s_2014,P,G,0.012,0.00055
-crc_zeller_16s_2014,P,T+G+P,0.00014,0.00055
-crc_zeller_16s_2014,P,T,0.002,0.00055
-crc_zeller_16s_2014,G,T+G+P,0.014,0.00055
-crc_zeller_16s_2014,G,T,0.015,0.00055
-crc_zeller_16s_2014,T+G+P,T,0.064,0.00055
-edd_singh_16s_2015,P,T+G+P,0.016,0.00005
-edd_singh_16s_2015,P,G,0.027,0.00005
-edd_singh_16s_2015,P,T,0.00068,0.00005
-edd_singh_16s_2015,T+G+P,G,0.905,0.00005
-edd_singh_16s_2015,T+G+P,T,0.004,0.00005
-edd_singh_16s_2015,G,T,0.003,0.00005
-esrd_wang_2020,P,G,0.0003,< 0.00001
-esrd_wang_2020,P,T,< 0.00001,< 0.00001
-esrd_wang_2020,P,T+G+P+M,< 0.00001,< 0.00001
-esrd_wang_2020,P,M,< 0.00001,< 0.00001
-esrd_wang_2020,G,T,< 0.00001,< 0.00001
-esrd_wang_2020,G,T+G+P+M,< 0.00001,< 0.00001
-esrd_wang_2020,G,M,< 0.00001,< 0.00001
-esrd_wang_2020,T,T+G+P+M,< 0.00001,< 0.00001
-esrd_wang_2020,T,M,< 0.00001,< 0.00001
-esrd_wang_2020,T+G+P+M,M,0.322,< 0.00001
-igt_karlsson_2013,P,T,0.107,0.01673
-igt_karlsson_2013,P,T+G+P,0.001,0.01673
-igt_karlsson_2013,P,G,0.002,0.01673
-igt_karlsson_2013,T,T+G+P,0.832,0.01673
-igt_karlsson_2013,T,G,0.832,0.01673
-igt_karlsson_2013,T+G+P,G,0.832,0.01673
-me_cfs_nagySzakal_2017,P,T+G+P,0.584,0.05978
-me_cfs_nagySzakal_2017,P,G,0.584,0.05978
-me_cfs_nagySzakal_2017,P,T,0.069,0.05978
-me_cfs_nagySzakal_2017,T+G+P,G,0.584,0.05978
-me_cfs_nagySzakal_2017,T+G+P,T,0.069,0.05978
-me_cfs_nagySzakal_2017,G,T,0.214,0.05978
-noncdi_schubert_16s_2014,G,P,0.816,< 0.00001
-noncdi_schubert_16s_2014,G,T+G+P,0.009,< 0.00001
-noncdi_schubert_16s_2014,G,T,0.00001,< 0.00001
-noncdi_schubert_16s_2014,P,T+G+P,0.172,< 0.00001
-noncdi_schubert_16s_2014,P,T,0.00001,< 0.00001
-noncdi_schubert_16s_2014,T+G+P,T,0.00001,< 0.00001
-ob_turnbaugh_16s_2009,G,P,0.589,< 0.00001
-ob_turnbaugh_16s_2009,G,T+G+P,< 0.00001,< 0.00001
-ob_turnbaugh_16s_2009,G,T,< 0.00001,< 0.00001
-ob_turnbaugh_16s_2009,P,T+G+P,0.003,< 0.00001
-ob_turnbaugh_16s_2009,P,T,< 0.00001,< 0.00001
-ob_turnbaugh_16s_2009,T+G+P,T,< 0.00001,< 0.00001
-par_scheperjans_16s_2015,G,T+G+P,0.0008,< 0.00001
-par_scheperjans_16s_2015,G,P,0.003,< 0.00001
-par_scheperjans_16s_2015,G,T,< 0.00001,< 0.00001
-par_scheperjans_16s_2015,T+G+P,P,0.805,< 0.00001
-par_scheperjans_16s_2015,T+G+P,T,< 0.00001,< 0.00001
-par_scheperjans_16s_2015,P,T,< 0.00001,< 0.00001
-schizofrenia_zhu_2020,P,G,0.001,< 0.00001
-schizofrenia_zhu_2020,P,T+G+P,< 0.00001,< 0.00001
-schizofrenia_zhu_2020,P,T,< 0.00001,< 0.00001
-schizofrenia_zhu_2020,G,T+G+P,0.00003,< 0.00001
-schizofrenia_zhu_2020,G,T,< 0.00001,< 0.00001
-schizofrenia_zhu_2020,T+G+P,T,< 0.00001,< 0.00001
-sth_rubel_2020,G,P,0.956,< 0.00001
-sth_rubel_2020,G,T+G+P,< 0.00001,< 0.00001
-sth_rubel_2020,G,T,< 0.00001,< 0.00001
-sth_rubel_2020,P,T+G+P,0.003,< 0.00001
-sth_rubel_2020,P,T,< 0.00001,< 0.00001
-sth_rubel_2020,T+G+P,T,0.00001,< 0.00001
-t1d_alkanani_16s_2015,G,T+G+P,0.578,< 0.00001
-t1d_alkanani_16s_2015,G,P,0.076,< 0.00001
-t1d_alkanani_16s_2015,G,T,0.00002,< 0.00001
-t1d_alkanani_16s_2015,T+G+P,P,0.076,< 0.00001
-t1d_alkanani_16s_2015,T+G+P,T,0.00002,< 0.00001
-t1d_alkanani_16s_2015,P,T,0.003,< 0.00001
-t2d_karlsson_2013,P,T+G+P,0.007,< 0.00001
-t2d_karlsson_2013,P,G,0.009,< 0.00001
-t2d_karlsson_2013,P,T,< 0.00001,< 0.00001
-t2d_karlsson_2013,T+G+P,G,0.922,< 0.00001
-t2d_karlsson_2013,T+G+P,T,< 0.00001,< 0.00001
-t2d_karlsson_2013,G,T,0.00003,< 0.00001
-t2d_qin_2012,G,T+G+P,0.171,0.22516
-t2d_qin_2012,G,P,0.326,0.22516
-t2d_qin_2012,G,T,0.171,0.22516
-t2d_qin_2012,T+G+P,P,0.664,0.22516
-t2d_qin_2012,T+G+P,T,0.326,0.22516
-t2d_qin_2012,P,T,0.634,0.22516
-uc_franzosa_2019,P,M,0.109,0.00018
-uc_franzosa_2019,P,T,0.028,0.00018
-uc_franzosa_2019,P,G,0.001,0.00018
-uc_franzosa_2019,P,T+G+P+M,0.00003,0.00018
-uc_franzosa_2019,M,T,0.895,0.00018
-uc_franzosa_2019,M,G,0.236,0.00018
-uc_franzosa_2019,M,T+G+P+M,0.018,0.00018
-uc_franzosa_2019,T,G,0.18,0.00018
-uc_franzosa_2019,T,T+G+P+M,0.018,0.00018
-uc_franzosa_2019,G,T+G+P+M,0.156,0.00018
-uc_spain_nielsen_2014,P,G,< 0.00001,< 0.00001
-uc_spain_nielsen_2014,P,T+G+P,< 0.00001,< 0.00001
-uc_spain_nielsen_2014,P,T,< 0.00001,< 0.00001
-uc_spain_nielsen_2014,G,T+G+P,0.455,< 0.00001
-uc_spain_nielsen_2014,G,T,0.021,< 0.00001
-uc_spain_nielsen_2014,T+G+P,T,0.029,< 0.00001
+Dataset,Feature set,Feature name,Number of times selected by feature selection (out of 100 repeats/folds),"RF permutation importance, averaged over folds","Altmann FDR-corrected p value, aggregated over folds using Fisher's method",Overall contributor,Feature description
+"CD (Franzosa, 2019)",All,T__Adlercreutzia_equolifaciens,100,0.00107,< 0.00001,TRUE,Adlercreutzia_equolifaciens
+"CD (Franzosa, 2019)",All,T__Asaccharobacter_celatus,100,0.00119,< 0.00001,TRUE,Asaccharobacter_celatus
+"CD (Franzosa, 2019)",All,T__Barnesiella_intestinihominis,100,0.00133,< 0.00001,TRUE,Barnesiella_intestinihominis
+"CD (Franzosa, 2019)",All,T__Prevotella_copri,94,4.8e-4,0.00001,TRUE,Prevotella_copri
+"CD (Franzosa, 2019)",All,T__Alistipes_shahii,100,0.00143,< 0.00001,TRUE,Alistipes_shahii
+"CD (Franzosa, 2019)",All,T__Eubacterium_ramulus,100,4.2e-4,0.00432,TRUE,Eubacterium_ramulus
+"CD (Franzosa, 2019)",All,T__Blautia_coccoides,100,7.9e-4,< 0.00001,TRUE,Blautia_coccoides
+"CD (Franzosa, 2019)",All,T__Blautia_producta,100,7.7e-4,< 0.00001,TRUE,Blautia_producta
+"CD (Franzosa, 2019)",All,T__Ruminococcus_gnavus,99,5.3e-4,0.00459,TRUE,Ruminococcus_gnavus
+"CD (Franzosa, 2019)",All,T__Ruminococcus_torques,100,0.00134,< 0.00001,TRUE,Ruminococcus_torques
+"CD (Franzosa, 2019)",All,T__Coprococcus_catus,100,0.00376,< 0.00001,TRUE,Coprococcus_catus
+"CD (Franzosa, 2019)",All,T__Dorea_formicigenerans,100,0.00266,< 0.00001,TRUE,Dorea_formicigenerans
+"CD (Franzosa, 2019)",All,T__Dorea_longicatena,100,0.00127,< 0.00001,TRUE,Dorea_longicatena
+"CD (Franzosa, 2019)",All,T__Roseburia_hominis,100,0.00127,< 0.00001,TRUE,Roseburia_hominis
+"CD (Franzosa, 2019)",All,T__Oscillibacter_sp_57_20,100,0.00145,< 0.00001,TRUE,Oscillibacter_sp_57_20
+"CD (Franzosa, 2019)",All,T__Oscillibacter_sp_CAG_241,100,0.00257,< 0.00001,TRUE,Oscillibacter_sp_CAG_241
+"CD (Franzosa, 2019)",All,T__Agathobaculum_butyriciproducens,100,0.00104,< 0.00001,TRUE,Agathobaculum_butyriciproducens
+"CD (Franzosa, 2019)",All,T__Faecalibacterium_prausnitzii,100,0.00271,< 0.00001,TRUE,Faecalibacterium_prausnitzii
+"CD (Franzosa, 2019)",All,T__Flavonifractor_plautii,100,5.6e-4,0.00007,TRUE,Flavonifractor_plautii
+"CD (Franzosa, 2019)",All,T__Gemmiger_formicilis,100,0.0031,< 0.00001,TRUE,Gemmiger_formicilis
+"CD (Franzosa, 2019)",All,T__Eubacterium_siraeum,100,0.00194,< 0.00001,TRUE,Eubacterium_siraeum
+"CD (Franzosa, 2019)",All,T__Firmicutes_bacterium_CAG_83,100,0.00266,< 0.00001,TRUE,Firmicutes_bacterium_CAG_83
+"CD (Franzosa, 2019)",All,P__COMPLETE.ARO.PWY,100,5.5e-4,0.00869,TRUE,superpathway of aromatic amino acid biosynthesis
+"CD (Franzosa, 2019)",All,P__HISTSYN.PWY,100,0.0016,< 0.00001,TRUE,L-histidine biosynthesis
+"CD (Franzosa, 2019)",All,P__NONMEVIPP.PWY,100,8.6e-4,< 0.00001,TRUE,methylerythritol phosphate pathway I
+"CD (Franzosa, 2019)",All,P__ORNDEG.PWY,100,5.3e-4,0.00003,TRUE,superpathway of ornithine degradation
+"CD (Franzosa, 2019)",All,P__P108.PWY,100,9.9e-4,< 0.00001,TRUE,pyruvate fermentation to propanoate I
+"CD (Franzosa, 2019)",All,P__PANTOSYN.PWY,100,7.6e-4,< 0.00001,TRUE,superpathway of coenzyme A biosynthesis I (bacteria)
+"CD (Franzosa, 2019)",All,P__PWY.5677,99,4.4e-4,0.01325,TRUE,succinate fermentation to butanoate
+"CD (Franzosa, 2019)",All,P__PWY.6163,100,0.00243,< 0.00001,TRUE,chorismate biosynthesis from 3-dehydroquinate
+"CD (Franzosa, 2019)",All,P__PWY.6700,100,0.00101,< 0.00001,TRUE,queuosine biosynthesis I (_de novo_)
+"CD (Franzosa, 2019)",All,P__PWY0.1298,100,0.00157,< 0.00001,TRUE,superpathway of pyrimidine deoxyribonucleosides degradation
+"CD (Franzosa, 2019)",All,P__PWY0.166,96,3.5e-4,0.05302,TRUE,superpathway of pyrimidine deoxyribonucleotides _de novo_ biosynthesis (_E. coli_)
+"CD (Franzosa, 2019)",All,P__TRNA.CHARGING.PWY,100,6.3e-4,0.00018,TRUE,tRNA charging
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0079..undecanedionate,100,0.00154,< 0.00001,TRUE,C18.neg_Cluster_0079..undecanedionate
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0111..dodecanedioic.acid,100,9.6e-4,< 0.00001,TRUE,C18.neg_Cluster_0111..dodecanedioic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0183..1.2.3.4.tetrahydro.b.carboline.1.3.dicarboxylic.acid,100,0.00103,< 0.00001,TRUE,C18.neg_Cluster_0183..1.2.3.4.tetrahydro.b.carboline.1.3.dicarboxylic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0361..eicosatrienoic.acid,100,0.00297,< 0.00001,TRUE,C18.neg_Cluster_0361..eicosatrienoic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0490..docosapentaenoic.acid,100,0.00165,< 0.00001,TRUE,C18.neg_Cluster_0490..docosapentaenoic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0506..adrenic.acid,100,0.0035,< 0.00001,TRUE,C18.neg_Cluster_0506..adrenic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0563..palmitoylethanolamide,100,9.8e-4,< 0.00001,TRUE,C18.neg_Cluster_0563..palmitoylethanolamide
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0591..eicosatrienoic.acid,100,0.0027,< 0.00001,TRUE,C18.neg_Cluster_0591..eicosatrienoic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0729..docosapentaenoic.acid,100,6.9e-4,< 0.00001,TRUE,C18.neg_Cluster_0729..docosapentaenoic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0863..docosapentaenoic.acid_Cluster474,100,0.00149,< 0.00001,TRUE,C18.neg_Cluster_0863..docosapentaenoic.acid [Clustered features]
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_0901..7.ketodeoxycholate,100,0.00121,< 0.00001,TRUE,C18.neg_Cluster_0901..7.ketodeoxycholate
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_1803..maslinic.acid,99,4.1e-4,0.00038,TRUE,C18.neg_Cluster_1803..maslinic.acid
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_2021..urobilin,100,0.00988,< 0.00001,TRUE,C18.neg_Cluster_2021..urobilin
+"CD (Franzosa, 2019)",All,M__C18.neg_Cluster_2068..maslinic.acid,100,4.6e-4,< 0.00001,TRUE,C18.neg_Cluster_2068..maslinic.acid
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0123..sphingosine,100,6.9e-4,0.00001,TRUE,C8.pos_Cluster_0123..sphingosine
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0166..sphingosine,100,0.00164,< 0.00001,TRUE,C8.pos_Cluster_0166..sphingosine
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0253..sphingosine,100,0.00148,< 0.00001,TRUE,C8.pos_Cluster_0253..sphingosine
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0264..linoleoyl.ethanolamide,100,0.00138,< 0.00001,TRUE,C8.pos_Cluster_0264..linoleoyl.ethanolamide
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0339..linoleoyl.ethanolamide,100,0.00132,< 0.00001,TRUE,C8.pos_Cluster_0339..linoleoyl.ethanolamide
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0341..N.oleoylethanolamine,100,8.8e-4,< 0.00001,TRUE,C8.pos_Cluster_0341..N.oleoylethanolamine
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0410..C18.0e.MAG,100,5.7e-4,0.04684,TRUE,C8.pos_Cluster_0410..C18.0e.MAG
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0478..cholestenone,100,0.0014,< 0.00001,TRUE,C8.pos_Cluster_0478..cholestenone
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0554..cholestenone,100,0.00102,< 0.00001,TRUE,C8.pos_Cluster_0554..cholestenone
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0629..cholestenone,100,8.9e-4,< 0.00001,TRUE,C8.pos_Cluster_0629..cholestenone
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0705..cholestenone,100,4e-4,0.00527,TRUE,C8.pos_Cluster_0705..cholestenone
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_0988..sphingosine,100,0.00201,< 0.00001,TRUE,C8.pos_Cluster_0988..sphingosine
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1004..C16.0.ceramide..d18.1.,100,0.0036,< 0.00001,TRUE,C8.pos_Cluster_1004..C16.0.ceramide..d18.1.
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1395..C16.0.CE,100,0.00102,< 0.00001,TRUE,C8.pos_Cluster_1395..C16.0.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1478..C18.2.CE,100,0.00126,< 0.00001,TRUE,C8.pos_Cluster_1478..C18.2.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1490..C18.1.CE,100,7.6e-4,< 0.00001,TRUE,C8.pos_Cluster_1490..C18.1.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1504..C18.2.CE.,100,0.00152,< 0.00001,TRUE,C8.pos_Cluster_1504..C18.2.CE.
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1514..C18.1.CE,100,6e-4,0.00053,TRUE,C8.pos_Cluster_1514..C18.1.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1597..C20.4.CE,100,0.0014,< 0.00001,TRUE,C8.pos_Cluster_1597..C20.4.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1623..C20.4.CE,100,0.00165,< 0.00001,TRUE,C8.pos_Cluster_1623..C20.4.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1712..C22.5.CE,100,7.4e-4,< 0.00001,TRUE,C8.pos_Cluster_1712..C22.5.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1722..C22.4.CE,100,0.00146,< 0.00001,TRUE,C8.pos_Cluster_1722..C22.4.CE
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1736..C22.5.CE.,100,0.00194,< 0.00001,TRUE,C8.pos_Cluster_1736..C22.5.CE.
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1742..C22.4.CE.,100,0.0028,< 0.00001,TRUE,C8.pos_Cluster_1742..C22.4.CE.
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1849..cholestenone,100,6.3e-4,< 0.00001,TRUE,C8.pos_Cluster_1849..cholestenone
+"CD (Franzosa, 2019)",All,M__C8.pos_Cluster_1900..cholestenone,100,9.4e-4,< 0.00001,TRUE,C8.pos_Cluster_1900..cholestenone
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0036..glycerate,100,6.1e-4,0.0043,TRUE,HILIC.neg_Cluster_0036..glycerate
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0064..caproic.acid,100,9.7e-4,< 0.00001,TRUE,HILIC.neg_Cluster_0064..caproic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0156..caprylic.acid,100,7.8e-4,< 0.00001,TRUE,HILIC.neg_Cluster_0156..caprylic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0181..hydrocinnamic.acid,100,0.00277,< 0.00001,TRUE,HILIC.neg_Cluster_0181..hydrocinnamic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate,100,0.00386,< 0.00001,TRUE,HILIC.neg_Cluster_0220..3.methyladipate.pimelate
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0365..azelaic.acid,100,9.2e-4,< 0.00001,TRUE,HILIC.neg_Cluster_0365..azelaic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0372..N.acetylglutamate,100,0.00122,< 0.00001,TRUE,HILIC.neg_Cluster_0372..N.acetylglutamate
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0441..sebacate,100,0.0026,< 0.00001,TRUE,HILIC.neg_Cluster_0441..sebacate
+"CD (Franzosa, 2019)",All,M__HILIC.neg_Cluster_1126..docosapentaenoate,100,0.00106,< 0.00001,TRUE,HILIC.neg_Cluster_1126..docosapentaenoate
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0038..N.acetylputrescine_Cluster793,100,5.4e-4,0.06372,TRUE,HILIC.pos_Cluster_0038..N.acetylputrescine [Clustered features]
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0054..trimethylbenzene.,100,7.4e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0054..trimethylbenzene.
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0062..nicotinic.acid,100,0.00197,< 0.00001,TRUE,HILIC.pos_Cluster_0062..nicotinic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0177..4.hydroxy.3.methylacetophenone,100,0.00128,< 0.00001,TRUE,HILIC.pos_Cluster_0177..4.hydroxy.3.methylacetophenone
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0184..pyridoxamine,100,0.00577,< 0.00001,TRUE,HILIC.pos_Cluster_0184..pyridoxamine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0246..7.methylguanine,100,8e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0246..7.methylguanine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0268..pyridoxamine,100,0.00434,< 0.00001,TRUE,HILIC.pos_Cluster_0268..pyridoxamine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0384..N.acetylglutamic.acid,100,0.00559,< 0.00001,TRUE,HILIC.pos_Cluster_0384..N.acetylglutamic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0495..N.acetylglutamic.acid,100,0.00324,< 0.00001,TRUE,HILIC.pos_Cluster_0495..N.acetylglutamic.acid
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.,100,0.00333,< 0.00001,TRUE,HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0540..pantothenate,100,8.6e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0540..pantothenate
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0728..2.deoxyadenosine,100,7.6e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0728..2.deoxyadenosine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0906..threosphingosine,100,8.1e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0906..threosphingosine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_1148..linoleoyl.ethanolamide,100,7.5e-4,< 0.00001,TRUE,HILIC.pos_Cluster_1148..linoleoyl.ethanolamide
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_1160..linoleoyl.ethanolamide,100,6.3e-4,0.0002,TRUE,HILIC.pos_Cluster_1160..linoleoyl.ethanolamide
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_1370..5alpha.cholestanol,100,0.00121,< 0.00001,TRUE,HILIC.pos_Cluster_1370..5alpha.cholestanol
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_1486..C16.carnitine,100,0.00142,< 0.00001,TRUE,HILIC.pos_Cluster_1486..C16.carnitine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_1580..C18.2.carnitine,100,4.8e-4,0.01224,TRUE,HILIC.pos_Cluster_1580..C18.2.carnitine
+"CD (Franzosa, 2019)",All,M__HILIC.pos_Cluster_2093..urobilin.,100,0.00997,< 0.00001,TRUE,HILIC.pos_Cluster_2093..urobilin.
+"Cirrhosis (Qin, 2014)",All,T__Bacteroides.uniformis,100,9e-4,< 0.00001,TRUE,Bacteroides uniformis
+"Cirrhosis (Qin, 2014)",All,T__Roseburia.faecis,100,6.7e-4,0.00198,TRUE,Roseburia faecis
+"Cirrhosis (Qin, 2014)",All,T__Eubacterium.ventriosum,94,4.1e-4,0.0581,TRUE,Eubacterium ventriosum
+"Cirrhosis (Qin, 2014)",All,T__Fusicatenibacter.saccharivorans,100,0.0021,< 0.00001,TRUE,Fusicatenibacter saccharivorans
+"Cirrhosis (Qin, 2014)",All,T__Clostridium.sp..CAG.242,100,0.00132,< 0.00001,TRUE,Clostridium sp  CAG 242
+"Cirrhosis (Qin, 2014)",All,T__Phascolarctobacterium.faecium,98,6e-4,0.00218,TRUE,Phascolarctobacterium faecium
+"Cirrhosis (Qin, 2014)",All,T__Clostridium.sp..CAG.299,100,6e-4,< 0.00001,TRUE,Clostridium sp  CAG 299
+"Cirrhosis (Qin, 2014)",All,T__Anaerobutyricum.hallii,100,0.00101,< 0.00001,TRUE,Anaerobutyricum hallii
+"Cirrhosis (Qin, 2014)",All,T__Dialister.sp..CAG.357,100,6e-4,< 0.00001,TRUE,Dialister sp  CAG 357
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.salivarius,100,0.00212,< 0.00001,TRUE,Streptococcus salivarius
+"Cirrhosis (Qin, 2014)",All,T__.Ruminococcus..gnavus,100,0.00153,< 0.00001,TRUE, Ruminococcus  gnavus
+"Cirrhosis (Qin, 2014)",All,T__Butyricimonas.synergistica,100,9.7e-4,< 0.00001,TRUE,Butyricimonas synergistica
+"Cirrhosis (Qin, 2014)",All,T__Bifidobacterium.dentium,100,0.00232,< 0.00001,TRUE,Bifidobacterium dentium
+"Cirrhosis (Qin, 2014)",All,T__Prevotella.copri,98,5.3e-4,0.02639,TRUE,Prevotella copri
+"Cirrhosis (Qin, 2014)",All,T__Haemophilus.parainfluenzae,100,0.00668,< 0.00001,TRUE,Haemophilus parainfluenzae
+"Cirrhosis (Qin, 2014)",All,T__Enterocloster.bolteae,100,6.5e-4,< 0.00001,TRUE,Enterocloster bolteae
+"Cirrhosis (Qin, 2014)",All,T__.Clostridium..innocuum,100,0.00173,< 0.00001,TRUE, Clostridium  innocuum
+"Cirrhosis (Qin, 2014)",All,T__Hungatella.hathewayi,100,0.00109,< 0.00001,TRUE,Hungatella hathewayi
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.parasanguinis,100,0.00694,< 0.00001,TRUE,Streptococcus parasanguinis
+"Cirrhosis (Qin, 2014)",All,T__Veillonella.parvula,100,0.02261,< 0.00001,TRUE,Veillonella parvula
+"Cirrhosis (Qin, 2014)",All,T__Bacteroides.clarus,100,9.5e-4,< 0.00001,TRUE,Bacteroides clarus
+"Cirrhosis (Qin, 2014)",All,T__.Clostridium..symbiosum,100,0.00399,< 0.00001,TRUE, Clostridium  symbiosum
+"Cirrhosis (Qin, 2014)",All,T__Coprococcus.catus,100,8.9e-4,< 0.00001,TRUE,Coprococcus catus
+"Cirrhosis (Qin, 2014)",All,T__Adlercreutzia.equolifaciens,100,7.2e-4,< 0.00001,TRUE,Adlercreutzia equolifaciens
+"Cirrhosis (Qin, 2014)",All,T__Coprococcus.comes,100,9.1e-4,< 0.00001,TRUE,Coprococcus comes
+"Cirrhosis (Qin, 2014)",All,T__Alistipes.indistinctus,100,4.4e-4,< 0.00001,TRUE,Alistipes indistinctus
+"Cirrhosis (Qin, 2014)",All,T__Oscillibacter.sp..CAG.241,100,5.6e-4,< 0.00001,TRUE,Oscillibacter sp  CAG 241
+"Cirrhosis (Qin, 2014)",All,T__Erysipelatoclostridium.ramosum,100,4.2e-4,0.00342,TRUE,Erysipelatoclostridium ramosum
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.vestibularis,100,7.4e-4,< 0.00001,TRUE,Streptococcus vestibularis
+"Cirrhosis (Qin, 2014)",All,T__Firmicutes.bacterium.CAG.110,100,7.6e-4,< 0.00001,TRUE,Firmicutes bacterium CAG 110
+"Cirrhosis (Qin, 2014)",All,T__Veillonella.dispar,100,0.016,< 0.00001,TRUE,Veillonella dispar
+"Cirrhosis (Qin, 2014)",All,T__Veillonella.atypica,100,0.012070000000000001,< 0.00001,TRUE,Veillonella atypica
+"Cirrhosis (Qin, 2014)",All,T__Veillonella.sp..T11011.6,100,0.01007,< 0.00001,TRUE,Veillonella sp  T11011 6
+"Cirrhosis (Qin, 2014)",All,T__Veillonella.infantium,100,0.01942,< 0.00001,TRUE,Veillonella infantium
+"Cirrhosis (Qin, 2014)",All,T__Limosilactobacillus.mucosae,100,7.8e-4,< 0.00001,TRUE,Limosilactobacillus mucosae
+"Cirrhosis (Qin, 2014)",All,T__Aggregatibacter.segnis,100,0.00143,< 0.00001,TRUE,Aggregatibacter segnis
+"Cirrhosis (Qin, 2014)",All,T__Dielma.fastidiosa,100,5.4e-4,< 0.00001,TRUE,Dielma fastidiosa
+"Cirrhosis (Qin, 2014)",All,T__Enterocloster.aldenensis,100,0.00134,< 0.00001,TRUE,Enterocloster aldenensis
+"Cirrhosis (Qin, 2014)",All,T__Prevotella.buccae,100,0.00135,< 0.00001,TRUE,Prevotella buccae
+"Cirrhosis (Qin, 2014)",All,T__Cloacibacillus.porcorum,99,2.2e-4,0.02041,TRUE,Cloacibacillus porcorum
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.oralis,100,0.00431,< 0.00001,TRUE,Streptococcus oralis
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.gordonii,100,8.6e-4,< 0.00001,TRUE,Streptococcus gordonii
+"Cirrhosis (Qin, 2014)",All,T__Clostridium.perfringens,100,4.2e-4,< 0.00001,TRUE,Clostridium perfringens
+"Cirrhosis (Qin, 2014)",All,T__Veillonella.tobetsuensis,100,0.00093000000000000005,< 0.00001,TRUE,Veillonella tobetsuensis
+"Cirrhosis (Qin, 2014)",All,T__Ligilactobacillus.salivarius,100,0.00898,< 0.00001,TRUE,Ligilactobacillus salivarius
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.mitis,100,8.7e-4,< 0.00001,TRUE,Streptococcus mitis
+"Cirrhosis (Qin, 2014)",All,T__Campylobacter.concisus,100,0.00227,< 0.00001,TRUE,Campylobacter concisus
+"Cirrhosis (Qin, 2014)",All,T__Megasphaera.micronuciformis,100,0.00738,< 0.00001,TRUE,Megasphaera micronuciformis
+"Cirrhosis (Qin, 2014)",All,T__Fusobacterium.nucleatum,100,0.0016,< 0.00001,TRUE,Fusobacterium nucleatum
+"Cirrhosis (Qin, 2014)",All,T__Limosilactobacillus.fermentum,100,4.4e-4,< 0.00001,TRUE,Limosilactobacillus fermentum
+"Cirrhosis (Qin, 2014)",All,T__Streptococcus.mutans,100,7.5e-4,< 0.00001,TRUE,Streptococcus mutans
+"Cirrhosis (Qin, 2014)",All,P__ARO.PWY,100,7.6e-4,< 0.00001,TRUE,chorismate biosynthesis I
+"Cirrhosis (Qin, 2014)",All,P__BIOTIN.BIOSYNTHESIS.PWY_Cluster175,100,0.00135,< 0.00001,TRUE,biotin biosynthesis I [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__CALVIN.PWY,98,5.3e-4,0.00989,TRUE,Calvin-Benson-Bassham cycle
+"Cirrhosis (Qin, 2014)",All,P__COA.PWY,100,5.8e-4,0.00013,TRUE,coenzyme A biosynthesis I (bacteria)
+"Cirrhosis (Qin, 2014)",All,P__COMPLETE.ARO.PWY,100,9.1e-4,< 0.00001,TRUE,superpathway of aromatic amino acid biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__FASYN.ELONG.PWY_Cluster190,100,0.00203,< 0.00001,TRUE,fatty acid elongation -- saturated [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__FASYN.INITIAL.PWY,100,8.7e-4,< 0.00001,TRUE,superpathway of fatty acid biosynthesis initiation
+"Cirrhosis (Qin, 2014)",All,P__FOLSYN.PWY_Cluster193,100,0.00658,< 0.00001,TRUE,superpathway of tetrahydrofolate biosynthesis and salvage [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__GLYCOLYSIS,100,6.3e-4,< 0.00001,TRUE,glycolysis I (from glucose 6-phosphate)
+"Cirrhosis (Qin, 2014)",All,P__GOLPDLCAT.PWY,100,9.4e-4,< 0.00001,TRUE,"superpathway of glycerol degradation to 1,3-propanediol"
+"Cirrhosis (Qin, 2014)",All,P__HEME.BIOSYNTHESIS.II,100,0.00466,< 0.00001,TRUE,heme _b_ biosynthesis I (aerobic)
+"Cirrhosis (Qin, 2014)",All,P__HEMESYN2.PWY,100,0.00193,< 0.00001,TRUE,heme _b_ biosynthesis II (oxygen-independent)
+"Cirrhosis (Qin, 2014)",All,P__HOMOSER.METSYN.PWY,100,8.3e-4,< 0.00001,TRUE,L-methionine biosynthesis I
+"Cirrhosis (Qin, 2014)",All,P__MET.SAM.PWY_Cluster226,100,9e-4,< 0.00001,TRUE,superpathway of _S_-adenosyl-L-methionine biosynthesis [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__METHGLYUT.PWY,100,5.4e-4,0.045,TRUE,superpathway of methylglyoxal degradation
+"Cirrhosis (Qin, 2014)",All,P__NONMEVIPP.PWY,100,5.7e-4,0.00002,TRUE,methylerythritol phosphate pathway I
+"Cirrhosis (Qin, 2014)",All,P__NONOXIPENT.PWY,100,5.6e-4,0.00117,TRUE,pentose phosphate pathway (non-oxidative branch) I
+"Cirrhosis (Qin, 2014)",All,P__P122.PWY,100,0.00107,< 0.00001,TRUE,heterolactic fermentation
+"Cirrhosis (Qin, 2014)",All,P__P125.PWY,100,0.00181,< 0.00001,TRUE,"superpathway of (_R,R_)-butanediol biosynthesis"
+"Cirrhosis (Qin, 2014)",All,P__PANTO.PWY,100,0.0014,< 0.00001,TRUE,phosphopantothenate biosynthesis I
+"Cirrhosis (Qin, 2014)",All,P__PANTOSYN.PWY,100,0.00137,< 0.00001,TRUE,superpathway of coenzyme A biosynthesis I (bacteria)
+"Cirrhosis (Qin, 2014)",All,P__PEPTIDOGLYCANSYN.PWY_Cluster250,100,0.00102,< 0.00001,TRUE,peptidoglycan biosynthesis I (_meso_-diaminopimelate containing) [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PPGPPMET.PWY,100,8.2e-4,< 0.00001,TRUE,ppGpp metabolism
+"Cirrhosis (Qin, 2014)",All,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster256,100,4.3e-4,0.00025,TRUE,protocatechuate degradation II (ortho-cleavage pathway) [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PRPP.PWY,94,5.9e-4,0.00158,TRUE,"superpathway of histidine, purine, and pyrimidine biosynthesis"
+"Cirrhosis (Qin, 2014)",All,P__PWY.5097,100,0.00111,< 0.00001,TRUE,L-lysine biosynthesis VI
+"Cirrhosis (Qin, 2014)",All,P__PWY.5121,100,8.1e-4,< 0.00001,TRUE,superpathway of geranylgeranyl diphosphate biosynthesis II (via MEP)
+"Cirrhosis (Qin, 2014)",All,P__PWY.5180,100,0.00118,< 0.00001,TRUE,toluene degradation I (aerobic) (_via_ _o_-cresol)
+"Cirrhosis (Qin, 2014)",All,P__PWY.5347,100,8.7e-4,< 0.00001,TRUE,superpathway of L-methionine biosynthesis (transsulfuration)
+"Cirrhosis (Qin, 2014)",All,P__PWY.5384,100,6.4e-4,< 0.00001,TRUE,sucrose degradation IV (sucrose phosphorylase)
+"Cirrhosis (Qin, 2014)",All,P__PWY.5667_Cluster288,100,0.00163,< 0.00001,TRUE,CDP-diacylglycerol biosynthesis I [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PWY.5676,96,5.6e-4,0.02461,TRUE,acetyl-CoA fermentation to butanoate
+"Cirrhosis (Qin, 2014)",All,P__PWY.5686,99,5.5e-4,< 0.00001,TRUE,UMP biosynthesis I
+"Cirrhosis (Qin, 2014)",All,P__PWY.5837,100,0.00606,< 0.00001,TRUE,"2-carboxy-1,4-naphthoquinol biosynthesis"
+"Cirrhosis (Qin, 2014)",All,P__PWY.5838_Cluster296,100,0.00263,< 0.00001,TRUE,superpathway of menaquinol-8 biosynthesis I [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PWY.5840,100,0.00107,< 0.00001,TRUE,superpathway of menaquinol-7 biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.5845_Cluster298,100,4.6e-4,0.06831,TRUE,superpathway of menaquinol-9 biosynthesis [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PWY.5863,100,0.00493,< 0.00001,TRUE,superpathway of phylloquinol biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.5897_Cluster302,100,0.00381,< 0.00001,TRUE,superpathway of menaquinol-11 biosynthesis [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PWY.5910_Cluster303,100,0.00179,< 0.00001,TRUE,superpathway of geranylgeranyldiphosphate biosynthesis I (via mevalonate) [Clustered features]
+"Cirrhosis (Qin, 2014)",All,P__PWY.6151,100,6.9e-4,< 0.00001,TRUE,_S_-adenosyl-L-methionine salvage I
+"Cirrhosis (Qin, 2014)",All,P__PWY.6163,100,0.00115,< 0.00001,TRUE,chorismate biosynthesis from 3-dehydroquinate
+"Cirrhosis (Qin, 2014)",All,P__PWY.6385,100,8.3e-4,< 0.00001,TRUE,peptidoglycan biosynthesis III (mycobacteria)
+"Cirrhosis (Qin, 2014)",All,P__PWY.6471,100,0.00114,< 0.00001,TRUE,peptidoglycan biosynthesis IV (_Enterococcus faecium_)
+"Cirrhosis (Qin, 2014)",All,P__PWY.6562,100,0.00112,< 0.00001,TRUE,norspermidine biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.6588,100,8.7e-4,< 0.00001,TRUE,pyruvate fermentation to acetone
+"Cirrhosis (Qin, 2014)",All,P__PWY.6609,100,0.00124,< 0.00001,TRUE,adenine and adenosine salvage III
+"Cirrhosis (Qin, 2014)",All,P__PWY.6700,100,0.00154,< 0.00001,TRUE,queuosine biosynthesis I (_de novo_)
+"Cirrhosis (Qin, 2014)",All,P__PWY.6703,100,8e-4,< 0.00001,TRUE,preQ_0_ biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.6901,99,6.7e-4,< 0.00001,TRUE,superpathway of glucose and xylose degradation
+"Cirrhosis (Qin, 2014)",All,P__PWY.7199,100,5.7e-4,0.00124,TRUE,pyrimidine deoxyribonucleosides salvage
+"Cirrhosis (Qin, 2014)",All,P__PWY.7219,100,4.8e-4,0.02461,TRUE,adenosine ribonucleotides _de novo_ biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.7221,100,4.3e-4,0.05647,TRUE,guanosine ribonucleotides _de novo_ biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.7316,100,4.6e-4,0.01281,TRUE,dTDP-_N_-acetylviosamine biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.7328,100,7.7e-4,< 0.00001,TRUE,superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY.7392,100,7.5e-4,< 0.00001,TRUE,taxadiene biosynthesis (engineered)
+"Cirrhosis (Qin, 2014)",All,P__PWY.7456,100,8.2e-4,< 0.00001,TRUE,"&beta;-(1,4)-mannan degradation"
+"Cirrhosis (Qin, 2014)",All,P__PWY.7560,100,0.00118,< 0.00001,TRUE,methylerythritol phosphate pathway II
+"Cirrhosis (Qin, 2014)",All,P__PWY0.1241,100,0.00133,< 0.00001,TRUE,ADP-L-_glycero_-&beta;-D-_manno_-heptose biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PWY0.1297,100,9.4e-4,< 0.00001,TRUE,superpathway of purine deoxyribonucleosides degradation
+"Cirrhosis (Qin, 2014)",All,P__PWY0.1298,100,5e-4,0.02008,TRUE,superpathway of pyrimidine deoxyribonucleosides degradation
+"Cirrhosis (Qin, 2014)",All,P__PWYG.321,100,0.00152,< 0.00001,TRUE,mycolate biosynthesis
+"Cirrhosis (Qin, 2014)",All,P__PYRIDNUCSAL.PWY,100,0.0018,< 0.00001,TRUE,"NAD salvage pathway I (PNC VI cycle)"
+"Cirrhosis (Qin, 2014)",All,P__TRNA.CHARGING.PWY,100,0.00213,< 0.00001,TRUE,tRNA charging
+"Cirrhosis (Qin, 2014)",All,T__Holdemanella.biformis,90,4.6e-4,< 0.00001,TRUE,Holdemanella biformis
+"CRC (Feng, 2015)",All,T__Fusicatenibacter.saccharivorans,100,0.0016,0.00003,TRUE,Fusicatenibacter saccharivorans
+"CRC (Feng, 2015)",All,T__.Ruminococcus..torques,98,0.00255,< 0.00001,TRUE, Ruminococcus  torques
+"CRC (Feng, 2015)",All,T__Streptococcus.parasanguinis,83,0.00148,0.01033,TRUE,Streptococcus parasanguinis
+"CRC (Feng, 2015)",All,T__Bacteroides.xylanisolvens,100,0.00167,< 0.00001,TRUE,Bacteroides xylanisolvens
+"CRC (Feng, 2015)",All,T__Streptococcus.thermophilus,96,0.00181,< 0.00001,TRUE,Streptococcus thermophilus
+"CRC (Feng, 2015)",All,T__Alistipes.finegoldii,100,0.00261,< 0.00001,TRUE,Alistipes finegoldii
+"CRC (Feng, 2015)",All,T__Veillonella.atypica,93,0.00185,< 0.00001,TRUE,Veillonella atypica
+"CRC (Feng, 2015)",All,T__Veillonella.dispar,100,0.00277,< 0.00001,TRUE,Veillonella dispar
+"CRC (Feng, 2015)",All,T__Holdemania.filiformis,98,0.00146,0.00018,TRUE,Holdemania filiformis
+"CRC (Feng, 2015)",All,T__Gemella.morbillorum,100,0.00592,< 0.00001,TRUE,Gemella morbillorum
+"CRC (Feng, 2015)",All,T__Eubacterium.sp..CAG.180,75,9.9e-4,0.03057,TRUE,Eubacterium sp  CAG 180
+"CRC (Feng, 2015)",All,T__Methanobrevibacter.smithii,100,0.00428,< 0.00001,TRUE,Methanobrevibacter smithii
+"CRC (Feng, 2015)",All,T__Oscillibacter.sp..CAG.241,96,0.0013,0.00014,TRUE,Oscillibacter sp  CAG 241
+"CRC (Feng, 2015)",All,T__Actinomyces.sp..ICM47,100,0.00263,< 0.00001,TRUE,Actinomyces sp  ICM47
+"CRC (Feng, 2015)",All,T__Butyricimonas.virosa,100,0.00252,< 0.00001,TRUE,Butyricimonas virosa
+"CRC (Feng, 2015)",All,T__Clostridium.sp..CAG.167,76,9.7e-4,0.00014,TRUE,Clostridium sp  CAG 167
+"CRC (Feng, 2015)",All,T__Bifidobacterium.bifidum,100,0.00139,< 0.00001,TRUE,Bifidobacterium bifidum
+"CRC (Feng, 2015)",All,T__Ruminococcaceae.bacterium.D16,99,0.00145,< 0.00001,TRUE,Ruminococcaceae bacterium D16
+"CRC (Feng, 2015)",All,T__Solobacterium.moorei,100,0.00175,< 0.00001,TRUE,Solobacterium moorei
+"CRC (Feng, 2015)",All,T__Lachnospira.pectinoschiza,100,0.0015,< 0.00001,TRUE,Lachnospira pectinoschiza
+"CRC (Feng, 2015)",All,T__Prevotella.copri,100,0.03146,< 0.00001,TRUE,Prevotella copri
+"CRC (Feng, 2015)",All,T__Lacrimispora.saccharolytica,100,0.00127,< 0.00001,TRUE,Lacrimispora saccharolytica
+"CRC (Feng, 2015)",All,T__Catenibacterium.mitsuokai,77,8.2e-4,< 0.00001,TRUE,Catenibacterium mitsuokai
+"CRC (Feng, 2015)",All,T__Lactobacillus.rogosae,95,0.00132,< 0.00001,TRUE,Lactobacillus rogosae
+"CRC (Feng, 2015)",All,T__Bacteroides.galacturonicus,93,8.8e-4,< 0.00001,TRUE,Bacteroides galacturonicus
+"CRC (Feng, 2015)",All,T__Parvimonas.micra,100,0.00507,< 0.00001,TRUE,Parvimonas micra
+"CRC (Feng, 2015)",All,T__Faecalicoccus.pleomorphus,100,0.00262,< 0.00001,TRUE,Faecalicoccus pleomorphus
+"CRC (Feng, 2015)",All,P__P108.PWY,100,0.0014,0.05913,TRUE,pyruvate fermentation to propanoate I
+"CRC (Feng, 2015)",All,P__PWY.5100,100,0.0022,< 0.00001,TRUE,pyruvate fermentation to acetate and lactate II
+"CRC (Feng, 2015)",All,P__PWY.5154,100,0.00266,< 0.00001,TRUE,L-arginine biosynthesis III (via _N_-acetyl-L-citrulline)
+"CRC (Feng, 2015)",All,P__PWY.5973,100,0.0025,< 0.00001,TRUE,_cis_-vaccenate biosynthesis
+"CRC (Feng, 2015)",All,P__PWY.6147_Cluster328,100,0.0018,< 0.00001,TRUE,6-hydroxymethyl-dihydropterin diphosphate biosynthesis I [Clustered features]
+"CRC (Feng, 2015)",All,P__PWY.6628,76,0.00113,0.08819,TRUE,superpathway of L-phenylalanine biosynthesis
+"CRC (Feng, 2015)",All,P__PWY.6703,94,0.00141,0.00031,TRUE,preQ_0_ biosynthesis
+"CRC (Feng, 2015)",All,P__PWY.7332,97,0.00138,< 0.00001,TRUE,superpathway of UDP-_N_-acetylglucosamine-derived O-antigen building blocks biosynthesis
+"CRC (Feng, 2015)",All,P__THISYN.PWY,100,0.00476,< 0.00001,TRUE,superpathway of thiamine diphosphate biosynthesis I
+"CRC (Yachida, 2019)",All,T__Parvimonas.micra,100,0.00886,< 0.00001,TRUE,Parvimonas micra
+"CRC (Yachida, 2019)",All,T__Odoribacter.laneus,100,0.00109,< 0.00001,TRUE,Odoribacter laneus
+"CRC (Yachida, 2019)",All,T__Porphyromonas.uenonis_Cluster61,100,9.1e-4,< 0.00001,TRUE,Porphyromonas uenonis [Clustered features]
+"CRC (Yachida, 2019)",All,T__Christensenella.minuta,96,6.2e-4,0.01894,TRUE,Christensenella minuta
+"CRC (Yachida, 2019)",All,T__Fusobacterium.nucleatum.subsp..nucleatum,100,0.00829,< 0.00001,TRUE,Fusobacterium nucleatum subsp  nucleatum
+"CRC (Yachida, 2019)",All,T__Dialister.pneumosintes,98,8.8e-4,< 0.00001,TRUE,Dialister pneumosintes
+"CRC (Yachida, 2019)",All,T__Fusobacterium.nucleatum.subsp..polymorphum,100,0.00243,< 0.00001,TRUE,Fusobacterium nucleatum subsp  polymorphum
+"CRC (Yachida, 2019)",All,T__Peptostreptococcus.stomatis,100,0.00932,< 0.00001,TRUE,Peptostreptococcus stomatis
+"CRC (Yachida, 2019)",All,T__Hespellia.porcina,99,8.7e-4,0.00002,TRUE,Hespellia porcina
+"CRC (Yachida, 2019)",All,T__Fusobacterium.nucleatum.subsp..fusiforme_Cluster257,100,0.00133,< 0.00001,TRUE,Fusobacterium nucleatum subsp  fusiforme [Clustered features]
+"CRC (Yachida, 2019)",All,T__Gemella.morbillorum,100,0.00237,< 0.00001,TRUE,Gemella morbillorum
+"CRC (Yachida, 2019)",All,T__Fusobacterium.nucleatum.subsp..animalis,100,0.00363,< 0.00001,TRUE,Fusobacterium nucleatum subsp  animalis
+"CRC (Yachida, 2019)",All,T__Fusobacterium.nucleatum.subsp..vincentii,100,0.00669,< 0.00001,TRUE,Fusobacterium nucleatum subsp  vincentii
+"CRC (Yachida, 2019)",All,T__Fusobacterium.canifelinum,100,0.00337,< 0.00001,TRUE,Fusobacterium canifelinum
+"CRC (Yachida, 2019)",All,T__Prevotella.intermedia,100,0.00324,< 0.00001,TRUE,Prevotella intermedia
+"CRC (Yachida, 2019)",All,T__Fusobacterium.necrophorum.subsp..funduliforme_Cluster356,99,9.8e-4,< 0.00001,TRUE,Fusobacterium necrophorum subsp  funduliforme [Clustered features]
+"CRC (Yachida, 2019)",All,T__Peptostreptococcus.anaerobius,100,0.01051,< 0.00001,TRUE,Peptostreptococcus anaerobius
+"CRC (Yachida, 2019)",All,T__Fusobacterium.equinum,94,6e-4,< 0.00001,TRUE,Fusobacterium equinum
+"CRC (Yachida, 2019)",All,T__Clostridium.saccharobutylicum,100,8.5e-4,< 0.00001,TRUE,Clostridium saccharobutylicum
+"CRC (Yachida, 2019)",All,T__Prevotella.nigrescens,92,6.7e-4,0.04244,TRUE,Prevotella nigrescens
+"CRC (Yachida, 2019)",All,T__Fusobacterium.simiae,100,0.00505,< 0.00001,TRUE,Fusobacterium simiae
+"CRC (Yachida, 2019)",All,T__Selenomonas.sputigena,100,0.00313,< 0.00001,TRUE,Selenomonas sputigena
+"CRC (Yachida, 2019)",All,T__Succinatimonas.hippei,94,3.7e-4,0.00041,TRUE,Succinatimonas hippei
+"CRC (Yachida, 2019)",All,T__Clostridium.puniceum,98,6.4e-4,0.01541,TRUE,Clostridium puniceum
+"CRC (Yachida, 2019)",All,T__Porphyromonas.endodontalis,97,6.4e-4,0.00918,TRUE,Porphyromonas endodontalis
+"CRC (Yachida, 2019)",All,T__Lactobacillus.rogosae,99,7.4e-4,0.00918,TRUE,Lactobacillus rogosae
+"CRC (Yachida, 2019)",All,M__C00956_alpha.Aminoadipate,100,0.00191,< 0.00001,TRUE,C00956_alpha.Aminoadipate
+"CRC (Yachida, 2019)",All,M__C00020_AMP,99,7.9e-4,0.00002,TRUE,C00020_AMP
+"CRC (Yachida, 2019)",All,M__Cysteine.glutathione.disulphide..Divalent,96,3.8e-4,0.00004,TRUE,Cysteine.glutathione.disulphide..Divalent
+"CRC (Yachida, 2019)",All,M__C00334_GABA,100,8.1e-4,0.00058,TRUE,C00334_GABA
+"CRC (Yachida, 2019)",All,M__C00093_Glycerophosphate,97,6.5e-4,< 0.00001,TRUE,C00093_Glycerophosphate
+"CRC (Yachida, 2019)",All,M__C02155_Gly.Leu,100,9.1e-4,< 0.00001,TRUE,C02155_Gly.Leu
+"CRC (Yachida, 2019)",All,M__C00263_Homoserine,98,9.5e-4,< 0.00001,TRUE,C00263_Homoserine
+"CRC (Yachida, 2019)",All,M__C01015_Hydroxyproline,100,0.00131,< 0.00001,TRUE,C01015_Hydroxyproline
+"CRC (Yachida, 2019)",All,M__C03570_Mannosamine,94,5.5e-4,< 0.00001,TRUE,C03570_Mannosamine
+"CRC (Yachida, 2019)",All,M__C01026_N.N.Dimethylglycine,100,0.00178,< 0.00001,TRUE,C01026_N.N.Dimethylglycine
+"CRC (Yachida, 2019)",All,M__C04501_N.Acetylglucosamine.1.phosphate,100,0.00196,< 0.00001,TRUE,C04501_N.Acetylglucosamine.1.phosphate
+"CRC (Yachida, 2019)",All,M__C00357_N.Acetylglucosamine.6.phosphate,98,5.7e-4,0.01031,TRUE,C00357_N.Acetylglucosamine.6.phosphate
+"CRC (Yachida, 2019)",All,M__C01005_O.Phosphoserine,96,4.3e-4,0.01045,TRUE,C01005_O.Phosphoserine
+"CRC (Yachida, 2019)",All,M__C00065_Ser,100,0.00211,< 0.00001,TRUE,C00065_Ser
+"CRC (Yachida, 2019)",All,M__C00493_Shikimate,84,5.2e-4,0.04535,TRUE,C00493_Shikimate
+"CRC (Yachida, 2019)",All,M__C01104_Trimethylamine.N.oxide,81,6.5e-4,< 0.00001,TRUE,C01104_Trimethylamine.N.oxide
+"CRC (Yachida, 2019)",All,M__C00105_UMP,100,7.4e-4,0.00158,TRUE,C00105_UMP
+"CRC (Yachida, 2019)",All,M__C00785_Urocanate,100,0.0026,< 0.00001,TRUE,C00785_Urocanate
+"CRC (Yachida, 2019)",All,M__C02494_1.Methyladenosine,85,4.7e-4,0.01894,TRUE,C02494_1.Methyladenosine
+"CRC (Yachida, 2019)",All,M__C05629_3.Phenylpropionate,94,6.1e-4,0.00195,TRUE,C05629_3.Phenylpropionate
+"CRC (Yachida, 2019)",All,M__C16741_5.Hydroxylysine,100,0.00198,< 0.00001,TRUE,C16741_5.Hydroxylysine
+"CRC (Yu, 2015)",All,T__Collinsella.aerofaciens,96,0.00242,< 0.00001,TRUE,Collinsella aerofaciens
+"CRC (Yu, 2015)",All,T__Parvimonas.micra,100,0.01692,< 0.00001,TRUE,Parvimonas micra
+"CRC (Yu, 2015)",All,T__Dorea.formicigenerans,100,0.00293,< 0.00001,TRUE,Dorea formicigenerans
+"CRC (Yu, 2015)",All,T__Fusicatenibacter.saccharivorans,100,0.00815,< 0.00001,TRUE,Fusicatenibacter saccharivorans
+"CRC (Yu, 2015)",All,T__Peptostreptococcus.stomatis,100,0.01238,< 0.00001,TRUE,Peptostreptococcus stomatis
+"CRC (Yu, 2015)",All,T__Gemella.morbillorum,100,0.00887,< 0.00001,TRUE,Gemella morbillorum
+"CRC (Yu, 2015)",All,T__Dialister.pneumosintes,100,0.00124,< 0.00001,TRUE,Dialister pneumosintes
+"CRC (Yu, 2015)",All,T__Solobacterium.moorei,100,9.5e-4,< 0.00001,TRUE,Solobacterium moorei
+"CRC (Yu, 2015)",All,T__Ruthenibacterium.lactatiformans,94,0.00148,0.06526,TRUE,Ruthenibacterium lactatiformans
+"CRC (Yu, 2015)",All,T__.Clostridium..symbiosum,100,0.00579,< 0.00001,TRUE, Clostridium  symbiosum
+"CRC (Yu, 2015)",All,T__Enterocloster.citroniae,100,0.00304,< 0.00001,TRUE,Enterocloster citroniae
+"CRC (Yu, 2015)",All,T__Phocaeicola.dorei,85,0.00242,< 0.00001,TRUE,Phocaeicola dorei
+"CRC (Yu, 2015)",All,T__Eubacterium.limosum,90,6.7e-4,0.01337,TRUE,Eubacterium limosum
+"CRC (Yu, 2015)",All,T__Eubacterium.sp..CAG.38,97,0.00189,< 0.00001,TRUE,Eubacterium sp  CAG 38
+"CRC (Yu, 2015)",All,T__Fusobacterium.nucleatum,100,0.00133,< 0.00001,TRUE,Fusobacterium nucleatum
+"CRC (Yu, 2015)",All,T__Eubacterium.ventriosum,100,0.00565,< 0.00001,TRUE,Eubacterium ventriosum
+"CRC (Yu, 2015)",All,T__Erysipelatoclostridium.ramosum,98,0.00176,< 0.00001,TRUE,Erysipelatoclostridium ramosum
+"CRC (Yu, 2015)",All,T__Hungatella.hathewayi,100,0.00254,< 0.00001,TRUE,Hungatella hathewayi
+"CRC (Yu, 2015)",All,T__Enterocloster.clostridioformis,100,0.00157,< 0.00001,TRUE,Enterocloster clostridioformis
+"CRC (Yu, 2015)",All,T__Proteobacteria.bacterium.CAG.139,96,0.0012,< 0.00001,TRUE,Proteobacteria bacterium CAG 139
+"CRC (Yu, 2015)",All,T__Bacteroides.clarus,92,8.9e-4,< 0.00001,TRUE,Bacteroides clarus
+"CRC (Yu, 2015)",All,P__P162.PWY,100,0.00558,< 0.00001,TRUE,L-glutamate degradation V (via hydroxyglutarate)
+"CRC (Yu, 2015)",All,P__P163.PWY,100,0.00356,< 0.00001,TRUE,L-lysine fermentation to acetate and butanoate
+"CRC (Yu, 2015)",All,P__PWY.7316,93,0.00161,0.00025,TRUE,dTDP-_N_-acetylviosamine biosynthesis
+"CRC (Yu, 2015)",All,P__PWY0.1241,100,0.0078,< 0.00001,TRUE,ADP-L-_glycero_-&beta;-D-_manno_-heptose biosynthesis
+"CRC (Yu, 2015)",All,P__PWY0.1479,91,0.00162,0.03886,TRUE,tRNA processing
+"CRC (Yu, 2015)",All,T__Acidaminococcus.intestini,60,7.8e-4,0.00482,TRUE,Acidaminococcus intestini
+"CRC (Yu, 2015)",All,T__Ruminococcus.bicirculans,88,0.00151,0.00176,TRUE,Ruminococcus bicirculans
+"CRC (Yu, 2015)",All,P__P108.PWY,93,0.00183,0.01225,TRUE,pyruvate fermentation to propanoate I
+"ESRD (Wang, 2020)",All,T__Eggerthella_lenta,100,0.00162,< 0.00001,TRUE,Eggerthella_lenta
+"ESRD (Wang, 2020)",All,T__Prevotella_copri,100,0.00217,< 0.00001,TRUE,Prevotella_copri
+"ESRD (Wang, 2020)",All,T__Lactobacillus_rogosae,100,3e-4,0.00003,TRUE,Lactobacillus_rogosae
+"ESRD (Wang, 2020)",All,T__Blautia_wexlerae,100,4.5e-4,0.00002,TRUE,Blautia_wexlerae
+"ESRD (Wang, 2020)",All,T__Ruminococcus_gnavus,100,0.00114,< 0.00001,TRUE,Ruminococcus_gnavus
+"ESRD (Wang, 2020)",All,T__Eisenbergiella_massiliensis,100,3.4e-4,< 0.00001,TRUE,Eisenbergiella_massiliensis
+"ESRD (Wang, 2020)",All,T__Eubacterium_rectale,100,4.8e-4,0.00151,TRUE,Eubacterium_rectale
+"ESRD (Wang, 2020)",All,T__Lachnospira_pectinoschiza,100,5.5e-4,< 0.00001,TRUE,Lachnospira_pectinoschiza
+"ESRD (Wang, 2020)",All,T__Roseburia_faecis,100,0.00164,< 0.00001,TRUE,Roseburia_faecis
+"ESRD (Wang, 2020)",All,T__Sellimonas_intestinalis,100,2.7e-4,0.00131,TRUE,Sellimonas_intestinalis
+"ESRD (Wang, 2020)",All,T__Ruminococcus_callidus,100,3.1e-4,< 0.00001,TRUE,Ruminococcus_callidus
+"ESRD (Wang, 2020)",All,T__Ruthenibacterium_lactatiformans,100,0.00115,< 0.00001,TRUE,Ruthenibacterium_lactatiformans
+"ESRD (Wang, 2020)",All,T__Clostridium_spiroforme,100,6.7e-4,< 0.00001,TRUE,Clostridium_spiroforme
+"ESRD (Wang, 2020)",All,T__Haemophilus_parainfluenzae,100,2.8e-4,0.00049,TRUE,Haemophilus_parainfluenzae
+"ESRD (Wang, 2020)",All,P__GLCMANNANAUT.PWY,100,5.5e-4,< 0.00001,TRUE,"superpathway of _N_-acetylglucosamine, _N_-acetylmannosamine and _N_-acetylneuraminate degradation"
+"ESRD (Wang, 2020)",All,P__PWY.5676,100,6.5e-4,< 0.00001,TRUE,acetyl-CoA fermentation to butanoate
+"ESRD (Wang, 2020)",All,P__PWY.7237,100,5.5e-4,0.00004,TRUE,"_myo_-, _chiro_- and _scyllo_-inositol degradation"
+"ESRD (Wang, 2020)",All,M__Phenol,100,4.5e-4,0.00022,TRUE,Phenol
+"ESRD (Wang, 2020)",All,M__Toluene,100,0.00197,< 0.00001,TRUE,Toluene
+"ESRD (Wang, 2020)",All,M__Benzene,100,4.9e-4,0.0179,TRUE,Benzene
+"ESRD (Wang, 2020)",All,M__Butyric.acid,100,0.00105,< 0.00001,TRUE,Butyric.acid
+"ESRD (Wang, 2020)",All,M__Acetic.acid,100,7.5e-4,< 0.00001,TRUE,Acetic.acid
+"ESRD (Wang, 2020)",All,M__Methyl.acetate,100,0.00168,< 0.00001,TRUE,Methyl.acetate
+"ESRD (Wang, 2020)",All,M__Methyl.butyrate,100,0.00188,< 0.00001,TRUE,Methyl.butyrate
+"ESRD (Wang, 2020)",All,M__309_Xylene,100,0.00412,< 0.00001,TRUE,309_Xylene
+"ESRD (Wang, 2020)",All,M__Propionic.acid,100,0.01014,< 0.00001,TRUE,Propionic.acid
+"ESRD (Wang, 2020)",All,M__Methyl.propionate,100,0.00231,< 0.00001,TRUE,Methyl.propionate
+"ESRD (Wang, 2020)",All,M__....Menthone,100,0.021,< 0.00001,TRUE,....Menthone
+"ESRD (Wang, 2020)",All,M__Quinoline,100,0.00483,< 0.00001,TRUE,Quinoline
+"ESRD (Wang, 2020)",All,M__Methylamine..N.N.dimethyl.,100,0.00181,< 0.00001,TRUE,Methylamine..N.N.dimethyl.
+"ESRD (Wang, 2020)",All,M__Hexanal,100,7.5e-4,< 0.00001,TRUE,Hexanal
+"ESRD (Wang, 2020)",All,M__Decane..2.4.6.trimethyl.,100,5.3e-4,0.00068,TRUE,Decane..2.4.6.trimethyl.
+"ESRD (Wang, 2020)",All,M__Pentadecanal,100,0.01949,< 0.00001,TRUE,Pentadecanal
+"ESRD (Wang, 2020)",All,M__2.Oxohexane,100,0.0239,< 0.00001,TRUE,2.Oxohexane
+"ESRD (Wang, 2020)",All,M__2.Bromomethyl.1.3.dioxolane,100,0.00109,< 0.00001,TRUE,2.Bromomethyl.1.3.dioxolane
+"ESRD (Wang, 2020)",All,M__Hexanoic.acid,100,8.4e-4,< 0.00001,TRUE,Hexanoic.acid
+"ESRD (Wang, 2020)",All,M__Mequinol,100,0.00109,< 0.00001,TRUE,Mequinol
+"ESRD (Wang, 2020)",All,M__1.3.Cyclohexadiene..5..1.5.dimethyl.4.hexenyl..2.methyl....S..R..S....,100,0.00107,< 0.00001,TRUE,1.3.Cyclohexadiene..5..1.5.dimethyl.4.hexenyl..2.methyl....S..R..S....
+"ESRD (Wang, 2020)",All,M__Oxime...methoxy.phenyl._,100,0.00276,< 0.00001,TRUE,Oxime...methoxy.phenyl._
+"ESRD (Wang, 2020)",All,M__Butanoic.acid..butyl.ester,100,0.00121,< 0.00001,TRUE,Butanoic.acid..butyl.ester
+"ESRD (Wang, 2020)",All,M__3.4.Dihydroxyphenylglycol,100,0.00107,< 0.00001,TRUE,3.4.Dihydroxyphenylglycol
+"ESRD (Wang, 2020)",All,M__Benzene..1..chloromethyl..3.methoxy.,100,5.2e-4,< 0.00001,TRUE,Benzene..1..chloromethyl..3.methoxy.
+"ESRD (Wang, 2020)",All,M__5.hydroxy.7.methoxyflavanone..tert..butyldimethylsilyl.ether,100,8.3e-4,< 0.00001,TRUE,5.hydroxy.7.methoxyflavanone..tert..butyldimethylsilyl.ether
+"ESRD (Wang, 2020)",All,M__Ethanol..1..2.butoxyethoxy..,100,0.00194,< 0.00001,TRUE,Ethanol..1..2.butoxyethoxy..
+"ESRD (Wang, 2020)",All,M__3.Hexanol..2.methyl.,100,6.7e-4,< 0.00001,TRUE,3.Hexanol..2.methyl.
+"ESRD (Wang, 2020)",All,M__Ethyl.methyl.disulfide,100,0.00147,< 0.00001,TRUE,Ethyl.methyl.disulfide
+"ESRD (Wang, 2020)",All,M__Mesitylene,100,0.00319,< 0.00001,TRUE,Mesitylene
+"ESRD (Wang, 2020)",All,M__Heptanal,100,0.00158,< 0.00001,TRUE,Heptanal
+"ESRD (Wang, 2020)",All,M__2.Methyl.4.heptanone,100,5.8e-4,< 0.00001,TRUE,2.Methyl.4.heptanone
+"ESRD (Wang, 2020)",All,M__1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane,100,0.0382,< 0.00001,TRUE,1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane
+"ESRD (Wang, 2020)",All,M__Tetrahydropyran.Z.10.dodecenoate,100,9.8e-4,< 0.00001,TRUE,Tetrahydropyran.Z.10.dodecenoate
+"ESRD (Wang, 2020)",All,M__Pentanal..2.4.dimethyl.,100,0.0052,< 0.00001,TRUE,Pentanal..2.4.dimethyl.
+"ESRD (Wang, 2020)",All,M__2.Heptanone..5.methyl.,100,0.01241,< 0.00001,TRUE,2.Heptanone..5.methyl.
+"ESRD (Wang, 2020)",All,M__Z.1.6.Tridecadiene,100,0.00242,< 0.00001,TRUE,Z.1.6.Tridecadiene
+"ESRD (Wang, 2020)",All,M__cis.9.Hexadecenal,100,4.4e-4,0.04898,TRUE,cis.9.Hexadecenal
+"ESRD (Wang, 2020)",All,M__Tributyl.phosphate,100,0.00211,< 0.00001,TRUE,Tributyl.phosphate
+"ESRD (Wang, 2020)",All,M__Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..,100,0.00682,< 0.00001,TRUE,Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..
+"ESRD (Wang, 2020)",All,M__Benzene..1.ethyl.4.methyl.,100,0.00172,< 0.00001,TRUE,Benzene..1.ethyl.4.methyl.
+"ESRD (Wang, 2020)",All,M__Heptasiloxane..hexadecamethyl.,100,0.00119,< 0.00001,TRUE,Heptasiloxane..hexadecamethyl.
+"ESRD (Wang, 2020)",All,M__....Borneol,100,3.4e-4,0.09374,TRUE,....Borneol
+"ESRD (Wang, 2020)",All,M__Bicyclo.4.1.0.heptane..7.methylene.,100,0.00154,< 0.00001,TRUE,Bicyclo.4.1.0.heptane..7.methylene.
+"ESRD (Wang, 2020)",All,M__Benzoic.acid..3.4.dichlorophenyl.ester,100,5.6e-4,0.00017,TRUE,Benzoic.acid..3.4.dichlorophenyl.ester
+"ESRD (Wang, 2020)",All,M__1.1.Dichloropentane,100,5.8e-4,< 0.00001,TRUE,1.1.Dichloropentane
+"ESRD (Wang, 2020)",All,M__Methyl.tetradecanoate,100,0.00118,< 0.00001,TRUE,Methyl.tetradecanoate
+MS (MetaCardis),All,T__motu_linkage_group_310,98,0.00122,< 0.00001,TRUE,motu_linkage_group_310
+MS (MetaCardis),All,T__motu_linkage_group_63,100,7.4e-4,< 0.00001,TRUE,motu_linkage_group_63
+MS (MetaCardis),All,T__Collinsella_aerofaciens,96,0.00107,< 0.00001,TRUE,Collinsella_aerofaciens
+MS (MetaCardis),All,T__Bilophila_wadsworthia,100,0.00115,< 0.00001,TRUE,Bilophila_wadsworthia
+MS (MetaCardis),All,T__motu_linkage_group_333,87,7.6e-4,< 0.00001,TRUE,motu_linkage_group_333
+MS (MetaCardis),All,T__motu_linkage_group_226,82,6.4e-4,< 0.00001,TRUE,motu_linkage_group_226
+MS (MetaCardis),All,T__motu_linkage_group_251,91,6.1e-4,< 0.00001,TRUE,motu_linkage_group_251
+MS (MetaCardis),All,T__Ruminococcus_sp__5_1_39BFAA,95,7.7e-4,0.04742,TRUE,Ruminococcus_sp__5_1_39BFAA
+MS (MetaCardis),All,T__Bacteroides_finegoldii,89,5.4e-4,0.00561,TRUE,Bacteroides_finegoldii
+MS (MetaCardis),All,T__motu_linkage_group_456,100,0.00273,< 0.00001,TRUE,motu_linkage_group_456
+MS (MetaCardis),All,T__Haemophilus_parainfluenzae,100,0.00393,< 0.00001,TRUE,Haemophilus_parainfluenzae
+MS (MetaCardis),All,T__Coprococcus_catus,99,0.00129,< 0.00001,TRUE,Coprococcus_catus
+MS (MetaCardis),All,T__X_Ruminococcus__torques,100,0.00107,< 0.00001,TRUE,X_Ruminococcus__torques
+MS (MetaCardis),All,P__M00357,74,7.8e-4,0.03487,TRUE,"Methanogenesis, acetate => methane"
+MS (MetaCardis),All,P__M00189,100,0.00136,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+MS (MetaCardis),All,P__M00427,99,0.00115,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+MS (MetaCardis),All,S__SERUM_ABS_L_leucine_1,100,7.6e-4,0.01002,TRUE,SERUM_ABS_L_leucine_1
+MS (MetaCardis),All,S__SERUM_ABS_talose_2,100,0.00691,< 0.00001,TRUE,SERUM_ABS_talose_2
+MS (MetaCardis),All,S__SERUM_ABS_glycerol,100,0.00236,< 0.00001,TRUE,SERUM_ABS_glycerol
+MS (MetaCardis),All,S__SERUM_ABS_maltose_1,99,0.00111,< 0.00001,TRUE,SERUM_ABS_maltose_1
+MS (MetaCardis),All,S__SERUM_ABS_palmitic_acid,100,9.8e-4,< 0.00001,TRUE,SERUM_ABS_palmitic_acid
+MS (MetaCardis),All,S__SERUM_ABS_D_glucose_1,100,0.00651,< 0.00001,TRUE,SERUM_ABS_D_glucose_1
+MS (MetaCardis),All,S__SERUM_ABS_oleic_acid,100,8.9e-4,< 0.00001,TRUE,SERUM_ABS_oleic_acid
+MS (MetaCardis),All,S__SERUM_ABS_2_oleoylglycerol,100,0.00581,< 0.00001,TRUE,SERUM_ABS_2_oleoylglycerol
+MS (MetaCardis),All,S__SERUM_ABS_pyruvic_acid,100,0.00897,< 0.00001,TRUE,SERUM_ABS_pyruvic_acid
+MS (MetaCardis),All,S__SERUM_ABS_D_mannose_1,100,0.01052,< 0.00001,TRUE,SERUM_ABS_D_mannose_1
+MS (MetaCardis),All,S__SERUM_ABS_lactose_1,100,0.00351,< 0.00001,TRUE,SERUM_ABS_lactose_1
+MS (MetaCardis),All,S__SERUM_ABS_alpha_ketoglutaric_acid,100,0.00491,< 0.00001,TRUE,SERUM_ABS_alpha_ketoglutaric_acid
+MS (MetaCardis),All,S__SERUM_ABS_D_P_trehalose,99,0.00143,< 0.00001,TRUE,SERUM_ABS_D_P_trehalose
+MS (MetaCardis),All,S__SERUM_ABS_hexanoic_acid,99,0.00112,< 0.00001,TRUE,SERUM_ABS_hexanoic_acid
+MS (MetaCardis),All,S__SERUM_ABS_xylulose,100,7.9e-4,0.00039,TRUE,SERUM_ABS_xylulose
+MS (MetaCardis),All,S__SERUM_ABS_L_glutamic_acid_2,100,0.00473,< 0.00001,TRUE,SERUM_ABS_L_glutamic_acid_2
+MS (MetaCardis),All,S__SERUM_ABS_cellotetraose,100,9.8e-4,< 0.00001,TRUE,SERUM_ABS_cellotetraose
+MS (MetaCardis),All,S__SERUM_ABS_gluconic_acid_2,100,0.00129,< 0.00001,TRUE,SERUM_ABS_gluconic_acid_2
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Alanine,98,9.7e-4,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Alanine
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Creatine,99,9.5e-4,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Creatine
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glutamic_acid,100,0.00224,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Glutamic_acid
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Isoleucine,100,0.00136,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Isoleucine
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Phenylalanine,76,3.6e-4,0.05849,TRUE,SERUM_NMR_ABSOLUTE_Phenylalanine
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Tyrosine,99,5.3e-4,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Tyrosine
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Acetic_acid,98,6.5e-4,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Acetic_acid
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,100,0.00348,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Pyruvic_acid
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glucose,100,0.0023,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Glucose
+MS (MetaCardis),All,S__SERUM_TMAO_Isovaleryl_Carnitine,100,0.00112,0.00005,TRUE,SERUM_TMAO_Isovaleryl_Carnitine
+MS (MetaCardis),All,T__Lactococcus_lactis,65,6.2e-4,0.00767,TRUE,Lactococcus_lactis
+MS (MetaCardis),All,T__Bacteroides_coprocola,75,3.5e-4,0.00676,TRUE,Bacteroides_coprocola
+MS (MetaCardis),All,T__motu_linkage_group_686,70,7.7e-4,< 0.00001,TRUE,motu_linkage_group_686
+MS (MetaCardis),All,T__motu_linkage_group_282,93,7.1e-4,< 0.00001,TRUE,motu_linkage_group_282
+MS (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Formic_acid,83,2.9e-4,0.03453,TRUE,SERUM_NMR_ABSOLUTE_Formic_acid
+MS (MetaCardis),All,T__motu_linkage_group_219,54,4.2e-4,0.02877,TRUE,motu_linkage_group_219
+T2D (MetaCardis),All,T__motu_linkage_group_104,100,6.1e-4,< 0.00001,TRUE,motu_linkage_group_104
+T2D (MetaCardis),All,T__motu_linkage_group_415,100,5.8e-4,< 0.00001,TRUE,motu_linkage_group_415
+T2D (MetaCardis),All,T__motu_linkage_group_258,100,5.4e-4,0.00075,TRUE,motu_linkage_group_258
+T2D (MetaCardis),All,T__motu_linkage_group_212,100,8e-4,< 0.00001,TRUE,motu_linkage_group_212
+T2D (MetaCardis),All,T__motu_linkage_group_205,98,3e-4,< 0.00001,TRUE,motu_linkage_group_205
+T2D (MetaCardis),All,T__motu_linkage_group_349,100,6.2e-4,0.00004,TRUE,motu_linkage_group_349
+T2D (MetaCardis),All,T__Bilophila_wadsworthia,100,8.1e-4,< 0.00001,TRUE,Bilophila_wadsworthia
+T2D (MetaCardis),All,T__motu_linkage_group_327,100,0.00093000000000000005,< 0.00001,TRUE,motu_linkage_group_327
+T2D (MetaCardis),All,T__motu_linkage_group_625,96,2.7e-4,0.0449,TRUE,motu_linkage_group_625
+T2D (MetaCardis),All,T__motu_linkage_group_636,99,6.4e-4,< 0.00001,TRUE,motu_linkage_group_636
+T2D (MetaCardis),All,T__motu_linkage_group_151,100,0.00169,< 0.00001,TRUE,motu_linkage_group_151
+T2D (MetaCardis),All,T__motu_linkage_group_686,100,3.8e-4,< 0.00001,TRUE,motu_linkage_group_686
+T2D (MetaCardis),All,T__Escherichia_coli,100,0.0014,< 0.00001,TRUE,Escherichia_coli
+T2D (MetaCardis),All,T__motu_linkage_group_551,100,5.6e-4,0.00529,TRUE,motu_linkage_group_551
+T2D (MetaCardis),All,T__motu_linkage_group_282,100,0.00127,< 0.00001,TRUE,motu_linkage_group_282
+T2D (MetaCardis),All,T__motu_linkage_group_517,100,0.00434,< 0.00001,TRUE,motu_linkage_group_517
+T2D (MetaCardis),All,T__Clostridium_symbiosum,94,2.9e-4,0.00006,TRUE,Clostridium_symbiosum
+T2D (MetaCardis),All,T__motu_linkage_group_600,100,3.9e-4,0.00092,TRUE,motu_linkage_group_600
+T2D (MetaCardis),All,T__motu_linkage_group_376,100,5e-4,0.00092,TRUE,motu_linkage_group_376
+T2D (MetaCardis),All,T__motu_linkage_group_103,100,0.00123,< 0.00001,TRUE,motu_linkage_group_103
+T2D (MetaCardis),All,T__motu_linkage_group_65,92,3e-4,< 0.00001,TRUE,motu_linkage_group_65
+T2D (MetaCardis),All,T__motu_linkage_group_452,93,3.4e-4,0.00005,TRUE,motu_linkage_group_452
+T2D (MetaCardis),All,T__Clostridium_bolteae,100,4.7e-4,< 0.00001,TRUE,Clostridium_bolteae
+T2D (MetaCardis),All,T__X_Ruminococcus__torques,100,6.8e-4,0.00002,TRUE,X_Ruminococcus__torques
+T2D (MetaCardis),All,T__motu_linkage_group_307,100,0.00111,< 0.00001,TRUE,motu_linkage_group_307
+T2D (MetaCardis),All,T__motu_linkage_group_638,100,6e-4,0.00001,TRUE,motu_linkage_group_638
+T2D (MetaCardis),All,T__motu_linkage_group_113,78,2.6e-4,0.03509,TRUE,motu_linkage_group_113
+T2D (MetaCardis),All,P__M00279,100,7.1e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00197_Cluster306,100,7.1e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE [Clustered features]
+T2D (MetaCardis),All,P__M00602,100,6.8e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00171,100,8.2e-4,< 0.00001,TRUE,"C4-dicarboxylic acid cycle, NAD - malic enzyme type"
+T2D (MetaCardis),All,P__M00200,100,6.8e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00394,99,7.4e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00276,100,6.3e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00429,100,7.4e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00012,100,7.9e-4,< 0.00001,TRUE,Glyoxylate cycle
+T2D (MetaCardis),All,P__M00189,100,0.00516,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00648,100,0.0023,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00208,100,7e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00450_Cluster390,100,7.8e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE [Clustered features]
+T2D (MetaCardis),All,P__M00427,100,6.2e-4,0.0001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00005,100,4.7e-4,0.00872,TRUE,"PRPP biosynthesis, ribose 5P => PRPP"
+T2D (MetaCardis),All,P__M00275,100,0.00108,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00529,100,7e-4,< 0.00001,TRUE,"Denitrification, nitrate => nitrogen"
+T2D (MetaCardis),All,P__M00127,100,8.4e-4,< 0.00001,TRUE,"Thiamine biosynthesis, prokaryotes, AIR (+ DXP/tyrosine) => TMP/TPP"
+T2D (MetaCardis),All,P__M00266,100,0.00153,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00035,100,8.7e-4,< 0.00001,TRUE,Methionine degradation
+T2D (MetaCardis),All,P__M00001,100,5.5e-4,0.00138,TRUE,"Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate"
+T2D (MetaCardis),All,S__SERUM_ABS_DL_isoleucine_2,100,5.9e-4,0.00006,TRUE,SERUM_ABS_DL_isoleucine_2
+T2D (MetaCardis),All,S__SERUM_ABS_L_leucine_1,100,0.00398,< 0.00001,TRUE,SERUM_ABS_L_leucine_1
+T2D (MetaCardis),All,S__SERUM_ABS_lactamide_1,100,0.00267,< 0.00001,TRUE,SERUM_ABS_lactamide_1
+T2D (MetaCardis),All,S__SERUM_ABS_talose_2,100,0.01788,< 0.00001,TRUE,SERUM_ABS_talose_2
+T2D (MetaCardis),All,S__SERUM_ABS_2_hydroxybutyric_acid,100,7.9e-4,< 0.00001,TRUE,SERUM_ABS_2_hydroxybutyric_acid
+T2D (MetaCardis),All,S__SERUM_ABS_D_glucose_1,100,0.0148,< 0.00001,TRUE,SERUM_ABS_D_glucose_1
+T2D (MetaCardis),All,S__SERUM_ABS_L_tyrosine_2,100,0.00109,< 0.00001,TRUE,SERUM_ABS_L_tyrosine_2
+T2D (MetaCardis),All,S__SERUM_ABS_L_P_lactic_acid,100,0.00254,< 0.00001,TRUE,SERUM_ABS_L_P_lactic_acid
+T2D (MetaCardis),All,S__SERUM_ABS_L_lysine_2,99,5.9e-4,< 0.00001,TRUE,SERUM_ABS_L_lysine_2
+T2D (MetaCardis),All,S__SERUM_ABS_pyruvic_acid,100,0.00398,< 0.00001,TRUE,SERUM_ABS_pyruvic_acid
+T2D (MetaCardis),All,S__SERUM_ABS_D_mannose_1,100,0.00919,< 0.00001,TRUE,SERUM_ABS_D_mannose_1
+T2D (MetaCardis),All,S__SERUM_ABS_lactose_1,100,0.00364,< 0.00001,TRUE,SERUM_ABS_lactose_1
+T2D (MetaCardis),All,S__SERUM_ABS_alpha_ketoglutaric_acid,100,0.00104,< 0.00001,TRUE,SERUM_ABS_alpha_ketoglutaric_acid
+T2D (MetaCardis),All,S__SERUM_ABS_D_P_trehalose,100,5.6e-4,0.03614,TRUE,SERUM_ABS_D_P_trehalose
+T2D (MetaCardis),All,S__SERUM_ABS_L_valine_2,100,0.00159,< 0.00001,TRUE,SERUM_ABS_L_valine_2
+T2D (MetaCardis),All,S__SERUM_ABS_1.5_anhydro_D_sorbitol,100,7.1e-4,< 0.00001,TRUE,SERUM_ABS_1.5_anhydro_D_sorbitol
+T2D (MetaCardis),All,S__SERUM_ABS_xylulose,99,5.1e-4,0.01384,TRUE,SERUM_ABS_xylulose
+T2D (MetaCardis),All,S__SERUM_ABS_L_alanine_1,100,0.00156,< 0.00001,TRUE,SERUM_ABS_L_alanine_1
+T2D (MetaCardis),All,S__SERUM_ABS_3_methyl_2_oxobutanoic_acid_1,100,8.9e-4,< 0.00001,TRUE,SERUM_ABS_3_methyl_2_oxobutanoic_acid_1
+T2D (MetaCardis),All,S__SERUM_ABS_L_glutamic_acid_2,100,6.2e-4,0.00011,TRUE,SERUM_ABS_L_glutamic_acid_2
+T2D (MetaCardis),All,S__SERUM_ABS_D_lyxose_2,100,0.00111,< 0.00001,TRUE,SERUM_ABS_D_lyxose_2
+T2D (MetaCardis),All,S__SERUM_ABS_indolepropionic_acid,100,0.00102,< 0.00001,TRUE,SERUM_ABS_indolepropionic_acid
+T2D (MetaCardis),All,S__SERUM_ABS_threonic_acid,100,0.00138,< 0.00001,TRUE,SERUM_ABS_threonic_acid
+T2D (MetaCardis),All,S__SERUM_ABS_gluconic_acid_2,100,0.0011,< 0.00001,TRUE,SERUM_ABS_gluconic_acid_2
+T2D (MetaCardis),All,S__SERUM_ABS_DL_glyceraldehyde_2,100,9.8e-4,< 0.00001,TRUE,SERUM_ABS_DL_glyceraldehyde_2
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Alanine,100,0.00204,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Alanine
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glutamic_acid,100,0.00291,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Glutamic_acid
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glutamine,100,5.7e-4,0.00004,TRUE,SERUM_NMR_ABSOLUTE_Glutamine
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glycine,100,4.4e-4,0.00229,TRUE,SERUM_NMR_ABSOLUTE_Glycine
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Isoleucine,100,0.00142,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Isoleucine
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Phenylalanine,99,3.8e-4,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Phenylalanine
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Valine,100,0.00093000000000000005,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Valine
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Acetic_acid,100,3.8e-4,0.01172,TRUE,SERUM_NMR_ABSOLUTE_Acetic_acid
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Formic_acid,77,2.7e-4,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Formic_acid
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Lactic_acid,100,0.00104,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Lactic_acid
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,100,0.00139,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Pyruvic_acid
+T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glucose,100,0.01117,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Glucose
+"STH (Rubel, 2020)",All,T__Prevotella.copri,96,0.00131,< 0.00001,TRUE,Prevotella copri
+"STH (Rubel, 2020)",All,T__Prevotella.sp..CAG.520,100,0.00409,< 0.00001,TRUE,Prevotella sp  CAG 520
+"STH (Rubel, 2020)",All,T__Lachnospira.eligens,100,0.0038,< 0.00001,TRUE,Lachnospira eligens
+"STH (Rubel, 2020)",All,T__Escherichia.coli,100,0.00125,< 0.00001,TRUE,Escherichia coli
+"STH (Rubel, 2020)",All,T__Phascolarctobacterium.succinatutens,100,0.01468,< 0.00001,TRUE,Phascolarctobacterium succinatutens
+"STH (Rubel, 2020)",All,T__Lachnospira.pectinoschiza,98,8e-4,< 0.00001,TRUE,Lachnospira pectinoschiza
+"STH (Rubel, 2020)",All,T__Prevotella.sp..AM42.24,100,0.00549,< 0.00001,TRUE,Prevotella sp  AM42 24
+"STH (Rubel, 2020)",All,T__Prevotella.sp..885,100,0.01202,< 0.00001,TRUE,Prevotella sp  885
+"STH (Rubel, 2020)",All,T__Bacteroides.sp..CAG.530,100,0.01061,< 0.00001,TRUE,Bacteroides sp  CAG 530
+"STH (Rubel, 2020)",All,T__Odoribacter.splanchnicus,100,0.00251,< 0.00001,TRUE,Odoribacter splanchnicus
+"STH (Rubel, 2020)",All,T__Prevotella.sp..CAG.1092,100,0.0038,< 0.00001,TRUE,Prevotella sp  CAG 1092
+"STH (Rubel, 2020)",All,T__.Ruminococcus..lactaris,100,0.00338,< 0.00001,TRUE, Ruminococcus  lactaris
+"STH (Rubel, 2020)",All,T__Phocaeicola.vulgatus,100,0.00204,< 0.00001,TRUE,Phocaeicola vulgatus
+"STH (Rubel, 2020)",All,T__Bacteroides.thetaiotaomicron,100,0.00325,< 0.00001,TRUE,Bacteroides thetaiotaomicron
+"STH (Rubel, 2020)",All,T__Fusicatenibacter.saccharivorans,100,0.01581,< 0.00001,TRUE,Fusicatenibacter saccharivorans
+"STH (Rubel, 2020)",All,T__Alistipes.shahii,100,0.00427,< 0.00001,TRUE,Alistipes shahii
+"STH (Rubel, 2020)",All,T__Streptococcus.parasanguinis,96,5.4e-4,0.01999,TRUE,Streptococcus parasanguinis
+"STH (Rubel, 2020)",All,T__Bacteroides.uniformis,100,0.00724,< 0.00001,TRUE,Bacteroides uniformis
+"STH (Rubel, 2020)",All,T__Phocaeicola.dorei,100,0.00181,< 0.00001,TRUE,Phocaeicola dorei
+"STH (Rubel, 2020)",All,T__Clostridium.sp..CAG.167,100,0.00407,< 0.00001,TRUE,Clostridium sp  CAG 167
+"STH (Rubel, 2020)",All,T__Eubacterium.coprostanoligenes,100,5.9e-4,< 0.00001,TRUE,Eubacterium coprostanoligenes
+"STH (Rubel, 2020)",All,T__Parabacteroides.merdae,100,0.00311,< 0.00001,TRUE,Parabacteroides merdae
+"STH (Rubel, 2020)",All,T__Bacteroides.ovatus,100,0.00179,< 0.00001,TRUE,Bacteroides ovatus
+"STH (Rubel, 2020)",All,T__Bacteroides.xylanisolvens,100,0.00125,< 0.00001,TRUE,Bacteroides xylanisolvens
+"STH (Rubel, 2020)",All,T__Firmicutes.bacterium.CAG.534,97,0.00111,< 0.00001,TRUE,Firmicutes bacterium CAG 534
+"STH (Rubel, 2020)",All,T__Firmicutes.bacterium.CAG.791,100,0.00354,< 0.00001,TRUE,Firmicutes bacterium CAG 791
+"STH (Rubel, 2020)",All,T__Bifidobacterium.adolescentis,59,4.6e-4,0.00216,TRUE,Bifidobacterium adolescentis
+"STH (Rubel, 2020)",All,T__Alistipes.putredinis,100,0.00102,< 0.00001,TRUE,Alistipes putredinis
+"STH (Rubel, 2020)",All,P__DENOVOPURINE2.PWY,100,0.00138,< 0.00001,TRUE,superpathway of purine nucleotides _de novo_ biosynthesis II
+"STH (Rubel, 2020)",All,P__HEMESYN2.PWY,84,7.7e-4,0.08062,TRUE,heme _b_ biosynthesis II (oxygen-independent)
+"STH (Rubel, 2020)",All,P__HSERMETANA.PWY,100,0.00161,< 0.00001,TRUE,L-methionine biosynthesis III
+"STH (Rubel, 2020)",All,P__P108.PWY,100,0.00135,< 0.00001,TRUE,pyruvate fermentation to propanoate I
+"STH (Rubel, 2020)",All,P__P124.PWY,63,5.8e-4,0.06784,TRUE,glucose fermentation to lactic acid (Bifidobacteria)
+"STH (Rubel, 2020)",All,P__P23.PWY,100,0.00105,0.00004,TRUE,reductive TCA cycle I
+"STH (Rubel, 2020)",All,P__P461.PWY,100,0.00188,< 0.00001,TRUE,"hexitol fermentation to lactate, formate, ethanol and acetate"
+"STH (Rubel, 2020)",All,P__PPGPPMET.PWY,100,0.00181,< 0.00001,TRUE,ppGpp metabolism
+"STH (Rubel, 2020)",All,P__PWY.2941,100,0.00206,< 0.00001,TRUE,L-lysine biosynthesis II
+"STH (Rubel, 2020)",All,P__PWY.5941,100,0.004,< 0.00001,TRUE,glycogen degradation II
+"STH (Rubel, 2020)",All,P__PWY.6545,100,0.00127,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis III
+"STH (Rubel, 2020)",All,P__PWY.6897,100,0.00154,< 0.00001,TRUE,thiamine diphosphate salvage II
+"STH (Rubel, 2020)",All,P__PWY.7184,100,0.00293,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis I
+"STH (Rubel, 2020)",All,P__PWY.7187,100,0.00215,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis II
+"STH (Rubel, 2020)",All,P__PWY.7197,100,0.00159,< 0.00001,TRUE,pyrimidine deoxyribonucleotide phosphorylation
+"STH (Rubel, 2020)",All,P__PWY.7208,100,9.6e-4,0.0044,TRUE,superpathway of pyrimidine nucleobases salvage
+"STH (Rubel, 2020)",All,P__PWY.7328,100,0.00162,< 0.00001,TRUE,superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis
+"STH (Rubel, 2020)",All,P__PWY.7371,100,0.00194,< 0.00001,TRUE,"1,4-dihydroxy-6-naphthoate biosynthesis II"
+"STH (Rubel, 2020)",All,P__PWY.841,100,0.00119,< 0.00001,TRUE,superpathway of purine nucleotides _de novo_ biosynthesis I
+"STH (Rubel, 2020)",All,P__PWY0.1479,100,9.5e-4,0.01746,TRUE,tRNA processing
+"STH (Rubel, 2020)",All,P__PWY0.162,100,0.00306,< 0.00001,TRUE,superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis
+"STH (Rubel, 2020)",All,P__PWY0.166,100,0.00152,< 0.00001,TRUE,superpathway of pyrimidine deoxyribonucleotides _de novo_ biosynthesis (_E. coli_)
+"UC (Franzosa, 2019)",All,T__Alistipes_shahii,100,6.1e-4,0.00024,TRUE,Alistipes_shahii
+"UC (Franzosa, 2019)",All,T__Clostridium_sp_CAG_167,94,4.3e-4,< 0.00001,TRUE,Clostridium_sp_CAG_167
+"UC (Franzosa, 2019)",All,T__Clostridium_sp_CAG_242,56,3.3e-4,0.00976,TRUE,Clostridium_sp_CAG_242
+"UC (Franzosa, 2019)",All,T__Ruminococcus_torques,100,0.00373,< 0.00001,TRUE,Ruminococcus_torques
+"UC (Franzosa, 2019)",All,T__Dorea_formicigenerans,100,0.00108,< 0.00001,TRUE,Dorea_formicigenerans
+"UC (Franzosa, 2019)",All,T__Dorea_longicatena,100,6.8e-4,0.00837,TRUE,Dorea_longicatena
+"UC (Franzosa, 2019)",All,T__Dorea_sp_CAG_317,96,5.4e-4,0.00364,TRUE,Dorea_sp_CAG_317
+"UC (Franzosa, 2019)",All,T__Fusicatenibacter_saccharivorans,100,0.00183,< 0.00001,TRUE,Fusicatenibacter_saccharivorans
+"UC (Franzosa, 2019)",All,T__Roseburia_hominis,100,0.0026,< 0.00001,TRUE,Roseburia_hominis
+"UC (Franzosa, 2019)",All,T__Gemmiger_formicilis,100,0.00527,< 0.00001,TRUE,Gemmiger_formicilis
+"UC (Franzosa, 2019)",All,T__Firmicutes_bacterium_CAG_94,100,7.1e-4,< 0.00001,TRUE,Firmicutes_bacterium_CAG_94
+"UC (Franzosa, 2019)",All,P__COMPLETE.ARO.PWY,100,0.00154,< 0.00001,TRUE,superpathway of aromatic amino acid biosynthesis
+"UC (Franzosa, 2019)",All,P__GLYCOLYSIS,100,7.5e-4,0.00023,TRUE,glycolysis I (from glucose 6-phosphate)
+"UC (Franzosa, 2019)",All,P__PANTO.PWY,100,8.4e-4,0.00005,TRUE,phosphopantothenate biosynthesis I
+"UC (Franzosa, 2019)",All,P__PANTOSYN.PWY,100,0.00236,< 0.00001,TRUE,superpathway of coenzyme A biosynthesis I (bacteria)
+"UC (Franzosa, 2019)",All,P__PENTOSE.P.PWY,100,8.8e-4,0.00022,TRUE,pentose phosphate pathway
+"UC (Franzosa, 2019)",All,P__PWY.3001,100,0.00104,< 0.00001,TRUE,superpathway of L-isoleucine biosynthesis I
+"UC (Franzosa, 2019)",All,P__PWY.5484,100,9.2e-4,< 0.00001,TRUE,glycolysis II (from fructose 6-phosphate)
+"UC (Franzosa, 2019)",All,P__PWY.5677,93,4.7e-4,0.07861,TRUE,succinate fermentation to butanoate
+"UC (Franzosa, 2019)",All,P__PWY.6151,100,0.00217,< 0.00001,TRUE,_S_-adenosyl-L-methionine salvage I
+"UC (Franzosa, 2019)",All,P__PWY.7237,100,0.00122,< 0.00001,TRUE,"_myo_-, _chiro_- and _scyllo_-inositol degradation"
+"UC (Franzosa, 2019)",All,P__PWY.8004,100,9.9e-4,< 0.00001,TRUE,Entner-Doudoroff pathway I
+"UC (Franzosa, 2019)",All,M__C18.neg_Cluster_0486..carnosol,100,0.00326,< 0.00001,TRUE,C18.neg_Cluster_0486..carnosol
+"UC (Franzosa, 2019)",All,M__C18.neg_Cluster_2021..urobilin,100,0.00102,< 0.00001,TRUE,C18.neg_Cluster_2021..urobilin
+"UC (Franzosa, 2019)",All,M__C8.pos_Cluster_0629..cholestenone,98,5.7e-4,0.00136,TRUE,C8.pos_Cluster_0629..cholestenone
+"UC (Franzosa, 2019)",All,M__C8.pos_Cluster_1597..C20.4.CE,100,0.0015,< 0.00001,TRUE,C8.pos_Cluster_1597..C20.4.CE
+"UC (Franzosa, 2019)",All,M__C8.pos_Cluster_1623..C20.4.CE,100,0.00198,< 0.00001,TRUE,C8.pos_Cluster_1623..C20.4.CE
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0003..propionate,100,0.00111,< 0.00001,TRUE,HILIC.neg_Cluster_0003..propionate
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0064..caproic.acid,100,0.00209,< 0.00001,TRUE,HILIC.neg_Cluster_0064..caproic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0082..nicotinate,100,0.00243,< 0.00001,TRUE,HILIC.neg_Cluster_0082..nicotinate
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0156..caprylic.acid,100,0.00299,< 0.00001,TRUE,HILIC.neg_Cluster_0156..caprylic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0176..xylose,100,8.4e-4,0.0001,TRUE,HILIC.neg_Cluster_0176..xylose
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0181..hydrocinnamic.acid,100,0.00216,< 0.00001,TRUE,HILIC.neg_Cluster_0181..hydrocinnamic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate,100,0.00337,< 0.00001,TRUE,HILIC.neg_Cluster_0220..3.methyladipate.pimelate
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0372..N.acetylglutamate,100,0.00127,< 0.00001,TRUE,HILIC.neg_Cluster_0372..N.acetylglutamate
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0392..citrate,100,6.7e-4,0.08826,TRUE,HILIC.neg_Cluster_0392..citrate
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_0622..1.2.3.4.tetrahydro.1.methyl.beta.carboline.3.carboxylic.acid,100,8.3e-4,0.0397,TRUE,HILIC.neg_Cluster_0622..1.2.3.4.tetrahydro.1.methyl.beta.carboline.3.carboxylic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_1303..lithocholate,100,6.9e-4,0.043,TRUE,HILIC.neg_Cluster_1303..lithocholate
+"UC (Franzosa, 2019)",All,M__HILIC.neg_Cluster_1360..chenodeoxycholate.deoxycholate.,100,0.00219,< 0.00001,TRUE,HILIC.neg_Cluster_1360..chenodeoxycholate.deoxycholate.
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0062..nicotinic.acid,100,0.00263,< 0.00001,TRUE,HILIC.pos_Cluster_0062..nicotinic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0177..4.hydroxy.3.methylacetophenone,99,0.00107,< 0.00001,TRUE,HILIC.pos_Cluster_0177..4.hydroxy.3.methylacetophenone
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0184..pyridoxamine,100,0.00546,< 0.00001,TRUE,HILIC.pos_Cluster_0184..pyridoxamine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0230..carnitine,100,8.9e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0230..carnitine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0268..pyridoxamine,100,0.00418,< 0.00001,TRUE,HILIC.pos_Cluster_0268..pyridoxamine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0384..N.acetylglutamic.acid,100,0.00271,< 0.00001,TRUE,HILIC.pos_Cluster_0384..N.acetylglutamic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0453..C2.carnitine,99,9e-4,< 0.00001,TRUE,HILIC.pos_Cluster_0453..C2.carnitine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0495..N.acetylglutamic.acid,100,0.00347,< 0.00001,TRUE,HILIC.pos_Cluster_0495..N.acetylglutamic.acid
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.,100,0.00193,< 0.00001,TRUE,HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0524..N.acetyl.L.arginine,100,0.0037,< 0.00001,TRUE,HILIC.pos_Cluster_0524..N.acetyl.L.arginine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0540..pantothenate,100,0.00479,< 0.00001,TRUE,HILIC.pos_Cluster_0540..pantothenate
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0728..2.deoxyadenosine,100,0.00181,< 0.00001,TRUE,HILIC.pos_Cluster_0728..2.deoxyadenosine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0797..thiamine,100,0.00108,< 0.00001,TRUE,HILIC.pos_Cluster_0797..thiamine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_0913..ethyl.9.hexadecenoate,100,0.00146,< 0.00001,TRUE,HILIC.pos_Cluster_0913..ethyl.9.hexadecenoate
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_1017..sphinganine,100,0.00225,< 0.00001,TRUE,HILIC.pos_Cluster_1017..sphinganine
+"UC (Franzosa, 2019)",All,M__HILIC.pos_Cluster_2093..urobilin.,100,8.2e-4,0.00003,TRUE,HILIC.pos_Cluster_2093..urobilin.
+"UC (Franzosa, 2019)",All,M__C18.neg_Cluster_0031..phenyllactate,97,6.8e-4,0.094,TRUE,C18.neg_Cluster_0031..phenyllactate
