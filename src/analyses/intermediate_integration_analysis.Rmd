@@ -727,7 +727,7 @@ all_clusters %>%
 
 # 7. Features reoccuring in multiple modules
 
-Which features are most common within modules?
+## Which features are most common within modules?
 
 ```{r}
 feat_name_fixes <- c(
@@ -841,8 +841,13 @@ feat_name_fixes <- c(
 
 ```{r fig.height=7, fig.width=8}
 sens_analysis_modules2 <- sens_analysis_modules %>%
+  mutate(original_feature = feature) %>%
   mutate(feature = gsub('T__([a-zA-Z]*)\\.([a-zA-Z]*)$', 'T__\\1_\\2', feature)) %>%
   mutate(feature = gsub('_Cluster[0-9]+$', '', feature)) 
+
+all_utests <- get_u_tests(sens_analysis_modules2, diablo_input)
+sens_analysis_modules2 <- sens_analysis_modules2 %>%
+  left_join(all_utests %>% select(dataset, feature, increased_in), by = c('dataset','original_feature' = 'feature'))
 
 common_feats <- sens_analysis_modules2 %>%
   group_by(feature) %>%
@@ -876,23 +881,6 @@ for (fs in common_feats) {
   all_desc <- sort(unique(tmp %>% filter(feature != fs) %>% pull(description)))
   all_desc <- c(all_desc, fs_desc)
   tmp <- tmp %>% mutate(description = factor(description, levels = all_desc))
-  
-  # Add direction in disease
-  # tmp2 <- tmp %>%
-  #   left_join(
-  #     full_feature_importance %>% 
-  #       select(dataset, feature_orig, increased_in) %>% 
-  #       distinct() %>%
-  #       mutate(feature_orig = 
-  #                ifelse(feature_orig %in% names(feat_name_fixes), 
-  #                       feat_name_fixes[feature_orig], feature_orig)) %>%
-  #       mutate(feature_orig = gsub('T__([a-zA-Z]*)\\.([a-zA-Z]*)$', 
-  #                                  'T__\\1_\\2', feature_orig)), 
-  #     by = c('feature' = 'feature_orig', 'dataset' = 'dataset')) %>%
-  #   distinct() 
-  tmp$increased_in = 'non-significant'
-  # if (nrow(tmp2) != nrow(tmp)) stop('ERROR')
-  # tmp <- tmp2
   
   # For adding lines and further formatting
   tmp <- tmp %>% 
@@ -933,6 +921,56 @@ rm(common_feats, fs, tmp, p, fs_highlight_y)
 ```{r fig.width=8, fig.height=6.8}
 # all_plots$T__Bacteroides_uniformis
 ```
+
+
+```{r}
+
+
+
+
+
+
+
+
+
+
+utests <- t(apply(full_feature_importance, MARGIN = 1, FUN = function(r) { # r = full_feature_importance[12,]
+  d <- r[['dataset']]
+  f <- r[['feature_orig']]
+  df <- proc_data[[d]]
+  h_vec <- df[[f]][df$DiseaseState == "healthy"]
+  d_vec <- df[[f]][df$DiseaseState != "healthy"]
+  utest <- wilcox.test(h_vec, d_vec, digits.rank = 7, exact = FALSE)
+  
+  # Also calcluate u-tests on clr-transformed values
+  df <- proc_data_with_clr[[d]]
+  h_vec_clr <- df[[f]][df$DiseaseState == "healthy"]
+  d_vec_clr <- df[[f]][df$DiseaseState != "healthy"]
+  utest_clr <- wilcox.test(h_vec_clr, d_vec_clr, digits.rank = 7, exact = FALSE)
+  
+  return(c(
+    "p" = utest$p.value,
+    "p_clr" = utest_clr$p.value, 
+    "mean_abun_healthy" = mean(h_vec), 
+    "mean_abun_disease" = mean(d_vec),
+    "mean_abun_healthy_clr" = mean(h_vec_clr),
+    "mean_abun_disease_clr" = mean(d_vec_clr)
+    ))
+})) %>% data.frame()
+full_feature_importance <- bind_cols(full_feature_importance, utests)
+# FDR
+full_feature_importance <- full_feature_importance %>%
+  group_by(dataset) %>%
+  mutate(fdr_utest = p.adjust(p, method = "fdr"), 
+         fdr_clr_utest = p.adjust(p_clr, method = "fdr")) %>%
+  ungroup() %>%
+  mutate(increased_in = ifelse(mean_abun_healthy > mean_abun_disease, "healthy", "disease")) %>%
+  mutate(increased_in = ifelse(fdr_clr_utest > 0.05 & fdr_utest > 0.05, "non-significant", increased_in)) %>%
+  select(-p, -p_clr)
+```
+
+
+
 
 # 8. Overlapping components
 
