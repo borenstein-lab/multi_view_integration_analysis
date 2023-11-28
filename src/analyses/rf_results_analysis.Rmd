@@ -154,48 +154,6 @@ feat_imp_sum %>%
   write_csv("docs/Table_S3.csv")
 ```
 
-## U-tests [ARCHIVE]
-
-To also compare to a univariate statistical test of association of each feature with the disease, we calculate u-tests for all relevant features found above (using relative abundances AND clr-transformed values, to partially account for large variability between DA approaches: https://www.nature.com/articles/s41467-022-28034-z).
-
-```{r eval=F}
-utests <- t(apply(full_feature_importance, MARGIN = 1, FUN = function(r) { # r = full_feature_importance[12,]
-  d <- r[['dataset']]
-  f <- r[['feature_orig']]
-  df <- proc_data[[d]]
-  h_vec <- df[[f]][df$DiseaseState == "healthy"]
-  d_vec <- df[[f]][df$DiseaseState != "healthy"]
-  utest <- wilcox.test(h_vec, d_vec, digits.rank = 7, exact = FALSE)
-  
-  # Also calcluate u-tests on clr-transformed values
-  df <- proc_data_with_clr[[d]]
-  h_vec_clr <- df[[f]][df$DiseaseState == "healthy"]
-  d_vec_clr <- df[[f]][df$DiseaseState != "healthy"]
-  utest_clr <- wilcox.test(h_vec_clr, d_vec_clr, digits.rank = 7, exact = FALSE)
-  
-  return(c(
-    "p" = utest$p.value,
-    "p_clr" = utest_clr$p.value, 
-    "mean_abun_healthy" = mean(h_vec), 
-    "mean_abun_disease" = mean(d_vec),
-    "mean_abun_healthy_clr" = mean(h_vec_clr),
-    "mean_abun_disease_clr" = mean(d_vec_clr)
-    ))
-})) %>% data.frame()
-
-full_feature_importance <- bind_cols(full_feature_importance, utests)
-
-# FDR
-full_feature_importance <- full_feature_importance %>%
-  group_by(dataset) %>%
-  mutate(fdr_utest = p.adjust(p, method = "fdr"), 
-         fdr_clr_utest = p.adjust(p_clr, method = "fdr")) %>%
-  ungroup() %>%
-  mutate(increased_in = ifelse(mean_abun_healthy > mean_abun_disease, "healthy", "disease")) %>%
-  mutate(increased_in = ifelse(fdr_clr_utest > 0.05 & fdr_utest > 0.05, "non-significant", increased_in)) %>%
-  select(-p, -p_clr)
-```
-
 ## Session info
 
 ```{r}
