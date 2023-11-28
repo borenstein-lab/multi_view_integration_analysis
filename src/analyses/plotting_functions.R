@@ -269,6 +269,7 @@ plot_module_stats <- function(sens_analysis_modules,
                               summary_module_aucs, 
                               feature_type_color_map,
                               dataset_order,
+                              show_rf = TRUE,
                               hide_y_axis_text = FALSE) {
   
   # ---- Strip 1: N features per dataset per module ---->
@@ -362,7 +363,6 @@ plot_module_stats <- function(sens_analysis_modules,
               ymax = Inf, fill = 'gray80', inherit.aes = FALSE) +
     scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
     geom_hline(yintercept = 0.5, color = "darkred", linetype = "dashed", linewidth = 1) +
-    geom_hline(aes(yintercept = mean_auc_rf), color = "goldenrod2", linewidth = 2, alpha = 0.7) +
     # Shuffled standard deviations
     geom_linerange(aes(ymax = mean_shuf_auc + sd_shuf_auc, 
                        ymin = mean_shuf_auc - sd_shuf_auc), 
@@ -394,6 +394,8 @@ plot_module_stats <- function(sens_analysis_modules,
     theme(axis.text.y = element_blank()) +
     theme(strip.background = element_blank(), strip.text = element_blank()) +
     theme(panel.spacing.y = unit(6, "points"))
+  
+  if (show_rf) p2 <- p2 + geom_hline(aes(yintercept = mean_auc_rf), color = "goldenrod2", linewidth = 2, alpha = 0.7)
   
   # ---- Strip 3: Cross-view correlations ---->
   tmp3 <- module_cross_view_corrs %>%
@@ -600,6 +602,8 @@ plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_
 }
 
 plot_module_sensitivity_analysis <- function(sens_analysis_modules, latent_vars, base_module, selected_settings, settings_order = NULL) {
+  require(pROC)
+  
   # Final set of features for a given module
   base_features <- sens_analysis_modules %>% 
     filter(dataset == base_module$d) %>%
