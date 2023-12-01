@@ -4,6 +4,17 @@
 
 config <- config::get(file = "src/ml_pipeline/config.yml")
 
+# Gets a list of p values and returns significance stars
+get_signif_mark <- function(ps) {
+  sapply(ps, function(p) {
+    if (p < 0.0001) return("***")
+    if (p < 0.001) return("**")
+    if (p < 0.05) return("*")
+    if (p < 0.1) return(".")
+    return("")
+  })
+}
+
 # Get informative names for features
 get_pwy_names <- function(pwy_codes) {
   pwy_codes <- make.names(pwy_codes)
@@ -737,8 +748,9 @@ plot_module_sensitivity_analysis <- function(sens_analysis_modules, latent_vars,
                aes(y = AUC, x = run_id, fill = module_color, group = module_color)) +
     geom_col(width = 0.7, color = 'black', position = 'dodge') +
     annotate("rect", xmin = 0.5, xmax = 1.5, ymin = 0, ymax = 1, alpha = .1, fill = "cadetblue4") +
-    coord_cartesian(ylim = c(0.5, 1), expand = F) +
+    coord_cartesian(ylim = c(0.5, 1), expand = T) +
     scale_fill_manual(values = c('1' = '#9AD2CB', '2' = '#E0D68A', '3' = '#8E443D', '4' = '#511730')) +
+    scale_x_discrete(expand = expansion(add = 0.7)) +
     theme_classic() +
     ylab('Module\'s\n1st PC AUC') +
     xlab(NULL) +
