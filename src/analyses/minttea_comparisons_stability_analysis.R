@@ -12,7 +12,7 @@ library(logger)
 library(PMA)
 library(readr)
 library(igraph)
-set.seed(2727)
+set.seed(27)
 options(scipen = 999)
 log_threshold('DEBUG')
 
