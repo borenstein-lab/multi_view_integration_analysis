@@ -17,7 +17,7 @@
 #SBATCH --time=3-00:00 # Max running time 
 #SBATCH --output=slurm_logs/slurm.%A.%a.out
 #SBATCH --error=slurm_logs/slurm.%A.%a.err
-#SBATCH --array=0-8
+#SBATCH --array=6,9-14
 
 ########################
 # ------- JOBS ------- #
@@ -82,6 +82,42 @@ case ${SLURM_ARRAY_TASK_ID} in
     efrat_ubun_r Rscript \
     /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_stability_analysis.R \
     cirrhosis_qin_2014 
+    ;;
+  9)
+    srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
+    efrat_ubun_r Rscript \
+    /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_module_associations.R \
+    crc_s3_s4_yachida_2019 
+    ;;
+  10)
+    srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
+    efrat_ubun_r Rscript \
+    /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/false_discovery_analysis.R \
+    crc_s3_s4_yachida_2019 
+    ;;
+  11)
+    srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
+    efrat_ubun_r Rscript \
+    /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_stability_analysis.R \
+    crc_s3_s4_yachida_2019 
+    ;;
+  12)
+    srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
+    efrat_ubun_r Rscript \
+    /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_module_associations.R \
+    uc_franzosa_2019 
+    ;;
+  13)
+    srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
+    efrat_ubun_r Rscript \
+    /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/false_discovery_analysis.R \
+    uc_franzosa_2019 
+    ;;
+  14)
+    srun udocker run --volume=/specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis \
+    efrat_ubun_r Rscript \
+    /specific/elhanan/PROJECTS/MULTI_VIEW_EM/repo/multi_view_integration_analysis/src/analyses/minttea_comparisons_stability_analysis.R \
+    uc_franzosa_2019 
     ;;
 esac
 
