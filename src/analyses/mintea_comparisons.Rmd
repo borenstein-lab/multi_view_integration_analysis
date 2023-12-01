@@ -1,0 +1,272 @@
+---
+title: "MintTea comparisons to DIABLO and MultiCCA"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r warning=F}
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(cowplot)
+method_colors <- c('DIABLO' = '#96D4CA', 'MultiCCA' = '#254e70', 'MintTea' = 'firebrick3')
+```
+
+```{r}
+d <- 'metacardis_3_8'
+
+d1 <- read_csv(paste0("src/analyses/minttea_comparisons_results/false_discovery_results_",d,".csv"), 
+               show_col_types = FALSE) %>%
+  filter((method == 'DIABLO' & keepX == 7) | 
+           (method == 'MultiCCA' & keepX == 1.8) | 
+           (method == 'MintTea' & keepX == 10))
+d2 <- read_csv(paste0('src/analyses/minttea_comparisons_results/stability_analysis_',d,".csv"), 
+               show_col_types = FALSE) %>%
+  filter((method == 'DIABLO' & keepX == 7) | 
+           (method == 'MultiCCA' & keepX == 1.8) | 
+           (method == 'MintTea' & keepX == 10))
+d3 <- read_csv(paste0("src/analyses/minttea_comparisons_results/quality_comparisons_30perc_",d,".csv"), 
+               show_col_types = FALSE) %>%
+  filter((method == 'DIABLO' & keepX == 7) | 
+           (method == 'MultiCCA' & keepX == 1.8) | 
+           (method == 'MintTea' & keepX == 10))
+
+```
+
+
+## 1. False discovery rates
+
+Each view was shuffled row-wise (i.e., each row was kept intact), to "break" potential relations between views. Next, each method was applied to the shuffled data and the number of resulting components, and their sizes, were recorded. 
+
+As both DIABLO and MultiCCA generate a fixed number of components as provided by the user (here: 3), hence making the comparison of number of components unfair, we added a filtration step to remove components that did not capture significant between-view correlations (FDR adjusted correlation p values < 0.01 between each pair of views). Similarly, both methods generate components of fixed (DIABLO) or approximately (MultiCCA) the same size. We therefore eliminated features with negligible loadings (absolute value < 0.001) to allow reducing components to the set of most prominent features.
+
+The entire process was repeated 100 times.
+
+```{r fig.width=5.1, fig.height=2.9}
+tmp <- d1 
+tmp$keepX_category <- 'Avg. component size: ~20'
+tmp <- tmp %>% mutate(method = factor(method, levels = c('DIABLO', 'MultiCCA', 'MintTea'))) %>%
+  group_by(method, keepX_category) %>%
+  summarise(n = n(), 
+            final_ncomp_mean = mean(final_ncomp),
+            final_ncomp_sd = sd(final_ncomp),
+            mean_comp_size_mean = mean(mean_comp_size),
+            mean_comp_size_sd = sd(mean_comp_size)) 
+
+p1 <- ggplot(tmp %>% filter(keepX_category == 'Avg. component size: ~20'), 
+            aes(x = final_ncomp_mean, y = mean_comp_size_mean, fill = method)) +
+  geom_errorbarh(aes(color = method, xmin = final_ncomp_mean-final_ncomp_sd, xmax = final_ncomp_mean+final_ncomp_sd), height = 0.8) +
+  geom_errorbar(aes(color = method, ymin = mean_comp_size_mean-mean_comp_size_sd, ymax = mean_comp_size_mean+mean_comp_size_sd), width = 0.1) +
+  geom_point(color = 'black', shape = 21, size = 4.8) +
+  scale_fill_manual(values = method_colors, name = 'Method') +
+  scale_color_manual(values = method_colors, name = 'Method') +
+  theme_bw() +
+  ylab("Average size -\nfalse components") + 
+  xlab("Number of false components\n(Max. = 3)") +
+  theme(axis.text = element_text(size = 9)) +
+  theme(strip.text = element_text(size = 12)) +
+  theme(axis.title = element_text(size = 13))
+
+p1 +
+  theme(axis.title = element_text(size = 11)) +
+  annotate("text", lineheight = .92, x = 0.47, y = 17.5, angle = 45, label = "Higher false\ndiscovery rate", size = 4) +
+  geom_segment(aes(x = 0.1,y = 9,xend = 1.33,yend = 22),
+               arrow = arrow(length = unit(0.3, "cm"), type = 'closed', ends = 'last')) 
+```
+
+
+## 2. Stability of features
+
+```{r fig.width=6, fig.height=3}
+# Count number of samples
+n_samples_tot <- d2 %>% filter(perc_samples_to_exclude == 0) %>% pull(n_samples_kept) %>% first()
+
+tmp <- d2 
+# tmp$keepX_category = apply(d2, MARGIN = 1, FUN = function(r) { 
+#   if (r['method'] == 'DIABLO') return(ifelse(as.numeric(r['keepX']) == 7, 'Avg. component size: ~20', 'Avg. component size: ~40'))
+#   if (r['method'] == 'MintTea') return(ifelse(as.numeric(r['keepX']) == 7, 'Avg. component size: ~20', 'Avg. component size: ~40'))
+#   if (r['method'] == 'MultiCCA') return(ifelse(as.numeric(r['keepX']) == 2, 'Avg. component size: ~20', 'Avg. component size: ~40'))
+# })
+tmp$keepX_category <- 'Avg. component size: ~20'
+tmp <- tmp %>%
+  mutate(perc_samples_to_exclude2 = paste0(100-perc_samples_to_exclude, '%')) %>%
+  mutate(perc_samples_to_exclude2 = factor(
+    perc_samples_to_exclude2, 
+    levels = rev(c("100%","99%","95%","90%","80%","70%","50%")))
+    ) %>%
+  mutate(method = factor(method, levels = c('DIABLO', 'MultiCCA', 'MintTea')))
+
+tmp <- tmp %>%
+  group_by(method, keepX, keepX_category, perc_samples_to_exclude2) %>%
+  summarise(n = n(),
+            perc_shared_feats_mean = mean(perc_shared_feats),
+            perc_shared_feats_sd = sd(perc_shared_feats),
+            zcore_shared_links_mean = mean(z_score_shared_links, na.rm = T),
+            zcore_shared_links_sd = sd(z_score_shared_links, na.rm = T),
+            orthog_mean = mean(mean_cors_within_comp1, na.rm = T),
+            orthog_sd = sd(mean_cors_within_comp1, na.rm = T),
+            mean_comp_size = mean(mean_comp_size)) %>%
+  mutate(mean_comp_size = round(mean(mean_comp_size), 2)) %>%
+  ungroup() 
+
+p2 <- ggplot(tmp %>% filter(keepX_category == 'Avg. component size: ~20'),
+             aes(x = perc_samples_to_exclude2, y = perc_shared_feats_mean, group = method, fill = method)) +
+  geom_col(color = 'black', position = position_dodge(.8), alpha = 0.7, width = .7) +
+  geom_errorbar(aes(ymin = perc_shared_feats_mean - perc_shared_feats_sd,
+                    ymax = perc_shared_feats_mean + perc_shared_feats_sd),
+                width = 0.3, position=position_dodge(.8)) +
+  scale_fill_manual(values = method_colors, name = 'Method') +
+  theme_bw() +
+  ylab("Individual features\nshared between models") +
+  scale_y_continuous(expand = expansion(mult = c(0, .1))) +
+  xlab(paste0('Subsample size\n(% of total samples, N = ',n_samples_tot,')')) +
+  theme(axis.text = element_text(size = 9)) +
+  theme(axis.title = element_text(size = 13))
+
+p2
+```
+
+## 3. Stability of links - Z-scores
+
+```{r fig.width=6, fig.height=3}
+p3 <- ggplot(tmp %>% filter(keepX_category == 'Avg. component size: ~20'),
+             aes(x = perc_samples_to_exclude2, y = zcore_shared_links_mean, group = method, fill = method)) +
+  geom_col(color = 'black', position = position_dodge(.8), alpha = 0.7, width = .7) +
+  geom_errorbar(aes(ymin = zcore_shared_links_mean - zcore_shared_links_sd,
+                    ymax = zcore_shared_links_mean + zcore_shared_links_sd),
+                width = 0.3, position=position_dodge(.8)) +
+  scale_fill_manual(values = method_colors, name = 'Method') +
+  theme_bw() +
+  ylab("Z-score of shared\nfeature-links") +
+  scale_y_continuous(expand = expansion(mult = c(0, .1))) +
+  xlab(paste0('Subsample size\n(% of total samples, N = ',n_samples_tot,')')) +
+  theme(axis.text = element_text(size = 9)) +
+  theme(axis.title = element_text(size = 13))
+
+p3
+```
+
+## 4. Orthogonality
+
+```{r fig.width=4.5, fig.height=3}
+# p4 <- ggplot(tmp %>% filter(keepX_category == 'Avg. component size: ~20') %>% filter(perc_samples_to_exclude2 == '70%'),
+#              aes(x = method, y = pmax(0.005,orthog_mean), fill = method)) +
+#   geom_col(color = 'black', alpha = 0.7, width = .7) +
+#   geom_errorbar(aes(ymin = pmax(0.005,orthog_mean) - orthog_sd,
+#                     ymax = pmax(0.005,orthog_mean) + orthog_sd),
+#                 width = 0.3) +
+#   scale_fill_manual(values = method_colors, name = 'Method') +
+#   annotate("text", x = 0.9, y = 0.4, label = "Orthogonal\ncomponents", size = 3) +
+#   annotate("text", x = 0.9, y = 0.7, label = "Redundant\ncomponents", size = 3) +
+#   geom_segment(aes(x = 0.9,
+#                    y = 0.45,
+#                    xend = 0.9,
+#                    yend = 0.63),
+#                arrow = arrow(length = unit(0.3, "cm"), type = 'closed', ends = 'both')) +
+#   theme_bw() +
+#   ylab("Average correlation\nbetween components") +
+#   scale_y_continuous(expand = expansion(mult = c(0, .1))) +
+#   xlab(NULL) +
+#   theme(axis.text = element_text(size = 9)) +
+#   theme(axis.title = element_text(size = 13))
+# 
+# p4
+```
+
+
+## 5. Module AUC's
+
+```{r fig.width=4, fig.height=3, warning=FALSE}
+tmp <- d3 %>% 
+  mutate(method = factor(method, levels = c('DIABLO', 'MultiCCA', 'MintTea'))) 
+
+# Group
+tmp <- tmp %>%
+  group_by(method, keepX) %>%
+  summarise(n = n(),
+            auc_mean = mean(mean_disease_AUC),
+            auc_sd = sd(mean_disease_AUC),
+            inter_omic_cor_mean = mean(mean_inter_omic_cor, na.rm=T),
+            inter_omic_cor_sd = sd(mean_inter_omic_cor, na.rm=T),
+            inter_omic_pcor_mean = mean(mean_inter_omic_pcor, na.rm=T),
+            inter_omic_pcor_sd = sd(mean_inter_omic_pcor, na.rm=T)) 
+
+p5 <- ggplot(tmp,
+             aes(x = method, y = auc_mean, fill = method)) +
+  geom_col(color = 'black', alpha = 0.7, width = .7) +
+  geom_errorbar(aes(ymin = auc_mean - auc_sd,
+                    ymax = auc_mean + auc_sd),
+                width = 0.3) +
+  scale_fill_manual(values = method_colors, name = 'Method') +
+  theme_bw() +
+  ylab("Module/component AUC") +
+  scale_y_continuous(limits = c(0,1), expand = expansion(mult = c(0, .1))) +
+  xlab(NULL) +
+  theme(axis.text = element_text(size = 9)) +
+  theme(axis.title = element_text(size = 13))
+
+p5
+```
+
+## 6. Module's inter-view correlations
+
+```{r fig.width=4, fig.height=3, warning=FALSE}
+p6 <- ggplot(tmp,
+             aes(x = method, y = inter_omic_cor_mean, fill = method)) +
+  geom_col(color = 'black', alpha = 0.7, width = .7) +
+  geom_errorbar(aes(ymin = inter_omic_cor_mean - inter_omic_cor_sd,
+                    ymax = inter_omic_cor_mean + inter_omic_cor_sd),
+                width = 0.3) +
+  scale_fill_manual(values = method_colors, name = 'Method') +
+  theme_bw() +
+  ylab("Mean inter-omic correlation") +
+  scale_y_continuous(limits = c(0,1), expand = expansion(mult = c(0, .1))) +
+  xlab(NULL) +
+  theme(axis.text = element_text(size = 9)) +
+  theme(axis.title = element_text(size = 13))
+
+p6
+```
+
+
+```{r fig.width=5, fig.height=4}
+# p7 <- ggplot(tmp, 
+#             aes(x = inter_omic_cor_mean, 
+#                 y = auc_mean, 
+#                 fill = method)) +
+#   geom_errorbarh(aes(color = method, 
+#                      xmin = inter_omic_cor_mean-inter_omic_cor_sd, 
+#                      xmax = inter_omic_cor_mean+inter_omic_cor_sd), 
+#                  height = 0.01) +
+#   geom_errorbar(aes(color = method, ymin = auc_mean-auc_sd, ymax = auc_mean+auc_sd), width = 0.01) +
+#   geom_point(color = 'black', shape = 21, size = 4.8) +
+#   scale_fill_manual(values = method_colors, name = 'Method') +
+#   scale_color_manual(values = method_colors, name = 'Method') +
+#   theme_bw() +
+#   ylab("Component AUC") + 
+#   xlab("Mean inter-omic correlation") +
+#   theme(axis.text = element_text(size = 9)) +
+#   theme(axis.title = element_text(size = 13))
+# 
+# p7
+```
+
+
+## Combined
+
+```{r fig.width=9, fig.height=9.2}
+leg <- get_legend(p6)
+main <- plot_grid( p5 + theme(legend.position = 'none'),
+          p6 + theme(legend.position = 'none'), 
+          p2 + theme(legend.position = 'none'),
+          p3 + theme(legend.position = 'none'),
+          p1 + theme(legend.position = 'none'),
+          #p4 + theme(legend.position = 'none'),
+          nrow = 3, align = "hv", axis = 'tlrb') #, labels = 'AUTO', label_y = 1.03, label_size = 15)
+plot_grid(main, leg, nrow=1, rel_widths = c(10,1.5))
+```
+
+
+
+
