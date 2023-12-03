@@ -12,12 +12,12 @@
 #SBATCH --job-name=misc_efrat
 #SBATCH --partition=cpu-elbo 			
 #SBATCH --ntasks=1 									         
-#SBATCH --cpus-per-task=17                   
+#SBATCH --cpus-per-task=33                   
 #SBATCH --mail-type=ALL,TIME_LIMIT_80        # Notification policy
 #SBATCH --time=3-00:00 # Max running time 
 #SBATCH --output=slurm_logs/slurm.%A.%a.out
 #SBATCH --error=slurm_logs/slurm.%A.%a.err
-#SBATCH --array=6,9-14
+#SBATCH --array=11
 
 ########################
 # ------- JOBS ------- #

@@ -3,7 +3,7 @@ args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) stop("At least one argument must be supplied (dataset name).", call.=FALSE)
 d <- args[1]
 # d <- 'cd_franzosa_2019'
-n_threads <- 16 # Threads
+n_threads <- 32 # Threads
 
 # Preperations
 library(mixOmics)
@@ -356,68 +356,88 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
         param_edge_thresholds = c(minttea_edge_threshold)
       )
       
-      # What % of features included in components 2 are also in component 1?
-      all_feats_1 <- sapply(tmp_minttea_res_1[[1]], function(x) x$features) %>% unlist() %>% unname() 
-      all_feats_2 <- sapply(tmp_minttea_res_2[[1]], function(x) x$features) %>% unlist() %>% unname() 
-      n_intrsct <- length(intersect(all_feats_1,all_feats_2))
-      perc_shared_feats <- 100 * n_intrsct / length(all_feats_1)
-      jaccard <- n_intrsct / n_distinct(union(all_feats_1, all_feats_2))
-      sorensen_dice <- 2 * n_intrsct / (length(all_feats_1) + length(all_feats_2))
-      
-      # What % of links included in components 2 are also in component 1? Calculate a z-score compared to shuffled components
-      module_names_1 <- names(tmp_minttea_res_1[[1]])
-      modules_1 <- bind_rows(lapply(
-        module_names_1, 
-        function(x, tmp_minttea_res) { return(data.frame(feature = tmp_minttea_res[[1]][[x]]$features, module = x)) },
-        tmp_minttea_res = tmp_minttea_res_1
+      # Comparison irrelavant if no modules detected at all
+      if (length(tmp_minttea_res_1) == 0 | length(tmp_minttea_res_2) == 0) {
+        n_modules <- ifelse(length(tmp_minttea_res_1) == 0, 0, length(tmp_minttea_res_1[[1]]))
+        data.frame(                                       
+          method = 'MintTea',
+          i = i,
+          ncomp = n_modules,
+          keepX = diablo_keepX,
+          perc_samples_to_exclude = perc_samples_to_exclude,
+          n_samples_kept = n_kept,
+          n_feats_in_1 = NA,
+          n_feats_in_2 = NA,
+          mean_comp_size = NA,
+          perc_shared_feats = NA,
+          z_score_shared_links = NA,
+          mean_cors_within_comp1 = NA # mean_cors_within_comp1
+        )
+      } else {
+        # What % of features included in components 2 are also in component 1?
+        all_feats_1 <- sapply(tmp_minttea_res_1[[1]], function(x) x$features) %>% unlist() %>% unname() 
+        all_feats_2 <- sapply(tmp_minttea_res_2[[1]], function(x) x$features) %>% unlist() %>% unname() 
+        n_intrsct <- length(intersect(all_feats_1,all_feats_2))
+        perc_shared_feats <- 100 * n_intrsct / length(all_feats_1)
+        jaccard <- n_intrsct / n_distinct(union(all_feats_1, all_feats_2))
+        sorensen_dice <- 2 * n_intrsct / (length(all_feats_1) + length(all_feats_2))
+        
+        # What % of links included in components 2 are also in component 1? Calculate a z-score compared to shuffled components
+        module_names_1 <- names(tmp_minttea_res_1[[1]])
+        modules_1 <- bind_rows(lapply(
+          module_names_1, 
+          function(x, tmp_minttea_res) { return(data.frame(feature = tmp_minttea_res[[1]][[x]]$features, module = x)) },
+          tmp_minttea_res = tmp_minttea_res_1
         )) %>% mutate(feature_set = substr(feature,0,1))
-      module_names_2 <- names(tmp_minttea_res_2[[1]])
-      modules_2 <- bind_rows(lapply(
-        module_names_2, 
-        function(x, tmp_minttea_res) { return(data.frame(feature = tmp_minttea_res[[1]][[x]]$features, module = x)) },
-        tmp_minttea_res = tmp_minttea_res_2
-      )) %>% mutate(feature_set = substr(feature,0,1))
-      z_score_shared_links <- get_z_score_shared_links(modules_1, modules_2, join_by = 'module')
+        module_names_2 <- names(tmp_minttea_res_2[[1]])
+        modules_2 <- bind_rows(lapply(
+          module_names_2, 
+          function(x, tmp_minttea_res) { return(data.frame(feature = tmp_minttea_res[[1]][[x]]$features, module = x)) },
+          tmp_minttea_res = tmp_minttea_res_2
+        )) %>% mutate(feature_set = substr(feature,0,1))
+        z_score_shared_links <- get_z_score_shared_links(modules_1, modules_2, join_by = 'module')
+        
+        
+        # Count number of final modules
+        n_modules <- n_distinct(modules_1$module)
+        
+        # # Predict variates for train data --> 1st PC's per view and per module
+        # latent_vars1 <- get_latent_vars(data_X_1, n_modules, modules_1)
+        # latent_vars2 <- get_latent_vars(data_X_2, n_modules, modules_2)
+        # 
+        # # Are components orthogonal? if not - higher chances of more shared links
+        # if (n_modules == 1) {
+        #   mean_cors_within_comp1 <- NA
+        #   } else {
+        #   mean_cors_within_comp1 <- c()
+        #   for (l in 1:length(data_X)) {
+        #     for (j in 2:n_modules) {
+        #       for (k in 1:(j-1)) {
+        #         if ((! all(is.na(latent_vars1[[l]][[j]]))) & (! all(is.na(latent_vars1[[l]][[k]]))))
+        #           mean_cors_within_comp1 <- c(mean_cors_within_comp1, abs(cor(latent_vars1[[l]][[j]], latent_vars1[[l]][[k]])))
+        #       }
+        #     }
+        #   }
+        #   mean_cors_within_comp1 <- mean(mean_cors_within_comp1)
+        # }
+        
+        # Record statistics
+        data.frame(                                       
+          method = 'MintTea',
+          i = i,
+          ncomp = n_modules,
+          keepX = diablo_keepX,
+          perc_samples_to_exclude = perc_samples_to_exclude,
+          n_samples_kept = n_kept,
+          n_feats_in_1 = nrow(modules_1),
+          n_feats_in_2 = nrow(modules_2),
+          mean_comp_size = table(modules_1$module) %>% mean(),
+          perc_shared_feats = perc_shared_feats,
+          z_score_shared_links = z_score_shared_links,
+          mean_cors_within_comp1 = NA # mean_cors_within_comp1
+        )
+      } # End of "else"
       
-      
-      # Count number of final modules
-      n_modules <- n_distinct(modules_1$module)
-      
-      # # Predict variates for train data --> 1st PC's per view and per module
-      # latent_vars1 <- get_latent_vars(data_X_1, n_modules, modules_1)
-      # latent_vars2 <- get_latent_vars(data_X_2, n_modules, modules_2)
-      # 
-      # # Are components orthogonal? if not - higher chances of more shared links
-      # if (n_modules == 1) {
-      #   mean_cors_within_comp1 <- NA
-      #   } else {
-      #   mean_cors_within_comp1 <- c()
-      #   for (l in 1:length(data_X)) {
-      #     for (j in 2:n_modules) {
-      #       for (k in 1:(j-1)) {
-      #         if ((! all(is.na(latent_vars1[[l]][[j]]))) & (! all(is.na(latent_vars1[[l]][[k]]))))
-      #           mean_cors_within_comp1 <- c(mean_cors_within_comp1, abs(cor(latent_vars1[[l]][[j]], latent_vars1[[l]][[k]])))
-      #       }
-      #     }
-      #   }
-      #   mean_cors_within_comp1 <- mean(mean_cors_within_comp1)
-      # }
-      
-      # Record statistics
-      data.frame(                                       
-        method = 'MintTea',
-        i = i,
-        ncomp = n_modules,
-        keepX = diablo_keepX,
-        perc_samples_to_exclude = perc_samples_to_exclude,
-        n_samples_kept = n_kept,
-        n_feats_in_1 = nrow(modules_1),
-        n_feats_in_2 = nrow(modules_2),
-        mean_comp_size = table(modules_1$module) %>% mean(),
-        perc_shared_feats = perc_shared_feats,
-        z_score_shared_links = z_score_shared_links,
-        mean_cors_within_comp1 = NA # mean_cors_within_comp1
-      )
     } # Done iterating over random subsamples
     
     stability_results <- bind_rows(stability_results, tmp_stability_results3)
