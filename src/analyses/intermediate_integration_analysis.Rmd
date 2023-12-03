@@ -386,6 +386,7 @@ names(inter_view_corr) <- new_dataset_names[names(inter_view_corr)]
 names(latent_vars) <- new_dataset_names[names(latent_vars)]
 names(module_variance_expl) <- new_dataset_names[names(module_variance_expl)]
 names(sens_analysis_runs) <- new_dataset_names[names(sens_analysis_runs)]
+names(pipeline_params_per_dataset) <- new_dataset_names[names(pipeline_params_per_dataset)]
 ```
 
 
@@ -597,7 +598,7 @@ rm(tmp, d, p)
 ## TODO: 5.3. Overall AUC, components vs. shuffled
 
 ```{r fig.height=2.6, fig.width=7}
-# plot_overall_summary_module_aucs(rf_results, summary_aucs, datasets)
+plot_overall_summary_module_aucs(rf_results, summary_aucs, datasets)
 ```
 
 ## 5.4. Module summary plots
@@ -620,7 +621,7 @@ module_stats_summary <-
         ), 
     feature_type_color_map,
     dataset_order = datasets,
-    show_rf = TRUE)
+    show_rf = FALSE)
 
 module_stats_summary <- module_stats_summary %>%
   filter(dataset %in% datasets) %>%
@@ -628,6 +629,11 @@ module_stats_summary <- module_stats_summary %>%
               filter(run == 'true') %>%
               select(dataset, mean_overall_rf_auc, mean_overall_lm_auc),
             by = 'dataset') 
+
+# Use only modules that have >1 feature types and >=3 features (as already filtered in the table above)
+sens_analysis_modules <- sens_analysis_modules %>%
+  mutate(module = as.numeric(gsub('module','',module))) %>%
+  inner_join(module_stats_summary, by = c('dataset','module')) 
 ```
 
 ## 5.5. Module general statistics
@@ -662,19 +668,172 @@ message(min(tmp_signif_comps_per_dataset$N), '-',
 rm(tmp_signif_comps_per_dataset)
 ```
 
-```{r}
-# Expand to actual features within each module
-detailed_modules <- sens_analysis_modules %>%
-  select(-run_id) %>%
-  mutate(module = as.numeric(gsub('module', '', module))) %>%
-  inner_join(module_stats_summary, 
-             by = c('dataset','module')) 
+# 6. Detailed modules - organize details
 
-# Add meaningful names
-detailed_modules$description <- get_feature_descriptions(detailed_modules$feature)
+## Function for making prettier feature names
+
+Fix some distorted feature names:
+
+```{r}
+feat_name_fixes <- c(
+  "[P] superpathway of unsaturated fatty acids biosynthesis (_E. coli_)" = "[P] SP of unsaturated fatty acids biosynthesis (E. coli)",
+  "[T] X_Ruminococcus__torques" = "[T] Ruminococcus_torques",
+  "[T]  Clostridium  symbiosum" = "[T] Clostridium_symbiosum",
+  "[M] C18.neg_Cluster_0079..undecanedionate"="[M] Undecanedionate",
+  "[M] C18.neg_Cluster_0361..eicosatrienoic.acid"="[M] Eicosatrienoic acid",
+  "[M] C18.neg_Cluster_0506..adrenic.acid"="[M] Adrenic acid",
+  "[M] C18.neg_Cluster_0901..7.ketodeoxycholate"="[M] 7-ketodeoxycholate",
+  "[M] HILIC.neg_Cluster_0003..propionate" = "[M] Propionate",  
+  "[M] HILIC.neg_Cluster_0013..butyrate...isobutytare."  = "[M] Butyrate/isobutytare",               
+  "[M] HILIC.neg_Cluster_0220..3.methyladipate.pimelate" = "[M] 3-methyladipate / pimelate",
+  "[M] HILIC.neg_Cluster_0331..sorbitol" = "[M] Sorbitol",                                             
+  "[M] HILIC.neg_Cluster_0441..sebacate" = "[M] Sebacate",
+  "[M] HILIC.pos_Cluster_2093..urobilin."="[M] Urobilin (I)",
+  "[M] C18.neg_Cluster_2021..urobilin"="[M] Urobilin (II)",
+  "[M] HILIC.pos_Cluster_0384..N.acetylglutamic.acid"="[M] N-acetylglutamic acid (I)",
+  "[M] C8.pos_Cluster_1004..C16.0.ceramide..d18.1."="[M] C16:0 ceramide",
+  "[M] HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid."="[M] THBC-CA",
+  "[M] HILIC.pos_Cluster_0184..pyridoxamine"="[M] Pyridoxamine (I)",
+  "[M] HILIC.pos_Cluster_0268..pyridoxamine"="[M] Pyridoxamine (II)",
+  "[M] C18.neg_Cluster_0486..carnosol"="[M] Carnosol",
+  "[M] HILIC.neg_Cluster_0156..caprylic.acid"="[M] Caprylic acid",
+  "[M] HILIC.neg_Cluster_1360..chenodeoxycholate.deoxycholate."="[M] Chenodeoxycholate / deoxycholate",
+  "[M] HILIC.pos_Cluster_0062..nicotinic.acid"="[M] Nicotinic acid (I)",
+  "[M] HILIC.neg_Cluster_0082..nicotinate"="[M] Nicotinic acid (II)",
+  "[M] HILIC.pos_Cluster_0495..N.acetylglutamic.acid"="[M] N-acetylglutamic acid (II)",
+  "[M] HILIC.pos_Cluster_0524..N.acetyl.L.arginine"="[M] N-acetyl-L-arginine",
+  "[M] HILIC.pos_Cluster_0540..pantothenate"="[M] Pantothenate",
+  "[M] HILIC.pos_Cluster_0728..2.deoxyadenosine"="[M] 2-deoxyadenosine",
+  "[M] C8.pos_Cluster_0277..stearoyl.ethanolamide" = "[M] Stearoyl ethanolamide",
+  "[M] HILIC.neg_Cluster_0030..methylbutyric.aid...valeric...isovaleric."="[M] Methylbutyric acid/valeric/isovaleric acid",
+  "[M] HILIC.neg_Cluster_0133..4.nitrophenol" = "[M] 4-nitrophenol",
+  "[M] HILIC.neg_Cluster_0181..hydrocinnamic.acid"= "[M] Hydrocinnamic acid",
+  "[M] HILIC.pos_Cluster_1374..C14.carnitine" = "[M] C14 carnitine"
+)
+
+  # 'T__Oscillibacter.sp..57_20'='T__Oscillibacter_sp_57_20',
+  # 'T__X_Ruminococcus__torques'='T__Ruminococcus_torques',
+  # 'M__HILIC.neg_Cluster_0003..propionate'='M__Propionic.acid',
+  # 'T__.Ruminococcus..gnavus'='T__Ruminococcus_gnavus',
+  # 'T__.Eubacterium..rectale'='T__Eubacterium_rectale',
+  # 'T__.Clostridium..symbiosum'='T__Clostridium_symbiosum',
+  # 'T__.Clostridium..innocuum'='T__Clostridium_innocuum',
+  # 'M__HILIC.pos_Cluster_0100..ornithine'='M__Ornithine',
+  # 'M__HILIC.pos_Cluster_0090..creatine'='M__Creatine',
+  # 'M__HILIC.pos_Cluster_0099..asparagine'='M__Asparagine',
+  # 'M__HILIC.neg_Cluster_0112..asparagine'='M__Asparagine',
+  # 'M__C00294_Inosine'='M__Inosine',
+  # 'M__HILIC.neg_Cluster_0824..inosine'='M__Inosine',
+  # 'M__HILIC.neg_Cluster_0013..butyrate...isobutytare.'=
+  #   'M__Butyrate/Isobutyrate',
+  # 'M__HILIC.pos_Cluster_2093..urobilin.'='M__Urobilin',
+  # 'M__C18.neg_Cluster_2021..urobilin'='M__Urobilin',
+  # 'M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate'=
+  #   'M__3-methyladipate-pimelate',
+  # "[P] queuosine biosynthesis I (<i>de novo</i>)"=
+  #   "[P] queuosine biosynthesis I (de novo)",
+  # "[M] Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy.." = "[M] 3-chloro-5-methoxy-4-[(4-methylphenyl)methoxy]benzaldehyde",
+  # "[M] ....Menthone" = "[M] Menthone",
+  # "[P] <i>S</i>-adenosyl-L-methionine salvage I"=
+  #   "[P] S-adenosyl-L-methionine salvage I",
+  # "[G] hydrogenase expression/formation protein HypD"="[G] HypD",
+  # "[G] citrate lyase subunit gamma (acyl carrier protein)"="[G] citD",
+  # "[G] nondiscriminating aspartyl-tRNA synthetase"=
+  #   "[G] aspC, aspS",
+  # "[G] oligogalacturonide transport system substrate-binding protein"=
+  #   "[G] togB",
+  # "[G] solute carrier family 13 (sodium-dependent dicarboxylate transporter), member 2/3/5"=
+  #   "[G] SLC13A2_3_5",
+  # "[G] [Deprecated KO] glucose PTS system EIICBA or EIICB component"="[G] ptsG",
+  # "[G] uroporphyrinogen III methyltransferase / synthase"="[G] cobA-hemD",
+  # "[G] electron transfer flavoprotein alpha subunit"="[G] fixB, etfA" ,
+  # "[G] N-acetylglucosamine PTS system EIIB component"="[G] nagEb",
+  # "[G] phosphonate transport system permease protein"="[G] phnE",
+  # "[G] oxaloacetate decarboxylase (Na+ extruding) subunit alpha"="[G] oadA",
+  # "[P] UDP-<i>N</i>-acetylmuramoyl-pentapeptide biosynthesis III (<i>meso</i>-diaminopimelate containing)"=
+  #   "[P] UDP-MurNAc-pentapeptide biosynthesis III",
+  # "[P] chorismate biosynthesis from 3-dehydroquinate"=
+  #   "[P] chorismate biosynthesis from DHQ",
+  # "[M] C18.neg_Cluster_0361..eicosatrienoic.acid"=
+  #   "[M] eicosatrienoic acid",
+  # "[P] superpathway of pyrimidine deoxyribonucleosides degradation"=
+  #   "[P] superpathway of PY deoxyribonucleosides degradation",
+  # "[G] formylmethanofuran--tetrahydromethanopterin N-formyltransferase"=
+  #   "[G] formyltransferase",
+  # "[G] tRNA (guanine26-N2/guanine27-N2)-dimethyltransferase"="[G] TRMT1",
+  # "[G] WhiB family transcriptional regulator, redox-sensing transcriptional regulator"=
+  #   "[G] whiB1_2_3_4",
+  # "[P] superpathway of geranylgeranyldiphosphate biosynthesis I (via mevalonate)"=
+  #   "[P] SP of GGPP biosynthesis I (via mevalonate)",
+  # "[P] superpathway of geranylgeranyl diphosphate biosynthesis II (via MEP)"=
+  #   "[P] SP of GGPP biosynthesis II (via MEP)",
+  # "[P] superpathway of L-lysine, L-threonine and L-methionine biosynthesis I"=
+  #   "[P] SP of Lys, Thr and Met biosynthesis I",
+  # "[P] hexitol fermentation to lactate, formate, ethanol and acetate"=
+  #   "[P] hexitol fermentation",
+  # "[M] 1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane"=
+  #   "[M] PubChem_91742720",
+  # "[P] 3-phenylpropanoate and 3-(3-hydroxyphenyl)propanoate degradation to 2-hydroxypentadienoate"="[P] HCAMHPDEG-PWY",
+  # "[G] uroporphyrin-III C-methyltransferase / precorrin-2 dehydrogenase / sirohydrochlorin ferrochelatase"=
+  #   "[G] cysG",
+  # "[P] peptidoglycan biosynthesis I (_meso_-diaminopimelate containing)"="[P] peptidoglycan biosynthesis I",
+  # "[P] peptidoglycan maturation (_meso_-diaminopimelate containing)"="[P] peptidoglycan maturation",
+  # "[P] superpathway of pyrimidine ribonucleosides degradation" = "[P] SP of pyrimidine ribonucleosides degradation",
+  # "[P] superpathway of fatty acid biosynthesis initiation" = "[P] SP of fatty acid biosynthesis initiation",
+  # "[P] sucrose degradation IV (sucrose phosphorylase)" = "[P] sucrose degradation IV (phosphorylase)",
+  # "[P] palmitate biosynthesis I (type I fatty acid synthase)" = "[P] palmitate biosynthesis I",
+  # "[P] glucose fermentation to lactic acid (Bifidobacteria)" = "[P] glucose fermentation to lactate (Bifidobacteria)",
+  # "[P] glucose and glucose-1-phosphate degradation" = "[P] glucose/glucose-1-phosphate degradation",
+  # "[G] shikimate kinase / 3-dehydroquinate synthase" = "[G] aroKB",
+  # "[G] non-reducing end beta-L-arabinofuranosidase" = "[G] hypBA1",
+  # "[P] protocatechuate degradation II (ortho-cleavage pathway)" = "[P] protocatechuate degradation II"
+  # 
 ```
 
-# 6. Supplementary tables S4, S5, S7
+```{r}
+get_pretty_names <- function(feat_names, feat_name_fixes, remove_cluster_info = F, string_wrap = NA) {
+  # Patch for taxonomy
+  new_feat_names <- gsub('T__([a-zA-Z]*)\\.([a-zA-Z0-9_]*)$', 'T__\\1_\\2', feat_names)
+  
+  # Remove cluster identifiers?
+  if (remove_cluster_info) new_feat_names <- gsub('_Cluster[0-9]+$', '', new_feat_names)
+  
+  # Get description instead of codes
+  feat_types <- unname(sapply(new_feat_names, substr, 0, 1))
+  new_feat_names <- paste0('[', feat_types, '] ', get_feature_descriptions(new_feat_names))
+  
+  new_feat_names <- gsub('  ',' ',new_feat_names)
+  
+  # Manual fixes
+  new_feat_names <- sapply(
+    new_feat_names, 
+    function(x, feat_name_fixes) {
+      ifelse(x %in% names(feat_name_fixes), feat_name_fixes[x], x)
+      }, 
+    feat_name_fixes
+    ) %>% unname()
+  
+  # Wrap string for some plots
+  if (!is.na(string_wrap)) new_feat_names <- strwrap(new_feat_names, width = string_wrap)
+  
+  return(new_feat_names)
+}
+```
+
+
+## Simple U-tests to indicate increase/decrease in disease
+
+```{r}
+all_utests <- get_u_tests(sens_analysis_modules, diablo_input)
+sens_analysis_modules <- sens_analysis_modules %>%
+  left_join(all_utests %>% 
+              select(dataset, feature, increased_in), 
+            by = c('dataset','feature')) %>%
+  mutate(description = get_pretty_names(feature, feat_name_fixes))
+```
+
+
+# 7. Supplementary tables S4, S5, S7
 
 ## Save modules overview - S4
 
@@ -700,153 +859,16 @@ module_stats_summary %>%
   write_csv("docs/Table_S4.csv")
 ```
 
-
 ## Save detailed modules - S5
 
-Fix some distorted feature names:
-
 ```{r}
-feat_name_fixes <- c(
-  'T__Oscillibacter.sp..57_20'='T__Oscillibacter_sp_57_20',
-  'T__X_Ruminococcus__torques'='T__Ruminococcus_torques',
-  'M__HILIC.neg_Cluster_0003..propionate'='M__Propionic.acid',
-  'T__.Ruminococcus..gnavus'='T__Ruminococcus_gnavus',
-  'T__.Eubacterium..rectale'='T__Eubacterium_rectale',
-  'T__.Clostridium..symbiosum'='T__Clostridium_symbiosum',
-  'T__.Clostridium..innocuum'='T__Clostridium_innocuum',
-  'M__HILIC.pos_Cluster_0100..ornithine'='M__Ornithine',
-  'M__HILIC.pos_Cluster_0090..creatine'='M__Creatine',
-  'M__HILIC.pos_Cluster_0099..asparagine'='M__Asparagine',
-  'M__HILIC.neg_Cluster_0112..asparagine'='M__Asparagine',
-  'M__C00294_Inosine'='M__Inosine',
-  'M__HILIC.neg_Cluster_0824..inosine'='M__Inosine',
-  'M__HILIC.neg_Cluster_0013..butyrate...isobutytare.'=
-    'M__Butyrate/Isobutyrate',
-  'M__HILIC.pos_Cluster_2093..urobilin.'='M__Urobilin',
-  'M__C18.neg_Cluster_2021..urobilin'='M__Urobilin',
-  'M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate'=
-    'M__3-methyladipate-pimelate',
-  "[P] queuosine biosynthesis I (<i>de novo</i>)"=
-    "[P] queuosine biosynthesis I (de novo)",
-  "[M] HILIC.pos_Cluster_2093..urobilin."="[M] urobilin (cluster I)",
-  "[M] C18.neg_Cluster_2021..urobilin"="[M] urobilin (cluster II)",
-  "[M] HILIC.pos_Cluster_0384..N.acetylglutamic.acid"=
-    "[M] N-acetylglutamic acid (cluster I)",
-  "[M] C18.neg_Cluster_0506..adrenic.acid"="[M] adrenic acid",
-  "[M] C8.pos_Cluster_1004..C16.0.ceramide..d18.1."=
-    "[M] C16:0 ceramide",
-  "[M] HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid."=
-    "[M] THBC-CA",
-  "[M] HILIC.neg_Cluster_0220..3.methyladipate.pimelate"=
-    "[M] 3-methyladipate / pimelate",
-  "[M] HILIC.pos_Cluster_0184..pyridoxamine"="[M] pyridoxamine (cluster I)",
-  "[M] HILIC.pos_Cluster_0268..pyridoxamine"="[M] pyridoxamine (cluster II)",
-  "[M] C18.neg_Cluster_0486..carnosol"="[M] carnosol",
-  "[M] HILIC.neg_Cluster_0156..caprylic.acid"="[M] caprylic acid",
-  "[M] HILIC.neg_Cluster_1360..chenodeoxycholate.deoxycholate."=
-    "[M] chenodeoxycholate / deoxycholate",
-  "[M] HILIC.pos_Cluster_0062..nicotinic.acid"="[M] nicotinic acid",
-  "[M] HILIC.neg_Cluster_0082..nicotinate"="[M] nicotinic acid",
-  "[M] HILIC.pos_Cluster_0495..N.acetylglutamic.acid"=
-    "[M] N-acetylglutamic acid (cluster II)",
-  "[M] HILIC.pos_Cluster_0524..N.acetyl.L.arginine"="[M] N-acetyl-L-arginine",
-  "[M] HILIC.pos_Cluster_0540..pantothenate"="[M] pantothenate",
-  "[M] HILIC.pos_Cluster_0728..2.deoxyadenosine"="[M] 2-deoxyadenosine",
-  "[M] C8.pos_Cluster_0277..stearoyl.ethanolamide" = "[M] stearoyl ethanolamide",
-  "[M] HILIC.neg_Cluster_0030..methylbutyric.aid...valeric...isovaleric."= 
-    "[M] methylbutyric acid/valeric/isovaleric acid", 
-  "[M] HILIC.neg_Cluster_0331..sorbitol"= "[M] sorbitol", 
-  "[M] HILIC.neg_Cluster_0441..sebacate" = "[M] sebacate", 
-  "[M] HILIC.pos_Cluster_0384..N.acetylglutamic.acid"= 
-    "[M] N-acetylglutamic acid", 
-  "[M] HILIC.neg_Cluster_0133..4.nitrophenol" = "[M] 4-nitrophenol", 
-  "[M] HILIC.neg_Cluster_0181..hydrocinnamic.acid"= "[M] hydrocinnamic acid", 
-  "[M] HILIC.pos_Cluster_0268..pyridoxamine"= "[M] pyridoxamine", 
-  "[M] HILIC.pos_Cluster_1374..C14.carnitine" = "[M] C14.carnitine",   
-  "[M] Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy.." = "[M] 3-chloro-5-methoxy-4-[(4-methylphenyl)methoxy]benzaldehyde",
-  "[M] ....Menthone" = "[M] Menthone",
-  "[P] <i>S</i>-adenosyl-L-methionine salvage I"=
-    "[P] S-adenosyl-L-methionine salvage I",
-  "[G] hydrogenase expression/formation protein HypD"="[G] HypD",
-  "[G] citrate lyase subunit gamma (acyl carrier protein)"="[G] citD",
-  "[G] nondiscriminating aspartyl-tRNA synthetase"=
-    "[G] aspC, aspS",
-  "[G] oligogalacturonide transport system substrate-binding protein"=
-    "[G] togB",
-  "[G] solute carrier family 13 (sodium-dependent dicarboxylate transporter), member 2/3/5"=
-    "[G] SLC13A2_3_5",
-  "[G] [Deprecated KO] glucose PTS system EIICBA or EIICB component"="[G] ptsG",
-  "[G] uroporphyrinogen III methyltransferase / synthase"="[G] cobA-hemD",
-  "[G] electron transfer flavoprotein alpha subunit"="[G] fixB, etfA" ,
-  "[G] N-acetylglucosamine PTS system EIIB component"="[G] nagEb",
-  "[G] phosphonate transport system permease protein"="[G] phnE",
-  "[G] oxaloacetate decarboxylase (Na+ extruding) subunit alpha"="[G] oadA",
-  "[P] UDP-<i>N</i>-acetylmuramoyl-pentapeptide biosynthesis III (<i>meso</i>-diaminopimelate containing)"=
-    "[P] UDP-MurNAc-pentapeptide biosynthesis III",
-  "[P] chorismate biosynthesis from 3-dehydroquinate"=
-    "[P] chorismate biosynthesis from DHQ",
-  "[M] C18.neg_Cluster_0361..eicosatrienoic.acid"=
-    "[M] eicosatrienoic acid",
-  "[P] superpathway of pyrimidine deoxyribonucleosides degradation"=
-    "[P] superpathway of PY deoxyribonucleosides degradation",
-  "[G] formylmethanofuran--tetrahydromethanopterin N-formyltransferase"=
-    "[G] formyltransferase",
-  "[G] tRNA (guanine26-N2/guanine27-N2)-dimethyltransferase"="[G] TRMT1",
-  "[G] WhiB family transcriptional regulator, redox-sensing transcriptional regulator"=
-    "[G] whiB1_2_3_4",
-  "[P] superpathway of geranylgeranyldiphosphate biosynthesis I (via mevalonate)"=
-    "[P] SP of GGPP biosynthesis I (via mevalonate)",
-  "[P] superpathway of geranylgeranyl diphosphate biosynthesis II (via MEP)"=
-    "[P] SP of GGPP biosynthesis II (via MEP)",
-  "[P] superpathway of L-lysine, L-threonine and L-methionine biosynthesis I"=
-    "[P] SP of Lys, Thr and Met biosynthesis I",
-  "[P] hexitol fermentation to lactate, formate, ethanol and acetate"=
-    "[P] hexitol fermentation",
-  "[M] 1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane"=
-    "[M] PubChem_91742720",
-  "[P] 3-phenylpropanoate and 3-(3-hydroxyphenyl)propanoate degradation to 2-hydroxypentadienoate"="[P] HCAMHPDEG-PWY",
-  "[G] uroporphyrin-III C-methyltransferase / precorrin-2 dehydrogenase / sirohydrochlorin ferrochelatase"=
-    "[G] cysG",
-  "[P] peptidoglycan biosynthesis I (_meso_-diaminopimelate containing)"="[P] peptidoglycan biosynthesis I",
-  "[P] peptidoglycan maturation (_meso_-diaminopimelate containing)"="[P] peptidoglycan maturation",
-  "[P] superpathway of pyrimidine ribonucleosides degradation" = "[P] SP of pyrimidine ribonucleosides degradation",
-  "[P] superpathway of fatty acid biosynthesis initiation" = "[P] SP of fatty acid biosynthesis initiation",
-  "[P] sucrose degradation IV (sucrose phosphorylase)" = "[P] sucrose degradation IV (phosphorylase)",
-  "[P] palmitate biosynthesis I (type I fatty acid synthase)" = "[P] palmitate biosynthesis I",
-  "[P] glucose fermentation to lactic acid (Bifidobacteria)" = "[P] glucose fermentation to lactate (Bifidobacteria)",
-  "[P] glucose and glucose-1-phosphate degradation" = "[P] glucose/glucose-1-phosphate degradation",
-  "[G] shikimate kinase / 3-dehydroquinate synthase" = "[G] aroKB",
-  "[G] non-reducing end beta-L-arabinofuranosidase" = "[G] hypBA1",
-  "[P] protocatechuate degradation II (ortho-cleavage pathway)" = "[P] protocatechuate degradation II"
-  )
-```
-
-Add an indication for each feature whether it is increase/descreased in disease:
-
-```{r}
-# sens_analysis_modules2 will be used for plotting later on
-sens_analysis_modules2 <- sens_analysis_modules %>%
-  mutate(original_feature = feature) %>%
-  mutate(feature = ifelse(feature %in% names(feat_name_fixes), feat_name_fixes[feature], feature)) %>%
-  mutate(feature = gsub('T__([a-zA-Z]*)\\.([a-zA-Z0-9_]*)$', 'T__\\1_\\2', feature)) %>%
-  mutate(feature = gsub('_Cluster[0-9]+$', '', feature)) 
-
-all_utests <- get_u_tests(sens_analysis_modules2, diablo_input)
-sens_analysis_modules2 <- sens_analysis_modules2 %>%
-  left_join(all_utests %>% select(dataset, feature, increased_in), by = c('dataset','original_feature' = 'feature'))
-```
-
-
-```{r}
-detailed_modules %>%
-  select(dataset, module, feature, description) %>%
-  left_join(all_utests %>% select(dataset, feature, increased_in), by = c('dataset','feature')) %>%
+sens_analysis_modules %>%
+  select(dataset, module, feature, description, increased_in) %>%
   rename(Dataset = dataset) %>%
   rename(Module = module) %>%
   rename(Feature = feature) %>%
   rename(`Feature description` = description) %>%
   rename(`Increased in?` = increased_in) %>%
-  arrange(Dataset, Module) %>%
   write_csv("docs/Table_S5.csv")
 ```
 
@@ -857,9 +879,8 @@ Only non-singleton clusters are listed, and only if these clusters were selected
 ```{r}
 all_clusters %>%
   filter(!singleton) %>%
-  # Only features relevant to a module / RF model
-  filter(feature %in% rf_feat_imp_sum$feature |
-           feature %in% sens_analysis_modules$feature) %>%
+  # Only features relevant to a module
+  filter(feature %in% sens_analysis_modules$feature) %>%
   select(dataset, feature_orig, cluster, feature) %>%
   arrange(dataset, cluster) %>%
   rename(Dataset = dataset) %>%
@@ -869,82 +890,64 @@ all_clusters %>%
   write_csv("docs/Table_S7.csv")
 ```
 
-# 7. Features reoccuring in multiple modules
+# 8. Features reoccuring in multiple modules
 
 ## Which features are most common within modules?
 
-## ERASE
-
-```{r, eval=FALSE}
-
-tmp <- bind_rows(lapply(names(diablo_input), function(ds) {
-  ds_input = diablo_input[[ds]]
-  data.frame(dataset = ds, feature = lapply(ds_input$X, colnames) %>% unlist())
-  })) %>%
+```{r fig.height=7, fig.width=8}
+sens_analysis_modules2 <- sens_analysis_modules %>%
   mutate(original_feature = feature) %>%
-  mutate(feature = gsub('T__([a-zA-Z]*)\\.([a-zA-Z0-9_]*)$', 'T__\\1_\\2', feature)) %>%
-  mutate(feature = gsub('_Cluster[0-9]+$', '', feature)) 
+  mutate(feature = description)
 
-```
-
-
-
-```{r fig.height=7, fig.width=8, eval=FALSE}
 common_feats <- sens_analysis_modules2 %>%
   group_by(feature) %>%
   summarise(N = n(), N_unique_datasets = n_distinct(dataset)) %>%
-  filter(N > 2) %>%
+  filter(N > 3) %>%
   pull(feature)
 
 all_plots <- list()
 
 for (fs in common_feats) {
   tmp <- sens_analysis_modules2 %>%
-    mutate(module = as.numeric(gsub('module','',module))) %>%
+    # Get all modules that include this feature
     group_by(dataset, module) %>%
     filter(sum(feature == fs) > 0) %>%
     ungroup() %>%
-    mutate(feat_type = substr(feature, 1, 1)) %>%
-    left_join(module_stats_summary %>% 
-                filter(mean_module_auc >= 0.7) %>% 
-                select(dataset, module, mean_module_auc),
-              by = c("dataset", "module")) %>%
-    mutate(signif_module = !is.na(mean_module_auc)) %>%
-    select(-mean_module_auc, -run_id) %>%
-    mutate(description = paste0('[', feat_type, '] ', 
-                                get_feature_descriptions(feature))) %>%
-    distinct() %>%
-    mutate(description = ifelse(description %in% names(feat_name_fixes), 
-                                feat_name_fixes[description], description)) 
+    # Mark feature type
+    mutate(feat_type = substr(feature, 2, 2)) %>%
+    # Mark modules associated with disease
+    mutate(signif_module = (mean_module_auc > 0.7)) 
   
   # Make selected feature appear at the top
-  fs_desc <- (tmp %>% filter(feature == fs) %>% pull(description))[1]
-  all_desc <- sort(unique(tmp %>% filter(feature != fs) %>% pull(description)))
-  all_desc <- c(all_desc, fs_desc)
-  tmp <- tmp %>% mutate(description = factor(description, levels = all_desc))
+  all_feats <- sort(unique(tmp$feature))
+  all_feats <- c(all_feats[all_feats != fs], fs)
+  tmp <- tmp %>% mutate(feature = factor(description, levels = all_feats))
   
   # For adding lines and further formatting
   tmp <- tmp %>% 
-    arrange(description) %>%
+    arrange(feature) %>%
     group_by(dataset, module) %>% 
-    mutate(ymin = first(description), ymax = last(description)) %>% 
-    ungroup() %>%
-    mutate(dataset = gsub('_20','_\'',dataset))
+    mutate(ymin = first(feature), ymax = last(feature)) %>% 
+    ungroup() 
 
-  fs_highlight_y <- which(sort(unique(tmp$description)) == fs_desc)
+  fs_highlight_y <- which(sort(unique(tmp$feature)) == fs)
   
   p <- ggplot(tmp, aes(x = dataset)) +
-    geom_point(aes(y = description, fill = signif_module, shape = increased_in), 
+    geom_point(aes(y = feature, fill = signif_module, shape = increased_in), 
                size = 4, color = 'white') +
     geom_linerange(aes(ymin = ymin, ymax = ymax), color = 'darkorange4') +
-    annotate("rect", ymin = fs_highlight_y-0.5, ymax = fs_highlight_y+0.5, xmin = -Inf, xmax = Inf, alpha = .15, fill = "green4") +
-    geom_point(aes(y = description, fill = signif_module, shape = increased_in), 
+    annotate("rect", 
+             ymin = fs_highlight_y-0.5, 
+             ymax = fs_highlight_y+0.5, 
+             xmin = -Inf, xmax = Inf, 
+             alpha = .15, fill = "green4") +
+    geom_point(aes(y = feature, fill = signif_module, shape = increased_in), 
                size = 4, color = 'white') +
     scale_shape_manual(values = c('disease' = 24, 'healthy' = 25, 'non-significant' = 21)) +
     scale_x_discrete(position = 'top') +
     scale_fill_manual(values = c('TRUE' = 'darkorange4', 'FALSE' = 'darkorange3')) +
     theme_classic() +
-    ggtitle(get_feature_descriptions(fs)) +
+    ggtitle(fs) +
     xlab(NULL) +
     ylab(NULL) +
     theme(legend.position = 'none') +
@@ -953,7 +956,7 @@ for (fs in common_feats) {
     theme(plot.margin = unit(c(10,95,1,1), 'points'))
   
   print(p)
-  all_plots[[fs[1]]] <- p
+  all_plots[[fs]] <- p
 }
 
 rm(common_feats, fs, tmp, p, fs_highlight_y)
@@ -963,7 +966,7 @@ rm(common_feats, fs, tmp, p, fs_highlight_y)
 # all_plots$T__Bacteroides_uniformis
 ```
 
-# 8. Overlapping components
+# 9. Overlapping components
 
 ## Overlaps matrix
 
@@ -1078,7 +1081,7 @@ module_intersections %>%
   write_csv("docs/Table_S6.csv")
 ```
 
-## Plot overlaps
+## Plot overlaps - circus plot
 
 ```{r fig.width=8, fig.height=8, eval=F}
 tmp <- module_intersections %>% 
@@ -1159,7 +1162,7 @@ circos.clear()
 
 #dev.off()
 ```
-# 9. Network visualization
+# 10. Network visualization
 
 Network visualization with CytoScape / [iGraph](https://kateto.net/network-visualization):
 
@@ -1178,8 +1181,9 @@ for(i in 1:nrow(modules_overview)) {
   
   # Extract dataset name and module ID
   d <- modules_overview$dataset[i]
-  modu <- modules_overview$module[i]
-  edge_cutoff <- gsub('keep_1[0-9]//des_0\\.[0-9]//nrep_10//nfol_5//ncom_5//edge_','',modules_overview$run_id[i]) %>% as.numeric()
+  modu <- as.numeric(gsub('module','',modules_overview$module[i]))
+  edge_cutoff <- gsub('keep_1[0-9]//des_0\\.[0-9]//nrep_10//nfol_5//ncom_5//edge_','',
+                      modules_overview$run_id[i]) %>% as.numeric()
   
   # Create list of edges 
   feats_to_plot <- sens_analysis_modules %>%
@@ -1205,32 +1209,32 @@ for(i in 1:nrow(modules_overview)) {
                     'Negative correlation', 
                     spearman_signif)) 
   
+  # Convert to pretty names
+  edges <- edges %>%
+    mutate(source = get_pretty_names(source, feat_name_fixes)) %>%
+    mutate(target = get_pretty_names(target, feat_name_fixes))
+  
   # Dummy list of nodes
   vertices <- edges %>% 
     select(`source`) %>% 
     rename(id = `source`) %>%
     distinct() %>%
-    mutate(type = substr(id, 1, 1)) %>%
+    mutate(type = substr(id, 2, 2)) %>%
     mutate(color = gplots::col2hex(feature_type_color_map[type])) 
-  
-  # Get pretty names
-  vertices$pretty_name <- 
-    paste0('[', vertices$type, '] ',
-           get_feature_descriptions(vertices$id))
   
   # Export to CytoScape
   createNetworkFromDataFrames(
     nodes = vertices, 
     edges = edges %>% filter(`source` > target), 
     title = paste(d, modu, 'V1', sep = '_'), 
-    collection = 'minttea_modules'
+    collection = 'minttea_modules_V2'
     )
 }
 
 rm(edges, vertices, d, modu, feats_to_plot, i, edge_cutoff)
 ```
 
-# 10. Alternative visualization
+# 11. Alternative visualization
 
 ```{r fig.width=10, fig.height=9}
 final_grid_plots <- list()
