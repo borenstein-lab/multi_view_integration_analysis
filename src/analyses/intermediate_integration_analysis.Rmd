@@ -708,7 +708,10 @@ feat_name_fixes <- c(
   "[M] HILIC.neg_Cluster_0030..methylbutyric.aid...valeric...isovaleric."="[M] Methylbutyric acid/valeric/isovaleric acid",
   "[M] HILIC.neg_Cluster_0133..4.nitrophenol" = "[M] 4-nitrophenol",
   "[M] HILIC.neg_Cluster_0181..hydrocinnamic.acid"= "[M] Hydrocinnamic acid",
-  "[M] HILIC.pos_Cluster_1374..C14.carnitine" = "[M] C14 carnitine"
+  "[M] HILIC.pos_Cluster_1374..C14.carnitine" = "[M] C14 carnitine",
+  "[M] HILIC.pos_Cluster_1486..C16.carnitine" = "[M] C16 carnitine",
+  "[P] UDP-_N_-acetylmuramoyl-pentapeptide biosynthesis III (_meso_-diaminopimelate containing)"=
+    "[P] UDP-MurNAc-pentapeptide biosynthesis III"
 )
 
   # 'T__Oscillibacter.sp..57_20'='T__Oscillibacter_sp_57_20',
@@ -750,8 +753,7 @@ feat_name_fixes <- c(
   # "[G] N-acetylglucosamine PTS system EIIB component"="[G] nagEb",
   # "[G] phosphonate transport system permease protein"="[G] phnE",
   # "[G] oxaloacetate decarboxylase (Na+ extruding) subunit alpha"="[G] oadA",
-  # "[P] UDP-<i>N</i>-acetylmuramoyl-pentapeptide biosynthesis III (<i>meso</i>-diaminopimelate containing)"=
-  #   "[P] UDP-MurNAc-pentapeptide biosynthesis III",
+  
   # "[P] chorismate biosynthesis from 3-dehydroquinate"=
   #   "[P] chorismate biosynthesis from DHQ",
   # "[M] C18.neg_Cluster_0361..eicosatrienoic.acid"=
@@ -814,7 +816,14 @@ get_pretty_names <- function(feat_names, feat_name_fixes, remove_cluster_info = 
     ) %>% unname()
   
   # Wrap string for some plots
-  if (!is.na(string_wrap)) new_feat_names <- strwrap(new_feat_names, width = string_wrap)
+  if (!is.na(string_wrap)) 
+    new_feat_names <- sapply(
+      new_feat_names, 
+      function(x, string_wrap) { 
+        paste0(strwrap(x,width=string_wrap), collapse='\n') 
+      }, 
+      string_wrap) %>% 
+    unname()
   
   return(new_feat_names)
 }
@@ -1176,7 +1185,7 @@ for(i in 1:nrow(modules_overview)) {
   if (is.na(modules_overview$avg_pears_corr[i])) next;
   if (modules_overview$avg_pears_corr[i] < 0.3) next;
   if (modules_overview$mean_module_auc[i] < 0.6) next;
-  if (modules_overview$n_feats[i] > 20) next;
+  if (modules_overview$n_feats[i] > 24) next;
   if (modules_overview$n_feats[i] < 4) next;
   
   # Extract dataset name and module ID
@@ -1251,7 +1260,7 @@ for(i in 1:nrow(modules_overview)) {
   
   # Extract dataset name and module ID
   d <- modules_overview$dataset[i] %>% unname()
-  modu <- modules_overview$module[i]
+  modu <- as.numeric(gsub('module','',modules_overview$module[i]))
   
   # Get features
   feats_to_plot <- sens_analysis_modules %>%
@@ -1263,18 +1272,12 @@ for(i in 1:nrow(modules_overview)) {
   tmp <- bind_cols(lapply(diablo_input[[d]]$X, function(x) data.frame(x) %>% select(any_of(feats_to_plot))))
   tmp <- bind_cols(tmp, label = diablo_input[[d]]$Y)
   
-  # Prettier names
-  # TODO
-  names(tmp) <- substr(names(tmp), 0, 26)
-  feats_to_plot <- substr(feats_to_plot, 0, 26)
-  tmp_all_utests <- all_utests %>% mutate(feature = substr(feature,0,26))
-    
   # Boxplots (left stripe)
   boxplots <- list()
   for (feat in rev(feats_to_plot)) {
     # Get U-test significance
     signif_mark <- get_signif_mark(
-      tmp_all_utests %>% 
+      all_utests %>% 
         filter(dataset == d) %>% 
         filter(feature == feat) %>% 
         pull(fdr_utest)
@@ -1287,6 +1290,7 @@ for(i in 1:nrow(modules_overview)) {
     p <- ggplot(tmp, aes_string(x = 'label', y = feat, fill = 'label')) +
       geom_boxplot(width = 0.8, outlier.size = 1) +
       scale_fill_manual(values = label_colors) +
+      ylab(get_pretty_names(feat, feat_name_fixes, string_wrap = 40)) +
       theme_bw() +
       theme(legend.position = 'none') +
       theme(axis.text.x = element_blank()) +
@@ -1333,12 +1337,15 @@ for(i in 1:nrow(modules_overview)) {
       if (j>=k) {
         p <- ggplot() + theme_void()
       } else {
-        p <- ggplot(tmp, aes_string(x = feat2, y = feat1, color = 'label', group = 'label')) +
+        p <- ggplot(tmp, aes_string(
+            x = feat2, y = feat1, 
+            color = 'label', group = 'label')) +
           geom_point(size = 0.5) +
           geom_smooth(aes(fill = label), method = "lm", alpha = 0.2, formula = 'y~x') +
           scale_color_manual(values = label_colors) +
           scale_fill_manual(values = label_colors) +
           scale_x_continuous(position = 'top') +
+          xlab(get_pretty_names(feat, feat_name_fixes, string_wrap = 40)) +
           theme_bw() +
           theme(legend.position = 'none') +
           #theme(axis.text = element_text(size = 6)) +
