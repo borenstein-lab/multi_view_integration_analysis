@@ -90,7 +90,7 @@ get_feature_descriptions <- function(features) {
 get_u_tests <- function(df, diablo_input) {
   all_utests <- data.frame()
   for (d in unique(df$dataset)) {
-    feats_to_test <- df$original_feature[df$dataset == d]
+    feats_to_test <- df$feature[df$dataset == d]
     proc_data <- bind_cols(lapply(diablo_input[[d]]$X, as.data.frame))
     dis_labels <- diablo_input[[d]]$Y
     for (f in feats_to_test) {
@@ -324,11 +324,11 @@ plot_module_stats <- function(sens_analysis_modules,
     group_by(dataset, module, feature_type) %>%
     summarise(N = n(), .groups = "drop") 
   
-  # Only plot modules with at least 2 types of features and >3 total features
+  # Only plot modules with at least 2 types of features and >=3 total features
   modules_to_plot <- tmp1 %>% 
     group_by(dataset,module) %>% 
     summarise(N=sum(N), N_feat_type=n(), .groups='drop') %>%
-    filter(N>3 & N_feat_type>1) %>%
+    filter(N>=3 & N_feat_type>1) %>%
     select(dataset, module)
  
   tmp1 <- inner_join(tmp1, modules_to_plot, by = c('dataset','module'))
@@ -550,21 +550,6 @@ plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_
       summarize(mean_auc = mean(mean_overall_rf_auc), sd_auc = sqrt(wtd.var(mean_overall_rf_auc^2))) %>%
       mutate(model = 'rf') %>%
       mutate(pipeline = caption_minttea_shuf) %>%
-      mutate(shuf = TRUE),
-    summary_aucs %>%
-      filter(run == 'true') %>%
-      rename(mean_auc = mean_overall_lm_auc, sd_auc = sd_overall_lm_auc) %>%
-      mutate(label_n_features = paste0(n_features, ' [', n_modules, ']')) %>%
-      select(dataset, mean_auc, sd_auc, label_n_features) %>%
-      mutate(model = 'logit') %>%
-      mutate(pipeline = caption_minttea) %>%
-      mutate(shuf = FALSE),
-    summary_aucs %>%
-      filter(run != 'true') %>%
-      group_by(dataset) %>%
-      summarize(mean_auc = mean(mean_overall_lm_auc), sd_auc = sqrt(wtd.var(mean_overall_lm_auc^2))) %>%
-      mutate(model = 'logit') %>%
-      mutate(pipeline = caption_minttea_shuf) %>%
       mutate(shuf = TRUE)
   ) %>%
     filter(dataset %in% datasets_to_focus_on) %>%
@@ -612,37 +597,6 @@ plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_
             element_line(linewidth = 0.5, color = "grey93")) +
     theme(legend.spacing.y = unit(1.0, 'cm'))  +
     theme(axis.title.x = element_text(size = 11)) 
-  print(p)
-  
-  p_dodging = 0.55
-  
-  p <- ggplot(tmp %>% filter(model == 'logit'), 
-              mapping = aes(x = dataset, group = pipeline)) +
-    # Long grey lines
-    geom_linerange(aes(ymax = mean_auc), 
-                   ymin = 0, color = 'darkgrey',
-                   position = position_dodge(width = p_dodging), 
-                   alpha = 0.6, linewidth = 0.6) + 
-    geom_hline(yintercept = 0.5, color = "darkred", linetype = "dashed", linewidth = 1) +
-    # Standard errors
-    geom_linerange(aes(ymax = error_high, ymin = error_low),
-                   position = position_dodge(width = p_dodging), 
-                   alpha = 0.4, linewidth = 2, color = "grey70") +
-    # AUCs
-    geom_point(aes(y = mean_auc, fill = pipeline), 
-               color = "black", size = 3, shape = 21,
-               alpha = 0.85, position = position_dodge(width = p_dodging)) +
-    scale_y_continuous(breaks = seq(0.5,1,0.1)) +
-    scale_x_discrete(expand = c(0, 0.5)) +
-    scale_fill_manual(name = "Pipeline", values = coloring) +
-    guides(fill = guide_legend(reverse=TRUE)) +
-    coord_flip() +
-    theme_classic() +
-    xlab(NULL) +
-    ylab("Logistic Regression AUC") +
-    theme(panel.grid.major.x = 
-            element_line(linewidth = 0.5, color = "grey93")) +
-    theme(axis.title.x = element_text(size = 11))
   print(p)
 }
 
