@@ -33,19 +33,19 @@ DATASETS <- list(
   'schizofrenia_zhu_2020' = c('T','P'),
   'me_cfs_nagySzakal_2017' = c('T','P'),
   'ht_li_2017' = c('T','P'),
-  'pre_ht_li_2017' = c('T','P')
-  
-  # 'cirrhosis_qin_2014' = c('T','P'),
-  # 'crc_feng_2015' = c('T','P'),
-  # 'crc_yu_2015' = c('T','P'),
-  # 'sth_rubel_2020' = c('T','P'),
-  # 'uc_spain_nielsen_2014' = c('T','P'),
-  # 'cd_franzosa_2019' = c('T','P','M'),
-  # 'crc_s3_s4_yachida_2019' = c('T','P','M'),
-  # 'esrd_wang_2020' = c('T','P','M'),
-  # 'uc_franzosa_2019' = c('T','P','M'),
-  # 'metacardis_1_8' = c('T','P','S'),
-  # 'metacardis_3_8' = c('T','P','S')
+  'pre_ht_li_2017' = c('T','P'),
+  # ---
+  'cirrhosis_qin_2014' = c('T','P'),
+  'crc_feng_2015' = c('T','P'),
+  'crc_yu_2015' = c('T','P'),
+  'sth_rubel_2020' = c('T','P'),
+  'uc_spain_nielsen_2014' = c('T','P'),
+  'cd_franzosa_2019' = c('T','P','M'),
+  'crc_s3_s4_yachida_2019' = c('T','P','M'),
+  'esrd_wang_2020' = c('T','P','M'),
+  'uc_franzosa_2019' = c('T','P','M'),
+  'metacardis_1_8' = c('T','P','S'),
+  'metacardis_3_8' = c('T','P','S')
 )
 
 for (d in names(DATASETS)) {
