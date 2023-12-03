@@ -12,12 +12,21 @@ CMD_DATASETS <- c(
   'crc_feng_2015',
   'crc_yu_2015',
   'sth_rubel_2020',
-  'uc_spain_nielsen_2014'
+  'uc_spain_nielsen_2014',
+  # ---
+  'crc_zeller_2014',
+  'crc_vogtmann_2016',
+  'crc_wirbel_2018',
+  'igt_karlsson_2013',
+  't2d_karlsson_2013',
+  'schizofrenia_zhu_2020',
+  'me_cfs_nagySzakal_2017',
+  'ht_li_2017',
+  'pre_ht_li_2017'
 )
 
 MM_DATASETS <- c(
   'cd_franzosa_2019',
-  'crc_s1_s2_yachida_2019',
   'crc_s3_s4_yachida_2019',
   'esrd_wang_2020',
   'uc_franzosa_2019'
