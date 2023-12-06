@@ -39,3 +39,4 @@ src/analyses/minttea_comparisons_results/*
 src/ml_pipeline/slurm_logs/*
 slurm_logs/*
 *.cys
+data/strat_humann_tables_exploration/*
