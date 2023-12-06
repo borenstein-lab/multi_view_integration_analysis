@@ -12,7 +12,7 @@ library(logger)
 library(PMA)
 library(readr)
 library(igraph)
-set.seed(27)
+set.seed(127)
 options(scipen = 999)
 log_threshold('DEBUG')
 
@@ -40,20 +40,20 @@ minttea_edge_threshold <- .7
 n_minttea_repeats <- 10
 
 # Some utilities
-get_latent_vars <- function(data_X, n_modules, modules_df) {
-  latent_vars <- list()
-  for (l in 1:length(data_X)) {
-    latent_vars[[l]] <- list()
-    for (j in 1:n_modules) {
-      pca_data <- as.data.frame(data_X[[l]]) %>%
-        select(any_of(modules_df %>% filter(module == paste0('module',j)) %>% pull(feature)))
-      if(ncol(pca_data) == 0) { latent_vars[[l]][[j]] <- NA; next}
-      pca <- prcomp(pca_data, center = TRUE, scale. = TRUE) 
-      latent_vars[[l]][[j]] <- pca$x[,'PC1']
-    }
-  }
-  return(latent_vars)
-}
+# get_latent_vars <- function(data_X, n_modules, modules_df) {
+#   latent_vars <- list()
+#   for (l in 1:length(data_X)) {
+#     latent_vars[[l]] <- list()
+#     for (j in 1:n_modules) {
+#       pca_data <- as.data.frame(data_X[[l]]) %>%
+#         select(any_of(modules_df %>% filter(module == paste0('module',j)) %>% pull(feature)))
+#       if(ncol(pca_data) == 0) { latent_vars[[l]][[j]] <- NA; next}
+#       pca <- prcomp(pca_data, center = TRUE, scale. = TRUE) 
+#       latent_vars[[l]][[j]] <- pca$x[,'PC1']
+#     }
+#   }
+#   return(latent_vars)
+# }
 
 ####################################################################
 # DIABLO
@@ -327,12 +327,14 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
       data_X_1 <- lapply(data_X, function(m, samps) return(m[samps,]), samps = samples_subset_1)
       data_Y_1 <- data_Y[samples_subset_1]
       data_X_1 <- lapply(data_X_1, function(m) return(m[,sample(1:ncol(m))])) # Shuffle columns
+      data_X_1 <- data_X_1[ , which(apply(data_X_1, 2, var) != 0)] # Remove constant columns
       
       # Randomly sample twice
       samples_subset_2 <- samples_subsets_2[[i]]
       data_X_2 <- lapply(data_X, function(m, samps) return(m[samps,]), samps = samples_subset_2)
       data_Y_2 <- data_Y[samples_subset_2]
       data_X_2 <- lapply(data_X_2, function(m) return(m[,sample(1:ncol(m))])) # Shuffle columns
+      data_X_2 <- data_X_2[ , which(apply(data_X_2, 2, var) != 0)] # Remove constant columns
       
       # Run MintTea for data subset 1
       proc_data_1 <- data.frame(sample_id = samples_subset_1, disease_state = data_Y_1)
@@ -389,12 +391,14 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
           function(x, tmp_minttea_res) { return(data.frame(feature = tmp_minttea_res[[1]][[x]]$features, module = x)) },
           tmp_minttea_res = tmp_minttea_res_1
         )) %>% mutate(feature_set = substr(feature,0,1))
+        
         module_names_2 <- names(tmp_minttea_res_2[[1]])
         modules_2 <- bind_rows(lapply(
           module_names_2, 
           function(x, tmp_minttea_res) { return(data.frame(feature = tmp_minttea_res[[1]][[x]]$features, module = x)) },
           tmp_minttea_res = tmp_minttea_res_2
         )) %>% mutate(feature_set = substr(feature,0,1))
+        
         z_score_shared_links <- get_z_score_shared_links(modules_1, modules_2, join_by = 'module')
         
         
