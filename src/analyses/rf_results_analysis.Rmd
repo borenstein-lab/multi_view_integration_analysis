@@ -36,19 +36,27 @@ load(all_rdata_path)
 rm(all_rdata_path)
 ```
 
-Change to "pretty" dataset names:
+Change to "pretty" dataset names and narrow to "main" datasets only.
 
 ```{r}
+datasets_A <- c('cd_franzosa_2019','cirrhosis_qin_2014','crc_feng_2015',
+                'crc_s3_s4_yachida_2019','esrd_wang_2020','metacardis_1_8',
+                'metacardis_3_8','uc_franzosa_2019','uc_spain_nielsen_2014')
+
+cv_datasets_summary <- cv_datasets_summary %>% filter(dataset %in% datasets_A)
+cv_results <- cv_results %>% filter(dataset %in% datasets_A)
+feat_imp <- feat_imp %>% filter(dataset %in% datasets_A)
+feat_imp_sum <- feat_imp_sum %>% filter(dataset %in% datasets_A)
+
+# Pretty names:
 new_dataset_names <-c(
   "cd_franzosa_2019"="CD (Franzosa, 2019)",
   "cirrhosis_qin_2014"="Cirrhosis (Qin, 2014)",
   "crc_feng_2015"="CRC (Feng, 2015)",
   "crc_s3_s4_yachida_2019"="CRC (Yachida, 2019)",
-  "crc_yu_2015"="CRC (Yu, 2015)",
   "esrd_wang_2020"="ESRD (Wang, 2020)",
   "metacardis_1_8"="MS (MetaCardis)",
   "metacardis_3_8"="T2D (MetaCardis)",
-  "sth_rubel_2020"="STH (Rubel, 2020)",
   "uc_franzosa_2019"="UC (Franzosa, 2019)",
   "uc_spain_nielsen_2014"="UC (Nielsen, 2014)"
   )
@@ -119,7 +127,7 @@ A. Number of samples per study. C, controls (dark grey); D, disease (light grey)
 B. Average number of original features from each type. 
 (Or: number of features selected by the feature-selection process and used for final training. The average is over the cross-validation process).
 
-```{r, fig.height=5.1, fig.width=6, warning = FALSE}
+```{r, fig.height=4.9, fig.width=5.6, warning = FALSE}
 plot_basic_stats(
   cv_results = cv_results, 
   feature_type_color_map = feature_type_color_map
