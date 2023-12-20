@@ -327,14 +327,14 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
       data_X_1 <- lapply(data_X, function(m, samps) return(m[samps,]), samps = samples_subset_1)
       data_Y_1 <- data_Y[samples_subset_1]
       data_X_1 <- lapply(data_X_1, function(m) return(m[,sample(1:ncol(m))])) # Shuffle columns
-      data_X_1 <- data_X_1[ , which(apply(data_X_1, 2, var) != 0)] # Remove constant columns
-      
+      data_X_1 <- lapply(data_X_1, function(m) return(m[,which(apply(m, 2, var) != 0)])) # Remove constant columns
+        
       # Randomly sample twice
       samples_subset_2 <- samples_subsets_2[[i]]
       data_X_2 <- lapply(data_X, function(m, samps) return(m[samps,]), samps = samples_subset_2)
       data_Y_2 <- data_Y[samples_subset_2]
       data_X_2 <- lapply(data_X_2, function(m) return(m[,sample(1:ncol(m))])) # Shuffle columns
-      data_X_2 <- data_X_2[ , which(apply(data_X_2, 2, var) != 0)] # Remove constant columns
+      data_X_2 <- lapply(data_X_2, function(m) return(m[,which(apply(m, 2, var) != 0)])) # Remove constant columns
       
       # Run MintTea for data subset 1
       proc_data_1 <- data.frame(sample_id = samples_subset_1, disease_state = data_Y_1)
