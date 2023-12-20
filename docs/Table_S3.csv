@@ -300,35 +300,6 @@ Dataset,Feature set,Feature name,Number of times selected by feature selection (
 "CRC (Yachida, 2019)",All,M__C02494_1.Methyladenosine,85,4.7e-4,0.01894,TRUE,C02494_1.Methyladenosine
 "CRC (Yachida, 2019)",All,M__C05629_3.Phenylpropionate,94,6.1e-4,0.00195,TRUE,C05629_3.Phenylpropionate
 "CRC (Yachida, 2019)",All,M__C16741_5.Hydroxylysine,100,0.00198,< 0.00001,TRUE,C16741_5.Hydroxylysine
-"CRC (Yu, 2015)",All,T__Collinsella.aerofaciens,96,0.00242,< 0.00001,TRUE,Collinsella aerofaciens
-"CRC (Yu, 2015)",All,T__Parvimonas.micra,100,0.01692,< 0.00001,TRUE,Parvimonas micra
-"CRC (Yu, 2015)",All,T__Dorea.formicigenerans,100,0.00293,< 0.00001,TRUE,Dorea formicigenerans
-"CRC (Yu, 2015)",All,T__Fusicatenibacter.saccharivorans,100,0.00815,< 0.00001,TRUE,Fusicatenibacter saccharivorans
-"CRC (Yu, 2015)",All,T__Peptostreptococcus.stomatis,100,0.01238,< 0.00001,TRUE,Peptostreptococcus stomatis
-"CRC (Yu, 2015)",All,T__Gemella.morbillorum,100,0.00887,< 0.00001,TRUE,Gemella morbillorum
-"CRC (Yu, 2015)",All,T__Dialister.pneumosintes,100,0.00124,< 0.00001,TRUE,Dialister pneumosintes
-"CRC (Yu, 2015)",All,T__Solobacterium.moorei,100,9.5e-4,< 0.00001,TRUE,Solobacterium moorei
-"CRC (Yu, 2015)",All,T__Ruthenibacterium.lactatiformans,94,0.00148,0.06526,TRUE,Ruthenibacterium lactatiformans
-"CRC (Yu, 2015)",All,T__.Clostridium..symbiosum,100,0.00579,< 0.00001,TRUE, Clostridium  symbiosum
-"CRC (Yu, 2015)",All,T__Enterocloster.citroniae,100,0.00304,< 0.00001,TRUE,Enterocloster citroniae
-"CRC (Yu, 2015)",All,T__Phocaeicola.dorei,85,0.00242,< 0.00001,TRUE,Phocaeicola dorei
-"CRC (Yu, 2015)",All,T__Eubacterium.limosum,90,6.7e-4,0.01337,TRUE,Eubacterium limosum
-"CRC (Yu, 2015)",All,T__Eubacterium.sp..CAG.38,97,0.00189,< 0.00001,TRUE,Eubacterium sp  CAG 38
-"CRC (Yu, 2015)",All,T__Fusobacterium.nucleatum,100,0.00133,< 0.00001,TRUE,Fusobacterium nucleatum
-"CRC (Yu, 2015)",All,T__Eubacterium.ventriosum,100,0.00565,< 0.00001,TRUE,Eubacterium ventriosum
-"CRC (Yu, 2015)",All,T__Erysipelatoclostridium.ramosum,98,0.00176,< 0.00001,TRUE,Erysipelatoclostridium ramosum
-"CRC (Yu, 2015)",All,T__Hungatella.hathewayi,100,0.00254,< 0.00001,TRUE,Hungatella hathewayi
-"CRC (Yu, 2015)",All,T__Enterocloster.clostridioformis,100,0.00157,< 0.00001,TRUE,Enterocloster clostridioformis
-"CRC (Yu, 2015)",All,T__Proteobacteria.bacterium.CAG.139,96,0.0012,< 0.00001,TRUE,Proteobacteria bacterium CAG 139
-"CRC (Yu, 2015)",All,T__Bacteroides.clarus,92,8.9e-4,< 0.00001,TRUE,Bacteroides clarus
-"CRC (Yu, 2015)",All,P__P162.PWY,100,0.00558,< 0.00001,TRUE,L-glutamate degradation V (via hydroxyglutarate)
-"CRC (Yu, 2015)",All,P__P163.PWY,100,0.00356,< 0.00001,TRUE,L-lysine fermentation to acetate and butanoate
-"CRC (Yu, 2015)",All,P__PWY.7316,93,0.00161,0.00025,TRUE,dTDP-_N_-acetylviosamine biosynthesis
-"CRC (Yu, 2015)",All,P__PWY0.1241,100,0.0078,< 0.00001,TRUE,ADP-L-_glycero_-&beta;-D-_manno_-heptose biosynthesis
-"CRC (Yu, 2015)",All,P__PWY0.1479,91,0.00162,0.03886,TRUE,tRNA processing
-"CRC (Yu, 2015)",All,T__Acidaminococcus.intestini,60,7.8e-4,0.00482,TRUE,Acidaminococcus intestini
-"CRC (Yu, 2015)",All,T__Ruminococcus.bicirculans,88,0.00151,0.00176,TRUE,Ruminococcus bicirculans
-"CRC (Yu, 2015)",All,P__P108.PWY,93,0.00183,0.01225,TRUE,pyruvate fermentation to propanoate I
 "ESRD (Wang, 2020)",All,T__Eggerthella_lenta,100,0.00162,< 0.00001,TRUE,Eggerthella_lenta
 "ESRD (Wang, 2020)",All,T__Prevotella_copri,100,0.00217,< 0.00001,TRUE,Prevotella_copri
 "ESRD (Wang, 2020)",All,T__Lactobacillus_rogosae,100,3e-4,0.00003,TRUE,Lactobacillus_rogosae
@@ -407,8 +378,8 @@ MS (MetaCardis),All,T__Haemophilus_parainfluenzae,100,0.00393,< 0.00001,TRUE,Hae
 MS (MetaCardis),All,T__Coprococcus_catus,99,0.00129,< 0.00001,TRUE,Coprococcus_catus
 MS (MetaCardis),All,T__X_Ruminococcus__torques,100,0.00107,< 0.00001,TRUE,X_Ruminococcus__torques
 MS (MetaCardis),All,P__M00357,74,7.8e-4,0.03487,TRUE,"Methanogenesis, acetate => methane"
-MS (MetaCardis),All,P__M00189,100,0.00136,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-MS (MetaCardis),All,P__M00427,99,0.00115,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+MS (MetaCardis),All,P__M00189,100,0.00136,< 0.00001,TRUE,M00189 DEPRECATED PATHWAY/MODULE
+MS (MetaCardis),All,P__M00427,99,0.00115,< 0.00001,TRUE,M00427 DEPRECATED PATHWAY/MODULE
 MS (MetaCardis),All,S__SERUM_ABS_L_leucine_1,100,7.6e-4,0.01002,TRUE,SERUM_ABS_L_leucine_1
 MS (MetaCardis),All,S__SERUM_ABS_talose_2,100,0.00691,< 0.00001,TRUE,SERUM_ABS_talose_2
 MS (MetaCardis),All,S__SERUM_ABS_glycerol,100,0.00236,< 0.00001,TRUE,SERUM_ABS_glycerol
@@ -470,25 +441,25 @@ T2D (MetaCardis),All,T__X_Ruminococcus__torques,100,6.8e-4,0.00002,TRUE,X_Rumino
 T2D (MetaCardis),All,T__motu_linkage_group_307,100,0.00111,< 0.00001,TRUE,motu_linkage_group_307
 T2D (MetaCardis),All,T__motu_linkage_group_638,100,6e-4,0.00001,TRUE,motu_linkage_group_638
 T2D (MetaCardis),All,T__motu_linkage_group_113,78,2.6e-4,0.03509,TRUE,motu_linkage_group_113
-T2D (MetaCardis),All,P__M00279,100,7.1e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00197_Cluster306,100,7.1e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE [Clustered features]
-T2D (MetaCardis),All,P__M00602,100,6.8e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00279,100,7.1e-4,< 0.00001,TRUE,M00279 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00197_Cluster306,100,7.1e-4,< 0.00001,TRUE,M00197 DEPRECATED PATHWAY/MODULE [Clustered features]
+T2D (MetaCardis),All,P__M00602,100,6.8e-4,< 0.00001,TRUE,M00602 DEPRECATED PATHWAY/MODULE
 T2D (MetaCardis),All,P__M00171,100,8.2e-4,< 0.00001,TRUE,"C4-dicarboxylic acid cycle, NAD - malic enzyme type"
-T2D (MetaCardis),All,P__M00200,100,6.8e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00394,99,7.4e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00276,100,6.3e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00429,100,7.4e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00200,100,6.8e-4,< 0.00001,TRUE,M00200 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00394,99,7.4e-4,< 0.00001,TRUE,M00394 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00276,100,6.3e-4,< 0.00001,TRUE,M00276 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00429,100,7.4e-4,< 0.00001,TRUE,M00429 DEPRECATED PATHWAY/MODULE
 T2D (MetaCardis),All,P__M00012,100,7.9e-4,< 0.00001,TRUE,Glyoxylate cycle
-T2D (MetaCardis),All,P__M00189,100,0.00516,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00648,100,0.0023,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00208,100,7e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
-T2D (MetaCardis),All,P__M00450_Cluster390,100,7.8e-4,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE [Clustered features]
-T2D (MetaCardis),All,P__M00427,100,6.2e-4,0.0001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00189,100,0.00516,< 0.00001,TRUE,M00189 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00648,100,0.0023,< 0.00001,TRUE,M00648 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00208,100,7e-4,< 0.00001,TRUE,M00208 DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00450_Cluster390,100,7.8e-4,< 0.00001,TRUE,M00450 DEPRECATED PATHWAY/MODULE [Clustered features]
+T2D (MetaCardis),All,P__M00427,100,6.2e-4,0.0001,TRUE,M00427 DEPRECATED PATHWAY/MODULE
 T2D (MetaCardis),All,P__M00005,100,4.7e-4,0.00872,TRUE,"PRPP biosynthesis, ribose 5P => PRPP"
-T2D (MetaCardis),All,P__M00275,100,0.00108,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00275,100,0.00108,< 0.00001,TRUE,M00275 DEPRECATED PATHWAY/MODULE
 T2D (MetaCardis),All,P__M00529,100,7e-4,< 0.00001,TRUE,"Denitrification, nitrate => nitrogen"
 T2D (MetaCardis),All,P__M00127,100,8.4e-4,< 0.00001,TRUE,"Thiamine biosynthesis, prokaryotes, AIR (+ DXP/tyrosine) => TMP/TPP"
-T2D (MetaCardis),All,P__M00266,100,0.00153,< 0.00001,TRUE,DEPRECATED PATHWAY/MODULE
+T2D (MetaCardis),All,P__M00266,100,0.00153,< 0.00001,TRUE,M00266 DEPRECATED PATHWAY/MODULE
 T2D (MetaCardis),All,P__M00035,100,8.7e-4,< 0.00001,TRUE,Methionine degradation
 T2D (MetaCardis),All,P__M00001,100,5.5e-4,0.00138,TRUE,"Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate"
 T2D (MetaCardis),All,S__SERUM_ABS_DL_isoleucine_2,100,5.9e-4,0.00006,TRUE,SERUM_ABS_DL_isoleucine_2
@@ -528,56 +499,6 @@ T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Formic_acid,77,2.7e-4,< 0.00001,TRUE,
 T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Lactic_acid,100,0.00104,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Lactic_acid
 T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,100,0.00139,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Pyruvic_acid
 T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glucose,100,0.01117,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Glucose
-"STH (Rubel, 2020)",All,T__Prevotella.copri,96,0.00131,< 0.00001,TRUE,Prevotella copri
-"STH (Rubel, 2020)",All,T__Prevotella.sp..CAG.520,100,0.00409,< 0.00001,TRUE,Prevotella sp  CAG 520
-"STH (Rubel, 2020)",All,T__Lachnospira.eligens,100,0.0038,< 0.00001,TRUE,Lachnospira eligens
-"STH (Rubel, 2020)",All,T__Escherichia.coli,100,0.00125,< 0.00001,TRUE,Escherichia coli
-"STH (Rubel, 2020)",All,T__Phascolarctobacterium.succinatutens,100,0.01468,< 0.00001,TRUE,Phascolarctobacterium succinatutens
-"STH (Rubel, 2020)",All,T__Lachnospira.pectinoschiza,98,8e-4,< 0.00001,TRUE,Lachnospira pectinoschiza
-"STH (Rubel, 2020)",All,T__Prevotella.sp..AM42.24,100,0.00549,< 0.00001,TRUE,Prevotella sp  AM42 24
-"STH (Rubel, 2020)",All,T__Prevotella.sp..885,100,0.01202,< 0.00001,TRUE,Prevotella sp  885
-"STH (Rubel, 2020)",All,T__Bacteroides.sp..CAG.530,100,0.01061,< 0.00001,TRUE,Bacteroides sp  CAG 530
-"STH (Rubel, 2020)",All,T__Odoribacter.splanchnicus,100,0.00251,< 0.00001,TRUE,Odoribacter splanchnicus
-"STH (Rubel, 2020)",All,T__Prevotella.sp..CAG.1092,100,0.0038,< 0.00001,TRUE,Prevotella sp  CAG 1092
-"STH (Rubel, 2020)",All,T__.Ruminococcus..lactaris,100,0.00338,< 0.00001,TRUE, Ruminococcus  lactaris
-"STH (Rubel, 2020)",All,T__Phocaeicola.vulgatus,100,0.00204,< 0.00001,TRUE,Phocaeicola vulgatus
-"STH (Rubel, 2020)",All,T__Bacteroides.thetaiotaomicron,100,0.00325,< 0.00001,TRUE,Bacteroides thetaiotaomicron
-"STH (Rubel, 2020)",All,T__Fusicatenibacter.saccharivorans,100,0.01581,< 0.00001,TRUE,Fusicatenibacter saccharivorans
-"STH (Rubel, 2020)",All,T__Alistipes.shahii,100,0.00427,< 0.00001,TRUE,Alistipes shahii
-"STH (Rubel, 2020)",All,T__Streptococcus.parasanguinis,96,5.4e-4,0.01999,TRUE,Streptococcus parasanguinis
-"STH (Rubel, 2020)",All,T__Bacteroides.uniformis,100,0.00724,< 0.00001,TRUE,Bacteroides uniformis
-"STH (Rubel, 2020)",All,T__Phocaeicola.dorei,100,0.00181,< 0.00001,TRUE,Phocaeicola dorei
-"STH (Rubel, 2020)",All,T__Clostridium.sp..CAG.167,100,0.00407,< 0.00001,TRUE,Clostridium sp  CAG 167
-"STH (Rubel, 2020)",All,T__Eubacterium.coprostanoligenes,100,5.9e-4,< 0.00001,TRUE,Eubacterium coprostanoligenes
-"STH (Rubel, 2020)",All,T__Parabacteroides.merdae,100,0.00311,< 0.00001,TRUE,Parabacteroides merdae
-"STH (Rubel, 2020)",All,T__Bacteroides.ovatus,100,0.00179,< 0.00001,TRUE,Bacteroides ovatus
-"STH (Rubel, 2020)",All,T__Bacteroides.xylanisolvens,100,0.00125,< 0.00001,TRUE,Bacteroides xylanisolvens
-"STH (Rubel, 2020)",All,T__Firmicutes.bacterium.CAG.534,97,0.00111,< 0.00001,TRUE,Firmicutes bacterium CAG 534
-"STH (Rubel, 2020)",All,T__Firmicutes.bacterium.CAG.791,100,0.00354,< 0.00001,TRUE,Firmicutes bacterium CAG 791
-"STH (Rubel, 2020)",All,T__Bifidobacterium.adolescentis,59,4.6e-4,0.00216,TRUE,Bifidobacterium adolescentis
-"STH (Rubel, 2020)",All,T__Alistipes.putredinis,100,0.00102,< 0.00001,TRUE,Alistipes putredinis
-"STH (Rubel, 2020)",All,P__DENOVOPURINE2.PWY,100,0.00138,< 0.00001,TRUE,superpathway of purine nucleotides _de novo_ biosynthesis II
-"STH (Rubel, 2020)",All,P__HEMESYN2.PWY,84,7.7e-4,0.08062,TRUE,heme _b_ biosynthesis II (oxygen-independent)
-"STH (Rubel, 2020)",All,P__HSERMETANA.PWY,100,0.00161,< 0.00001,TRUE,L-methionine biosynthesis III
-"STH (Rubel, 2020)",All,P__P108.PWY,100,0.00135,< 0.00001,TRUE,pyruvate fermentation to propanoate I
-"STH (Rubel, 2020)",All,P__P124.PWY,63,5.8e-4,0.06784,TRUE,glucose fermentation to lactic acid (Bifidobacteria)
-"STH (Rubel, 2020)",All,P__P23.PWY,100,0.00105,0.00004,TRUE,reductive TCA cycle I
-"STH (Rubel, 2020)",All,P__P461.PWY,100,0.00188,< 0.00001,TRUE,"hexitol fermentation to lactate, formate, ethanol and acetate"
-"STH (Rubel, 2020)",All,P__PPGPPMET.PWY,100,0.00181,< 0.00001,TRUE,ppGpp metabolism
-"STH (Rubel, 2020)",All,P__PWY.2941,100,0.00206,< 0.00001,TRUE,L-lysine biosynthesis II
-"STH (Rubel, 2020)",All,P__PWY.5941,100,0.004,< 0.00001,TRUE,glycogen degradation II
-"STH (Rubel, 2020)",All,P__PWY.6545,100,0.00127,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis III
-"STH (Rubel, 2020)",All,P__PWY.6897,100,0.00154,< 0.00001,TRUE,thiamine diphosphate salvage II
-"STH (Rubel, 2020)",All,P__PWY.7184,100,0.00293,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis I
-"STH (Rubel, 2020)",All,P__PWY.7187,100,0.00215,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis II
-"STH (Rubel, 2020)",All,P__PWY.7197,100,0.00159,< 0.00001,TRUE,pyrimidine deoxyribonucleotide phosphorylation
-"STH (Rubel, 2020)",All,P__PWY.7208,100,9.6e-4,0.0044,TRUE,superpathway of pyrimidine nucleobases salvage
-"STH (Rubel, 2020)",All,P__PWY.7328,100,0.00162,< 0.00001,TRUE,superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis
-"STH (Rubel, 2020)",All,P__PWY.7371,100,0.00194,< 0.00001,TRUE,"1,4-dihydroxy-6-naphthoate biosynthesis II"
-"STH (Rubel, 2020)",All,P__PWY.841,100,0.00119,< 0.00001,TRUE,superpathway of purine nucleotides _de novo_ biosynthesis I
-"STH (Rubel, 2020)",All,P__PWY0.1479,100,9.5e-4,0.01746,TRUE,tRNA processing
-"STH (Rubel, 2020)",All,P__PWY0.162,100,0.00306,< 0.00001,TRUE,superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis
-"STH (Rubel, 2020)",All,P__PWY0.166,100,0.00152,< 0.00001,TRUE,superpathway of pyrimidine deoxyribonucleotides _de novo_ biosynthesis (_E. coli_)
 "UC (Franzosa, 2019)",All,T__Alistipes_shahii,100,6.1e-4,0.00024,TRUE,Alistipes_shahii
 "UC (Franzosa, 2019)",All,T__Clostridium_sp_CAG_167,94,4.3e-4,< 0.00001,TRUE,Clostridium_sp_CAG_167
 "UC (Franzosa, 2019)",All,T__Clostridium_sp_CAG_242,56,3.3e-4,0.00976,TRUE,Clostridium_sp_CAG_242

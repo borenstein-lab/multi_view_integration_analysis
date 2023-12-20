@@ -1,12 +1,10 @@
-Dataset,Features used,Feature selection method,Number of original features - T (Taxa),Number of original features - P (Pathways),Number of original features - M (Fecal metabolites),Number of original features - S (Serum metabolites),Cross-validated average AUC
-"CD (Franzosa, 2019)",All,Boruta90,156,276,460,0,0.957
-"Cirrhosis (Qin, 2014)",All,Boruta90,163,265,0,0,0.932
-"CRC (Feng, 2015)",All,Boruta90,180,252,0,0,0.824
-"CRC (Yachida, 2019)",All,Boruta90,621,271,274,0,0.843
-"CRC (Yu, 2015)",All,Boruta90,182,267,0,0,0.828
-"ESRD (Wang, 2020)",All,Boruta90,159,267,255,0,1
-MS (MetaCardis),All,Boruta90,282,285,0,142,0.835
-T2D (MetaCardis),All,Boruta90,274,286,0,142,0.923
-"STH (Rubel, 2020)",All,Boruta90,105,251,0,0,0.865
-"UC (Franzosa, 2019)",All,Boruta90,157,263,461,0,0.882
-"UC (Nielsen, 2014)",All,Boruta90,171,234,0,0,0.69
+Dataset,Features used,Feature selection method,Number of original features - T (Taxa),Number of original features - P (Pathways),Number of original features - M (Fecal metabolites),Number of original features - S (Serum metabolites),Average number of features selected for final model,Cross-validated average AUC,Cross-validated SD AUC
+"CD (Franzosa, 2019)",All,Boruta90,156,276,460,0,337.42,0.957,0.056
+"Cirrhosis (Qin, 2014)",All,Boruta90,163,265,0,0,227.66,0.932,0.051
+"CRC (Feng, 2015)",All,Boruta90,180,252,0,0,103.14,0.824,0.15
+"CRC (Yachida, 2019)",All,Boruta90,621,271,274,0,185.9,0.843,0.119
+"ESRD (Wang, 2020)",All,Boruta90,159,267,255,0,278.63,1,0.001
+MS (MetaCardis),All,Boruta90,282,285,0,142,133.81,0.835,0.08
+T2D (MetaCardis),All,Boruta90,274,286,0,142,278.23,0.923,0.069
+"STH (Rubel, 2020)",All,Boruta90,105,251,0,0,122.91,0.865,0.109
+"UC (Franzosa, 2019)",All,Boruta90,157,263,461,0,235.65,0.882,0.142
