@@ -41,7 +41,7 @@ Change to "pretty" dataset names and narrow to "main" datasets only.
 ```{r}
 datasets_A <- c('cd_franzosa_2019','cirrhosis_qin_2014','crc_feng_2015',
                 'crc_s3_s4_yachida_2019','esrd_wang_2020','metacardis_1_8',
-                'metacardis_3_8','uc_franzosa_2019','uc_spain_nielsen_2014')
+                'metacardis_3_8','sth_rubel_2020','uc_franzosa_2019')
 
 cv_datasets_summary <- cv_datasets_summary %>% filter(dataset %in% datasets_A)
 cv_results <- cv_results %>% filter(dataset %in% datasets_A)
@@ -54,11 +54,23 @@ new_dataset_names <-c(
   "cirrhosis_qin_2014"="Cirrhosis (Qin, 2014)",
   "crc_feng_2015"="CRC (Feng, 2015)",
   "crc_s3_s4_yachida_2019"="CRC (Yachida, 2019)",
+  "crc_yu_2015"="CRC (Yu, 2015)",
   "esrd_wang_2020"="ESRD (Wang, 2020)",
   "metacardis_1_8"="MS (MetaCardis)",
   "metacardis_3_8"="T2D (MetaCardis)",
+  "sth_rubel_2020"="STH (Rubel, 2020)",
   "uc_franzosa_2019"="UC (Franzosa, 2019)",
-  "uc_spain_nielsen_2014"="UC (Nielsen, 2014)"
+  "uc_spain_nielsen_2014"="UC (Nielsen, 2014)",
+  # More from CMD
+  't2d_karlsson_2013'='T2D (Karlsson, 2013)',
+  'ht_li_2017'='HT (Li, 2017)',
+  'crc_wirbel_2018'='CRC (Wirbel, 2018)',
+  'crc_vogtmann_2016'='CRC (Vogtmann, 2016)',
+  'crc_zeller_2014'='CRC (Zeller, 2014)',
+  'igt_karlsson_2013'='IGT (Karlsson, 2013)',
+  'me_cfs_nagySzakal_2017'='ME-CFS (Nagy-Szakal, 2017)',
+  'schizofrenia_zhu_2020'='Schizofrenia (Zhu, 2020)',
+  'pre_ht_li_2017'='Pre-HT (Li, 2017)'
   )
 
 cv_datasets_summary$dataset <- new_dataset_names[cv_datasets_summary$dataset]
@@ -105,10 +117,18 @@ n_folds <- n_distinct(cv_results$fold_id)
 
 ```{r}
 cv_datasets_summary %>%
+  left_join(
+    cv_results %>%
+      group_by(dataset, shuffled) %>%
+      summarise(avg_feat_final = round(mean(n_features_for_train_final),3),
+                sd_auc = round(sd(out_of_fold_test_auc, na.rm=T),3), 
+                .groups = 'drop'),
+    by = c('dataset','shuffled')
+  ) %>%
   filter(!shuffled) %>%
   select(dataset, feature_set_type, fs_type, 
          n_features_origin_T, n_features_origin_P, n_features_origin_M, n_features_origin_S,
-         mean_out_of_fold_test_auc) %>%
+         avg_feat_final, mean_out_of_fold_test_auc, sd_auc) %>%
   mutate(mean_out_of_fold_test_auc = round(mean_out_of_fold_test_auc, 3)) %>%
   rename(Dataset = dataset) %>%
   rename(`Features used` = feature_set_type) %>%
@@ -117,7 +137,9 @@ cv_datasets_summary %>%
   rename(`Number of original features - S (Serum metabolites)` = n_features_origin_S) %>%
   rename(`Number of original features - P (Pathways)` = n_features_origin_P) %>%
   rename(`Number of original features - M (Fecal metabolites)` = n_features_origin_M) %>%
+  rename(`Average number of features selected for final model` = avg_feat_final) %>%
   rename(`Cross-validated average AUC` = mean_out_of_fold_test_auc) %>%
+  rename(`Cross-validated SD AUC` = sd_auc) %>%
   write_csv("docs/Table_S2.csv")
 ```
 
