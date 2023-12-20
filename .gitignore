@@ -35,8 +35,11 @@ data/ml_input_archive/*
 data/ml_output/*
 data/intermediate_integration_results/*
 src/analyses/slurm_logs/*
+src/analysis/modules_cyto/*
 src/analyses/minttea_comparisons_results/*
 src/ml_pipeline/slurm_logs/*
 slurm_logs/*
 *.cys
 data/strat_humann_tables_exploration/*
+src/analyses/module_exploration_using_strat_humann.R
+
