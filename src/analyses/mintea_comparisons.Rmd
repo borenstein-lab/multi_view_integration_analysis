@@ -14,7 +14,7 @@ method_colors <- c('DIABLO' = '#96D4CA', 'MultiCCA' = '#254e70', 'MintTea' = 'fi
 ```
 
 ```{r}
-d <- 'metacardis_3_8'
+d <- 'cd_franzosa_2019'
 
 d1 <- read_csv(paste0("src/analyses/minttea_comparisons_results/false_discovery_results_",d,".csv"), 
                show_col_types = FALSE) %>%
@@ -68,10 +68,9 @@ p1 <- ggplot(tmp %>% filter(keepX_category == 'Avg. component size: ~20'),
   theme(strip.text = element_text(size = 12)) +
   theme(axis.title = element_text(size = 13))
 
-p1 +
-  theme(axis.title = element_text(size = 11)) +
-  annotate("text", lineheight = .92, x = 0.47, y = 17.5, angle = 45, label = "Higher false\ndiscovery rate", size = 4) +
-  geom_segment(aes(x = 0.1,y = 9,xend = 1.33,yend = 22),
+p1 <- p1 +
+  annotate("text", lineheight = .92, x = 0.8, y = 19, angle = 45, label = "Higher false\ndiscovery rate", size = 3.5) +
+  geom_segment(aes(x = 0.4,y = 12.5,xend = 1.69,yend = 22),
                arrow = arrow(length = unit(0.3, "cm"), type = 'closed', ends = 'last')) 
 ```
 
@@ -177,7 +176,7 @@ p3
 
 ## 5. Module AUC's
 
-```{r fig.width=4, fig.height=3, warning=FALSE}
+```{r, warning=FALSE}
 tmp <- d3 %>% 
   mutate(method = factor(method, levels = c('DIABLO', 'MultiCCA', 'MintTea'))) 
 
@@ -192,6 +191,10 @@ tmp <- tmp %>%
             inter_omic_pcor_mean = mean(mean_inter_omic_pcor, na.rm=T),
             inter_omic_pcor_sd = sd(mean_inter_omic_pcor, na.rm=T)) 
 
+tmp
+```
+
+```{r fig.width=4, fig.height=3, warning=FALSE}
 p5 <- ggplot(tmp,
              aes(x = method, y = auc_mean, fill = method)) +
   geom_col(color = 'black', alpha = 0.7, width = .7) +
@@ -255,16 +258,17 @@ p6
 
 ## Combined
 
-```{r fig.width=9, fig.height=9.2}
+```{r fig.width=9.5, fig.height=5.6}
 leg <- get_legend(p6)
-main <- plot_grid( p5 + theme(legend.position = 'none'),
+plot_grid( p5 + theme(legend.position = 'none'),
           p6 + theme(legend.position = 'none'), 
           p2 + theme(legend.position = 'none'),
           p3 + theme(legend.position = 'none'),
           p1 + theme(legend.position = 'none'),
+          leg,
           #p4 + theme(legend.position = 'none'),
-          nrow = 3, align = "hv", axis = 'tlrb') #, labels = 'AUTO', label_y = 1.03, label_size = 15)
-plot_grid(main, leg, nrow=1, rel_widths = c(10,1.5))
+          nrow = 2, align = "hv", axis = 'tlrb') #, labels = 'AUTO', label_y = 1.03, label_size = 15)
+#plot_grid(main, leg, nrow=1, rel_widths = c(10,1.5))
 ```
 
 
