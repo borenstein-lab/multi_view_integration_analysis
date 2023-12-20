@@ -442,7 +442,7 @@ plot_module_stats <- function(sens_analysis_modules,
   
   if (show_rf) p2 <- p2 + geom_hline(aes(yintercept = mean_auc_rf), color = "goldenrod2", linewidth = 2, alpha = 0.7)
   
-  # ---- Strip 3: Cross-view correlations ---->
+  # ---- Strip 2: Cross-view correlations ---->
   tmp3 <- module_cross_view_corrs %>%
     filter(run == 'true') %>%
     left_join(
@@ -450,8 +450,8 @@ plot_module_stats <- function(sens_analysis_modules,
         filter(run != 'true') %>%
         group_by(dataset, module) %>%
         summarise(N = n(), 
-                  mean_shuf_corr = mean(avg_pears_corr, na.rm = TRUE),
-                  sd_shuf_corr = stats::sd(avg_pears_corr, na.rm = TRUE),
+                  mean_shuf_corr = mean(avg_spear_corr, na.rm = TRUE),
+                  sd_shuf_corr = stats::sd(avg_spear_corr, na.rm = TRUE),
                   .groups = 'drop'),
       by = c('dataset','module')
     ) 
@@ -486,7 +486,7 @@ plot_module_stats <- function(sens_analysis_modules,
     #                position = position_dodge(width = p3_dodging), 
     #                alpha = 0.35, linewidth = 2) + 
     # True correlations
-    geom_point(aes(y = avg_pears_corr), fill = 'sienna4',
+    geom_point(aes(y = avg_spear_corr), fill = 'sienna4',
                shape = 23, color = "black", 
                size = points_size, alpha = 0.9) +
     scale_x_discrete(expand = c(0, 0.5)) +
@@ -517,7 +517,7 @@ plot_module_stats <- function(sens_analysis_modules,
     summarise(n_features = sum(N), .groups = 'drop') %>%
     left_join(tmp2 %>% select(dataset, module, mean_module_auc, mean_shuf_auc, sd_shuf_auc),
               by = c('dataset', 'module')) %>%
-    left_join(tmp3 %>% select(dataset, module, avg_pears_corr, mean_shuf_corr, sd_shuf_corr),
+    left_join(tmp3 %>% select(dataset, module, avg_spear_corr, mean_shuf_corr, sd_shuf_corr),
               by = c('dataset', 'module'))
   
   return(df_summary)
@@ -553,6 +553,7 @@ plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_
       mutate(shuf = TRUE)
   ) %>%
     filter(dataset %in% datasets_to_focus_on) %>%
+    mutate(dataset = factor(dataset, levels = rev(datasets_to_focus_on))) %>%
     mutate(error_low = mean_auc-sd_auc) %>%
     mutate(error_high = pmin(1, mean_auc+sd_auc)) %>%
     mutate(pipeline = factor(pipeline, 
