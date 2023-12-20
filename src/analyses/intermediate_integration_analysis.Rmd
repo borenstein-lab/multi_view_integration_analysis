@@ -127,8 +127,12 @@ feature_type_color_map =
     "S" = "chartreuse4", 
     "All" = "grey30")
 
-datasets_A <- c('cd_franzosa_2019','cirrhosis_qin_2014','crc_feng_2015','crc_s3_s4_yachida_2019','esrd_wang_2020','metacardis_1_8','metacardis_3_8','uc_franzosa_2019','uc_spain_nielsen_2014')
+datasets_A <- c('cd_franzosa_2019','cirrhosis_qin_2014','crc_feng_2015',
+                'crc_s3_s4_yachida_2019','esrd_wang_2020','metacardis_1_8',
+                'metacardis_3_8','sth_rubel_2020','uc_franzosa_2019')
+
 datasets_B <- datasets[!datasets %in% datasets_A]
+
 # CMD = CuratedMetagenomicDatasets
 CMD_datasets <- c('crc_vogtmann_2016',
                   'cirrhosis_qin_2014',
@@ -166,7 +170,7 @@ modules_overview <- sens_analysis_modules %>%
               select(-run) %>%
               rename(run_id = settings) %>% 
               mutate(module = paste0('module', module)) %>%
-              select(dataset,run_id,module,avg_pears_corr),
+              select(dataset,run_id,module,avg_spear_corr),
             by = c('dataset', 'run_id', 'module')) 
 
 all_settings_overview <- modules_overview %>%
@@ -175,9 +179,9 @@ all_settings_overview <- modules_overview %>%
             n_disease_associated_modules = 
               sum(multi_view & mean_module_auc > 0.7),
             max_module_auc = round(max(mean_module_auc),2),
-            n_omic_correlation_modules = sum(multi_view & avg_pears_corr > 0.2),
-            max_omic_corr = round(max(avg_pears_corr),2),
-            n_interesting_modules = sum(multi_view & avg_pears_corr > 0.2 & mean_module_auc > 0.7),
+            n_omic_correlation_modules = sum(multi_view & avg_spear_corr > 0.2),
+            max_omic_corr = round(max(avg_spear_corr),2),
+            n_interesting_modules = sum(multi_view & avg_spear_corr > 0.2 & mean_module_auc > 0.7 & (n_feats %in% 5:16)),
             n_avg_feats = mean(n_feats), 
             n_feats_detail = paste0(n_feats, collapse = ','),
             .groups = "drop") %>%
@@ -240,19 +244,17 @@ all_settings_overview %>%
 ```
 
 ```{r}
-# tmp <- all_settings_overview %>%
-#   select(dataset, run_id,
-#          n_interesting_modules,
-#          max_module_auc,
-#          max_omic_corr,
-#          n_omic_correlation_modules,
-#          n_feats_detail) %>%
-#   mutate(run_id = gsub('nrep_10//nfol_5//ncom_5','...',run_id)) %>%
-#   filter(max_module_auc>0.7 & !is.na(max_omic_corr) & max_omic_corr>0.2)
-# 
-# tmp %>%
-#   kbl() %>%
-#   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+tmp <- all_settings_overview %>%
+  select(dataset, run_id,
+         n_interesting_modules,
+         max_module_auc,
+         max_omic_corr,
+         n_omic_correlation_modules,
+         n_feats_detail) %>%
+  mutate(run_id = gsub('nrep_10//nfol_5//ncom_5','...',run_id)) %>%
+  filter(max_module_auc>0.7) # & !is.na(max_omic_corr) & max_omic_corr>0.2)
+
+tmp 
 ```
 
 
@@ -269,6 +271,10 @@ selected_settings <- "keep_15//des_0.3//nrep_10//nfol_5//ncom_5//edge_0.8"
 #  all_settings_overview %>% filter(run_id == selected_settings) %>% filter(n_interesting_modules == 0)
 
 datasets_with_alternative_settings <- c(
+  'uc_franzosa_2019'='keep_15//des_0.5//nrep_10//nfol_5//ncom_5//edge_0.7',
+  'metacardis_3_8'='keep_10//des_0.5//nrep_10//nfol_5//ncom_5//edge_0.7',
+  'metacardis_1_8'='keep_15//des_0.5//nrep_10//nfol_5//ncom_5//edge_0.8',
+  'cd_franzosa_2019'='keep_10//des_0.5//nrep_10//nfol_5//ncom_5//edge_0.8',
   'uc_spain_nielsen_2014'='keep_15//des_0.5//nrep_10//nfol_5//ncom_5//edge_0.8',
   'crc_s3_s4_yachida_2019'='keep_10//des_0.3//nrep_10//nfol_5//ncom_5//edge_0.7',
   'esrd_wang_2020'='keep_15//des_0.3//nrep_10//nfol_5//ncom_5//edge_0.7',
@@ -320,7 +326,7 @@ p_sens23 <- plot_module_sensitivity_analysis(
   sens_analysis_modules, 
   latent_vars, 
   base_module, 
-  selected_settings)
+  pipeline_params_per_dataset['cd_franzosa_2019'])
 plot_grid(
   # p_sens1 + theme(legend.position = 'none'), 
   p_sens23$p1, 
@@ -331,7 +337,6 @@ plot_grid(
   )
 rm(base_module, p_sens23)
 ```
-
 
 
 ## Narrow results to the selected settings
@@ -456,8 +461,9 @@ summary_aucs <- summary_aucs %>%
 
 ```{r fig.height=5, fig.width=8}
 only_features_in_final_modules <- TRUE
+all_cors <- list()
 
-for(curr_dataset in datasets_A) {
+for(curr_dataset in datasets) {
   
   # Only plot the features that were included in components
   # (To make plot readable)
@@ -562,9 +568,10 @@ for(curr_dataset in datasets_A) {
     left_join(cors_p_melted, by = c("feature.x", "feature.y"))
   feat_pairs[[curr_dataset]] <- feat_pairs[[curr_dataset]] %>%
     left_join(cors_melted, by = c("feature.x", "feature.y"))
+  all_cors[[curr_dataset]] <- cors_melted
 }
 
-rm(curr_dataset, feats_to_plot, ph1, ph2, feat_pairs_mat, final_modules, tmp, cor_mat, new_order, only_features_in_final_modules, cors_p_melted)
+rm(curr_dataset, feats_to_plot, ph1, ph2, feat_pairs_mat, final_modules, tmp, cor_mat, new_order, only_features_in_final_modules, cors_p_melted, cors_melted)
 ```
 
 # 5. Module evaluations
@@ -618,14 +625,14 @@ for(d in datasets) {
                 filter(dataset == d), 
               by = 'module') %>%
     mutate(module = paste0(module, ' (N=', module_size, ')')) %>%
-    filter(!is.na(avg_pears_corr))
+    filter(!is.na(avg_spear_corr))
   
   if (nrow(tmp) == 0) next;
     
-  p <- ggplot(tmp %>% filter(run != 'true'), aes(x = avg_pears_corr)) +
+  p <- ggplot(tmp %>% filter(run != 'true'), aes(x = avg_spear_corr)) +
     geom_histogram(color = 'black', fill = 'lightgrey', bins = 30) +
     geom_vline(data = tmp %>% filter(run == 'true'), 
-               aes(xintercept = avg_pears_corr), 
+               aes(xintercept = avg_spear_corr), 
                color = 'darkred', 
                linewidth = 1.5, 
                alpha = 0.5) +
@@ -634,7 +641,7 @@ for(d in datasets) {
     ggtitle('Histograms of average cross-view correlations') +
     labs(subtitle = paste('Dataset:', d)) +
     ylab('Count') +
-    xlab('Correlation') +
+    xlab('Spearman correlation') +
     facet_wrap(~ module, nrow = 1)
   
   print(p)
@@ -675,7 +682,7 @@ module_stats_summary <- module_stats_summary %>%
   filter(dataset %in% datasets) %>%
   left_join(summary_aucs %>%
               filter(run == 'true') %>%
-              select(dataset, mean_overall_rf_auc, mean_overall_lm_auc),
+              select(dataset, mean_overall_rf_auc, sd_overall_rf_auc),
             by = 'dataset') 
 
 # Use only modules that have >1 feature types and >=3 features (as already filtered in the table above)
@@ -684,7 +691,7 @@ sens_analysis_modules <- sens_analysis_modules %>%
   inner_join(module_stats_summary, by = c('dataset','module')) 
 ```
 
-```{r fig.height=6, fig.width=6}
+```{r fig.height=6.7, fig.width=5.7}
 # Only main datasets
 tmp <- plot_module_stats(
     sens_analysis_modules, 
@@ -760,6 +767,9 @@ Fix some distorted feature names:
 
 ```{r}
 feat_name_fixes <- c(
+  "[P] _cis_-vaccenate biosynthesis"="[P] cis-vaccenate biosynthesis",
+  "[P] CMP-3-deoxy-D-_manno_-octulosonate biosynthesis"="[P] CMP-3-deoxy-D-manno-octulosonate biosynthesis",
+  "[P] protocatechuate degradation II (ortho-cleavage pathway)"="[P] protocatechuate degradation II",
   "[P] superpathway of unsaturated fatty acids biosynthesis (_E. coli_)" = "[P] SP of unsaturated fatty acids biosynthesis (E. coli)",
   "[T] X_Ruminococcus__torques" = "[T] Ruminococcus_torques",
   "[T]  Clostridium  symbiosum" = "[T] Clostridium_symbiosum",
@@ -804,7 +814,13 @@ feat_name_fixes <- c(
   "[P] superpathway of GDP-mannose-derived O-antigen building blocks biosynthesis"="[P] SP of GDP-mannose-derived O-antigen ...",
   "[P] superpathway of adenosylcobalamin salvage from cobinamide I" = "[P] SP of adenosylcobalamin salvage from cobinamide I",
   "[P] (_S_)-propane-1,2-diol degradation"="[P] (S)-propane-1,2-diol degradation",
-  "[P] superpathway of pyridoxal 5'-phosphate biosynthesis and salvage"="[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage"
+  "[P] superpathway of pyridoxal 5'-phosphate biosynthesis and salvage"="[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage",
+  "[P] lipid IV_A_ biosynthesis (_E. coli_)"="[P] lipid IV[A] biosynthesis",
+  "[P] superpathway of thiamine diphosphate biosynthesis I"="[P] SP of thiamine diphosphate biosynthesis I",
+  "[P] superpathway of glycerol degradation to 1,3-propanediol"="[P] SP of glycerol deg. to 1,3-propanediol",
+  "[P] protocatechuate degradation II (ortho-cleavage pathway) [Clustered features]"="[P] protocatechuate degradation II [Clustered features]",
+  "[P] L-arginine biosynthesis III (via _N_-acetyl-L-citrulline)"="[P] L-arginine biosynthesis III",
+  "[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis III (Chlamydia)"="[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis III"
 )
 
   # 'T__Oscillibacter.sp..57_20'='T__Oscillibacter_sp_57_20',
@@ -935,7 +951,7 @@ sens_analysis_modules <- sens_analysis_modules %>%
 ```
 
 
-# 7. Supplementary tables S4, S5, S7
+# 7. Supplementary tables S4, S5, S6, S8
 
 ## Save modules overview - S4
 
@@ -945,7 +961,6 @@ module_stats_summary %>%
   mutate(sd_shuf_auc = round(sd_shuf_auc, 3)) %>%
   mutate(mean_module_auc = round(mean_module_auc, 3)) %>%
   mutate(mean_overall_rf_auc = round(mean_overall_rf_auc, 3)) %>%
-  select(-mean_overall_lm_auc) %>%
   mutate(`Pipeline settings` = pipeline_params_per_dataset[dataset]) %>%
   relocate(dataset, module, n_features) %>%
   rename(Dataset = dataset) %>%
@@ -954,10 +969,11 @@ module_stats_summary %>%
   rename(`Module AUC` = mean_module_auc) %>%
   rename(`Average shuffled module AUC (Null model)` = mean_shuf_auc) %>%
   rename(`SD shuffled module AUC (Null model)` = sd_shuf_auc) %>%
-  rename(`Average inter-view correlations` = avg_pears_corr) %>%
+  rename(`Average inter-view correlations` = avg_spear_corr) %>%
   rename(`Average shuffled inter-view correlations (Null model)` = mean_shuf_corr) %>%
   rename(`SD shuffled inter-view correlations (Null model)` = sd_shuf_corr) %>%
-  rename(`All modules AUC (Random Forest)` = mean_overall_rf_auc) %>%
+  rename(`All modules AUC (Random Forest) - cross-validation average` = mean_overall_rf_auc) %>%
+  rename(`All modules AUC (Random Forest) - cross-validation SD` = sd_overall_rf_auc) %>%
   write_csv("docs/Table_S4.csv")
 ```
 
@@ -974,7 +990,58 @@ sens_analysis_modules %>%
   write_csv("docs/Table_S5.csv")
 ```
 
-## Save clusters info - S7
+Print statistics comparing modules to RF contributors:
+
+```{r}
+tmp <- sens_analysis_modules %>%
+  filter(dataset %in% datasets_A) %>%
+  filter(mean_module_auc>0.7) %>%
+  select(dataset, module, feature) %>%
+  left_join(rf_feat_imp_sum %>% select(dataset, feature, contributor), by = c('dataset','feature')) %>%
+  group_by(dataset, module) %>%
+  summarise(n_features = n(), perc_contributors = 100*sum(contributor, na.rm = T)/sum(!is.na(contributor)), .groups='drop') %>%
+  pull(perc_contributors)
+message('Examining the XX modules with an AUC > 0.7, we observe that, on average, only ',
+        round(mean(tmp),2),'% (SD: ',round(sd(tmp),2),
+        '%) of module features were also contributors in the RF early integration models.')
+```
+
+
+## Save correlations within modules - S6
+
+Only non-singleton clusters are listed, and only if these clusters were selected by feature selection or by MintTea
+
+```{r}
+all_within_mod_cors <- data.frame()
+for (i in 1:nrow(module_stats_summary)) {
+  ds <- module_stats_summary$dataset[i]
+  modu <- module_stats_summary$module[i]
+  feat_list <- sens_analysis_modules %>%
+    filter(dataset == ds) %>%
+    filter(module == modu) %>%
+    pull(feature)
+  tmp <- feat_pairs[[ds]] %>%
+    filter(feature.x %in% feat_list) %>%
+    filter(feature.y %in% feat_list) %>%
+    mutate(dataset = ds, module = modu) %>%
+    select(dataset, module, feature.x, feature.y, spearman_r, spearman_p, spearman_fdr)
+  all_within_mod_cors <- bind_rows(all_within_mod_cors, tmp)
+}
+
+all_within_mod_cors %>%
+  rename(Dataset = dataset) %>%
+  rename(Module = module) %>%
+  rename(Feature.X = feature.x) %>%
+  rename(Feature.Y = feature.y) %>%
+  rename(`Spearman rho` = spearman_r) %>%
+  rename(`Spearman p-value` = spearman_p) %>%
+  rename(`Spearman FDR` = spearman_fdr) %>%
+  write_csv("docs/Table_S6.csv")
+
+rm(tmp,i,ds,modu,feat_list)
+```
+
+## Save clusters info - S8
 
 Only non-singleton clusters are listed, and only if these clusters were selected by feature selection or by MintTea
 
@@ -989,7 +1056,7 @@ all_clusters %>%
   rename(`Original feature name` = feature_orig) %>%
   rename(`Cluster representative (randomly selected)` = feature) %>%
   rename(`Cluster ID` = cluster) %>%
-  write_csv("docs/Table_S7.csv")
+  write_csv("docs/Table_S8.csv")
 ```
 
 # 8. Features reoccuring in multiple modules
@@ -998,11 +1065,14 @@ all_clusters %>%
 
 This analysis is performed only for CMD datasets, as they are processed uniformly.
 
-```{r fig.height=7, fig.width=8}
+```{r fig.height=3.5, fig.width=4.5}
 sens_analysis_modules2 <- sens_analysis_modules %>%
   filter(dataset %in% CMD_datasets) %>%
   mutate(original_feature = feature) %>%
-  mutate(feature = description)
+  mutate(feature = get_pretty_names(
+    feature, feat_name_fixes, 
+    remove_cluster_info = T, 
+    string_wrap = 45))
 
 common_feats <- sens_analysis_modules2 %>%
   group_by(feature) %>%
@@ -1011,6 +1081,8 @@ common_feats <- sens_analysis_modules2 %>%
   pull(feature)
 
 all_plots <- list()
+
+PLOT_ONLY_SHARED_FEATS <- TRUE
 
 for (fs in common_feats) {
   tmp <- sens_analysis_modules2 %>%
@@ -1024,21 +1096,34 @@ for (fs in common_feats) {
     mutate(signif_module = (mean_module_auc > 0.7)) 
   
   # Make selected feature appear at the top
-  all_feats <- data.frame(table(tmp$feature)) %>% arrange(Freq) %>% pull(Var1) %>% as.character()
+  all_feats <- data.frame(table(tmp$feature)) %>% 
+    arrange(Freq) %>% 
+    pull(Var1) %>% 
+    as.character()
   all_feats <- c(all_feats[all_feats != fs], fs)
-  tmp <- tmp %>% mutate(feature = factor(description, levels = all_feats))
+  tmp <- tmp %>% 
+    mutate(feature = factor(feature, levels = all_feats))
+  
+  if (PLOT_ONLY_SHARED_FEATS)
+    tmp <- tmp %>%
+      group_by(feature) %>%
+      filter(n()>1) %>%
+      ungroup()
   
   # For adding lines and further formatting
   tmp <- tmp %>% 
     arrange(feature) %>%
     group_by(dataset, module) %>% 
     mutate(ymin = first(feature), ymax = last(feature)) %>% 
-    ungroup() 
-
+    ungroup() %>%
+    mutate(dataset = gsub(', 20[0-9][0-9]\\)','\\)',dataset))
+    
   fs_highlight_y <- which(sort(unique(tmp$feature)) == fs)
   
   p <- ggplot(tmp, aes(x = dataset)) +
-    geom_point(aes(y = feature, fill = signif_module, shape = increased_in), 
+    geom_point(aes(y = feature, 
+                   fill = signif_module, 
+                   shape = increased_in), 
                size = 4, color = 'white') +
     geom_linerange(aes(ymin = ymin, ymax = ymax), color = 'darkorange4') +
     annotate("rect", 
@@ -1046,18 +1131,23 @@ for (fs in common_feats) {
              ymax = fs_highlight_y+0.5, 
              xmin = -Inf, xmax = Inf, 
              alpha = .15, fill = "green4") +
-    geom_point(aes(y = feature, fill = signif_module, shape = increased_in), 
+    geom_point(aes(y = feature, 
+                   fill = signif_module, 
+                   shape = increased_in), 
                size = 4, color = 'white') +
-    scale_shape_manual(values = c('disease' = 24, 'healthy' = 25, 'non-significant' = 21)) +
+    scale_shape_manual(values = c('disease' = 24, 
+                                  'healthy' = 25, 
+                                  'non-significant' = 21)) +
     scale_x_discrete(position = 'top') +
-    scale_fill_manual(values = c('TRUE' = 'darkorange4', 'FALSE' = 'darkorange3')) +
+    scale_fill_manual(values = c('TRUE' = 'darkorange4', 
+                                 'FALSE' = 'darkorange3')) +
     theme_classic() +
     ggtitle(fs) +
     xlab(NULL) +
     ylab(NULL) +
     theme(legend.position = 'none') +
     theme(axis.text.x.top = element_text(angle = 60, size = 9, hjust = 0)) +
-    theme(axis.text.y = element_text(size = 9)) +
+    theme(axis.text.y = element_text(lineheight = 0.7, size = 7)) +
     theme(plot.margin = unit(c(10,95,1,1), 'points'))
   
   print(p)
@@ -1067,10 +1157,80 @@ for (fs in common_feats) {
 rm(common_feats, fs, tmp, p, fs_highlight_y)
 ```
 
-```{r fig.width=8, fig.height=9}
+```{r fig.width=4.4, fig.height=3.7}
 all_plots$`[T] Bacteroides_uniformis`
 #all_plots$`[T] Bacteroides_uniformis`$data$feature %>% unique()
 ```
+
+## Do species tend to appear with other species from their genus?
+
+```{r, eval=FALSE}
+n_perm <- 1000
+
+modules_taxa <- sens_analysis_modules %>%
+  select(dataset, module, feature) %>%
+  filter(substr(feature,1,1) == 'T') %>%
+  filter(!grepl('motu_linkage',feature)) %>%
+  mutate(genus = gsub('T__[\\.]*','',feature)) %>%
+  mutate(genus = gsub('[_\\.].*$','',genus)) 
+
+modules_taxa_shuf <- list()
+
+for (i in 1:n_perm) {
+  tmp <- data.frame()
+  for (ds in unique(modules_taxa$dataset)) {
+    n_rand_species <- modules_taxa %>%
+      filter(dataset == ds) %>%
+      nrow()
+    all_species <- colnames(diablo_input[[ds]]$X$`T`)
+    all_species <- all_species[!grepl('motu_linkage',all_species)]
+    rand_species <- sample(all_species,n_rand_species)
+    tmp <- bind_rows(
+      tmp,
+      data.frame(
+        dataset = ds,
+        feature = rand_species,
+        module = modules_taxa %>% 
+          filter(dataset == ds) %>% 
+          pull(module),
+        genus = gsub('[_\\.].*$','',gsub('T__[\\.]*','',rand_species))
+      )
+    )
+  }
+  modules_taxa_shuf[[i]] <- tmp
+}
+
+f <- function(x, modules_taxa) {
+  rand_id <- sample(1:nrow(modules_taxa), 1)
+  ds <- modules_taxa$dataset[rand_id]
+  modu <- modules_taxa$module[rand_id]
+  curr_genus <- modules_taxa$genus[rand_id]
+  tmp <- modules_taxa %>% filter(dataset == ds & module == modu & genus == curr_genus)
+  return(nrow(tmp)>1)
+}
+
+true_prob <- sum(sapply(1:1000, f, modules_taxa))
+null_prob <- c()
+# Permutations 
+for (i in 1:n_perm) {
+  if (i %% 10 == 0) { cat('.') } 
+  if (i %% 100 == 0) { cat('\n') } 
+  null_prob <- c(
+    null_prob, 
+    sum(sapply(1:1000, f, modules_taxa_shuf[[i]]))
+    )
+}
+
+message('Species in MintTea modules are significnatly more likely to appear with another species from their respective genus, compared to random modules (permutation test, ',
+  100*true_prob/1000, '% compared to ',
+  round(100*mean(null_prob)/1000, 2),
+  '% [',
+  paste(round(quantile(100*null_prob/1000, probs = c(0.025,0.975)),2), collapse='%-'),
+  '%], p-value: ',
+  sum(true_prob<=null_prob)/1000
+  ')')
+```
+
 
 # 9. Overlapping components
 
@@ -1171,16 +1331,21 @@ module_intersections <- module_intersections %>%
 #   kbl() %>%
 #   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
+message('Of ', sum(module_intersections$n_intersection>=2),
+        ' module-pairs with an overlap of at least 2 features, ',
+        sum(module_intersections$fisher_fdr<=0.1 & module_intersections$n_intersection>=2),
+        ' were also significant using Fisher\'s exact tests')
+
 rm(tmp)
 ```
 
-## Supplementary Table S6
+## Supplementary Table S7
 
-Only component pairs with at least 3 common features.
+Only component pairs with at least 2 common features.
 
-```{r eval=F}
+```{r}
 module_intersections %>%
-  filter(n_intersection >= 3) %>%
+  filter(n_intersection >= 2) %>%
   select(-fisher_p) %>%
   mutate(`Module - left` = paste(module_left,'/',ds_left)) %>%
   mutate(`Module - right` = paste(module_right,'/',ds_right)) %>%
@@ -1192,7 +1357,7 @@ module_intersections %>%
   rename(`N features in right component only, completely missing from left dataset` = n_right_only__not_in_other_dataset) %>%
   rename(`Odds ratio` = odds_ratio) %>%
   rename(`FDR of Fisher's exact test` = fisher_fdr) %>%
-  write_csv("docs/Table_S6.csv")
+  write_csv("docs/Table_S7.csv")
 ```
 
 ## Plot overlaps - circus plot
@@ -1296,8 +1461,8 @@ library(RCy3)
 for(i in 1:nrow(modules_overview)) {
   
   # Skip trivial modules
-  if (is.na(modules_overview$avg_pears_corr[i])) next;
-  if (modules_overview$avg_pears_corr[i] < 0.3) next;
+  if (is.na(modules_overview$avg_spear_corr[i])) next;
+  if (modules_overview$avg_spear_corr[i] < 0.3) next;
   if (modules_overview$mean_module_auc[i] < 0.6) next;
   if (modules_overview$n_feats[i] > 24) next;
   if (modules_overview$n_feats[i] < 4) next;
@@ -1349,13 +1514,33 @@ for(i in 1:nrow(modules_overview)) {
   createNetworkFromDataFrames(
     nodes = vertices, 
     edges = edges %>% filter(`source` > target), 
-    title = paste(d, modu, 'V1', sep = '_'), 
+    title = paste(d, modu, 'V2', sep = '_'), 
     collection = 'minttea_modules_V2'
     )
 }
 
 rm(edges, vertices, d, modu, feats_to_plot, i, edge_cutoff)
 ```
+
+
+
+
+
+
+```{r}
+# feats_tmp <- sens_analysis_modules[sens_analysis_modules$module==1 & sens_analysis_modules$dataset=='MS (MetaCardis)','feature']
+# ttt = feat_pairs$`MS (MetaCardis)` %>%
+#   filter(feature.x %in% feats_tmp & feature.y %in% feats_tmp) %>%
+#   filter(feature.x > feature.y) %>%
+#   mutate(type.x = substr(feature.x,0,1), type.y = substr(feature.y,0,1))
+```
+
+
+
+
+
+
+
 
 # 11. Alternative visualization
 
@@ -1366,8 +1551,8 @@ label_colors <- c('disease'='darkred','healthy'='grey60')
 for(i in 1:nrow(modules_overview)) {
   
   # Skip trivial modules
-  if (is.na(modules_overview$avg_pears_corr[i])) next;
-  if (modules_overview$avg_pears_corr[i] < 0.3) next;
+  if (is.na(modules_overview$avg_spear_corr[i])) next;
+  if (modules_overview$avg_spear_corr[i] < 0.3) next;
   if (modules_overview$mean_module_auc[i] < 0.6) next;
   if (modules_overview$n_feats[i] > 20) next;
   if (modules_overview$n_feats[i] < 4) next;
@@ -1401,21 +1586,24 @@ for(i in 1:nrow(modules_overview)) {
     feat_type = substr(feat,0,1)
     
     # Save boxplot
-    p <- ggplot(tmp, aes_string(x = 'label', y = feat, fill = 'label')) +
+    p <- ggplot(tmp, aes(x = label, y = .data[[feat]], fill = label)) +
       geom_boxplot(width = 0.8, outlier.size = 1) +
       scale_fill_manual(values = label_colors) +
-      ylab(get_pretty_names(feat, feat_name_fixes, string_wrap = 40)) +
+      ggtitle(get_pretty_names(feat, 
+                               feat_name_fixes, 
+                               string_wrap = 40)) +
       theme_bw() +
       theme(legend.position = 'none') +
       theme(axis.text.x = element_blank()) +
       theme(axis.text.y = element_text(size = 7)) +
       theme(axis.title.x = element_blank()) +
-      theme(axis.title.y = element_text(
+      theme(axis.title.y = element_blank()) +
+      #theme(axis.title.y = element_text(
+      theme(plot.title = element_text(
         size = 11, 
         angle = 0, 
         color = feature_type_color_map[feat_type],
-        vjust = 0.5,
-        hjust = -1
+        hjust = 0.5
         )) +
       theme(plot.margin = margin(0,1,1,10)) +
       theme(panel.grid.major.x = element_blank())
@@ -1442,69 +1630,196 @@ for(i in 1:nrow(modules_overview)) {
     boxplots[[feat]] <- p
   }
   
-  # Scatter plots (grid)
-  scatters <- list()
-  for (k in length(feats_to_plot):1) {
-    feat1 = feats_to_plot[k]
-    for (j in 1:(length(feats_to_plot)-1)) {
-      feat2 = feats_to_plot[j]
-      if (j>=k) {
-        p <- ggplot() + theme_void()
-      } else {
-        p <- ggplot(tmp, aes_string(
-            x = feat2, y = feat1, 
-            color = 'label', group = 'label')) +
-          geom_point(size = 0.5) +
-          geom_smooth(aes(fill = label), method = "lm", alpha = 0.2, formula = 'y~x') +
-          scale_color_manual(values = label_colors) +
-          scale_fill_manual(values = label_colors) +
-          scale_x_continuous(position = 'top') +
-          xlab(get_pretty_names(feat, feat_name_fixes, string_wrap = 40)) +
-          theme_bw() +
-          theme(legend.position = 'none') +
-          #theme(axis.text = element_text(size = 6)) +
-          #theme(axis.title = element_text(size = 7)) +
-          theme(axis.title.y = element_blank()) +
-          theme(axis.text = element_blank()) +
-          theme(axis.ticks = element_blank()) +
-          theme(plot.margin = margin(0,1,1,0)) +
-          theme(axis.title.x.top = element_text(
-            color = feature_type_color_map[substr(feat2,0,1)],
-            angle = 90, 
-            hjust = 1, vjust = 0.5))
-        
-        if (k < length(feats_to_plot)) 
-          p <- p + theme(axis.title.x.top = element_blank())
+  # final_grid_plots[[paste(d,'/',modu)]] <- wrap_plots(boxplots)
+  
+  if (length(feats_to_plot) > 10) {
+    wrap_plots(boxplots)
+  } else {
+    # Scatter plots (grid)
+    scatters <- list()
+    for (k in length(feats_to_plot):1) {
+      feat1 = feats_to_plot[k]
+      for (j in 1:(length(feats_to_plot)-1)) {
+        feat2 = feats_to_plot[j]
+        if (j>=k) {
+          p <- ggplot() + theme_void()
+        } else {
+          p <- ggplot(tmp, aes_string(
+              x = feat2, y = feat1,
+              color = 'label', group = 'label')) +
+            geom_point(size = 0.5) +
+            geom_smooth(aes(fill = label), method = "lm", alpha = 0.2, formula = 'y~x') +
+            scale_color_manual(values = label_colors) +
+            scale_fill_manual(values = label_colors) +
+            scale_x_continuous(position = 'top') +
+            xlab(get_pretty_names(feat2, feat_name_fixes, string_wrap = 40)) +
+            theme_bw() +
+            theme(legend.position = 'none') +
+            #theme(axis.text = element_text(size = 6)) +
+            #theme(axis.title = element_text(size = 7)) +
+            theme(axis.title.y = element_blank()) +
+            theme(axis.text = element_blank()) +
+            theme(axis.ticks = element_blank()) +
+            theme(plot.margin = margin(0,1,1,0)) +
+            theme(axis.title.x.top = element_text(
+              color = feature_type_color_map[substr(feat2,0,1)],
+              angle = 90,
+              hjust = 1, vjust = 0.5))
+
+          if (k < length(feats_to_plot))
+            p <- p + theme(axis.title.x.top = element_blank())
+        }
+        scatters[[paste(k,'/',j)]] <- p
       }
-      scatters[[paste(k,'/',j)]] <- p
     }
+
+    # Combine all plots together
+    all_plots <- list()
+    ii <- length(feats_to_plot)-1
+    for (k in 1:length(feats_to_plot)) {
+      all_plots <- c(all_plots,
+                     list(boxplots[[feats_to_plot[k]]]),
+                     scatters[(ii*(k-1)+1) : (ii*k)])
+    }
+    p <- wrap_plots(
+      all_plots,
+      nrow = length(feats_to_plot),
+      ncol = length(feats_to_plot),
+      widths = c(1,rep(2,(ii)))
+      )
+
+    # Save
+    final_grid_plots[[paste(d,'/',modu)]] <- p
+  }
+}
+rm(ii, feat, feat1, feat2, p, tmp, i, j, k, scatters, boxplots, d, modu)
+```
+
+
+# Misc.
+
+```{r eval=FALSE, fig.height=3, fig.width=4.5}
+demographics <- read.table("~/MICROBIOME_METABOLOME/METACARDIS_original_processing/metadata/demographic_20201210.r", sep= "\t")
+lifestyle <- read.table("~/MICROBIOME_METABOLOME/METACARDIS_original_processing/metadata/lifestyle_20201210.r", sep= "\t")
+drugs <- read.table("~/MICROBIOME_METABOLOME/METACARDIS_original_processing/metadata/cmd_drugs_20201210.r", sep = '\t')
+
+module_feats <- sens_analysis_modules %>% filter(dataset == 'MS (MetaCardis)' & module == 1) %>% pull(feature)
+
+tmp <- diablo_input$`MS (MetaCardis)`
+tmp <- bind_cols(data.frame(SampleID = tmp$sample_ids, label = tmp$Y), 
+                 data.frame(tmp$X$`T`[,colnames(tmp$X$`T`) %in% module_feats]), 
+                 data.frame(tmp$X$P[,colnames(tmp$X$P) %in% module_feats]), 
+                 data.frame(tmp$X$S[,colnames(tmp$X$S) %in% module_feats])) %>%
+  left_join(demographics) %>%
+  left_join(lifestyle) %>%
+  left_join(drugs)
+tmp <- tmp[,apply(tmp, 2, n_distinct, na.rm = T)>1]
+
+# Boxplots
+for(met in c('CENTER_C','GENDER','SMOKE','pa_work_2cl',names(drugs)[!names(drugs) %in% c('DRUGTOTAL','SampleID')])) {
+  for(f in module_feats) {
+    if(n_distinct(tmp[[met]])==1) next;
+    if(min(table(tmp[[met]])) < 15) next;
+    tmp[[met]] <- as.character(tmp[[met]])
+    p <- ggplot(tmp, aes_string(x=met,y=f,fill='label')) +
+      geom_boxplot(width = 0.7, outlier.shape = NA, color = 'black') +
+      geom_jitter(height=0, width = 0.2, size = 0.5) +
+      facet_grid(~label) +
+      theme_classic() +
+      theme(legend.position = 'none')
+    plot(p)
+  }
+}
+
+# Scatter plots
+for(met in c('AGE','BMI_C','aHEI','DASH','DDS','DRUGTOTAL')) {
+  for(f in feats_to_plot) { #module_feats) {
+    p <- ggplot(tmp, aes_string(x=met,y=f)) +
+      geom_point(size = 0.5) +
+      geom_smooth(aes(color = label), method = "lm", alpha = 0.2, formula = 'y~x') +
+      facet_grid(~label) +
+      theme_classic() +
+      theme(legend.position = 'none')
+    plot(p)
+  }
+}
+```
+
+
+```{r eval=FALSE, fig.height=8, fig.width=8}
+library(factoextra)
+res.pca <- prcomp(tmp %>% select(where(is.numeric)) %>% na.omit(), scale = TRUE)
+fviz_pca_var(res.pca, axes = c(1, 2),
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+```
+
+
+```{r eval=FALSE}
+library(ppcor)
+# Map correlations between the 3 amino acids: Phe, Val, Leu and top CRC-associated species in Yachida et al.
+crc_species <- c(
+  'T__Fusobacterium.nucleatum.subsp..nucleatum',
+  'T__Fusobacterium.nucleatum.subsp..animalis',
+  'T__Fusobacterium.nucleatum.subsp..fusiforme_Cluster257',
+  'T__Parvimonas.micra',
+  'T__Fusobacterium.nucleatum.subsp..vincentii',
+  'T__Fusobacterium.nucleatum.subsp..polymorphum',
+  'T__Atopobium.parvulum',
+  'T__Actinomyces.odontolyticus',
+  'T__Bilophila.wadsworthia',
+  'T__Peptostreptococcus.anaerobius',
+  'T__Peptostreptococcus.stomatis',
+  'T__Gemella.morbillorum',
+  'T__Akkermansia.muciniphila',
+  'T__Fusobacterium.simiae',
+  'T__Fusobacterium.canifelinum',
+  'T__Gemella.haemolysans'
+  )
+
+other_mm <- c('M__C00123_Leu','M__C00183_Val','M__C00079_Phe')
+
+tmp <- data.frame()
+for (mm in c('M__Cysteine.glutathione.disulphide..Divalent')) {
+  for (ss in crc_species) {
+    mm_vec <- diablo_input$`CRC (Yachida, 2019)`$X$M[,mm]
+    ss_vec <- diablo_input$`CRC (Yachida, 2019)`$X$`T`[,ss]
+    spear <- cor.test(mm_vec, ss_vec, method = 'spearman')
+    pspear <- pcor.test(mm_vec, ss_vec, z = as.numeric(diablo_input$`CRC (Yachida, 2019)`$Y == 'disease'), method = 'spearman')
+    tmp <- bind_rows(
+      tmp,
+      data.frame(
+        metab = mm,
+        species = ss,
+        spear_rho = spear$estimate,
+        spear_p = spear$p.value,
+        pspear_rho = pspear$estimate,
+        pspear_p = pspear$p.value
+      )
+    )
   }
   
-  # Combine all plots together
-  all_plots <- list()
-  ii <- length(feats_to_plot)-1
-  for (k in 1:length(feats_to_plot)) {
-    all_plots <- c(all_plots, 
-                   list(boxplots[[feats_to_plot[k]]]), 
-                   scatters[(ii*(k-1)+1) : (ii*k)])
-  }
-  p <- wrap_plots(
-    all_plots, 
-    nrow = length(feats_to_plot), 
-    ncol = length(feats_to_plot), 
-    widths = c(1,rep(2,(ii)))
+  for (ss in other_mm) {
+    mm_vec <- diablo_input$`CRC (Yachida, 2019)`$X$M[,mm]
+    ss_vec <- diablo_input$`CRC (Yachida, 2019)`$X$M[,ss]
+    spear <- cor.test(mm_vec, ss_vec, method = 'spearman')
+    pspear <- pcor.test(mm_vec, ss_vec, z = as.numeric(diablo_input$`CRC (Yachida, 2019)`$Y == 'disease'), method = 'spearman')
+    tmp <- bind_rows(
+      tmp,
+      data.frame(
+        metab = mm,
+        metab2 = ss,
+        spear_rho = spear$estimate,
+        spear_p = spear$p.value,
+        pspear_rho = pspear$estimate,
+        pspear_p = pspear$p.value
+      )
     )
-
-  # Save
-  final_grid_plots[[paste(d,'/',modu)]] <- p
+  }
 }
-rm(ii, feat, feat1, feat2, p, tmp, tmp_all_utests, i, j, k, scatters, boxplots, d, modu)
 ```
-
-```{r fig.width=10, fig.height=10}
-# final_grid_plots$`CD (Franzosa, 2019) / module2`
-```
-
 
 
 # Session info
