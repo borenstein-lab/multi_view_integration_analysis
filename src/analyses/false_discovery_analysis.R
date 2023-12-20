@@ -83,7 +83,7 @@ for (diablo_keepX in c(7,10)) { # diablo_keepX <- 10
           ps <- c(ps, tmp_cor$p.value)
         }
       }
-      ps <- p.adjust(ps, method = 'bonf')
+      ps <- p.adjust(ps, method = 'fdr')
       if(all(ps < 0.01)) signif_comps <- c(signif_comps, j)
     }
     
@@ -148,7 +148,7 @@ for (penalty_factor in c(1.8, 2)) {
           ps <- c(ps, tmp_cor$p.value)
         }
       }
-      ps <- p.adjust(ps, method = 'bonf')
+      ps <- p.adjust(ps, method = 'fdr')
       if(all(ps < 0.01)) signif_comps <- c(signif_comps, j)
     }
     
