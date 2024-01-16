@@ -14,7 +14,7 @@ method_colors <- c('DIABLO' = '#96D4CA', 'MultiCCA' = '#254e70', 'MintTea' = 'fi
 ```
 
 ```{r}
-d <- 'cd_franzosa_2019'
+d <- 'cirrhosis_qin_2014'
 
 d1 <- read_csv(paste0("src/analyses/minttea_comparisons_results/false_discovery_results_",d,".csv"), 
                show_col_types = FALSE) %>%
