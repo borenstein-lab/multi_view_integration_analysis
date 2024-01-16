@@ -206,7 +206,6 @@ for (diablo_keepX in c(10)) { # diablo_keepX <- 10
       param_diablo_keepX = c(diablo_keepX),
       param_diablo_design = c(diablo_design),
       param_edge_thresholds = c(minttea_edge_threshold)
-      #return_main_results_only = FALSE
     )
     
     # How many modules (multi-omic?) did we find? Record statistics
