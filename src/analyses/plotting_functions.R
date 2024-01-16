@@ -166,11 +166,11 @@ plot_basic_stats <- function(cv_results,
     geom_col(color="black", fill = "grey80", width = p1_col_width) +
     geom_text(aes(label=label), vjust = 0.5, hjust = 0, size = 2.9, lineheight = .9) +
     geom_col(aes(y = n_healthy), color = "black", fill = "grey50", width = p1_col_width) +
-    scale_y_continuous(expand = c(0, 0, 0.45, 0)) +
+    scale_y_continuous(expand = c(0, 0, 0.48, 0)) +
     coord_flip() +
     theme_classic() +
     xlab(NULL) +
-    ylab("Number of samples") +
+    ylab("Number of\nsamples") +
     facet_grid(rows = vars(dataset), space = "free_y", scales = "free_y", switch = "y") +
     theme(plot.margin = unit(c(5.5,6.5,7.8,5.5), "points")) +
     theme(axis.text.y = element_text(size = 10)) +
@@ -215,14 +215,14 @@ plot_basic_stats <- function(cv_results,
               xmin = -Inf, xmax = Inf, ymin = -Inf, 
               ymax = Inf, fill = 'gray80', inherit.aes = FALSE) +
     scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
-    geom_col(color="black", alpha = 0.5, width = 0.8, position = "stack") +
+    geom_col(color="black", alpha = 0.8, width = 0.8, position = "stack") +
     scale_x_discrete(expand = c(0, 1.1)) +
     scale_y_continuous(expand = c(0, 0, 0.1, 0)) +
     coord_flip() +
     theme_classic() +
     facet_grid(rows = vars(dataset), scales = "free_y", switch = "y") +
     xlab(NULL) +
-    ylab("Number of features") +
+    ylab("Number of\nfeatures") +
     scale_fill_manual(name = "View", values = feature_type_color_map,
                       guide = guide_legend(reverse = TRUE)) +
     theme(panel.grid.major.y = element_blank()) +
@@ -308,10 +308,70 @@ plot_basic_stats <- function(cv_results,
             align = 'h', axis = 'tb')
 }
 
+# Plot basic statistics about datasets and ml pipeline results
+plot_basic_stats2 <- function(cv_results, feature_type_color_map) {
+  
+  tmp <- cv_results %>%
+    filter(! shuffled) %>%
+    mutate(n_samples = n_healthy+n_disease) %>%
+    select(dataset, 
+           n_samples,
+           feature_set_type,
+           starts_with('n_features_orig')) %>%
+    select(-n_features_origin) %>%
+    distinct() %>%
+    mutate(dataset = factor(dataset, labels = paste0(dataset,'\nN = ',n_samples))) %>%
+    tidyr::pivot_longer(
+      cols = starts_with('n_features_orig'), 
+      names_to = 'feature_type', 
+      names_prefix = 'n_features_origin_', 
+      values_to = 'n_features'
+    ) %>%
+    mutate(feature_type = factor(feature_type, levels = rev(c('T','P','M','S')))) %>%
+    filter(n_features > 0)
+  
+  p <- ggplot(tmp, 
+               aes(x = feature_type, 
+                   y = n_features, 
+                   fill = feature_type)) +
+    geom_col(color="black", alpha = 0.2, width = 0.8, position = "stack") + # Plotted twice as patch
+    geom_rect(data = tmp %>% select(dataset) %>% distinct(), 
+              aes(alpha = dataset %>% as.numeric() %% 2 == 0), 
+              xmin = -Inf, 
+              xmax = Inf, 
+              ymin = -Inf, 
+              ymax = Inf, 
+              fill = 'gray80', 
+              inherit.aes = FALSE) +
+    scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
+    geom_col(color="black", alpha = 0.8, width = 0.8, position = "stack") +
+    scale_x_discrete(expand = c(0, 1.1)) +
+    scale_y_continuous(expand = c(0, 0, 0.05, 0)) +
+    coord_flip() +
+    theme_classic() +
+    facet_grid(rows = vars(dataset), scales = "free_y", switch = "y") +
+    xlab(NULL) +
+    ylab("Number of\nfeatures") +
+    scale_fill_manual(name = NULL, values = feature_type_color_map,
+                      guide = guide_legend(reverse = TRUE)) +
+    theme(panel.grid.major.y = element_blank()) +
+    theme(panel.grid.major.x = element_line(linewidth = 0.5, color = "grey93")) +
+    theme(axis.text.y = element_blank()) +
+    # theme(legend.position = "none") +
+    theme(axis.title.x = element_text(size = 11)) +
+    #theme(strip.background = element_blank(), strip.text = element_blank()) +
+    theme(strip.background = element_blank()) +
+    theme(strip.placement = "outside") +
+    theme(strip.text.y.left = element_text(size = 10, angle = 0, hjust = 1)) +
+    theme(panel.spacing.y = unit(6, "points")) +
+    theme(legend.position = 'bottom')
+  
+  print(p)
+}
+
 # Same style as basic_stats plot, this time describing the diablo components in each dataset
 plot_module_stats <- function(sens_analysis_modules, 
-                              module_cross_view_corrs, 
-                              summary_module_aucs, 
+                              modules_overview, 
                               feature_type_color_map,
                               dataset_order,
                               show_rf = TRUE,
@@ -324,12 +384,11 @@ plot_module_stats <- function(sens_analysis_modules,
     group_by(dataset, module, feature_type) %>%
     summarise(N = n(), .groups = "drop") 
   
-  # Only plot modules with at least 2 types of features and >=3 total features
-  modules_to_plot <- tmp1 %>% 
-    group_by(dataset,module) %>% 
-    summarise(N=sum(N), N_feat_type=n(), .groups='drop') %>%
-    filter(N>=3 & N_feat_type>1) %>%
-    select(dataset, module)
+  # Only plot modules with at least 2 types of features 
+  modules_to_plot <- modules_overview %>% 
+    filter(multi_view) %>%
+    select(dataset, module, is_interesting) %>%
+    mutate(module = as.numeric(gsub('module','',module)))
  
   tmp1 <- inner_join(tmp1, modules_to_plot, by = c('dataset','module'))
      
@@ -340,17 +399,26 @@ plot_module_stats <- function(sens_analysis_modules,
                  filter(dataset %in% dataset_order) %>%
                  mutate(dataset = factor(dataset, levels = dataset_order)), 
                aes(x = module2, y = N, fill = feature_type)) +
-    geom_bar(color="black", alpha = 0.2, width = 0.8, 
-             position="stack", stat="identity") + # Plotted twice as patch
-    geom_rect(data = tmp1 %>% filter(dataset %in% dataset_order) %>% 
+    geom_rect(data = tmp1 %>% 
+                filter(dataset %in% dataset_order) %>% 
                 mutate(dataset = factor(dataset, levels = dataset_order)) %>%
-                select(dataset) %>% distinct(),
+                select(dataset) %>% 
+                distinct(),
               aes(alpha = dataset %>% as.numeric() %% 2 == 0),
-              xmin = -Inf, xmax = Inf, ymin = -Inf,
-              ymax = Inf, fill = 'gray80', inherit.aes = FALSE) +
+              xmin = -Inf, 
+              xmax = Inf, 
+              ymin = -Inf,
+              ymax = Inf, 
+              fill = 'gray80', 
+              inherit.aes = FALSE) +
     scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
-    geom_bar(color="black", alpha = 0.5, width = 0.8, 
-             position="stack", stat="identity") +
+    new_scale("alpha") +
+    geom_bar(aes(alpha = is_interesting, color = is_interesting),
+             width = 0.8, 
+             position="stack", 
+             stat="identity") +
+    scale_alpha_manual(values = c('FALSE' = 0.3, 'TRUE' = 0.9), guide = "none") +
+    scale_color_manual(values = c('FALSE' = 'gray70', 'TRUE' = 'black'), guide = "none") +
     geom_hline(yintercept = 0) +
     scale_y_continuous(expand = c(0, 0, 0.1, 0)) +
     scale_x_discrete(expand = c(0, 0.5)) +
@@ -376,21 +444,10 @@ plot_module_stats <- function(sens_analysis_modules,
   if (hide_y_axis_text) p1 <- p1 + theme(axis.text.y = element_blank())
     
   # ---- Strip 3: AUC ---->
-  tmp2 <- summary_module_aucs %>%
-    filter(run == 'true') %>%
-    left_join(
-      summary_module_aucs %>%
-        filter(run != 'true') %>%
-        group_by(dataset, module_id) %>%
-        summarise(N = n(), 
-                  mean_shuf_auc = mean(mean_module_auc, na.rm = TRUE),
-                  sd_shuf_auc = stats::sd(mean_module_auc, na.rm = TRUE),
-                  .groups = 'drop'),
-      by = c('dataset','module_id')
-    ) %>%
-    rename(module = module_id) 
-  
-  tmp2 <- inner_join(tmp2, modules_to_plot, by = c('dataset','module'))
+  tmp2 <- modules_overview %>% 
+    select(-is_interesting) %>%
+    mutate(module = as.numeric(gsub('module','',module))) %>%
+    inner_join(modules_to_plot, by = c('dataset','module'))
   
   tmp2$module2 <- factor(paste('Module', tmp2$module),
                             levels = levels(tmp1$module2))
@@ -400,20 +457,26 @@ plot_module_stats <- function(sens_analysis_modules,
                  filter(dataset %in% dataset_order) %>%
                  mutate(dataset = factor(dataset, levels = dataset_order)), 
                aes(x = module2)) +
-    geom_rect(data = tmp1 %>% filter(dataset %in% dataset_order) %>% 
+    geom_rect(data = tmp1 %>% 
+                filter(dataset %in% dataset_order) %>% 
                 mutate(dataset = factor(dataset, levels = dataset_order)) %>%
-                select(dataset) %>% distinct(), 
+                select(dataset) %>% 
+                distinct(), 
               aes(alpha = dataset %>% as.numeric() %% 2 == 0), 
-              xmin = -Inf, xmax = Inf, ymin = -Inf, 
-              ymax = Inf, fill = 'gray80', inherit.aes = FALSE) +
+              xmin = -Inf, 
+              xmax = Inf, 
+              ymin = -Inf, 
+              ymax = Inf, 
+              fill = 'gray80', 
+              inherit.aes = FALSE) +
     scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
     geom_hline(yintercept = 0.5, color = "darkred", linetype = "dashed", linewidth = 1) +
     # Shuffled standard deviations
-    geom_linerange(aes(ymax = mean_shuf_auc + sd_shuf_auc, 
-                       ymin = mean_shuf_auc - sd_shuf_auc), 
+    geom_linerange(aes(ymax = mean_module_auc_shuffled + sd_module_auc_shuffled, 
+                       ymin = mean_module_auc_shuffled - sd_module_auc_shuffled), 
                    alpha = 0.4, linewidth = 2, color = "grey70") +
     # Shuffled AUCs
-    geom_point(aes(y = mean_shuf_auc), 
+    geom_point(aes(y = mean_module_auc_shuffled), 
                shape = 16, size = points_size - 0.5, 
                color = 'grey60', alpha = 0.8) +
     # True standard deviations
@@ -421,10 +484,12 @@ plot_module_stats <- function(sens_analysis_modules,
     #                position = position_dodge(width = p3_dodging), 
     #                alpha = 0.35, linewidth = 2) + 
     # True AUCs
-    geom_point(aes(y = mean_module_auc), fill = 'skyblue4',
-               shape = 23, color = "black", 
+    geom_point(aes(y = mean_module_auc, fill = is_interesting, color = is_interesting),
+               shape = 23, 
                size = points_size, alpha = 0.9) +
-    scale_y_continuous(breaks = seq(0.5,1,0.1)) +
+    scale_fill_manual(values = c('FALSE' = '#D7E7ED', 'TRUE' = 'skyblue4'), guide = "none") +
+    scale_color_manual(values = c('FALSE' = 'gray60', 'TRUE' = 'black'), guide = "none") +
+    scale_y_continuous(breaks = seq(0.5,1,0.1), expand = expansion(mult = c(0.05,0.1))) +
     scale_x_discrete(expand = c(0, 0.5)) +
     coord_flip() +
     theme_classic() +
@@ -443,25 +508,7 @@ plot_module_stats <- function(sens_analysis_modules,
   if (show_rf) p2 <- p2 + geom_hline(aes(yintercept = mean_auc_rf), color = "goldenrod2", linewidth = 2, alpha = 0.7)
   
   # ---- Strip 2: Cross-view correlations ---->
-  tmp3 <- module_cross_view_corrs %>%
-    filter(run == 'true') %>%
-    left_join(
-      module_cross_view_corrs %>%
-        filter(run != 'true') %>%
-        group_by(dataset, module) %>%
-        summarise(N = n(), 
-                  mean_shuf_corr = mean(avg_spear_corr, na.rm = TRUE),
-                  sd_shuf_corr = stats::sd(avg_spear_corr, na.rm = TRUE),
-                  .groups = 'drop'),
-      by = c('dataset','module')
-    ) 
-  
-  tmp3 <- inner_join(tmp3, modules_to_plot, by = c('dataset','module'))
-  
-  tmp3$module2 <- factor(paste('Module', tmp3$module),
-                            levels = levels(tmp1$module2))
-  
-  p3 <- ggplot(tmp3 %>%
+  p3 <- ggplot(tmp2 %>%
                  filter(dataset %in% dataset_order) %>%
                  mutate(dataset = factor(dataset, levels = dataset_order)), 
                aes(x = module2)) + 
@@ -475,21 +522,25 @@ plot_module_stats <- function(sens_analysis_modules,
               ymax = Inf, fill = 'gray80', inherit.aes = FALSE) +
     scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
     # Shuffled standard deviations
-    geom_linerange(aes(ymax = mean_shuf_corr + sd_shuf_corr, 
-                       ymin = mean_shuf_corr - sd_shuf_corr), 
+    geom_linerange(aes(ymax = avg_spear_corr_shuffled + sd_spear_corr_shuffled, 
+                       ymin = avg_spear_corr_shuffled - sd_spear_corr_shuffled), 
                    alpha = 0.4, linewidth = 2, color = "grey70") +
     # Shuffled correlations
-    geom_point(aes(y = mean_shuf_corr), 
+    geom_point(aes(y = avg_spear_corr_shuffled), 
                shape = 16, size = points_size - 0.5, color = 'grey60', alpha = 0.8) +
     # True standard deviations
     # geom_linerange(aes(ymax = sdev_high_, ymin = sdev_low_, color = feature_set_type),
     #                position = position_dodge(width = p3_dodging), 
     #                alpha = 0.35, linewidth = 2) + 
     # True correlations
-    geom_point(aes(y = avg_spear_corr), fill = 'sienna4',
-               shape = 23, color = "black", 
-               size = points_size, alpha = 0.9) +
+    geom_point(aes(y = avg_spear_corr, fill = is_interesting, color = is_interesting),
+               shape = 23, 
+               size = points_size, 
+               alpha = 0.9) +
+    scale_fill_manual(values = c('FALSE' = '#D9B9AB', 'TRUE' = 'sienna4'), guide = "none") +
+    scale_color_manual(values = c('FALSE' = 'gray60', 'TRUE' = 'black'), guide = "none") +
     scale_x_discrete(expand = c(0, 0.5)) +
+    scale_y_continuous(expand = expansion(mult = c(0.05,0.1))) +
     coord_flip() +
     theme_classic() +
     xlab(NULL) +
@@ -505,25 +556,15 @@ plot_module_stats <- function(sens_analysis_modules,
     theme(panel.spacing.y = unit(6, "points"))
   
   # Combine plots
-  tmp_rel_widths <- c(9, 3, 3)
-  if (hide_y_axis_text) tmp_rel_widths <- c(7.2, 3, 3)
+  tmp_rel_widths <- c(8.1, 3, 3)
+  if (hide_y_axis_text) tmp_rel_widths <- c(7, 3, 3)
   print(plot_grid(p1, p3, p2, 
                   nrow = 1, 
                   rel_widths = tmp_rel_widths, 
                   align = 'h', axis = 'tb'))
-  
-  df_summary <- tmp1 %>%
-    group_by(dataset, module) %>%
-    summarise(n_features = sum(N), .groups = 'drop') %>%
-    left_join(tmp2 %>% select(dataset, module, mean_module_auc, mean_shuf_auc, sd_shuf_auc),
-              by = c('dataset', 'module')) %>%
-    left_join(tmp3 %>% select(dataset, module, avg_spear_corr, mean_shuf_corr, sd_shuf_corr),
-              by = c('dataset', 'module'))
-  
-  return(df_summary)
 }
 
-plot_overall_summary_module_aucs <- function(rf_results, summary_aucs, datasets_to_focus_on) {
+plot_overall_modules_aucs <- function(rf_results, summary_aucs, datasets_to_focus_on) {
   
   caption_early_integration <- "Early integration\n(Average no. of features after feature selection)"
   caption_minttea <- "Intermediate integration with MintTea\n(No. of features [No. of modules])"
