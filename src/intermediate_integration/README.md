@@ -1,6 +1,6 @@
 This folder includes all code related to the intermediate integration (__MintTea__) pipeline.
 
-**Table of content:**
+**Table of contents:**
  - [MintTea overview](#ch1)
  - [Instructions - Running MintTea on your own data](#ch2)
  - [Usage example](#ch3)
@@ -8,7 +8,7 @@ This folder includes all code related to the intermediate integration (__MintTea
 <a id="ch1"></a>
 ## MintTea overview
 
-MintTea is a method for identifying multi-view modules of features that are both associated with a disease state and present strong associations between the different views. It is based on sparse generalized canonical correlation analysis (sgCCA) and the specific extension introduced by Singh et al., 2019<sup>1</sup>, named [DIABLO](http://mixomics.org/mixdiablo/). For further details see: https://www.biorxiv.org/content/10.1101/2023.07.03.547607v2.
+MintTea is a method for identifying multi-omic modules of features that are both associated with a disease state and present strong associations between the different omics. It is based on sparse generalized canonical correlation analysis (sgCCA), where the disease label is encoded as an additional 'dummy' omic, as previously suggested by Gross & Tibshirani (2015)<sup>1</sup>, Singh et al. (2019<sup>2</sup>, see [DIABLO](http://mixomics.org/mixdiablo/)), and others. For further details see our preprint: https://www.biorxiv.org/content/10.1101/2023.07.03.547607v2.
 
 <img src="https://github.com/borenstein-lab/multi_view_integration_analysis/blob/main/docs/wiki_figure.png" width="700">
 
@@ -22,7 +22,7 @@ MintTea is a method for identifying multi-view modules of features that are both
 2. Organize your input data in a *single* data.frame object, following these guidelines:
    * Rows represent samples and columns are features;  
    * The dataframe should include two special columns: a column holding sample identifiers and a column holding study groups ("healthy" and "disease" labels);  
-   * Features from each view should start with the following prefixes: 'T_' for taxonomy, 'G_' for genes, 'P_' for pathways, and optionally 'M_' for metabolites;  
+   * Features from each omic should start with the omic-prefix (for example: 'T_' for taxonomy, 'P_' for pathways, 'M_' for metabolites, etc.);  
    * Features in each view should be pre-processed in advance, according to common practices;  
    * It is highly recommended **to remove rare features, and cluster highly correlated features**;  
 
@@ -97,4 +97,5 @@ For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
      
 ***
 
-<sup>1</sup> Singh, Amrit, et al. "DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays." Bioinformatics 35.17 (2019): 3055-3062.
+<sup>1</sup> Gross, Samuel M., and Robert Tibshirani. "Collaborative regression." Biostatistics 16.2 (2015): 326-338.
+<sup>2</sup> Singh, Amrit, et al. "DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays." Bioinformatics 35.17 (2019): 3055-3062.
