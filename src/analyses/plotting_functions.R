@@ -233,76 +233,8 @@ plot_basic_stats <- function(cv_results,
     theme(strip.background = element_blank(), strip.text = element_blank()) +
     theme(panel.spacing.y = unit(6, "points"))
   
-  # Patch (to allow alignment with p1)
-  # p2 = ggplotify::as.ggplot(ggplot_gtable(ggplot_build(p2)))
-  
-  # # ---- Strip 3: Single-view AUC + SD ---->
-  # tmp2 <- tmp %>%
-  #   group_by(dataset, shuffled, feature_set_type, mean_out_of_fold_test_auc) %>%
-  #   summarise(n = n(), 
-  #             sdev = sd(out_of_fold_test_auc, na.rm = TRUE), 
-  #             .groups = "drop") %>%
-  #   mutate(sdev_low = mean_out_of_fold_test_auc - sdev) %>%
-  #   mutate(sdev_high = pmin(1, mean_out_of_fold_test_auc + sdev)) %>%
-  #   mutate(feature_set_type = factor(feature_set_type, levels = rev(levels(feature_set_type)))) %>% 
-  #   mutate(shuffled = ifelse(shuffled, 'shuf', '')) %>%
-  #   tidyr::pivot_wider(id_cols = c(dataset, feature_set_type), 
-  #                      names_from = shuffled, 
-  #                      values_from = c(mean_out_of_fold_test_auc,n,sdev_low,sdev_high))
-  # 
-  # p3_min_x <- 0.4
-  # 
-  # p3 <- ggplot(data = tmp2, 
-  #              mapping = aes(x = feature_set_type)) +
-  #   geom_rect(data = tmp2 %>% select(dataset) %>% distinct(), 
-  #             aes(alpha = dataset %>% as.numeric() %% 2 == 0), 
-  #             xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, 
-  #             fill = 'gray80', inherit.aes = FALSE) +
-  #   scale_alpha_manual(values = c('FALSE' = 0, 'TRUE' = 0.3), guide = "none") +
-  #   geom_hline(yintercept = 0.5, color = "darkred", linetype = "dashed", linewidth = 1) +
-  #   # Shuffled standard deviations
-  #   geom_linerange(aes(ymax = sdev_high_shuf, 
-  #                      ymin = pmax(p3_min_x, sdev_low_shuf)), 
-  #                  alpha = 0.35, linewidth = 2, color = "grey70") +
-  #   # Shuffled AUCs
-  #   geom_point(aes(y = mean_out_of_fold_test_auc_shuf), 
-  #              shape = 16, size = 2, color = 'grey60', alpha = 0.7) +
-  #   # True standard deviations
-  #   geom_linerange(aes(ymax = sdev_high_, 
-  #                      ymin = pmax(p3_min_x, sdev_low_), 
-  #                      color = feature_set_type), 
-  #                  alpha = 0.35, linewidth = 2) + 
-  #   # True AUCs
-  #   geom_point(aes(fill = feature_set_type,
-  #                  y = mean_out_of_fold_test_auc_), 
-  #              shape = 23, color = "black", size = 3.7, alpha = 0.85) +
-  #   scale_y_continuous(breaks = seq(0.5,1,0.1), limits = c(p3_min_x, NA), expand = c(0, 0, 0.04, 0)) +
-  #   scale_x_discrete(expand = c(0, 1.1)) +
-  #   coord_flip() +
-  #   scale_fill_manual(name = "View", values = feature_type_color_map[rev(levels(tmp2$feature_set_type))], 
-  #                     breaks = names(feature_type_color_map)[names(feature_type_color_map) %in% tmp2$feature_set_type]) +
-  #   scale_color_manual(name = "View", values = feature_type_color_map[rev(levels(tmp2$feature_set_type))], 
-  #                      breaks = names(feature_type_color_map)[names(feature_type_color_map) %in% tmp2$feature_set_type]) +
-  #   facet_grid(rows = vars(dataset), space = "free_y", scales = "free_y", switch = "y") +
-  #   theme_classic() +
-  #   xlab(NULL) +
-  #   ylab("Random forest AUC") +
-  #   theme(panel.grid.major.x = 
-  #           element_line(linewidth = 0.5, color = "grey93")) +
-  #   theme(panel.grid.major.y = 
-  #           element_line(linewidth = 0.5, color = "grey93")) +
-  #   theme(axis.text.y = element_blank()) +
-  #   theme(axis.title.x = element_text(size = 11)) +
-  #   theme(strip.background = element_blank(), strip.text = element_blank()) +
-  #   theme(panel.spacing.y = unit(6, "points"))
-  # 
-  # # Patch (to allow alignment with p1)
-  # p3 = ggplotify::as.ggplot(ggplot_gtable(ggplot_build(p3)))
-  # 
-  # tmp_rel_widths = c(3.5,2.5,p3_width)
-  
   tmp_rel_widths = c(3.7,3)
-  plot_grid(p1, p2, # p3, 
+  plot_grid(p1, p2, 
             nrow = 1, 
             rel_widths = tmp_rel_widths, 
             align = 'h', axis = 'tb')
@@ -528,11 +460,6 @@ plot_module_stats <- function(sens_analysis_modules,
     # Shuffled correlations
     geom_point(aes(y = avg_spear_corr_shuffled), 
                shape = 16, size = points_size - 0.5, color = 'grey60', alpha = 0.8) +
-    # True standard deviations
-    # geom_linerange(aes(ymax = sdev_high_, ymin = sdev_low_, color = feature_set_type),
-    #                position = position_dodge(width = p3_dodging), 
-    #                alpha = 0.35, linewidth = 2) + 
-    # True correlations
     geom_point(aes(y = avg_spear_corr, fill = is_interesting, color = is_interesting),
                shape = 23, 
                size = points_size, 
