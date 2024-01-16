@@ -1,6 +1,6 @@
 This folder includes all code related to the machine learning (ML) pipeline.
 
-## Instructions - Running the pipeline on a single dataset
+## Instructions (ARCHIVE!!) - Running the pipeline on a single dataset
 
 1. Prepare input data as follows:
 
@@ -10,7 +10,7 @@ This folder includes all code related to the machine learning (ML) pipeline.
     * gene family files with 'function' as the first column (gene family name/code), and other columns corresponding to the sample_ids.  
     * (optional) metabolite file with 'sample_id' as the first column and all other columns representing different metabolites and their abundances.  
 
-    All 4 (or 5) files should be placed in one folder. The folder's name is considered as the dataset's name. File names are not restricted, they just need to be updated in the configuration file (see next step).
+    All files should be placed in one folder. The folder's name is considered as the dataset's name. File names are not restricted, they just need to be updated in the configuration file (see next step).
 
 2. Go over the `config.yml` file an update all fields as needed. See documentation within the config file for a description of each field. Make sure that the paths to the input files prepared in the previous step are correct.
 
