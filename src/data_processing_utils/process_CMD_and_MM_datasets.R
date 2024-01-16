@@ -64,6 +64,9 @@ for (d in c(CMD_DATASETS, MM_DATASETS)) { # d = 'cd_franzosa_2019'
   # Remove rare features + constant features
   species <- prep_sanitize_dataset(species, 'T', rare_feature_cutoff = 0.15, mean_abundance_cutoff = 0.00005)
 
+  # Some correlation statistics
+  # ggplot(species, aes(x = T__Oscillibacter.ruminantium, y = T__Oscillibacter.valericigenes)) + geom_point(alpha = 0.3) + theme_bw() + ggtitle('Correlation between relative abundances') + theme(plot.title = element_text(hjust = 0.5))
+  
   # -----------------------------------------------
   # Organize pathways table (add P__ prefix)
   # -----------------------------------------------
