@@ -149,11 +149,18 @@ A. Number of samples per study. C, controls (dark grey); D, disease (light grey)
 B. Average number of original features from each type. 
 (Or: number of features selected by the feature-selection process and used for final training. The average is over the cross-validation process).
 
-```{r, fig.height=4.9, fig.width=5.6, warning = FALSE}
-plot_basic_stats(
+```{r, fig.height=7, fig.width=3.5, warning = FALSE}
+plot_basic_stats2(
   cv_results = cv_results, 
   feature_type_color_map = feature_type_color_map
   )
+```
+
+```{r, fig.height=5.2, fig.width=5, warning = FALSE}
+# plot_basic_stats(
+#   cv_results = cv_results, 
+#   feature_type_color_map = feature_type_color_map
+#   )
 ```
 
 ## Feature importance analysis
