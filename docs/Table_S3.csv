@@ -499,6 +499,56 @@ T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Formic_acid,77,2.7e-4,< 0.00001,TRUE,
 T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Lactic_acid,100,0.00104,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Lactic_acid
 T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,100,0.00139,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Pyruvic_acid
 T2D (MetaCardis),All,S__SERUM_NMR_ABSOLUTE_Glucose,100,0.01117,< 0.00001,TRUE,SERUM_NMR_ABSOLUTE_Glucose
+"STH (Rubel, 2020)",All,T__Prevotella.copri,96,0.00131,< 0.00001,TRUE,Prevotella copri
+"STH (Rubel, 2020)",All,T__Prevotella.sp..CAG.520,100,0.00409,< 0.00001,TRUE,Prevotella sp  CAG 520
+"STH (Rubel, 2020)",All,T__Lachnospira.eligens,100,0.0038,< 0.00001,TRUE,Lachnospira eligens
+"STH (Rubel, 2020)",All,T__Escherichia.coli,100,0.00125,< 0.00001,TRUE,Escherichia coli
+"STH (Rubel, 2020)",All,T__Phascolarctobacterium.succinatutens,100,0.01468,< 0.00001,TRUE,Phascolarctobacterium succinatutens
+"STH (Rubel, 2020)",All,T__Lachnospira.pectinoschiza,98,8e-4,< 0.00001,TRUE,Lachnospira pectinoschiza
+"STH (Rubel, 2020)",All,T__Prevotella.sp..AM42.24,100,0.00549,< 0.00001,TRUE,Prevotella sp  AM42 24
+"STH (Rubel, 2020)",All,T__Prevotella.sp..885,100,0.01202,< 0.00001,TRUE,Prevotella sp  885
+"STH (Rubel, 2020)",All,T__Bacteroides.sp..CAG.530,100,0.01061,< 0.00001,TRUE,Bacteroides sp  CAG 530
+"STH (Rubel, 2020)",All,T__Odoribacter.splanchnicus,100,0.00251,< 0.00001,TRUE,Odoribacter splanchnicus
+"STH (Rubel, 2020)",All,T__Prevotella.sp..CAG.1092,100,0.0038,< 0.00001,TRUE,Prevotella sp  CAG 1092
+"STH (Rubel, 2020)",All,T__.Ruminococcus..lactaris,100,0.00338,< 0.00001,TRUE, Ruminococcus  lactaris
+"STH (Rubel, 2020)",All,T__Phocaeicola.vulgatus,100,0.00204,< 0.00001,TRUE,Phocaeicola vulgatus
+"STH (Rubel, 2020)",All,T__Bacteroides.thetaiotaomicron,100,0.00325,< 0.00001,TRUE,Bacteroides thetaiotaomicron
+"STH (Rubel, 2020)",All,T__Fusicatenibacter.saccharivorans,100,0.01581,< 0.00001,TRUE,Fusicatenibacter saccharivorans
+"STH (Rubel, 2020)",All,T__Alistipes.shahii,100,0.00427,< 0.00001,TRUE,Alistipes shahii
+"STH (Rubel, 2020)",All,T__Streptococcus.parasanguinis,96,5.4e-4,0.01999,TRUE,Streptococcus parasanguinis
+"STH (Rubel, 2020)",All,T__Bacteroides.uniformis,100,0.00724,< 0.00001,TRUE,Bacteroides uniformis
+"STH (Rubel, 2020)",All,T__Phocaeicola.dorei,100,0.00181,< 0.00001,TRUE,Phocaeicola dorei
+"STH (Rubel, 2020)",All,T__Clostridium.sp..CAG.167,100,0.00407,< 0.00001,TRUE,Clostridium sp  CAG 167
+"STH (Rubel, 2020)",All,T__Eubacterium.coprostanoligenes,100,5.9e-4,< 0.00001,TRUE,Eubacterium coprostanoligenes
+"STH (Rubel, 2020)",All,T__Parabacteroides.merdae,100,0.00311,< 0.00001,TRUE,Parabacteroides merdae
+"STH (Rubel, 2020)",All,T__Bacteroides.ovatus,100,0.00179,< 0.00001,TRUE,Bacteroides ovatus
+"STH (Rubel, 2020)",All,T__Bacteroides.xylanisolvens,100,0.00125,< 0.00001,TRUE,Bacteroides xylanisolvens
+"STH (Rubel, 2020)",All,T__Firmicutes.bacterium.CAG.534,97,0.00111,< 0.00001,TRUE,Firmicutes bacterium CAG 534
+"STH (Rubel, 2020)",All,T__Firmicutes.bacterium.CAG.791,100,0.00354,< 0.00001,TRUE,Firmicutes bacterium CAG 791
+"STH (Rubel, 2020)",All,T__Bifidobacterium.adolescentis,59,4.6e-4,0.00216,TRUE,Bifidobacterium adolescentis
+"STH (Rubel, 2020)",All,T__Alistipes.putredinis,100,0.00102,< 0.00001,TRUE,Alistipes putredinis
+"STH (Rubel, 2020)",All,P__DENOVOPURINE2.PWY,100,0.00138,< 0.00001,TRUE,superpathway of purine nucleotides _de novo_ biosynthesis II
+"STH (Rubel, 2020)",All,P__HEMESYN2.PWY,84,7.7e-4,0.08062,TRUE,heme _b_ biosynthesis II (oxygen-independent)
+"STH (Rubel, 2020)",All,P__HSERMETANA.PWY,100,0.00161,< 0.00001,TRUE,L-methionine biosynthesis III
+"STH (Rubel, 2020)",All,P__P108.PWY,100,0.00135,< 0.00001,TRUE,pyruvate fermentation to propanoate I
+"STH (Rubel, 2020)",All,P__P124.PWY,63,5.8e-4,0.06784,TRUE,glucose fermentation to lactic acid (Bifidobacteria)
+"STH (Rubel, 2020)",All,P__P23.PWY,100,0.00105,0.00004,TRUE,reductive TCA cycle I
+"STH (Rubel, 2020)",All,P__P461.PWY,100,0.00188,< 0.00001,TRUE,"hexitol fermentation to lactate, formate, ethanol and acetate"
+"STH (Rubel, 2020)",All,P__PPGPPMET.PWY,100,0.00181,< 0.00001,TRUE,ppGpp metabolism
+"STH (Rubel, 2020)",All,P__PWY.2941,100,0.00206,< 0.00001,TRUE,L-lysine biosynthesis II
+"STH (Rubel, 2020)",All,P__PWY.5941,100,0.004,< 0.00001,TRUE,glycogen degradation II
+"STH (Rubel, 2020)",All,P__PWY.6545,100,0.00127,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis III
+"STH (Rubel, 2020)",All,P__PWY.6897,100,0.00154,< 0.00001,TRUE,thiamine diphosphate salvage II
+"STH (Rubel, 2020)",All,P__PWY.7184,100,0.00293,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis I
+"STH (Rubel, 2020)",All,P__PWY.7187,100,0.00215,< 0.00001,TRUE,pyrimidine deoxyribonucleotides _de novo_ biosynthesis II
+"STH (Rubel, 2020)",All,P__PWY.7197,100,0.00159,< 0.00001,TRUE,pyrimidine deoxyribonucleotide phosphorylation
+"STH (Rubel, 2020)",All,P__PWY.7208,100,9.6e-4,0.0044,TRUE,superpathway of pyrimidine nucleobases salvage
+"STH (Rubel, 2020)",All,P__PWY.7328,100,0.00162,< 0.00001,TRUE,superpathway of UDP-glucose-derived O-antigen building blocks biosynthesis
+"STH (Rubel, 2020)",All,P__PWY.7371,100,0.00194,< 0.00001,TRUE,"1,4-dihydroxy-6-naphthoate biosynthesis II"
+"STH (Rubel, 2020)",All,P__PWY.841,100,0.00119,< 0.00001,TRUE,superpathway of purine nucleotides _de novo_ biosynthesis I
+"STH (Rubel, 2020)",All,P__PWY0.1479,100,9.5e-4,0.01746,TRUE,tRNA processing
+"STH (Rubel, 2020)",All,P__PWY0.162,100,0.00306,< 0.00001,TRUE,superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis
+"STH (Rubel, 2020)",All,P__PWY0.166,100,0.00152,< 0.00001,TRUE,superpathway of pyrimidine deoxyribonucleotides _de novo_ biosynthesis (_E. coli_)
 "UC (Franzosa, 2019)",All,T__Alistipes_shahii,100,6.1e-4,0.00024,TRUE,Alistipes_shahii
 "UC (Franzosa, 2019)",All,T__Clostridium_sp_CAG_167,94,4.3e-4,< 0.00001,TRUE,Clostridium_sp_CAG_167
 "UC (Franzosa, 2019)",All,T__Clostridium_sp_CAG_242,56,3.3e-4,0.00976,TRUE,Clostridium_sp_CAG_242

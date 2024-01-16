@@ -1,665 +1,673 @@
 Dataset,Module,Feature,Feature description,Increased in?
-"CD (Franzosa, 2019)",1,M__C18.neg_Cluster_2021..urobilin,[M] Urobilin (II),healthy
-"CD (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0441..sebacate,[M] Sebacate,healthy
-"CD (Franzosa, 2019)",1,M__HILIC.pos_Cluster_2093..urobilin.,[M] Urobilin (I),healthy
-"CD (Franzosa, 2019)",2,M__HILIC.pos_Cluster_2372..C36.2.PC.,[M] HILIC.pos_Cluster_2372..C36.2.PC.,healthy
-"CD (Franzosa, 2019)",1,P__HISTSYN.PWY,[P] L-histidine biosynthesis,healthy
-"CD (Franzosa, 2019)",1,P__NONMEVIPP.PWY,[P] methylerythritol phosphate pathway I,healthy
-"CD (Franzosa, 2019)",2,P__PWY.5265,[P] peptidoglycan biosynthesis II (staphylococci),non-significant
-"CD (Franzosa, 2019)",1,P__PWY.6163,[P] chorismate biosynthesis from 3-dehydroquinate,healthy
-"CD (Franzosa, 2019)",1,P__PWY.6292,[P] superpathway of L-cysteine biosynthesis (mammalian),healthy
-"CD (Franzosa, 2019)",1,P__PWY.6385,[P] peptidoglycan biosynthesis III (mycobacteria),healthy
-"CD (Franzosa, 2019)",2,P__PWY.6396,"[P] superpathway of 2,3-butanediol biosynthesis",non-significant
-"CD (Franzosa, 2019)",1,P__PWY.6700,[P] queuosine biosynthesis I (_de novo_),healthy
-"CD (Franzosa, 2019)",1,P__PWY.7953,[P] UDP-MurNAc-pentapeptide biosynthesis III,healthy
-"CD (Franzosa, 2019)",1,T__Alistipes_shahii,[T] Alistipes_shahii,healthy
-"CD (Franzosa, 2019)",1,T__Asaccharobacter_celatus,[T] Asaccharobacter_celatus,healthy
-"CD (Franzosa, 2019)",2,T__Bifidobacterium_dentium,[T] Bifidobacterium_dentium,non-significant
-"CD (Franzosa, 2019)",1,T__Coprococcus_catus,[T] Coprococcus_catus,healthy
-"CD (Franzosa, 2019)",2,T__Enterococcus_faecalis,[T] Enterococcus_faecalis,non-significant
-"CD (Franzosa, 2019)",1,T__Enterorhabdus_caecimuris,[T] Enterorhabdus_caecimuris,healthy
-"CD (Franzosa, 2019)",1,T__Gemmiger_formicilis,[T] Gemmiger_formicilis,healthy
-"CD (Franzosa, 2019)",2,T__Prevotella_copri,[T] Prevotella_copri,non-significant
-"CD (Franzosa, 2019)",1,T__Roseburia_hominis,[T] Roseburia_hominis,healthy
-"CD (Franzosa, 2019)",2,T__Streptococcus_lutetiensis,[T] Streptococcus_lutetiensis,non-significant
-"CD (Franzosa, 2019)",2,T__Veillonella_dispar,[T] Veillonella_dispar,non-significant
-"CD (Franzosa, 2019)",2,T__Veillonella_infantium,[T] Veillonella_infantium,non-significant
-"Cirrhosis (Qin, 2014)",1,P__ASPASN.PWY,[P] superpathway of L-aspartate and L-asparagine biosynthesis,non-significant
-"Cirrhosis (Qin, 2014)",2,P__AST.PWY,[P] L-arginine degradation II (AST pathway),disease
-"Cirrhosis (Qin, 2014)",2,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster178,[P] catechol degradation to &beta;-ketoadipate [Clustered features],disease
-"Cirrhosis (Qin, 2014)",2,P__ECASYN.PWY,[P] enterobacterial common antigen biosynthesis,disease
-"Cirrhosis (Qin, 2014)",3,P__FOLSYN.PWY_Cluster193,[P] superpathway of tetrahydrofolate biosynthesis and salvage [Clustered features],disease
-"Cirrhosis (Qin, 2014)",2,P__GOLPDLCAT.PWY,"[P] SP of glycerol deg. to 1,3-propanediol",disease
-"Cirrhosis (Qin, 2014)",3,P__HEME.BIOSYNTHESIS.II,[P] heme _b_ biosynthesis I (aerobic),disease
-"Cirrhosis (Qin, 2014)",3,P__HEMESYN2.PWY,[P] heme _b_ biosynthesis II (oxygen-independent),disease
-"Cirrhosis (Qin, 2014)",3,P__HOMOSER.METSYN.PWY,[P] L-methionine biosynthesis I,disease
-"Cirrhosis (Qin, 2014)",3,P__MET.SAM.PWY_Cluster226,[P] superpathway of _S_-adenosyl-L-methionine biosynthesis [Clustered features],disease
-"Cirrhosis (Qin, 2014)",2,P__P221.PWY,[P] octane oxidation,disease
-"Cirrhosis (Qin, 2014)",2,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster256,[P] protocatechuate degradation II [Clustered features],disease
-"Cirrhosis (Qin, 2014)",1,P__PWY.1269,[P] CMP-3-deoxy-D-manno-octulosonate biosynthesis,non-significant
-"Cirrhosis (Qin, 2014)",1,P__PWY.2941,[P] L-lysine biosynthesis II,disease
-"Cirrhosis (Qin, 2014)",2,P__PWY.3801,[P] sucrose degradation II (sucrose synthase),disease
-"Cirrhosis (Qin, 2014)",3,P__PWY.5347,[P] superpathway of L-methionine biosynthesis (transsulfuration),disease
-"Cirrhosis (Qin, 2014)",3,P__PWY.5837,"[P] 2-carboxy-1,4-naphthoquinol biosynthesis",disease
-"Cirrhosis (Qin, 2014)",3,P__PWY.5838_Cluster296,[P] superpathway of menaquinol-8 biosynthesis I [Clustered features],disease
-"Cirrhosis (Qin, 2014)",3,P__PWY.5863,[P] superpathway of phylloquinol biosynthesis,disease
-"Cirrhosis (Qin, 2014)",3,P__PWY.5897_Cluster302,[P] superpathway of menaquinol-11 biosynthesis [Clustered features],disease
-"Cirrhosis (Qin, 2014)",3,P__PWY.5910_Cluster303,[P] superpathway of geranylgeranyldiphosphate biosynthesis I (via mevalonate) [Clustered features],disease
-"Cirrhosis (Qin, 2014)",1,P__PWY.6126,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis II,non-significant
-"Cirrhosis (Qin, 2014)",2,P__PWY.6182_Cluster320,[P] superpathway of salicylate degradation [Clustered features],disease
-"Cirrhosis (Qin, 2014)",1,P__PWY.6478,[P] GDP-D-_glycero_-&alpha;-D-_manno_-heptose biosynthesis,disease
-"Cirrhosis (Qin, 2014)",2,P__PWY.6562,[P] norspermidine biosynthesis,disease
-"Cirrhosis (Qin, 2014)",2,P__PWY.7013,"[P] (S)-propane-1,2-diol degradation",disease
-"Cirrhosis (Qin, 2014)",1,P__PWY.7200,[P] superpathway of pyrimidine deoxyribonucleoside salvage,non-significant
-"Cirrhosis (Qin, 2014)",1,P__PWY.7229,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis I,non-significant
-"Cirrhosis (Qin, 2014)",1,P__PWY0.1586,[P] peptidoglycan maturation (_meso_-diaminopimelate containing),disease
-"Cirrhosis (Qin, 2014)",3,P__PYRIDNUCSAL.PWY,[P] NAD salvage pathway I (PNC VI cycle),disease
-"Cirrhosis (Qin, 2014)",2,P__REDCITCYC,[P] TCA cycle VI (Helicobacter),disease
-"Cirrhosis (Qin, 2014)",2,P__THREOCAT.PWY,[P] superpathway of L-threonine metabolism,disease
-"Cirrhosis (Qin, 2014)",1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
-"Cirrhosis (Qin, 2014)",1,T__Adlercreutzia.equolifaciens,[T] Adlercreutzia_equolifaciens,healthy
-"Cirrhosis (Qin, 2014)",1,T__Anaerobutyricum.hallii,[T] Anaerobutyricum_hallii,healthy
-"Cirrhosis (Qin, 2014)",1,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,non-significant
-"Cirrhosis (Qin, 2014)",3,T__Campylobacter.concisus,[T] Campylobacter_concisus,disease
-"Cirrhosis (Qin, 2014)",1,T__Coprococcus.catus,[T] Coprococcus_catus,healthy
-"Cirrhosis (Qin, 2014)",1,T__Dialister.sp..CAG.357,[T] Dialister sp CAG 357,healthy
-"Cirrhosis (Qin, 2014)",3,T__Haemophilus.parainfluenzae,[T] Haemophilus_parainfluenzae,disease
-"Cirrhosis (Qin, 2014)",2,T__Klebsiella.pneumoniae,[T] Klebsiella_pneumoniae,disease
-"Cirrhosis (Qin, 2014)",2,T__Klebsiella.quasipneumoniae,[T] Klebsiella_quasipneumoniae,disease
-"Cirrhosis (Qin, 2014)",2,T__Klebsiella.variicola,[T] Klebsiella_variicola,disease
-"Cirrhosis (Qin, 2014)",3,T__Megasphaera.micronuciformis,[T] Megasphaera_micronuciformis,disease
-"Cirrhosis (Qin, 2014)",1,T__Parabacteroides.distasonis,[T] Parabacteroides_distasonis,non-significant
-"Cirrhosis (Qin, 2014)",1,T__Prevotella.copri,[T] Prevotella_copri,non-significant
-"Cirrhosis (Qin, 2014)",3,T__Streptococcus.gordonii,[T] Streptococcus_gordonii,disease
-"Cirrhosis (Qin, 2014)",3,T__Streptococcus.mitis,[T] Streptococcus_mitis,disease
-"Cirrhosis (Qin, 2014)",3,T__Streptococcus.parasanguinis,[T] Streptococcus_parasanguinis,disease
-"Cirrhosis (Qin, 2014)",3,T__Streptococcus.salivarius,[T] Streptococcus_salivarius,disease
-"Cirrhosis (Qin, 2014)",3,T__Veillonella.atypica,[T] Veillonella_atypica,disease
-"Cirrhosis (Qin, 2014)",3,T__Veillonella.dispar,[T] Veillonella_dispar,disease
-"Cirrhosis (Qin, 2014)",3,T__Veillonella.infantium,[T] Veillonella_infantium,disease
-"Cirrhosis (Qin, 2014)",3,T__Veillonella.parvula,[T] Veillonella_parvula,disease
-"Cirrhosis (Qin, 2014)",3,T__Veillonella.sp..T11011.6,[T] Veillonella sp T11011 6,disease
-"CRC (Feng, 2015)",1,P__GLYCOGENSYNTH.PWY,[P] glycogen biosynthesis I (from ADP-D-Glucose),healthy
-"CRC (Feng, 2015)",1,P__P108.PWY,[P] pyruvate fermentation to propanoate I,disease
-"CRC (Feng, 2015)",1,P__PWY.4984,[P] urea cycle,disease
-"CRC (Feng, 2015)",1,P__PWY.5100,[P] pyruvate fermentation to acetate and lactate II,healthy
-"CRC (Feng, 2015)",2,P__PWY.5101_Cluster287,[P] L-isoleucine biosynthesis II [Clustered features],non-significant
-"CRC (Feng, 2015)",1,P__PWY.5154,[P] L-arginine biosynthesis III,disease
-"CRC (Feng, 2015)",1,P__PWY.5973,[P] cis-vaccenate biosynthesis,disease
-"CRC (Feng, 2015)",3,P__PWY.6284,[P] SP of unsaturated fatty acids biosynthesis (E. coli),non-significant
-"CRC (Feng, 2015)",3,P__PWY.6285,[P] superpathway of fatty acids biosynthesis (_E. coli_),disease
-"CRC (Feng, 2015)",3,P__PWY.6612,[P] superpathway of tetrahydrofolate biosynthesis,non-significant
-"CRC (Feng, 2015)",2,P__PWY.6700,[P] queuosine biosynthesis I (_de novo_),non-significant
-"CRC (Feng, 2015)",1,P__PWY.7663,[P] gondoate biosynthesis (anaerobic),disease
-"CRC (Feng, 2015)",1,P__PWY.841,[P] SP of purine nucleotides (de novo) biosynthesis I,disease
-"CRC (Feng, 2015)",2,P__PWY0.1261,[P] peptidoglycan recycling I,non-significant
-"CRC (Feng, 2015)",1,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,disease
-"CRC (Feng, 2015)",1,P__PYRIDOXSYN.PWY,[P] pyridoxal 5'-phosphate biosynthesis I,disease
-"CRC (Feng, 2015)",2,P__RUMP.PWY,[P] formaldehyde oxidation I,non-significant
-"CRC (Feng, 2015)",1,P__THISYN.PWY,[P] SP of thiamine diphosphate biosynthesis I,disease
-"CRC (Feng, 2015)",3,T__.Eubacterium..rectale,[T] Eubacterium rectale,non-significant
-"CRC (Feng, 2015)",3,T__.Ruminococcus..torques,[T] Ruminococcus torques,non-significant
-"CRC (Feng, 2015)",1,T__Anaerostipes.hadrus,[T] Anaerostipes_hadrus,healthy
-"CRC (Feng, 2015)",2,T__Bacteroides.galacturonicus,[T] Bacteroides_galacturonicus,disease
-"CRC (Feng, 2015)",1,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,disease
-"CRC (Feng, 2015)",1,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
-"CRC (Feng, 2015)",1,T__Bacteroides.xylanisolvens,[T] Bacteroides_xylanisolvens,disease
-"CRC (Feng, 2015)",1,T__Butyricimonas.virosa,[T] Butyricimonas_virosa,disease
-"CRC (Feng, 2015)",2,T__Catenibacterium.mitsuokai,[T] Catenibacterium_mitsuokai,non-significant
-"CRC (Feng, 2015)",3,T__Escherichia.coli,[T] Escherichia_coli,disease
-"CRC (Feng, 2015)",1,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
-"CRC (Feng, 2015)",2,T__Gemella.morbillorum,[T] Gemella_morbillorum,disease
-"CRC (Feng, 2015)",1,T__Lawsonibacter.asaccharolyticus,[T] Lawsonibacter_asaccharolyticus,disease
-"CRC (Feng, 2015)",1,T__Odoribacter.splanchnicus,[T] Odoribacter_splanchnicus,disease
-"CRC (Feng, 2015)",2,T__Oscillibacter.sp..CAG.241,[T] Oscillibacter sp CAG 241,disease
-"CRC (Feng, 2015)",1,T__Parabacteroides.distasonis,[T] Parabacteroides_distasonis,disease
-"CRC (Feng, 2015)",2,T__Parvimonas.micra,[T] Parvimonas_micra,disease
-"CRC (Feng, 2015)",3,T__Ruminococcaceae.bacterium.D16,[T] Ruminococcaceae bacterium D16,disease
-"CRC (Yachida, 2019)",1,M__C00079_Phe,[M] C00079_Phe,disease
-"CRC (Yachida, 2019)",1,M__C00123_Leu,[M] C00123_Leu,disease
-"CRC (Yachida, 2019)",1,M__C00183_Val,[M] C00183_Val,disease
-"CRC (Yachida, 2019)",2,M__C00612_N1.Acetylspermidine,[M] C00612_N1.Acetylspermidine,healthy
-"CRC (Yachida, 2019)",2,M__C03793_N6.N6.N6.Trimethyllysine,[M] C03793_N6.N6.N6.Trimethyllysine,healthy
-"CRC (Yachida, 2019)",2,M__C05135_4..beta.Acetylaminoethyl.imidazole,[M] C05135_4..beta.Acetylaminoethyl.imidazole,healthy
-"CRC (Yachida, 2019)",2,M__C16741_5.Hydroxylysine,[M] C16741_5.Hydroxylysine,healthy
-"CRC (Yachida, 2019)",1,M__Cysteine.glutathione.disulphide..Divalent,[M] Cysteine.glutathione.disulphide..Divalent,non-significant
-"CRC (Yachida, 2019)",2,M__N1.N8.Diacetylspermidine,[M] N1.N8.Diacetylspermidine,healthy
-"CRC (Yachida, 2019)",2,P__GLYCOCAT.PWY,[P] glycogen degradation I,disease
-"CRC (Yachida, 2019)",2,P__PWY.6969,[P] TCA cycle V (2-oxoglutarate synthase),disease
-"CRC (Yachida, 2019)",2,P__PWY.7254,[P] TCA cycle VII (acetate-producers),non-significant
-"CRC (Yachida, 2019)",2,T__Clostridium.viride,[T] Clostridium_viride,disease
-"CRC (Yachida, 2019)",1,T__Gemella.morbillorum,[T] Gemella_morbillorum,disease
-"CRC (Yachida, 2019)",2,T__Oscillibacter.ruminantium_Cluster348,[T] Oscillibacter_ruminantium [Clustered features],non-significant
-"CRC (Yachida, 2019)",2,T__Papillibacter.cinnamivorans,[T] Papillibacter_cinnamivorans,disease
-"CRC (Yachida, 2019)",1,T__Peptostreptococcus.anaerobius,[T] Peptostreptococcus_anaerobius,disease
-"CRC (Yachida, 2019)",1,T__Peptostreptococcus.stomatis,[T] Peptostreptococcus_stomatis,disease
-"CRC (Yachida, 2019)",2,T__Pseudoflavonifractor.capillosus,[T] Pseudoflavonifractor_capillosus,disease
-"CRC (Vogtmann, 2016)",1,P__KETOGLUCONMET.PWY,[P] ketogluconate metabolism,non-significant
-"CRC (Vogtmann, 2016)",1,P__METHGLYUT.PWY,[P] superpathway of methylglyoxal degradation,disease
-"CRC (Vogtmann, 2016)",2,P__OANTIGEN.PWY,[P] _O_-antigen building blocks biosynthesis (_E. coli_),healthy
-"CRC (Vogtmann, 2016)",3,P__PENTOSE.P.PWY,[P] pentose phosphate pathway,non-significant
-"CRC (Vogtmann, 2016)",1,P__PWY.5189,[P] tetrapyrrole biosynthesis II (from glycine),disease
-"CRC (Vogtmann, 2016)",1,P__PWY.5747_Cluster302,[P] 2-methylcitrate cycle II [Clustered features],disease
-"CRC (Vogtmann, 2016)",1,P__PWY.5920,[P] superpathway of heme _b_ biosynthesis from glycine,non-significant
-"CRC (Vogtmann, 2016)",2,P__PWY.6126,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis II,non-significant
-"CRC (Vogtmann, 2016)",2,P__PWY.6700,[P] queuosine biosynthesis I (_de novo_),healthy
-"CRC (Vogtmann, 2016)",3,P__PWY.6749,[P] CMP-legionaminate biosynthesis I,non-significant
-"CRC (Vogtmann, 2016)",2,P__PWY.7220_Cluster376,[P] adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features],disease
-"CRC (Vogtmann, 2016)",2,P__PWY.7229,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis I,non-significant
-"CRC (Vogtmann, 2016)",2,P__PWY0.1261,[P] peptidoglycan recycling I,non-significant
-"CRC (Vogtmann, 2016)",2,P__UDPNAGSYN.PWY,[P] UDP-_N_-acetyl-D-glucosamine biosynthesis I,healthy
-"CRC (Vogtmann, 2016)",3,T__.Clostridium..innocuum,[T] Clostridium innocuum,non-significant
-"CRC (Vogtmann, 2016)",2,T__.Clostridium..leptum,[T] Clostridium leptum,non-significant
-"CRC (Vogtmann, 2016)",2,T__Bacteroides.nordii,[T] Bacteroides_nordii,non-significant
-"CRC (Vogtmann, 2016)",3,T__Blautia.producta,[T] Blautia_producta,non-significant
-"CRC (Vogtmann, 2016)",2,T__Eggerthella.lenta,[T] Eggerthella_lenta,non-significant
-"CRC (Vogtmann, 2016)",3,T__Erysipelatoclostridium.ramosum,[T] Erysipelatoclostridium_ramosum,non-significant
-"CRC (Vogtmann, 2016)",1,T__Escherichia.coli,[T] Escherichia_coli,disease
-"CRC (Vogtmann, 2016)",2,T__Firmicutes.bacterium.CAG.95,[T] Firmicutes bacterium CAG 95,non-significant
-"CRC (Vogtmann, 2016)",3,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,non-significant
-"CRC (Vogtmann, 2016)",1,T__Phocaeicola.dorei,[T] Phocaeicola_dorei,non-significant
-"CRC (Vogtmann, 2016)",1,T__Rothia.mucilaginosa,[T] Rothia_mucilaginosa,non-significant
-"CRC (Vogtmann, 2016)",2,T__Ruthenibacterium.lactatiformans,[T] Ruthenibacterium_lactatiformans,non-significant
-"CRC (Vogtmann, 2016)",1,T__Streptococcus.gordonii,[T] Streptococcus_gordonii,non-significant
-"CRC (Vogtmann, 2016)",1,T__Streptococcus.oralis,[T] Streptococcus_oralis,non-significant
-"CRC (Vogtmann, 2016)",1,T__Turicibacter.sanguinis,[T] Turicibacter_sanguinis,non-significant
-"CRC (Vogtmann, 2016)",1,T__Veillonella.atypica,[T] Veillonella_atypica,non-significant
-"CRC (Vogtmann, 2016)",1,T__Veillonella.dispar,[T] Veillonella_dispar,non-significant
-"CRC (Wirbel, 2018)",1,P__ARGDEG.PWY_Cluster172,"[P] superpathway of L-arginine, putrescine, and 4-aminobutanoate degradation [Clustered features]",non-significant
-"CRC (Wirbel, 2018)",2,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
-"CRC (Wirbel, 2018)",2,P__GALACT.GLUCUROCAT.PWY,[P] superpathway of hexuronide and hexuronate degradation,healthy
-"CRC (Wirbel, 2018)",2,P__GALACTUROCAT.PWY,[P] D-galacturonate degradation I,healthy
-"CRC (Wirbel, 2018)",2,P__GLUCUROCAT.PWY,[P] superpathway of &beta;-D-glucuronosides degradation,healthy
-"CRC (Wirbel, 2018)",2,P__GLUTORN.PWY,[P] L-ornithine biosynthesis I,healthy
-"CRC (Wirbel, 2018)",2,P__PWY.5177,[P] glutaryl-CoA degradation,healthy
-"CRC (Wirbel, 2018)",2,P__PWY.6507,[P] 4-deoxy-L-_threo_-hex-4-enopyranuronate degradation,healthy
-"CRC (Wirbel, 2018)",1,P__PWY.7046,[P] 4-coumarate degradation (anaerobic),non-significant
-"CRC (Wirbel, 2018)",2,P__PWY.7242,[P] D-fructuronate degradation,healthy
-"CRC (Wirbel, 2018)",2,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
-"CRC (Wirbel, 2018)",2,T__Agathobaculum.butyriciproducens,[T] Agathobaculum_butyriciproducens,healthy
-"CRC (Wirbel, 2018)",2,T__Butyricimonas.virosa,[T] Butyricimonas_virosa,non-significant
-"CRC (Wirbel, 2018)",1,T__Escherichia.coli,[T] Escherichia_coli,non-significant
-"CRC (Wirbel, 2018)",2,T__Faecalibacterium.prausnitzii,[T] Faecalibacterium_prausnitzii,healthy
-"CRC (Wirbel, 2018)",2,T__Oscillibacter.sp..57_20,[T] Oscillibacter sp 57_20,healthy
-"CRC (Yu, 2015)",1,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
-"CRC (Yu, 2015)",1,P__GLUCUROCAT.PWY,[P] superpathway of &beta;-D-glucuronosides degradation,healthy
-"CRC (Yu, 2015)",2,P__LACTOSECAT.PWY,[P] lactose and galactose degradation I,non-significant
-"CRC (Yu, 2015)",1,P__P162.PWY,[P] L-glutamate degradation V (via hydroxyglutarate),disease
-"CRC (Yu, 2015)",1,P__P163.PWY,[P] L-lysine fermentation to acetate and butanoate,disease
-"CRC (Yu, 2015)",2,P__P164.PWY,[P] purine nucleobases degradation I (anaerobic),disease
-"CRC (Yu, 2015)",2,P__PROPFERM.PWY,[P] superpathway of L-alanine fermentation (Stickland reaction),disease
-"CRC (Yu, 2015)",1,P__PWY.5177,[P] glutaryl-CoA degradation,non-significant
-"CRC (Yu, 2015)",2,P__PWY.5973,[P] cis-vaccenate biosynthesis,non-significant
-"CRC (Yu, 2015)",1,P__PWY.6317,[P] D-galactose degradation I (Leloir pathway),healthy
-"CRC (Yu, 2015)",1,P__PWY.6588,[P] pyruvate fermentation to acetone,disease
-"CRC (Yu, 2015)",2,P__PWY.7663,[P] gondoate biosynthesis (anaerobic),non-significant
-"CRC (Yu, 2015)",1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
-"CRC (Yu, 2015)",1,T__Alistipes.indistinctus,[T] Alistipes_indistinctus,disease
-"CRC (Yu, 2015)",2,T__Collinsella.aerofaciens,[T] Collinsella_aerofaciens,disease
-"CRC (Yu, 2015)",1,T__Dialister.pneumosintes,[T] Dialister_pneumosintes,disease
-"CRC (Yu, 2015)",2,T__Dorea.formicigenerans,[T] Dorea_formicigenerans,disease
-"CRC (Yu, 2015)",1,T__Eisenbergiella.massiliensis,[T] Eisenbergiella_massiliensis,disease
-"CRC (Yu, 2015)",1,T__Enterocloster.citroniae,[T] Enterocloster_citroniae,disease
-"CRC (Yu, 2015)",1,T__Eubacterium.ventriosum,[T] Eubacterium_ventriosum,healthy
-"CRC (Yu, 2015)",1,T__Faecalibacterium.prausnitzii,[T] Faecalibacterium_prausnitzii,healthy
-"CRC (Yu, 2015)",1,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
-"CRC (Yu, 2015)",2,T__Proteobacteria.bacterium.CAG.139,[T] Proteobacteria bacterium CAG 139,non-significant
-"CRC (Zeller, 2014)",1,P__ARGSYN.PWY_Cluster203,[P] L-arginine biosynthesis I (via L-ornithine) [Clustered features],healthy
-"CRC (Zeller, 2014)",1,P__ARGSYNBSUB.PWY,[P] L-arginine biosynthesis II (acetyl cycle),healthy
-"CRC (Zeller, 2014)",1,P__ARO.PWY,[P] chorismate biosynthesis I,healthy
-"CRC (Zeller, 2014)",1,P__COMPLETE.ARO.PWY,[P] superpathway of aromatic amino acid biosynthesis,healthy
-"CRC (Zeller, 2014)",2,P__DAPLYSINESYN.PWY,[P] L-lysine biosynthesis I,non-significant
-"CRC (Zeller, 2014)",1,P__GLUTORN.PWY,[P] L-ornithine biosynthesis I,healthy
-"CRC (Zeller, 2014)",2,P__GLYCOCAT.PWY,[P] glycogen degradation I,non-significant
-"CRC (Zeller, 2014)",1,P__GLYCOGENSYNTH.PWY,[P] glycogen biosynthesis I (from ADP-D-Glucose),healthy
-"CRC (Zeller, 2014)",1,P__HISDEG.PWY,[P] L-histidine degradation I,disease
-"CRC (Zeller, 2014)",2,P__NONMEVIPP.PWY,[P] methylerythritol phosphate pathway I,healthy
-"CRC (Zeller, 2014)",2,P__P124.PWY,[P] glucose fermentation to lactic acid (Bifidobacteria),non-significant
-"CRC (Zeller, 2014)",3,P__P161.PWY,[P] acetylene degradation (anaerobic),disease
-"CRC (Zeller, 2014)",4,P__P162.PWY,[P] L-glutamate degradation V (via hydroxyglutarate),disease
-"CRC (Zeller, 2014)",3,P__P164.PWY,[P] purine nucleobases degradation I (anaerobic),non-significant
-"CRC (Zeller, 2014)",3,P__P221.PWY,[P] octane oxidation,disease
-"CRC (Zeller, 2014)",2,P__P4.PWY,"[P] superpathway of L-lysine, L-threonine and L-methionine biosynthesis I",non-significant
-"CRC (Zeller, 2014)",2,P__PWY.5384,[P] sucrose degradation IV (sucrose phosphorylase),non-significant
-"CRC (Zeller, 2014)",2,P__PWY.5913,[P] partial TCA cycle (obligate autotrophs),non-significant
-"CRC (Zeller, 2014)",1,P__PWY.6151,[P] _S_-adenosyl-L-methionine salvage I,healthy
-"CRC (Zeller, 2014)",2,P__PWY.622,[P] starch biosynthesis,non-significant
-"CRC (Zeller, 2014)",1,P__PWY.6317,[P] D-galactose degradation I (Leloir pathway),healthy
-"CRC (Zeller, 2014)",3,P__PWY.6876,[P] isopropanol biosynthesis (engineered),disease
-"CRC (Zeller, 2014)",3,P__PWY.7003,[P] glycerol degradation to butanol,non-significant
-"CRC (Zeller, 2014)",3,P__PWY.7013,"[P] (S)-propane-1,2-diol degradation",non-significant
-"CRC (Zeller, 2014)",2,P__PWY.7209,[P] superpathway of pyrimidine ribonucleosides degradation,non-significant
-"CRC (Zeller, 2014)",2,P__PWY.7560,[P] methylerythritol phosphate pathway II,healthy
-"CRC (Zeller, 2014)",2,P__PWY0.781,[P] aspartate superpathway,non-significant
-"CRC (Zeller, 2014)",1,P__TRPSYN.PWY,[P] L-tryptophan biosynthesis,healthy
-"CRC (Zeller, 2014)",3,T__.Clostridium..innocuum,[T] Clostridium innocuum,non-significant
-"CRC (Zeller, 2014)",1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
-"CRC (Zeller, 2014)",1,T__.Eubacterium..rectale,[T] Eubacterium rectale,healthy
-"CRC (Zeller, 2014)",3,T__.Ruminococcus..gnavus,[T] Ruminococcus gnavus,non-significant
-"CRC (Zeller, 2014)",2,T__.Ruminococcus..lactaris,[T] Ruminococcus lactaris,non-significant
-"CRC (Zeller, 2014)",1,T__Anaerobutyricum.hallii,[T] Anaerobutyricum_hallii,healthy
-"CRC (Zeller, 2014)",2,T__Bifidobacterium.adolescentis,[T] Bifidobacterium_adolescentis,non-significant
-"CRC (Zeller, 2014)",3,T__Bifidobacterium.dentium,[T] Bifidobacterium_dentium,non-significant
-"CRC (Zeller, 2014)",2,T__Bifidobacterium.longum,[T] Bifidobacterium_longum,healthy
-"CRC (Zeller, 2014)",2,T__Bifidobacterium.pseudocatenulatum,[T] Bifidobacterium_pseudocatenulatum,non-significant
-"CRC (Zeller, 2014)",1,T__Coprococcus.eutactus,[T] Coprococcus_eutactus,non-significant
-"CRC (Zeller, 2014)",2,T__Dorea.longicatena,[T] Dorea_longicatena,non-significant
-"CRC (Zeller, 2014)",3,T__Enterocloster.bolteae,[T] Enterocloster_bolteae,non-significant
-"CRC (Zeller, 2014)",3,T__Enterocloster.clostridioformis,[T] Enterocloster_clostridioformis,non-significant
-"CRC (Zeller, 2014)",3,T__Flavonifractor.plautii,[T] Flavonifractor_plautii,disease
-"CRC (Zeller, 2014)",1,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
-"CRC (Zeller, 2014)",4,T__Fusobacterium.nucleatum,[T] Fusobacterium_nucleatum,disease
-"CRC (Zeller, 2014)",4,T__Gemella.morbillorum,[T] Gemella_morbillorum,disease
-"CRC (Zeller, 2014)",3,T__Hafnia.alvei,[T] Hafnia_alvei,non-significant
-"CRC (Zeller, 2014)",3,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,disease
-"CRC (Zeller, 2014)",1,T__Lachnospira.eligens,[T] Lachnospira_eligens,healthy
-"CRC (Zeller, 2014)",4,T__Peptostreptococcus.stomatis,[T] Peptostreptococcus_stomatis,disease
-"CRC (Zeller, 2014)",1,T__Ruminococcus.bromii,[T] Ruminococcus_bromii,healthy
-"CRC (Zeller, 2014)",4,T__Solobacterium.moorei,[T] Solobacterium_moorei,non-significant
-"ESRD (Wang, 2020)",1,M__....Menthone,[M] ....Menthone,disease
-"ESRD (Wang, 2020)",2,M__.S..3.4.Dimethylpentanol,[M] .S..3.4.Dimethylpentanol,disease
-"ESRD (Wang, 2020)",1,M__1.3.Cyclohexadiene..5..1.5.dimethyl.4.hexenyl..2.methyl....S..R..S....,[M] 1.3.Cyclohexadiene..5..1.5.dimethyl.4.hexenyl..2.methyl....S..R..S....,disease
-"ESRD (Wang, 2020)",1,M__1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane,[M] 1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane,healthy
-"ESRD (Wang, 2020)",2,M__1.Hexadecanol,[M] 1.Hexadecanol,disease
-"ESRD (Wang, 2020)",2,M__13.Methyltetradecanal,[M] 13.Methyltetradecanal,non-significant
-"ESRD (Wang, 2020)",3,M__2.4.Imidazolidinedione..1.methyl.,[M] 2.4.Imidazolidinedione..1.methyl.,disease
-"ESRD (Wang, 2020)",1,M__2.Butanone..3.methyl.,[M] 2.Butanone..3.methyl.,disease
-"ESRD (Wang, 2020)",1,M__2.Heptanone..5.methyl.,[M] 2.Heptanone..5.methyl.,disease
-"ESRD (Wang, 2020)",1,M__2.Oxohexane,[M] 2.Oxohexane,disease
-"ESRD (Wang, 2020)",4,M__2.Tetradecanone,[M] 2.Tetradecanone,non-significant
-"ESRD (Wang, 2020)",2,M__5.Tetradecene...E..,[M] 5.Tetradecene...E..,non-significant
-"ESRD (Wang, 2020)",1,M__Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..,[M] Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..,disease
-"ESRD (Wang, 2020)",1,M__Benzene..1.ethyl.4.methyl.,[M] Benzene..1.ethyl.4.methyl.,healthy
-"ESRD (Wang, 2020)",1,M__Butanoic.acid..butyl.ester,[M] Butanoic.acid..butyl.ester,healthy
-"ESRD (Wang, 2020)",2,M__Cyclohexanol..4.ethenyl.4.methyl.3..1.methylethenyl..,[M] Cyclohexanol..4.ethenyl.4.methyl.3..1.methylethenyl..,non-significant
-"ESRD (Wang, 2020)",3,M__Dimethyl.sulfone,[M] Dimethyl.sulfone,non-significant
-"ESRD (Wang, 2020)",2,M__E.2.Hexadecacen.1.ol,[M] E.2.Hexadecacen.1.ol,non-significant
-"ESRD (Wang, 2020)",1,M__Ethanol..1..2.butoxyethoxy..,[M] Ethanol..1..2.butoxyethoxy..,healthy
-"ESRD (Wang, 2020)",2,M__Octadecane,[M] Octadecane,non-significant
-"ESRD (Wang, 2020)",2,M__Octadecanol,[M] Octadecanol,disease
-"ESRD (Wang, 2020)",1,M__Oxime...methoxy.phenyl._,[M] Oxime...methoxy.phenyl._,disease
-"ESRD (Wang, 2020)",1,M__Pentadecanal,[M] Pentadecanal,healthy
-"ESRD (Wang, 2020)",1,M__Pentanal..2.4.dimethyl.,[M] Pentanal..2.4.dimethyl.,disease
-"ESRD (Wang, 2020)",1,M__Propionic.acid,[M] Propionic.acid,healthy
-"ESRD (Wang, 2020)",1,M__Quinoline,[M] Quinoline,disease
-"ESRD (Wang, 2020)",3,M__Toluene,[M] Toluene,healthy
-"ESRD (Wang, 2020)",2,M__n.Pentadecanol,[M] n.Pentadecanol,non-significant
-"ESRD (Wang, 2020)",1,P__PWY.5484,[P] glycolysis II (from fructose 6-phosphate),disease
-"ESRD (Wang, 2020)",1,P__PWY.5676,[P] acetyl-CoA fermentation to butanoate,disease
-"ESRD (Wang, 2020)",1,P__PWY.5686_Cluster281,[P] UMP biosynthesis I [Clustered features],healthy
-"ESRD (Wang, 2020)",4,P__PWY.5941,[P] glycogen degradation II,non-significant
-"ESRD (Wang, 2020)",1,P__PWY.6385,[P] peptidoglycan biosynthesis III (mycobacteria),healthy
-"ESRD (Wang, 2020)",1,P__PWY.6897,[P] thiamine diphosphate salvage II,healthy
-"ESRD (Wang, 2020)",1,P__PWY.6901,[P] superpathway of glucose and xylose degradation,disease
-"ESRD (Wang, 2020)",2,P__PWY.6969,[P] TCA cycle V (2-oxoglutarate synthase),non-significant
-"ESRD (Wang, 2020)",3,P__PWY.7111,[P] pyruvate fermentation to isobutanol (engineered),disease
-"ESRD (Wang, 2020)",2,P__PWY.7220_Cluster354,[P] adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features],disease
-"ESRD (Wang, 2020)",1,P__PWY.7237,"[P] _myo_-, _chiro_- and _scyllo_-inositol degradation",healthy
-"ESRD (Wang, 2020)",1,P__PWY.7953,[P] UDP-MurNAc-pentapeptide biosynthesis III,healthy
-"ESRD (Wang, 2020)",1,P__PWY.8004,[P] Entner-Doudoroff pathway I,disease
-"ESRD (Wang, 2020)",3,P__PWY.I9,[P] L-cysteine biosynthesis VI (reverse transsulfuration),disease
-"ESRD (Wang, 2020)",2,P__TRNA.CHARGING.PWY,[P] tRNA charging,healthy
-"ESRD (Wang, 2020)",2,T__Alistipes_putredinis,[T] Alistipes_putredinis,non-significant
-"ESRD (Wang, 2020)",2,T__Barnesiella_intestinihominis,[T] Barnesiella_intestinihominis,non-significant
-"ESRD (Wang, 2020)",1,T__Coprococcus_eutactus,[T] Coprococcus_eutactus,healthy
-"ESRD (Wang, 2020)",1,T__Eggerthella_lenta,[T] Eggerthella_lenta,disease
-"ESRD (Wang, 2020)",1,T__Eubacterium_ramulus,[T] Eubacterium_ramulus,healthy
-"ESRD (Wang, 2020)",2,T__Eubacterium_siraeum,[T] Eubacterium_siraeum,disease
-"ESRD (Wang, 2020)",2,T__Faecalibacterium_prausnitzii,[T] Faecalibacterium_prausnitzii,non-significant
-"ESRD (Wang, 2020)",1,T__Flavonifractor_plautii,[T] Flavonifractor_plautii,disease
-"ESRD (Wang, 2020)",4,T__Fusicatenibacter_saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
-"ESRD (Wang, 2020)",1,T__Gordonibacter_pamelaeae,[T] Gordonibacter_pamelaeae,disease
-"ESRD (Wang, 2020)",1,T__Lachnospira_pectinoschiza,[T] Lachnospira_pectinoschiza,healthy
-"ESRD (Wang, 2020)",1,T__Megamonas_funiformis,[T] Megamonas_funiformis,healthy
-"ESRD (Wang, 2020)",1,T__Megamonas_hypermegale,[T] Megamonas_hypermegale,healthy
-"ESRD (Wang, 2020)",2,T__Odoribacter_splanchnicus,[T] Odoribacter_splanchnicus,non-significant
-"ESRD (Wang, 2020)",2,T__Oscillibacter_sp_57_20,[T] Oscillibacter_sp_57_20,healthy
-"ESRD (Wang, 2020)",1,T__Prevotella_copri,[T] Prevotella_copri,healthy
-"ESRD (Wang, 2020)",1,T__Roseburia_faecis,[T] Roseburia_faecis,healthy
-"ESRD (Wang, 2020)",1,T__Roseburia_intestinalis,[T] Roseburia_intestinalis,healthy
-"ESRD (Wang, 2020)",1,T__Ruminococcus_callidus,[T] Ruminococcus_callidus,healthy
-"ESRD (Wang, 2020)",1,T__Ruthenibacterium_lactatiformans,[T] Ruthenibacterium_lactatiformans,disease
-"ESRD (Wang, 2020)",3,T__Streptococcus_salivarius,[T] Streptococcus_salivarius,non-significant
-"ESRD (Wang, 2020)",1,T__Turicimonas_muris,[T] Turicimonas_muris,healthy
-"HT (Li, 2017)",1,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
-"HT (Li, 2017)",1,P__GALACT.GLUCUROCAT.PWY,[P] superpathway of hexuronide and hexuronate degradation,healthy
-"HT (Li, 2017)",1,P__GALACTUROCAT.PWY,[P] D-galacturonate degradation I,healthy
-"HT (Li, 2017)",1,P__GLUCUROCAT.PWY,[P] superpathway of &beta;-D-glucuronosides degradation,healthy
-"HT (Li, 2017)",1,P__PWY.6507,[P] 4-deoxy-L-_threo_-hex-4-enopyranuronate degradation,healthy
-"HT (Li, 2017)",1,P__PWY0.1296,[P] purine ribonucleosides degradation,healthy
-"HT (Li, 2017)",1,T__Bacteroides.intestinalis,[T] Bacteroides_intestinalis,healthy
-"HT (Li, 2017)",1,T__Faecalibacterium.prausnitzii,[T] Faecalibacterium_prausnitzii,non-significant
-"HT (Li, 2017)",1,T__Gemmiger.formicilis,[T] Gemmiger_formicilis,non-significant
-"HT (Li, 2017)",1,T__Holdemania.filiformis,[T] Holdemania_filiformis,healthy
-"HT (Li, 2017)",1,T__Prevotella.copri,[T] Prevotella_copri,non-significant
-"HT (Li, 2017)",1,T__Roseburia.hominis,[T] Roseburia_hominis,healthy
-"IGT (Karlsson, 2013)",1,P__GOLPDLCAT.PWY,"[P] SP of glycerol deg. to 1,3-propanediol",disease
-"IGT (Karlsson, 2013)",1,P__HOMOSER.METSYN.PWY,[P] L-methionine biosynthesis I,non-significant
-"IGT (Karlsson, 2013)",1,P__MET.SAM.PWY_Cluster214,[P] superpathway of _S_-adenosyl-L-methionine biosynthesis [Clustered features],non-significant
-"IGT (Karlsson, 2013)",2,P__NAGLIPASYN.PWY,[P] lipid IV[A] biosynthesis,non-significant
-"IGT (Karlsson, 2013)",3,P__P108.PWY,[P] pyruvate fermentation to propanoate I,non-significant
-"IGT (Karlsson, 2013)",1,P__PWY.5347,[P] superpathway of L-methionine biosynthesis (transsulfuration),non-significant
-"IGT (Karlsson, 2013)",4,P__PWY.5850_Cluster282,[P] superpathway of menaquinol-6 biosynthesis [Clustered features],healthy
-"IGT (Karlsson, 2013)",2,P__PWY.6147,[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis I,non-significant
-"IGT (Karlsson, 2013)",4,P__PWY.7254_Cluster351,[P] TCA cycle VII (acetate-producers) [Clustered features],non-significant
-"IGT (Karlsson, 2013)",2,P__PWY.7539,[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis III,non-significant
-"IGT (Karlsson, 2013)",2,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
-"IGT (Karlsson, 2013)",2,P__PYRIDOXSYN.PWY,[P] pyridoxal 5'-phosphate biosynthesis I,non-significant
-"IGT (Karlsson, 2013)",3,T__Alistipes.putredinis,[T] Alistipes_putredinis,non-significant
-"IGT (Karlsson, 2013)",1,T__Anaerostipes.hadrus,[T] Anaerostipes_hadrus,non-significant
-"IGT (Karlsson, 2013)",2,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
-"IGT (Karlsson, 2013)",2,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
-"IGT (Karlsson, 2013)",2,T__Bacteroides.xylanisolvens,[T] Bacteroides_xylanisolvens,non-significant
-"IGT (Karlsson, 2013)",3,T__Butyricimonas.synergistica,[T] Butyricimonas_synergistica,non-significant
-"IGT (Karlsson, 2013)",4,T__Clostridium.disporicum,[T] Clostridium_disporicum,non-significant
-"IGT (Karlsson, 2013)",1,T__Dorea.formicigenerans,[T] Dorea_formicigenerans,non-significant
-"IGT (Karlsson, 2013)",4,T__Enterocloster.asparagiformis,[T] Enterocloster_asparagiformis,non-significant
-"IGT (Karlsson, 2013)",4,T__Escherichia.coli,[T] Escherichia_coli,non-significant
-"IGT (Karlsson, 2013)",2,T__Parabacteroides.distasonis,[T] Parabacteroides_distasonis,non-significant
-"ME-CFS (Nagy-Szakal, 2017)",1,P__P163.PWY,[P] L-lysine fermentation to acetate and butanoate,disease
-"ME-CFS (Nagy-Szakal, 2017)",1,P__PWY.5676,[P] acetyl-CoA fermentation to butanoate,non-significant
-"ME-CFS (Nagy-Szakal, 2017)",1,P__PWY.6588,[P] pyruvate fermentation to acetone,disease
-"ME-CFS (Nagy-Szakal, 2017)",1,T__Anaerotruncus.colihominis,[T] Anaerotruncus_colihominis,non-significant
-"ME-CFS (Nagy-Szakal, 2017)",1,T__Bilophila.wadsworthia,[T] Bilophila_wadsworthia,non-significant
-"ME-CFS (Nagy-Szakal, 2017)",1,T__Flavonifractor.plautii,[T] Flavonifractor_plautii,disease
-"ME-CFS (Nagy-Szakal, 2017)",1,T__Intestinimonas.butyriciproducens,[T] Intestinimonas_butyriciproducens,disease
-MS (MetaCardis),1,P__M00079,[P] Keratan sulfate degradation,non-significant
-MS (MetaCardis),2,P__M00127,"[P] Thiamine biosynthesis, prokaryotes, AIR (+ DXP/tyrosine) => TMP/TPP",non-significant
-MS (MetaCardis),3,P__M00189,[P] M00189 DEPRECATED PATHWAY/MODULE,disease
-MS (MetaCardis),2,P__M00207,[P] M00207 DEPRECATED PATHWAY/MODULE,healthy
-MS (MetaCardis),1,P__M00376,[P] 3-Hydroxypropionate bi-cycle,non-significant
-MS (MetaCardis),1,P__M00485,[P] M00485 DEPRECATED PATHWAY/MODULE,non-significant
-MS (MetaCardis),3,P__M00566,[P] M00566 DEPRECATED PATHWAY/MODULE,non-significant
-MS (MetaCardis),1,P__M00698,"[P] Multidrug resistance, efflux pump BpeEF-OprC",non-significant
-MS (MetaCardis),1,S__SERUM_ABS_2_oleoylglycerol,[S] SERUM_ABS_2_oleoylglycerol,disease
-MS (MetaCardis),1,S__SERUM_ABS_D_glucose_1,[S] SERUM_ABS_D_glucose_1,disease
-MS (MetaCardis),1,S__SERUM_ABS_D_mannose_1,[S] SERUM_ABS_D_mannose_1,disease
-MS (MetaCardis),1,S__SERUM_ABS_alpha_ketoglutaric_acid,[S] SERUM_ABS_alpha_ketoglutaric_acid,disease
-MS (MetaCardis),2,S__SERUM_ABS_citric_acid,[S] SERUM_ABS_citric_acid,non-significant
-MS (MetaCardis),1,S__SERUM_ABS_lactamide_1,[S] SERUM_ABS_lactamide_1,disease
-MS (MetaCardis),2,S__SERUM_ABS_methyl_linolenate,[S] SERUM_ABS_methyl_linolenate,non-significant
-MS (MetaCardis),2,S__SERUM_ABS_p_cresol,[S] SERUM_ABS_p_cresol,non-significant
-MS (MetaCardis),2,S__SERUM_ABS_phytanic_acid,[S] SERUM_ABS_phytanic_acid,non-significant
-MS (MetaCardis),1,S__SERUM_ABS_pyruvic_acid,[S] SERUM_ABS_pyruvic_acid,disease
-MS (MetaCardis),2,S__SERUM_NMR_ABSOLUTE_3.Hydroxybutyric_acid,[S] SERUM_NMR_ABSOLUTE_3.Hydroxybutyric_acid,non-significant
-MS (MetaCardis),1,S__SERUM_NMR_ABSOLUTE_Glutamic_acid,[S] SERUM_NMR_ABSOLUTE_Glutamic_acid,disease
-MS (MetaCardis),1,S__SERUM_NMR_ABSOLUTE_Isoleucine,[S] SERUM_NMR_ABSOLUTE_Isoleucine,disease
-MS (MetaCardis),1,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,[S] SERUM_NMR_ABSOLUTE_Pyruvic_acid,disease
-MS (MetaCardis),1,T__Bacteroides_dorei_vulgatus,[T] Bacteroides_dorei_vulgatus,non-significant
-MS (MetaCardis),1,T__Bilophila_wadsworthia,[T] Bilophila_wadsworthia,disease
-MS (MetaCardis),1,T__Clostridium_bolteae,[T] Clostridium_bolteae,non-significant
-MS (MetaCardis),3,T__Collinsella_aerofaciens,[T] Collinsella_aerofaciens,disease
-MS (MetaCardis),3,T__Coprococcus_catus,[T] Coprococcus_catus,non-significant
-MS (MetaCardis),3,T__Dorea_formicigenerans,[T] Dorea_formicigenerans,non-significant
-MS (MetaCardis),3,T__Eubacterium_hallii,[T] Eubacterium_hallii,disease
-MS (MetaCardis),1,T__Parabacteroides_merdae,[T] Parabacteroides_merdae,disease
-MS (MetaCardis),2,T__Prevotella_copri,[T] Prevotella_copri,non-significant
-MS (MetaCardis),1,T__Pseudoflavonifractor_capillosus,[T] Pseudoflavonifractor_capillosus,disease
-MS (MetaCardis),1,T__Ruminococcus_sp__5_1_39BFAA,[T] Ruminococcus_sp__5_1_39BFAA,disease
-MS (MetaCardis),2,T__motu_linkage_group_103,[T] motu_linkage_group_103,healthy
-MS (MetaCardis),2,T__motu_linkage_group_120,[T] motu_linkage_group_120,non-significant
-MS (MetaCardis),2,T__motu_linkage_group_206,[T] motu_linkage_group_206,non-significant
-MS (MetaCardis),1,T__motu_linkage_group_349,[T] motu_linkage_group_349,disease
-MS (MetaCardis),1,T__motu_linkage_group_456,[T] motu_linkage_group_456,disease
-MS (MetaCardis),2,T__motu_linkage_group_646,[T] motu_linkage_group_646,healthy
-T2D (MetaCardis),1,P__M00009,"[P] Citrate cycle (TCA cycle, Krebs cycle)",disease
-T2D (MetaCardis),1,P__M00035,[P] Methionine degradation,healthy
-T2D (MetaCardis),1,P__M00168,"[P] CAM (Crassulacean acid metabolism), dark",disease
-T2D (MetaCardis),1,P__M00171,"[P] C4-dicarboxylic acid cycle, NAD - malic enzyme type",healthy
-T2D (MetaCardis),2,P__M00185,[P] M00185 DEPRECATED PATHWAY/MODULE,non-significant
-T2D (MetaCardis),1,P__M00189,[P] M00189 DEPRECATED PATHWAY/MODULE,disease
-T2D (MetaCardis),3,P__M00198,[P] M00198 DEPRECATED PATHWAY/MODULE,non-significant
-T2D (MetaCardis),3,P__M00275,[P] M00275 DEPRECATED PATHWAY/MODULE,disease
-T2D (MetaCardis),3,P__M00276,[P] M00276 DEPRECATED PATHWAY/MODULE,disease
-T2D (MetaCardis),4,P__M00373,[P] Ethylmalonyl pathway,non-significant
-T2D (MetaCardis),1,P__M00429,[P] M00429 DEPRECATED PATHWAY/MODULE,healthy
-T2D (MetaCardis),4,P__M00568,"[P] Catechol ortho-cleavage, catechol => 3-oxoadipate",non-significant
-T2D (MetaCardis),4,P__M00641,"[P] Multidrug resistance, efflux pump MexEF-OprN",non-significant
-T2D (MetaCardis),1,S__SERUM_ABS_D_glucose_1,[S] SERUM_ABS_D_glucose_1,disease
-T2D (MetaCardis),1,S__SERUM_ABS_L_P_lactic_acid,[S] SERUM_ABS_L_P_lactic_acid,disease
-T2D (MetaCardis),1,S__SERUM_ABS_indolepropionic_acid,[S] SERUM_ABS_indolepropionic_acid,healthy
-T2D (MetaCardis),1,S__SERUM_ABS_lactamide_1,[S] SERUM_ABS_lactamide_1,disease
-T2D (MetaCardis),1,S__SERUM_ABS_lactose_1,[S] SERUM_ABS_lactose_1,disease
-T2D (MetaCardis),1,S__SERUM_ABS_p_cresol,[S] SERUM_ABS_p_cresol,healthy
-T2D (MetaCardis),1,S__SERUM_NMR_ABSOLUTE_Isoleucine,[S] SERUM_NMR_ABSOLUTE_Isoleucine,disease
-T2D (MetaCardis),2,S__SERUM_TMAO_TMA,[S] SERUM_TMAO_TMA,non-significant
-T2D (MetaCardis),1,T__Bacteroides_dorei_vulgatus,[T] Bacteroides_dorei_vulgatus,disease
-T2D (MetaCardis),4,T__Bacteroides_uniformis,[T] Bacteroides_uniformis,non-significant
-T2D (MetaCardis),1,T__Bilophila_wadsworthia,[T] Bilophila_wadsworthia,disease
-T2D (MetaCardis),1,T__Clostridium_bolteae,[T] Clostridium_bolteae,disease
-T2D (MetaCardis),3,T__Clostridium_ramosum,[T] Clostridium_ramosum,disease
-T2D (MetaCardis),3,T__Clostridium_sp__HGF2,[T] Clostridium_sp__HGF2,non-significant
-T2D (MetaCardis),3,T__Coprococcus_catus,[T] Coprococcus_catus,non-significant
-T2D (MetaCardis),2,T__Eubacterium_hallii,[T] Eubacterium_hallii,non-significant
-T2D (MetaCardis),2,T__Faecalibacterium_prausnitzii,[T] Faecalibacterium_prausnitzii,non-significant
-T2D (MetaCardis),4,T__Prevotella_copri,[T] Prevotella_copri,non-significant
-T2D (MetaCardis),2,T__Ruminococcus_bromii,[T] Ruminococcus_bromii,non-significant
-T2D (MetaCardis),3,T__Ruminococcus_sp__SR1_5,[T] Ruminococcus_sp__SR1_5,non-significant
-T2D (MetaCardis),3,T__X_Ruminococcus__torques,[T] Ruminococcus_torques,disease
-T2D (MetaCardis),1,T__motu_linkage_group_103,[T] motu_linkage_group_103,healthy
-T2D (MetaCardis),2,T__motu_linkage_group_104,[T] motu_linkage_group_104,non-significant
-T2D (MetaCardis),1,T__motu_linkage_group_212,[T] motu_linkage_group_212,healthy
-T2D (MetaCardis),1,T__motu_linkage_group_307,[T] motu_linkage_group_307,healthy
-T2D (MetaCardis),2,T__motu_linkage_group_310,[T] motu_linkage_group_310,non-significant
-T2D (MetaCardis),1,T__motu_linkage_group_517,[T] motu_linkage_group_517,healthy
-T2D (MetaCardis),1,T__motu_linkage_group_551,[T] motu_linkage_group_551,disease
-T2D (MetaCardis),3,T__motu_linkage_group_624,[T] motu_linkage_group_624,non-significant
-"Pre-HT (Li, 2017)",1,P__ANAEROFRUCAT.PWY,[P] homolactic fermentation,non-significant
-"Pre-HT (Li, 2017)",1,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster137,[P] catechol degradation to &beta;-ketoadipate [Clustered features],non-significant
-"Pre-HT (Li, 2017)",2,P__CENTFERM.PWY_Cluster138,[P] pyruvate fermentation to butanoate [Clustered features],healthy
-"Pre-HT (Li, 2017)",1,P__GLYCOLYSIS,[P] glycolysis I (from glucose 6-phosphate),non-significant
-"Pre-HT (Li, 2017)",1,P__GOLPDLCAT.PWY,"[P] SP of glycerol deg. to 1,3-propanediol",non-significant
-"Pre-HT (Li, 2017)",1,P__P105.PWY,[P] TCA cycle IV (2-oxoglutarate decarboxylase),non-significant
-"Pre-HT (Li, 2017)",1,P__P221.PWY,[P] octane oxidation,non-significant
-"Pre-HT (Li, 2017)",1,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster213,[P] protocatechuate degradation II [Clustered features],non-significant
-"Pre-HT (Li, 2017)",1,P__PWY.3801,[P] sucrose degradation II (sucrose synthase),non-significant
-"Pre-HT (Li, 2017)",1,P__PWY.5484,[P] glycolysis II (from fructose 6-phosphate),non-significant
-"Pre-HT (Li, 2017)",1,P__PWY.6892,[P] Thiazole component - thiamine diphosphate biosynthesis I,non-significant
-"Pre-HT (Li, 2017)",1,P__PWY.7013,"[P] (S)-propane-1,2-diol degradation",non-significant
-"Pre-HT (Li, 2017)",2,P__PWY.7209,[P] superpathway of pyrimidine ribonucleosides degradation,non-significant
-"Pre-HT (Li, 2017)",1,P__PWY.7254,[P] TCA cycle VII (acetate-producers),non-significant
-"Pre-HT (Li, 2017)",1,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
-"Pre-HT (Li, 2017)",1,P__REDCITCYC,[P] TCA cycle VI (Helicobacter),non-significant
-"Pre-HT (Li, 2017)",1,P__THISYN.PWY,[P] SP of thiamine diphosphate biosynthesis I,non-significant
-"Pre-HT (Li, 2017)",2,T__Actinomyces.sp..ICM47,[T] Actinomyces sp ICM47,non-significant
-"Pre-HT (Li, 2017)",1,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
-"Pre-HT (Li, 2017)",2,T__Bifidobacterium.pseudocatenulatum,[T] Bifidobacterium_pseudocatenulatum,non-significant
-"Pre-HT (Li, 2017)",1,T__Bilophila.wadsworthia,[T] Bilophila_wadsworthia,healthy
-"Pre-HT (Li, 2017)",1,T__Clostridium.sp..CAG.58,[T] Clostridium sp CAG 58,non-significant
-"Pre-HT (Li, 2017)",1,T__Firmicutes.bacterium.CAG.83,[T] Firmicutes bacterium CAG 83,non-significant
-"Pre-HT (Li, 2017)",1,T__Holdemania.filiformis,[T] Holdemania_filiformis,healthy
-"Pre-HT (Li, 2017)",2,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,non-significant
-"Pre-HT (Li, 2017)",1,T__Klebsiella.pneumoniae,[T] Klebsiella_pneumoniae,non-significant
-"Pre-HT (Li, 2017)",1,T__Klebsiella.variicola,[T] Klebsiella_variicola,non-significant
-"Pre-HT (Li, 2017)",1,T__Megasphaera.elsdenii,[T] Megasphaera_elsdenii,non-significant
-"Pre-HT (Li, 2017)",1,T__Prevotella.copri,[T] Prevotella_copri,non-significant
-"Pre-HT (Li, 2017)",2,T__Roseburia.inulinivorans,[T] Roseburia_inulinivorans,non-significant
-"Schizofrenia (Zhu, 2020)",1,P__DAPLYSINESYN.PWY,[P] L-lysine biosynthesis I,non-significant
-"Schizofrenia (Zhu, 2020)",2,P__FASYN.INITIAL.PWY,[P] superpathway of fatty acid biosynthesis initiation,non-significant
-"Schizofrenia (Zhu, 2020)",1,P__NONMEVIPP.PWY,[P] methylerythritol phosphate pathway I,disease
-"Schizofrenia (Zhu, 2020)",1,P__P124.PWY,[P] glucose fermentation to lactic acid (Bifidobacteria),disease
-"Schizofrenia (Zhu, 2020)",1,P__PWY.5121,[P] superpathway of geranylgeranyl diphosphate biosynthesis II (via MEP),disease
-"Schizofrenia (Zhu, 2020)",2,P__PWY.5659,[P] GDP-mannose biosynthesis,non-significant
-"Schizofrenia (Zhu, 2020)",3,P__PWY.5941,[P] glycogen degradation II,non-significant
-"Schizofrenia (Zhu, 2020)",1,P__PWY.622,[P] starch biosynthesis,disease
-"Schizofrenia (Zhu, 2020)",3,P__PWY.6478,[P] GDP-D-_glycero_-&alpha;-D-_manno_-heptose biosynthesis,non-significant
-"Schizofrenia (Zhu, 2020)",3,P__PWY.6572,[P] chondroitin sulfate degradation I (bacterial),non-significant
-"Schizofrenia (Zhu, 2020)",1,P__PWY.7209,[P] superpathway of pyrimidine ribonucleosides degradation,disease
-"Schizofrenia (Zhu, 2020)",1,P__PWY.7560,[P] methylerythritol phosphate pathway II,disease
-"Schizofrenia (Zhu, 2020)",3,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
-"Schizofrenia (Zhu, 2020)",1,T__.Clostridium..innocuum,[T] Clostridium innocuum,disease
-"Schizofrenia (Zhu, 2020)",3,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
-"Schizofrenia (Zhu, 2020)",3,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,non-significant
-"Schizofrenia (Zhu, 2020)",1,T__Bifidobacterium.bifidum,[T] Bifidobacterium_bifidum,disease
-"Schizofrenia (Zhu, 2020)",1,T__Bifidobacterium.longum,[T] Bifidobacterium_longum,disease
-"Schizofrenia (Zhu, 2020)",1,T__Bifidobacterium.pseudocatenulatum,[T] Bifidobacterium_pseudocatenulatum,non-significant
-"Schizofrenia (Zhu, 2020)",1,T__Dorea.formicigenerans,[T] Dorea_formicigenerans,disease
-"Schizofrenia (Zhu, 2020)",1,T__Eggerthella.lenta,[T] Eggerthella_lenta,non-significant
-"Schizofrenia (Zhu, 2020)",3,T__Flavonifractor.plautii,[T] Flavonifractor_plautii,disease
-"Schizofrenia (Zhu, 2020)",1,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,disease
-"Schizofrenia (Zhu, 2020)",2,T__Phocaeicola.vulgatus,[T] Phocaeicola_vulgatus,healthy
-"Schizofrenia (Zhu, 2020)",2,T__Prevotella.copri,[T] Prevotella_copri,non-significant
-"Schizofrenia (Zhu, 2020)",1,T__Ruthenibacterium.lactatiformans,[T] Ruthenibacterium_lactatiformans,disease
-"STH (Rubel, 2020)",1,P__ARGSYN.PWY_Cluster112,[P] L-arginine biosynthesis I (via L-ornithine) [Clustered features],non-significant
-"STH (Rubel, 2020)",1,P__ARGSYNBSUB.PWY,[P] L-arginine biosynthesis II (acetyl cycle),non-significant
-"STH (Rubel, 2020)",2,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
-"STH (Rubel, 2020)",3,P__DENOVOPURINE2.PWY,[P] superpathway of purine nucleotides _de novo_ biosynthesis II,disease
-"STH (Rubel, 2020)",4,P__GALACTARDEG.PWY_Cluster138,[P] D-galactarate degradation I [Clustered features],disease
-"STH (Rubel, 2020)",4,P__GLUCARDEG.PWY,[P] _D_-glucarate degradation I,non-significant
-"STH (Rubel, 2020)",4,P__GLUCOSE1PMETAB.PWY,[P] glucose and glucose-1-phosphate degradation,non-significant
-"STH (Rubel, 2020)",4,P__GLYOXYLATE.BYPASS,[P] glyoxylate cycle,disease
-"STH (Rubel, 2020)",4,P__P461.PWY,"[P] hexitol fermentation to lactate, formate, ethanol and acetate",disease
-"STH (Rubel, 2020)",2,P__PENTOSE.P.PWY,[P] pentose phosphate pathway,non-significant
-"STH (Rubel, 2020)",2,P__PWY.2941,[P] L-lysine biosynthesis II,healthy
-"STH (Rubel, 2020)",1,P__PWY.4981,[P] L-proline biosynthesis II (from arginine),non-significant
-"STH (Rubel, 2020)",2,P__PWY.5659,[P] GDP-mannose biosynthesis,healthy
-"STH (Rubel, 2020)",2,P__PWY.5941,[P] glycogen degradation II,healthy
-"STH (Rubel, 2020)",3,P__PWY.7187,[P] pyrimidine deoxyribonucleotides _de novo_ biosynthesis II,disease
-"STH (Rubel, 2020)",2,P__PWY.7323,[P] SP of GDP-mannose-derived O-antigen ...,non-significant
-"STH (Rubel, 2020)",3,P__PWY.841,[P] SP of purine nucleotides (de novo) biosynthesis I,disease
-"STH (Rubel, 2020)",1,P__PWY0.1296,[P] purine ribonucleosides degradation,non-significant
-"STH (Rubel, 2020)",3,P__PWY0.162,[P] superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis,disease
-"STH (Rubel, 2020)",1,P__PYRIDNUCSYN.PWY,[P] NAD _de novo_ biosynthesis I,non-significant
-"STH (Rubel, 2020)",2,P__TEICHOICACID.PWY,[P] poly(glycerol phosphate) wall teichoic acid biosynthesis,healthy
-"STH (Rubel, 2020)",2,T__Alistipes.putredinis,[T] Alistipes_putredinis,healthy
-"STH (Rubel, 2020)",2,T__Alistipes.shahii,[T] Alistipes_shahii,healthy
-"STH (Rubel, 2020)",2,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,healthy
-"STH (Rubel, 2020)",2,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,healthy
-"STH (Rubel, 2020)",2,T__Bacteroides.xylanisolvens,[T] Bacteroides_xylanisolvens,healthy
-"STH (Rubel, 2020)",4,T__Clostridium.sp..CAG.167,[T] Clostridium sp CAG 167,healthy
-"STH (Rubel, 2020)",4,T__Escherichia.coli,[T] Escherichia_coli,disease
-"STH (Rubel, 2020)",1,T__Firmicutes.bacterium.CAG.110,[T] Firmicutes bacterium CAG 110,disease
-"STH (Rubel, 2020)",2,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
-"STH (Rubel, 2020)",4,T__Klebsiella.pneumoniae,[T] Klebsiella_pneumoniae,non-significant
-"STH (Rubel, 2020)",4,T__Klebsiella.quasipneumoniae,[T] Klebsiella_quasipneumoniae,non-significant
-"STH (Rubel, 2020)",4,T__Klebsiella.variicola,[T] Klebsiella_variicola,non-significant
-"STH (Rubel, 2020)",3,T__Lachnospira.eligens,[T] Lachnospira_eligens,disease
-"STH (Rubel, 2020)",1,T__Oscillibacter.sp..57_20,[T] Oscillibacter sp 57_20,non-significant
-"STH (Rubel, 2020)",1,T__Oscillibacter.sp..CAG.241,[T] Oscillibacter sp CAG 241,non-significant
-"STH (Rubel, 2020)",3,T__Phascolarctobacterium.succinatutens,[T] Phascolarctobacterium_succinatutens,disease
-"STH (Rubel, 2020)",2,T__Phocaeicola.vulgatus,[T] Phocaeicola_vulgatus,healthy
-"STH (Rubel, 2020)",3,T__Prevotella.copri,[T] Prevotella_copri,non-significant
-"STH (Rubel, 2020)",3,T__Prevotella.sp..CAG.1092,[T] Prevotella sp CAG 1092,disease
-"STH (Rubel, 2020)",3,T__Treponema.succinifaciens,[T] Treponema_succinifaciens,disease
-"T2D (Karlsson, 2013)",1,P__METHGLYUT.PWY,[P] superpathway of methylglyoxal degradation,non-significant
-"T2D (Karlsson, 2013)",2,P__NAGLIPASYN.PWY,[P] lipid IV[A] biosynthesis,non-significant
-"T2D (Karlsson, 2013)",3,P__P108.PWY,[P] pyruvate fermentation to propanoate I,non-significant
-"T2D (Karlsson, 2013)",2,P__PHOSLIPSYN.PWY,[P] SP of phospholipid biosynthesis III (E. coli),non-significant
-"T2D (Karlsson, 2013)",2,P__PWY.1269,[P] CMP-3-deoxy-D-manno-octulosonate biosynthesis,non-significant
-"T2D (Karlsson, 2013)",3,P__PWY.4984,[P] urea cycle,non-significant
-"T2D (Karlsson, 2013)",1,P__PWY.5656,[P] mannosylglycerate biosynthesis I,non-significant
-"T2D (Karlsson, 2013)",2,P__PWY.5941,[P] glycogen degradation II,non-significant
-"T2D (Karlsson, 2013)",2,P__PWY.6147_Cluster299,[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis I [Clustered features],non-significant
-"T2D (Karlsson, 2013)",2,P__PWY.6572,[P] chondroitin sulfate degradation I (bacterial),non-significant
-"T2D (Karlsson, 2013)",4,P__PWY.6892,[P] Thiazole component - thiamine diphosphate biosynthesis I,non-significant
-"T2D (Karlsson, 2013)",2,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
-"T2D (Karlsson, 2013)",2,P__PYRIDOXSYN.PWY,[P] pyridoxal 5'-phosphate biosynthesis I,non-significant
-"T2D (Karlsson, 2013)",2,T__Adlercreutzia.equolifaciens,[T] Adlercreutzia_equolifaciens,non-significant
-"T2D (Karlsson, 2013)",3,T__Alistipes.putredinis,[T] Alistipes_putredinis,non-significant
-"T2D (Karlsson, 2013)",4,T__Alistipes.shahii,[T] Alistipes_shahii,healthy
-"T2D (Karlsson, 2013)",2,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
-"T2D (Karlsson, 2013)",2,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,non-significant
-"T2D (Karlsson, 2013)",2,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
-"T2D (Karlsson, 2013)",4,T__Barnesiella.intestinihominis,[T] Barnesiella_intestinihominis,non-significant
-"T2D (Karlsson, 2013)",4,T__Blautia.wexlerae,[T] Blautia_wexlerae,non-significant
-"T2D (Karlsson, 2013)",1,T__Escherichia.coli,[T] Escherichia_coli,non-significant
-"T2D (Karlsson, 2013)",1,T__Faecalitalea.cylindroides,[T] Faecalitalea_cylindroides,non-significant
-"T2D (Karlsson, 2013)",4,T__Odoribacter.splanchnicus,[T] Odoribacter_splanchnicus,non-significant
-"T2D (Karlsson, 2013)",2,T__Oscillibacter.sp..57_20,[T] Oscillibacter sp 57_20,non-significant
-"T2D (Karlsson, 2013)",2,T__Paraprevotella.xylaniphila,[T] Paraprevotella_xylaniphila,non-significant
-"UC (Franzosa, 2019)",1,M__C18.neg_Cluster_0079..undecanedionate,[M] Undecanedionate,healthy
-"UC (Franzosa, 2019)",1,M__C18.neg_Cluster_2021..urobilin,[M] Urobilin (II),healthy
-"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0036..glycerate,[M] HILIC.neg_Cluster_0036..glycerate,non-significant
-"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0079..4.hydroxybenzaldehyde,[M] HILIC.neg_Cluster_0079..4.hydroxybenzaldehyde,non-significant
-"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0082..nicotinate,[M] Nicotinic acid (II),healthy
-"UC (Franzosa, 2019)",3,M__HILIC.neg_Cluster_0133..4.nitrophenol,[M] 4-nitrophenol,disease
-"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate,[M] 3-methyladipate / pimelate,healthy
-"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_0441..sebacate,[M] Sebacate,healthy
-"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0552..pantothete,[M] HILIC.neg_Cluster_0552..pantothete,healthy
-"UC (Franzosa, 2019)",2,M__HILIC.neg_Cluster_0562..ethyl.glucuronide,[M] HILIC.neg_Cluster_0562..ethyl.glucuronide,disease
-"UC (Franzosa, 2019)",1,M__HILIC.neg_Cluster_1303..lithocholate,[M] HILIC.neg_Cluster_1303..lithocholate,healthy
-"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0062..nicotinic.acid,[M] Nicotinic acid (I),healthy
-"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0090..creatine,[M] HILIC.pos_Cluster_0090..creatine,disease
-"UC (Franzosa, 2019)",2,M__HILIC.pos_Cluster_0134..proline.betaine,[M] HILIC.pos_Cluster_0134..proline.betaine,non-significant
-"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0184..pyridoxamine,[M] Pyridoxamine (I),healthy
-"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0268..pyridoxamine,[M] Pyridoxamine (II),healthy
-"UC (Franzosa, 2019)",2,M__HILIC.pos_Cluster_0295..arginine,[M] HILIC.pos_Cluster_0295..arginine,non-significant
-"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.,[M] THBC-CA,healthy
-"UC (Franzosa, 2019)",2,M__HILIC.pos_Cluster_0524..N.acetyl.L.arginine,[M] N-acetyl-L-arginine,healthy
-"UC (Franzosa, 2019)",1,M__HILIC.pos_Cluster_2093..urobilin.,[M] Urobilin (I),healthy
-"UC (Franzosa, 2019)",1,P__1CMET2.PWY,[P] folate transformations III (_E. coli_),healthy
-"UC (Franzosa, 2019)",2,P__ANAEROFRUCAT.PWY,[P] homolactic fermentation,disease
-"UC (Franzosa, 2019)",1,P__COMPLETE.ARO.PWY,[P] superpathway of aromatic amino acid biosynthesis,healthy
-"UC (Franzosa, 2019)",2,P__FASYN.INITIAL.PWY,[P] superpathway of fatty acid biosynthesis initiation,non-significant
-"UC (Franzosa, 2019)",2,P__GLYCOLYSIS,[P] glycolysis I (from glucose 6-phosphate),disease
-"UC (Franzosa, 2019)",1,P__HEMESYN2.PWY,[P] heme _b_ biosynthesis II (oxygen-independent),non-significant
-"UC (Franzosa, 2019)",2,P__LACTOSECAT.PWY,[P] lactose and galactose degradation I,non-significant
-"UC (Franzosa, 2019)",1,P__METHGLYUT.PWY,[P] superpathway of methylglyoxal degradation,disease
-"UC (Franzosa, 2019)",4,P__NONOXIPENT.PWY,[P] pentose phosphate pathway (non-oxidative branch) I,non-significant
-"UC (Franzosa, 2019)",2,P__OANTIGEN.PWY,[P] _O_-antigen building blocks biosynthesis (_E. coli_),non-significant
-"UC (Franzosa, 2019)",3,P__P108.PWY,[P] pyruvate fermentation to propanoate I,disease
-"UC (Franzosa, 2019)",2,P__P124.PWY,[P] glucose fermentation to lactic acid (Bifidobacteria),non-significant
-"UC (Franzosa, 2019)",1,P__PANTOSYN.PWY,[P] superpathway of coenzyme A biosynthesis I (bacteria),healthy
-"UC (Franzosa, 2019)",3,P__PENTOSE.P.PWY,[P] pentose phosphate pathway,disease
-"UC (Franzosa, 2019)",2,P__PWY.2941,[P] L-lysine biosynthesis II,non-significant
-"UC (Franzosa, 2019)",2,P__PWY.5484,[P] glycolysis II (from fructose 6-phosphate),disease
-"UC (Franzosa, 2019)",3,P__PWY.5677,[P] succinate fermentation to butanoate,non-significant
-"UC (Franzosa, 2019)",4,P__PWY.5695,[P] inosine 5'-phosphate degradation,non-significant
-"UC (Franzosa, 2019)",4,P__PWY.5941,[P] glycogen degradation II,non-significant
-"UC (Franzosa, 2019)",4,P__PWY.5973,[P] cis-vaccenate biosynthesis,non-significant
-"UC (Franzosa, 2019)",1,P__PWY.6163,[P] chorismate biosynthesis from 3-dehydroquinate,healthy
-"UC (Franzosa, 2019)",2,P__PWY.622,[P] starch biosynthesis,non-significant
-"UC (Franzosa, 2019)",4,P__PWY.7663,[P] gondoate biosynthesis (anaerobic),non-significant
-"UC (Franzosa, 2019)",4,P__PWY.8178,[P] pentose phosphate pathway (non-oxidative branch) II,non-significant
-"UC (Franzosa, 2019)",2,P__PWY.8187,[P] L-arginine degradation XIII (reductive Stickland reaction),non-significant
-"UC (Franzosa, 2019)",1,P__PWY0.1298,[P] superpathway of pyrimidine deoxyribonucleosides degradation,disease
-"UC (Franzosa, 2019)",2,P__PWY0.162,[P] superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis,non-significant
-"UC (Franzosa, 2019)",2,P__SER.GLYSYN.PWY,[P] superpathway of L-serine and glycine biosynthesis I,non-significant
-"UC (Franzosa, 2019)",2,T__Actinomyces_odontolyticus,[T] Actinomyces_odontolyticus,non-significant
-"UC (Franzosa, 2019)",2,T__Actinomyces_oris,[T] Actinomyces_oris,non-significant
-"UC (Franzosa, 2019)",4,T__Alistipes_putredinis,[T] Alistipes_putredinis,non-significant
-"UC (Franzosa, 2019)",1,T__Alistipes_shahii,[T] Alistipes_shahii,healthy
-"UC (Franzosa, 2019)",2,T__Bifidobacterium_adolescentis,[T] Bifidobacterium_adolescentis,non-significant
-"UC (Franzosa, 2019)",2,T__Bifidobacterium_longum,[T] Bifidobacterium_longum,non-significant
-"UC (Franzosa, 2019)",2,T__Blautia_hydrogenotrophica,[T] Blautia_hydrogenotrophica,non-significant
-"UC (Franzosa, 2019)",3,T__Blautia_producta,[T] Blautia_producta,disease
-"UC (Franzosa, 2019)",3,T__Blautia_wexlerae,[T] Blautia_wexlerae,non-significant
-"UC (Franzosa, 2019)",2,T__Clostridium_leptum,[T] Clostridium_leptum,disease
-"UC (Franzosa, 2019)",3,T__Clostridium_spiroforme,[T] Clostridium_spiroforme,non-significant
-"UC (Franzosa, 2019)",2,T__Collinsella_aerofaciens,[T] Collinsella_aerofaciens,non-significant
-"UC (Franzosa, 2019)",2,T__Collinsella_massiliensis,[T] Collinsella_massiliensis,non-significant
-"UC (Franzosa, 2019)",2,T__Collinsella_stercoris,[T] Collinsella_stercoris,non-significant
-"UC (Franzosa, 2019)",1,T__Dorea_formicigenerans,[T] Dorea_formicigenerans,healthy
-"UC (Franzosa, 2019)",3,T__Dorea_sp_CAG_317,[T] Dorea_sp_CAG_317,disease
-"UC (Franzosa, 2019)",2,T__Eggerthella_lenta,[T] Eggerthella_lenta,non-significant
-"UC (Franzosa, 2019)",1,T__Escherichia_coli,[T] Escherichia_coli,non-significant
-"UC (Franzosa, 2019)",1,T__Eubacterium_hallii,[T] Eubacterium_hallii,healthy
-"UC (Franzosa, 2019)",3,T__Flavonifractor_plautii,[T] Flavonifractor_plautii,disease
-"UC (Franzosa, 2019)",1,T__Fusicatenibacter_saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
-"UC (Franzosa, 2019)",1,T__Gemmiger_formicilis,[T] Gemmiger_formicilis,healthy
-"UC (Franzosa, 2019)",4,T__Odoribacter_splanchnicus,[T] Odoribacter_splanchnicus,non-significant
-"UC (Franzosa, 2019)",1,T__Roseburia_hominis,[T] Roseburia_hominis,healthy
-"UC (Franzosa, 2019)",1,T__Ruthenibacterium_lactatiformans,[T] Ruthenibacterium_lactatiformans,healthy
-"UC (Nielsen, 2014)",1,P__GALACTARDEG.PWY_Cluster200,[P] D-galactarate degradation I [Clustered features],non-significant
-"UC (Nielsen, 2014)",1,P__GLUCARDEG.PWY,[P] _D_-glucarate degradation I,non-significant
-"UC (Nielsen, 2014)",2,P__KETOGLUCONMET.PWY,[P] ketogluconate metabolism,non-significant
-"UC (Nielsen, 2014)",3,P__P162.PWY,[P] L-glutamate degradation V (via hydroxyglutarate),non-significant
-"UC (Nielsen, 2014)",2,P__POLYAMSYN.PWY,[P] superpathway of polyamine biosynthesis I,non-significant
-"UC (Nielsen, 2014)",4,P__PWY.6163,[P] chorismate biosynthesis from 3-dehydroquinate,non-significant
-"UC (Nielsen, 2014)",3,P__PWY.6471,[P] peptidoglycan biosynthesis IV (_Enterococcus faecium_),non-significant
-"UC (Nielsen, 2014)",1,P__PWY.6629,[P] superpathway of L-tryptophan biosynthesis,non-significant
-"UC (Nielsen, 2014)",1,P__PWY.6630,[P] superpathway of L-tyrosine biosynthesis,non-significant
-"UC (Nielsen, 2014)",1,P__SER.GLYSYN.PWY,[P] superpathway of L-serine and glycine biosynthesis I,non-significant
-"UC (Nielsen, 2014)",1,T__.Clostridium..innocuum,[T] Clostridium innocuum,non-significant
-"UC (Nielsen, 2014)",1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,non-significant
-"UC (Nielsen, 2014)",1,T__.Ruminococcus..gnavus,[T] Ruminococcus gnavus,non-significant
-"UC (Nielsen, 2014)",4,T__Adlercreutzia.equolifaciens,[T] Adlercreutzia_equolifaciens,healthy
-"UC (Nielsen, 2014)",1,T__Clostridium.bolteae.CAG.59,[T] Clostridium bolteae CAG 59,non-significant
-"UC (Nielsen, 2014)",4,T__Eisenbergiella.tayi,[T] Eisenbergiella_tayi,non-significant
-"UC (Nielsen, 2014)",1,T__Enterocloster.citroniae,[T] Enterocloster_citroniae,non-significant
-"UC (Nielsen, 2014)",1,T__Erysipelatoclostridium.ramosum,[T] Erysipelatoclostridium_ramosum,non-significant
-"UC (Nielsen, 2014)",2,T__Escherichia.coli,[T] Escherichia_coli,non-significant
-"UC (Nielsen, 2014)",3,T__Firmicutes.bacterium.CAG.94,[T] Firmicutes bacterium CAG 94,non-significant
-"UC (Nielsen, 2014)",4,T__Gemmiger.formicilis,[T] Gemmiger_formicilis,healthy
-"UC (Nielsen, 2014)",4,T__Ruminococcus.bromii,[T] Ruminococcus_bromii,healthy
-"UC (Nielsen, 2014)",1,T__Ruthenibacterium.lactatiformans,[T] Ruthenibacterium_lactatiformans,non-significant
+"CD (Franzosa, 2019)",module1,M__C18.neg_Cluster_2021..urobilin,[M] Urobilin (II),healthy
+"CD (Franzosa, 2019)",module1,M__HILIC.neg_Cluster_0441..sebacate,[M] Sebacate,healthy
+"CD (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_2093..urobilin.,[M] Urobilin (I),healthy
+"CD (Franzosa, 2019)",module1,P__HISTSYN.PWY,[P] L-histidine biosynthesis,healthy
+"CD (Franzosa, 2019)",module1,P__NONMEVIPP.PWY,[P] methylerythritol phosphate pathway I,healthy
+"CD (Franzosa, 2019)",module1,P__PWY.6163,[P] chorismate biosynthesis from 3-dehydroquinate,healthy
+"CD (Franzosa, 2019)",module1,P__PWY.6292,[P] superpathway of L-cysteine biosynthesis (mammalian),healthy
+"CD (Franzosa, 2019)",module1,P__PWY.6385,[P] peptidoglycan biosynthesis III (mycobacteria),healthy
+"CD (Franzosa, 2019)",module1,P__PWY.6700,[P] queuosine biosynthesis I (_de novo_),healthy
+"CD (Franzosa, 2019)",module1,P__PWY.7953,[P] UDP-MurNAc-pentapeptide biosynthesis III,healthy
+"CD (Franzosa, 2019)",module1,T__Alistipes_shahii,[T] Alistipes_shahii,healthy
+"CD (Franzosa, 2019)",module1,T__Asaccharobacter_celatus,[T] Asaccharobacter_celatus,healthy
+"CD (Franzosa, 2019)",module1,T__Coprococcus_catus,[T] Coprococcus_catus,healthy
+"CD (Franzosa, 2019)",module1,T__Enterorhabdus_caecimuris,[T] Enterorhabdus_caecimuris,healthy
+"CD (Franzosa, 2019)",module1,T__Gemmiger_formicilis,[T] Gemmiger_formicilis,healthy
+"CD (Franzosa, 2019)",module1,T__Roseburia_hominis,[T] Roseburia_hominis,healthy
+"CD (Franzosa, 2019)",module2,M__HILIC.pos_Cluster_2372..C36.2.PC.,[M] HILIC.pos_Cluster_2372..C36.2.PC.,healthy
+"CD (Franzosa, 2019)",module2,P__PWY.5265,[P] peptidoglycan biosynthesis II (staphylococci),non-significant
+"CD (Franzosa, 2019)",module2,P__PWY.6396,"[P] superpathway of 2,3-butanediol biosynthesis",non-significant
+"CD (Franzosa, 2019)",module2,T__Bifidobacterium_dentium,[T] Bifidobacterium_dentium,non-significant
+"CD (Franzosa, 2019)",module2,T__Enterococcus_faecalis,[T] Enterococcus_faecalis,non-significant
+"CD (Franzosa, 2019)",module2,T__Prevotella_copri,[T] Prevotella_copri,non-significant
+"CD (Franzosa, 2019)",module2,T__Streptococcus_lutetiensis,[T] Streptococcus_lutetiensis,non-significant
+"CD (Franzosa, 2019)",module2,T__Veillonella_dispar,[T] Veillonella_dispar,non-significant
+"CD (Franzosa, 2019)",module2,T__Veillonella_infantium,[T] Veillonella_infantium,non-significant
+"Cirrhosis (Qin, 2014)",module1,P__FOLSYN.PWY_Cluster193,[P] superpathway of tetrahydrofolate biosynthesis and salvage [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module1,P__HEME.BIOSYNTHESIS.II,[P] heme _b_ biosynthesis I (aerobic),disease
+"Cirrhosis (Qin, 2014)",module1,P__HEMESYN2.PWY,[P] heme _b_ biosynthesis II (oxygen-independent),disease
+"Cirrhosis (Qin, 2014)",module1,P__HOMOSER.METSYN.PWY,[P] L-methionine biosynthesis I,disease
+"Cirrhosis (Qin, 2014)",module1,P__MET.SAM.PWY_Cluster226,[P] superpathway of _S_-adenosyl-L-methionine biosynthesis [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module1,P__PWY.5347,[P] superpathway of L-methionine biosynthesis (transsulfuration),disease
+"Cirrhosis (Qin, 2014)",module1,P__PWY.5837,"[P] 2-carboxy-1,4-naphthoquinol biosynthesis",disease
+"Cirrhosis (Qin, 2014)",module1,P__PWY.5838_Cluster296,[P] superpathway of menaquinol-8 biosynthesis I [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module1,P__PWY.5863,[P] superpathway of phylloquinol biosynthesis,disease
+"Cirrhosis (Qin, 2014)",module1,P__PWY.5897_Cluster302,[P] superpathway of menaquinol-11 biosynthesis [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module1,P__PWY.5910_Cluster303,[P] superpathway of geranylgeranyldiphosphate biosynthesis I (via mevalonate) [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module1,P__PYRIDNUCSAL.PWY,[P] NAD salvage pathway I (PNC VI cycle),disease
+"Cirrhosis (Qin, 2014)",module1,T__Campylobacter.concisus,[T] Campylobacter_concisus,disease
+"Cirrhosis (Qin, 2014)",module1,T__Haemophilus.parainfluenzae,[T] Haemophilus_parainfluenzae,disease
+"Cirrhosis (Qin, 2014)",module1,T__Megasphaera.micronuciformis,[T] Megasphaera_micronuciformis,disease
+"Cirrhosis (Qin, 2014)",module1,T__Streptococcus.gordonii,[T] Streptococcus_gordonii,disease
+"Cirrhosis (Qin, 2014)",module1,T__Streptococcus.mitis,[T] Streptococcus_mitis,disease
+"Cirrhosis (Qin, 2014)",module1,T__Streptococcus.parasanguinis,[T] Streptococcus_parasanguinis,disease
+"Cirrhosis (Qin, 2014)",module1,T__Streptococcus.salivarius,[T] Streptococcus_salivarius,disease
+"Cirrhosis (Qin, 2014)",module1,T__Veillonella.atypica,[T] Veillonella_atypica,disease
+"Cirrhosis (Qin, 2014)",module1,T__Veillonella.dispar,[T] Veillonella_dispar,disease
+"Cirrhosis (Qin, 2014)",module1,T__Veillonella.infantium,[T] Veillonella_infantium,disease
+"Cirrhosis (Qin, 2014)",module1,T__Veillonella.parvula,[T] Veillonella_parvula,disease
+"Cirrhosis (Qin, 2014)",module1,T__Veillonella.sp..T11011.6,[T] Veillonella sp T11011 6,disease
+"Cirrhosis (Qin, 2014)",module2,P__AST.PWY,[P] L-arginine degradation II (AST pathway),disease
+"Cirrhosis (Qin, 2014)",module2,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster178,[P] catechol degradation to &beta;-ketoadipate [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module2,P__ECASYN.PWY,[P] enterobacterial common antigen biosynthesis,disease
+"Cirrhosis (Qin, 2014)",module2,P__GOLPDLCAT.PWY,"[P] SP of glycerol deg. to 1,3-propanediol",disease
+"Cirrhosis (Qin, 2014)",module2,P__P221.PWY,[P] octane oxidation,disease
+"Cirrhosis (Qin, 2014)",module2,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster256,[P] protocatechuate degradation II [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module2,P__PWY.3801,[P] sucrose degradation II (sucrose synthase),disease
+"Cirrhosis (Qin, 2014)",module2,P__PWY.6182_Cluster320,[P] superpathway of salicylate degradation [Clustered features],disease
+"Cirrhosis (Qin, 2014)",module2,P__PWY.6562,[P] norspermidine biosynthesis,disease
+"Cirrhosis (Qin, 2014)",module2,P__PWY.7013,"[P] (S)-propane-1,2-diol degradation",disease
+"Cirrhosis (Qin, 2014)",module2,P__REDCITCYC,[P] TCA cycle VI (Helicobacter),disease
+"Cirrhosis (Qin, 2014)",module2,P__THREOCAT.PWY,[P] superpathway of L-threonine metabolism,disease
+"Cirrhosis (Qin, 2014)",module2,T__Klebsiella.pneumoniae,[T] Klebsiella_pneumoniae,disease
+"Cirrhosis (Qin, 2014)",module2,T__Klebsiella.quasipneumoniae,[T] Klebsiella_quasipneumoniae,disease
+"Cirrhosis (Qin, 2014)",module2,T__Klebsiella.variicola,[T] Klebsiella_variicola,disease
+"Cirrhosis (Qin, 2014)",module3,P__ASPASN.PWY,[P] superpathway of L-aspartate and L-asparagine biosynthesis,non-significant
+"Cirrhosis (Qin, 2014)",module3,P__PWY.1269,[P] CMP-3-deoxy-D-manno-octulosonate biosynthesis,non-significant
+"Cirrhosis (Qin, 2014)",module3,P__PWY.2941,[P] L-lysine biosynthesis II,disease
+"Cirrhosis (Qin, 2014)",module3,P__PWY.6126,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis II,non-significant
+"Cirrhosis (Qin, 2014)",module3,P__PWY.6478,[P] GDP-D-_glycero_-&alpha;-D-_manno_-heptose biosynthesis,disease
+"Cirrhosis (Qin, 2014)",module3,P__PWY.7200,[P] superpathway of pyrimidine deoxyribonucleoside salvage,non-significant
+"Cirrhosis (Qin, 2014)",module3,P__PWY.7229,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis I,non-significant
+"Cirrhosis (Qin, 2014)",module3,P__PWY0.1586,[P] peptidoglycan maturation (_meso_-diaminopimelate containing),disease
+"Cirrhosis (Qin, 2014)",module3,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
+"Cirrhosis (Qin, 2014)",module3,T__Adlercreutzia.equolifaciens,[T] Adlercreutzia_equolifaciens,healthy
+"Cirrhosis (Qin, 2014)",module3,T__Anaerobutyricum.hallii,[T] Anaerobutyricum_hallii,healthy
+"Cirrhosis (Qin, 2014)",module3,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,non-significant
+"Cirrhosis (Qin, 2014)",module3,T__Coprococcus.catus,[T] Coprococcus_catus,healthy
+"Cirrhosis (Qin, 2014)",module3,T__Dialister.sp..CAG.357,[T] Dialister sp CAG 357,healthy
+"Cirrhosis (Qin, 2014)",module3,T__Parabacteroides.distasonis,[T] Parabacteroides_distasonis,non-significant
+"Cirrhosis (Qin, 2014)",module3,T__Prevotella.copri,[T] Prevotella_copri,non-significant
+"CRC (Feng, 2015)",module1,P__GLYCOGENSYNTH.PWY,[P] glycogen biosynthesis I (from ADP-D-Glucose),healthy
+"CRC (Feng, 2015)",module1,P__P108.PWY,[P] pyruvate fermentation to propanoate I,disease
+"CRC (Feng, 2015)",module1,P__PWY.4984,[P] urea cycle,disease
+"CRC (Feng, 2015)",module1,P__PWY.5100,[P] pyruvate fermentation to acetate and lactate II,healthy
+"CRC (Feng, 2015)",module1,P__PWY.5154,[P] L-arginine biosynthesis III,disease
+"CRC (Feng, 2015)",module1,P__PWY.5973,[P] cis-vaccenate biosynthesis,disease
+"CRC (Feng, 2015)",module1,P__PWY.7663,[P] gondoate biosynthesis (anaerobic),disease
+"CRC (Feng, 2015)",module1,P__PWY.841,[P] SP of purine nucleotides (de novo) biosynthesis I,disease
+"CRC (Feng, 2015)",module1,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,disease
+"CRC (Feng, 2015)",module1,P__PYRIDOXSYN.PWY,[P] pyridoxal 5'-phosphate biosynthesis I,disease
+"CRC (Feng, 2015)",module1,P__THISYN.PWY,[P] SP of thiamine diphosphate biosynthesis I,disease
+"CRC (Feng, 2015)",module1,T__Anaerostipes.hadrus,[T] Anaerostipes_hadrus,healthy
+"CRC (Feng, 2015)",module1,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,disease
+"CRC (Feng, 2015)",module1,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
+"CRC (Feng, 2015)",module1,T__Bacteroides.xylanisolvens,[T] Bacteroides_xylanisolvens,disease
+"CRC (Feng, 2015)",module1,T__Butyricimonas.virosa,[T] Butyricimonas_virosa,disease
+"CRC (Feng, 2015)",module1,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
+"CRC (Feng, 2015)",module1,T__Lawsonibacter.asaccharolyticus,[T] Lawsonibacter_asaccharolyticus,disease
+"CRC (Feng, 2015)",module1,T__Odoribacter.splanchnicus,[T] Odoribacter_splanchnicus,disease
+"CRC (Feng, 2015)",module1,T__Parabacteroides.distasonis,[T] Parabacteroides_distasonis,disease
+"CRC (Feng, 2015)",module2,P__PWY.5101_Cluster287,[P] L-isoleucine biosynthesis II [Clustered features],non-significant
+"CRC (Feng, 2015)",module2,P__PWY.6700,[P] queuosine biosynthesis I (_de novo_),non-significant
+"CRC (Feng, 2015)",module2,P__PWY0.1261,[P] peptidoglycan recycling I,non-significant
+"CRC (Feng, 2015)",module2,P__RUMP.PWY,[P] formaldehyde oxidation I,non-significant
+"CRC (Feng, 2015)",module2,T__Bacteroides.galacturonicus,[T] Bacteroides_galacturonicus,disease
+"CRC (Feng, 2015)",module2,T__Catenibacterium.mitsuokai,[T] Catenibacterium_mitsuokai,non-significant
+"CRC (Feng, 2015)",module2,T__Gemella.morbillorum,[T] Gemella_morbillorum,disease
+"CRC (Feng, 2015)",module2,T__Oscillibacter.sp..CAG.241,[T] Oscillibacter sp CAG 241,disease
+"CRC (Feng, 2015)",module2,T__Parvimonas.micra,[T] Parvimonas_micra,disease
+"CRC (Feng, 2015)",module3,P__PWY.6284,[P] SP of unsaturated fatty acids biosynthesis (E. coli),non-significant
+"CRC (Feng, 2015)",module3,P__PWY.6285,[P] superpathway of fatty acids biosynthesis (_E. coli_),disease
+"CRC (Feng, 2015)",module3,P__PWY.6612,[P] superpathway of tetrahydrofolate biosynthesis,non-significant
+"CRC (Feng, 2015)",module3,T__.Eubacterium..rectale,[T] Eubacterium rectale,non-significant
+"CRC (Feng, 2015)",module3,T__.Ruminococcus..torques,[T] Ruminococcus torques,non-significant
+"CRC (Feng, 2015)",module3,T__Escherichia.coli,[T] Escherichia_coli,disease
+"CRC (Feng, 2015)",module3,T__Ruminococcaceae.bacterium.D16,[T] Ruminococcaceae bacterium D16,disease
+"CRC (Vogtmann, 2016)",module1,P__OANTIGEN.PWY,[P] _O_-antigen building blocks biosynthesis (_E. coli_),healthy
+"CRC (Vogtmann, 2016)",module1,P__PWY.6126,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis II,non-significant
+"CRC (Vogtmann, 2016)",module1,P__PWY.6700,[P] queuosine biosynthesis I (_de novo_),healthy
+"CRC (Vogtmann, 2016)",module1,P__PWY.7220_Cluster376,[P] adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features],disease
+"CRC (Vogtmann, 2016)",module1,P__PWY.7229,[P] superpathway of adenosine nucleotides _de novo_ biosynthesis I,non-significant
+"CRC (Vogtmann, 2016)",module1,P__PWY0.1261,[P] peptidoglycan recycling I,non-significant
+"CRC (Vogtmann, 2016)",module1,P__UDPNAGSYN.PWY,[P] UDP-_N_-acetyl-D-glucosamine biosynthesis I,healthy
+"CRC (Vogtmann, 2016)",module1,T__.Clostridium..leptum,[T] Clostridium leptum,non-significant
+"CRC (Vogtmann, 2016)",module1,T__Bacteroides.nordii,[T] Bacteroides_nordii,non-significant
+"CRC (Vogtmann, 2016)",module1,T__Eggerthella.lenta,[T] Eggerthella_lenta,non-significant
+"CRC (Vogtmann, 2016)",module1,T__Firmicutes.bacterium.CAG.95,[T] Firmicutes bacterium CAG 95,non-significant
+"CRC (Vogtmann, 2016)",module1,T__Ruthenibacterium.lactatiformans,[T] Ruthenibacterium_lactatiformans,non-significant
+"CRC (Vogtmann, 2016)",module2,P__KETOGLUCONMET.PWY,[P] ketogluconate metabolism,non-significant
+"CRC (Vogtmann, 2016)",module2,P__METHGLYUT.PWY,[P] superpathway of methylglyoxal degradation,disease
+"CRC (Vogtmann, 2016)",module2,P__PWY.5189,[P] tetrapyrrole biosynthesis II (from glycine),disease
+"CRC (Vogtmann, 2016)",module2,P__PWY.5747_Cluster302,[P] 2-methylcitrate cycle II [Clustered features],disease
+"CRC (Vogtmann, 2016)",module2,P__PWY.5920,[P] superpathway of heme _b_ biosynthesis from glycine,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Escherichia.coli,[T] Escherichia_coli,disease
+"CRC (Vogtmann, 2016)",module2,T__Phocaeicola.dorei,[T] Phocaeicola_dorei,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Rothia.mucilaginosa,[T] Rothia_mucilaginosa,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Streptococcus.gordonii,[T] Streptococcus_gordonii,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Streptococcus.oralis,[T] Streptococcus_oralis,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Turicibacter.sanguinis,[T] Turicibacter_sanguinis,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Veillonella.atypica,[T] Veillonella_atypica,non-significant
+"CRC (Vogtmann, 2016)",module2,T__Veillonella.dispar,[T] Veillonella_dispar,non-significant
+"CRC (Vogtmann, 2016)",module3,P__PENTOSE.P.PWY,[P] pentose phosphate pathway,non-significant
+"CRC (Vogtmann, 2016)",module3,P__PWY.6749,[P] CMP-legionaminate biosynthesis I,non-significant
+"CRC (Vogtmann, 2016)",module3,T__.Clostridium..innocuum,[T] Clostridium innocuum,non-significant
+"CRC (Vogtmann, 2016)",module3,T__Blautia.producta,[T] Blautia_producta,non-significant
+"CRC (Vogtmann, 2016)",module3,T__Erysipelatoclostridium.ramosum,[T] Erysipelatoclostridium_ramosum,non-significant
+"CRC (Vogtmann, 2016)",module3,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,non-significant
+"CRC (Wirbel, 2018)",module1,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
+"CRC (Wirbel, 2018)",module1,P__GALACT.GLUCUROCAT.PWY,[P] superpathway of hexuronide and hexuronate degradation,healthy
+"CRC (Wirbel, 2018)",module1,P__GALACTUROCAT.PWY,[P] D-galacturonate degradation I,healthy
+"CRC (Wirbel, 2018)",module1,P__GLUCUROCAT.PWY,[P] superpathway of &beta;-D-glucuronosides degradation,healthy
+"CRC (Wirbel, 2018)",module1,P__GLUTORN.PWY,[P] L-ornithine biosynthesis I,healthy
+"CRC (Wirbel, 2018)",module1,P__PWY.5177,[P] glutaryl-CoA degradation,healthy
+"CRC (Wirbel, 2018)",module1,P__PWY.6507,[P] 4-deoxy-L-_threo_-hex-4-enopyranuronate degradation,healthy
+"CRC (Wirbel, 2018)",module1,P__PWY.7242,[P] D-fructuronate degradation,healthy
+"CRC (Wirbel, 2018)",module1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
+"CRC (Wirbel, 2018)",module1,T__Agathobaculum.butyriciproducens,[T] Agathobaculum_butyriciproducens,healthy
+"CRC (Wirbel, 2018)",module1,T__Butyricimonas.virosa,[T] Butyricimonas_virosa,non-significant
+"CRC (Wirbel, 2018)",module1,T__Faecalibacterium.prausnitzii,[T] Faecalibacterium_prausnitzii,healthy
+"CRC (Wirbel, 2018)",module1,T__Oscillibacter.sp..57_20,[T] Oscillibacter sp 57_20,healthy
+"CRC (Wirbel, 2018)",module2,P__ILEUSYN.PWY,[P] L-isoleucine biosynthesis I (from threonine),healthy
+"CRC (Wirbel, 2018)",module2,T__Prevotella.copri,[T] Prevotella_copri,healthy
+"CRC (Wirbel, 2018)",module3,P__PWY.7220_Cluster352,[P] adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features],disease
+"CRC (Wirbel, 2018)",module3,T__Anaerobutyricum.hallii,[T] Anaerobutyricum_hallii,non-significant
+"CRC (Wirbel, 2018)",module4,P__ARGDEG.PWY_Cluster172,"[P] superpathway of L-arginine, putrescine, and 4-aminobutanoate degradation [Clustered features]",non-significant
+"CRC (Wirbel, 2018)",module4,P__PWY.7046,[P] 4-coumarate degradation (anaerobic),non-significant
+"CRC (Wirbel, 2018)",module4,T__Escherichia.coli,[T] Escherichia_coli,non-significant
+"CRC (Yachida, 2019)",module1,M__C00079_Phe,[M] C00079_Phe,disease
+"CRC (Yachida, 2019)",module1,M__C00123_Leu,[M] C00123_Leu,disease
+"CRC (Yachida, 2019)",module1,M__C00183_Val,[M] C00183_Val,disease
+"CRC (Yachida, 2019)",module1,M__Cysteine.glutathione.disulphide..Divalent,[M] Cysteine.glutathione.disulphide..Divalent,non-significant
+"CRC (Yachida, 2019)",module1,T__Gemella.morbillorum,[T] Gemella_morbillorum,disease
+"CRC (Yachida, 2019)",module1,T__Peptostreptococcus.anaerobius,[T] Peptostreptococcus_anaerobius,disease
+"CRC (Yachida, 2019)",module1,T__Peptostreptococcus.stomatis,[T] Peptostreptococcus_stomatis,disease
+"CRC (Yachida, 2019)",module2,M__C00612_N1.Acetylspermidine,[M] C00612_N1.Acetylspermidine,healthy
+"CRC (Yachida, 2019)",module2,M__C03793_N6.N6.N6.Trimethyllysine,[M] C03793_N6.N6.N6.Trimethyllysine,healthy
+"CRC (Yachida, 2019)",module2,M__C05135_4..beta.Acetylaminoethyl.imidazole,[M] C05135_4..beta.Acetylaminoethyl.imidazole,healthy
+"CRC (Yachida, 2019)",module2,M__C16741_5.Hydroxylysine,[M] C16741_5.Hydroxylysine,healthy
+"CRC (Yachida, 2019)",module2,M__N1.N8.Diacetylspermidine,[M] N1.N8.Diacetylspermidine,healthy
+"CRC (Yachida, 2019)",module2,P__GLYCOCAT.PWY,[P] glycogen degradation I,disease
+"CRC (Yachida, 2019)",module2,P__PWY.6969,[P] TCA cycle V (2-oxoglutarate synthase),disease
+"CRC (Yachida, 2019)",module2,P__PWY.7254,[P] TCA cycle VII (acetate-producers),non-significant
+"CRC (Yachida, 2019)",module2,T__Clostridium.viride,[T] Clostridium_viride,disease
+"CRC (Yachida, 2019)",module2,T__Oscillibacter.ruminantium_Cluster348,[T] Oscillibacter_ruminantium [Clustered features],non-significant
+"CRC (Yachida, 2019)",module2,T__Papillibacter.cinnamivorans,[T] Papillibacter_cinnamivorans,disease
+"CRC (Yachida, 2019)",module2,T__Pseudoflavonifractor.capillosus,[T] Pseudoflavonifractor_capillosus,disease
+"CRC (Yu, 2015)",module1,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
+"CRC (Yu, 2015)",module1,P__GLUCUROCAT.PWY,[P] superpathway of &beta;-D-glucuronosides degradation,healthy
+"CRC (Yu, 2015)",module1,P__P162.PWY,[P] L-glutamate degradation V (via hydroxyglutarate),disease
+"CRC (Yu, 2015)",module1,P__P163.PWY,[P] L-lysine fermentation to acetate and butanoate,disease
+"CRC (Yu, 2015)",module1,P__PWY.5177,[P] glutaryl-CoA degradation,non-significant
+"CRC (Yu, 2015)",module1,P__PWY.6317,[P] D-galactose degradation I (Leloir pathway),healthy
+"CRC (Yu, 2015)",module1,P__PWY.6588,[P] pyruvate fermentation to acetone,disease
+"CRC (Yu, 2015)",module1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
+"CRC (Yu, 2015)",module1,T__Alistipes.indistinctus,[T] Alistipes_indistinctus,disease
+"CRC (Yu, 2015)",module1,T__Dialister.pneumosintes,[T] Dialister_pneumosintes,disease
+"CRC (Yu, 2015)",module1,T__Eisenbergiella.massiliensis,[T] Eisenbergiella_massiliensis,disease
+"CRC (Yu, 2015)",module1,T__Enterocloster.citroniae,[T] Enterocloster_citroniae,disease
+"CRC (Yu, 2015)",module1,T__Eubacterium.ventriosum,[T] Eubacterium_ventriosum,healthy
+"CRC (Yu, 2015)",module1,T__Faecalibacterium.prausnitzii,[T] Faecalibacterium_prausnitzii,healthy
+"CRC (Yu, 2015)",module1,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
+"CRC (Yu, 2015)",module2,P__LACTOSECAT.PWY,[P] lactose and galactose degradation I,non-significant
+"CRC (Yu, 2015)",module2,P__P164.PWY,[P] purine nucleobases degradation I (anaerobic),disease
+"CRC (Yu, 2015)",module2,P__PROPFERM.PWY,[P] superpathway of L-alanine fermentation (Stickland reaction),disease
+"CRC (Yu, 2015)",module2,P__PWY.5973,[P] cis-vaccenate biosynthesis,non-significant
+"CRC (Yu, 2015)",module2,P__PWY.7663,[P] gondoate biosynthesis (anaerobic),non-significant
+"CRC (Yu, 2015)",module2,T__Collinsella.aerofaciens,[T] Collinsella_aerofaciens,disease
+"CRC (Yu, 2015)",module2,T__Dorea.formicigenerans,[T] Dorea_formicigenerans,disease
+"CRC (Yu, 2015)",module2,T__Proteobacteria.bacterium.CAG.139,[T] Proteobacteria bacterium CAG 139,non-significant
+"CRC (Zeller, 2014)",module1,P__ARGSYN.PWY_Cluster203,[P] L-arginine biosynthesis I (via L-ornithine) [Clustered features],healthy
+"CRC (Zeller, 2014)",module1,P__ARGSYNBSUB.PWY,[P] L-arginine biosynthesis II (acetyl cycle),healthy
+"CRC (Zeller, 2014)",module1,P__ARO.PWY,[P] chorismate biosynthesis I,healthy
+"CRC (Zeller, 2014)",module1,P__COMPLETE.ARO.PWY,[P] superpathway of aromatic amino acid biosynthesis,healthy
+"CRC (Zeller, 2014)",module1,P__GLUTORN.PWY,[P] L-ornithine biosynthesis I,healthy
+"CRC (Zeller, 2014)",module1,P__GLYCOGENSYNTH.PWY,[P] glycogen biosynthesis I (from ADP-D-Glucose),healthy
+"CRC (Zeller, 2014)",module1,P__HISDEG.PWY,[P] L-histidine degradation I,disease
+"CRC (Zeller, 2014)",module1,P__PWY.6151,[P] _S_-adenosyl-L-methionine salvage I,healthy
+"CRC (Zeller, 2014)",module1,P__PWY.6317,[P] D-galactose degradation I (Leloir pathway),healthy
+"CRC (Zeller, 2014)",module1,P__TRPSYN.PWY,[P] L-tryptophan biosynthesis,healthy
+"CRC (Zeller, 2014)",module1,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,disease
+"CRC (Zeller, 2014)",module1,T__.Eubacterium..rectale,[T] Eubacterium rectale,healthy
+"CRC (Zeller, 2014)",module1,T__Anaerobutyricum.hallii,[T] Anaerobutyricum_hallii,healthy
+"CRC (Zeller, 2014)",module1,T__Coprococcus.eutactus,[T] Coprococcus_eutactus,non-significant
+"CRC (Zeller, 2014)",module1,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
+"CRC (Zeller, 2014)",module1,T__Lachnospira.eligens,[T] Lachnospira_eligens,healthy
+"CRC (Zeller, 2014)",module1,T__Ruminococcus.bromii,[T] Ruminococcus_bromii,healthy
+"CRC (Zeller, 2014)",module2,P__P162.PWY,[P] L-glutamate degradation V (via hydroxyglutarate),disease
+"CRC (Zeller, 2014)",module2,T__Fusobacterium.nucleatum,[T] Fusobacterium_nucleatum,disease
+"CRC (Zeller, 2014)",module2,T__Gemella.morbillorum,[T] Gemella_morbillorum,disease
+"CRC (Zeller, 2014)",module2,T__Peptostreptococcus.stomatis,[T] Peptostreptococcus_stomatis,disease
+"CRC (Zeller, 2014)",module2,T__Solobacterium.moorei,[T] Solobacterium_moorei,non-significant
+"CRC (Zeller, 2014)",module3,P__P161.PWY,[P] acetylene degradation (anaerobic),disease
+"CRC (Zeller, 2014)",module3,P__P164.PWY,[P] purine nucleobases degradation I (anaerobic),non-significant
+"CRC (Zeller, 2014)",module3,P__P221.PWY,[P] octane oxidation,disease
+"CRC (Zeller, 2014)",module3,P__PWY.6876,[P] isopropanol biosynthesis (engineered),disease
+"CRC (Zeller, 2014)",module3,P__PWY.7003,[P] glycerol degradation to butanol,non-significant
+"CRC (Zeller, 2014)",module3,P__PWY.7013,"[P] (S)-propane-1,2-diol degradation",non-significant
+"CRC (Zeller, 2014)",module3,T__.Clostridium..innocuum,[T] Clostridium innocuum,non-significant
+"CRC (Zeller, 2014)",module3,T__.Ruminococcus..gnavus,[T] Ruminococcus gnavus,non-significant
+"CRC (Zeller, 2014)",module3,T__Bifidobacterium.dentium,[T] Bifidobacterium_dentium,non-significant
+"CRC (Zeller, 2014)",module3,T__Enterocloster.bolteae,[T] Enterocloster_bolteae,non-significant
+"CRC (Zeller, 2014)",module3,T__Enterocloster.clostridioformis,[T] Enterocloster_clostridioformis,non-significant
+"CRC (Zeller, 2014)",module3,T__Flavonifractor.plautii,[T] Flavonifractor_plautii,disease
+"CRC (Zeller, 2014)",module3,T__Hafnia.alvei,[T] Hafnia_alvei,non-significant
+"CRC (Zeller, 2014)",module3,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,disease
+"CRC (Zeller, 2014)",module4,P__DAPLYSINESYN.PWY,[P] L-lysine biosynthesis I,non-significant
+"CRC (Zeller, 2014)",module4,P__GLYCOCAT.PWY,[P] glycogen degradation I,non-significant
+"CRC (Zeller, 2014)",module4,P__NONMEVIPP.PWY,[P] methylerythritol phosphate pathway I,healthy
+"CRC (Zeller, 2014)",module4,P__P124.PWY,[P] glucose fermentation to lactic acid (Bifidobacteria),non-significant
+"CRC (Zeller, 2014)",module4,P__P4.PWY,"[P] superpathway of L-lysine, L-threonine and L-methionine biosynthesis I",non-significant
+"CRC (Zeller, 2014)",module4,P__PWY.5384,[P] sucrose degradation IV (sucrose phosphorylase),non-significant
+"CRC (Zeller, 2014)",module4,P__PWY.5913,[P] partial TCA cycle (obligate autotrophs),non-significant
+"CRC (Zeller, 2014)",module4,P__PWY.622,[P] starch biosynthesis,non-significant
+"CRC (Zeller, 2014)",module4,P__PWY.7209,[P] superpathway of pyrimidine ribonucleosides degradation,non-significant
+"CRC (Zeller, 2014)",module4,P__PWY.7560,[P] methylerythritol phosphate pathway II,healthy
+"CRC (Zeller, 2014)",module4,P__PWY0.781,[P] aspartate superpathway,non-significant
+"CRC (Zeller, 2014)",module4,T__.Ruminococcus..lactaris,[T] Ruminococcus lactaris,non-significant
+"CRC (Zeller, 2014)",module4,T__Bifidobacterium.adolescentis,[T] Bifidobacterium_adolescentis,non-significant
+"CRC (Zeller, 2014)",module4,T__Bifidobacterium.longum,[T] Bifidobacterium_longum,healthy
+"CRC (Zeller, 2014)",module4,T__Bifidobacterium.pseudocatenulatum,[T] Bifidobacterium_pseudocatenulatum,non-significant
+"CRC (Zeller, 2014)",module4,T__Dorea.longicatena,[T] Dorea_longicatena,non-significant
+"ESRD (Wang, 2020)",module1,M__....Menthone,[M] ....Menthone,disease
+"ESRD (Wang, 2020)",module1,M__1.3.Cyclohexadiene..5..1.5.dimethyl.4.hexenyl..2.methyl....S..R..S....,[M] 1.3.Cyclohexadiene..5..1.5.dimethyl.4.hexenyl..2.methyl....S..R..S....,disease
+"ESRD (Wang, 2020)",module1,M__1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane,[M] 1.7.Di.3.ethylphenyl..2.2.4.4.6.6.hexamethyl.1.3.5.7.tetraoxa.2.4.6.trisilaheptane,healthy
+"ESRD (Wang, 2020)",module1,M__2.Butanone..3.methyl.,[M] 2.Butanone..3.methyl.,disease
+"ESRD (Wang, 2020)",module1,M__2.Heptanone..5.methyl.,[M] 2.Heptanone..5.methyl.,disease
+"ESRD (Wang, 2020)",module1,M__2.Oxohexane,[M] 2.Oxohexane,disease
+"ESRD (Wang, 2020)",module1,M__Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..,[M] Benzaldehyde..3.chloro.5.methoxy.4...4.methylphenyl.methoxy..,disease
+"ESRD (Wang, 2020)",module1,M__Benzene..1.ethyl.4.methyl.,[M] Benzene..1.ethyl.4.methyl.,healthy
+"ESRD (Wang, 2020)",module1,M__Butanoic.acid..butyl.ester,[M] Butanoic.acid..butyl.ester,healthy
+"ESRD (Wang, 2020)",module1,M__Ethanol..1..2.butoxyethoxy..,[M] Ethanol..1..2.butoxyethoxy..,healthy
+"ESRD (Wang, 2020)",module1,M__Oxime...methoxy.phenyl._,[M] Oxime...methoxy.phenyl._,disease
+"ESRD (Wang, 2020)",module1,M__Pentadecanal,[M] Pentadecanal,healthy
+"ESRD (Wang, 2020)",module1,M__Pentanal..2.4.dimethyl.,[M] Pentanal..2.4.dimethyl.,disease
+"ESRD (Wang, 2020)",module1,M__Propionic.acid,[M] Propionic.acid,healthy
+"ESRD (Wang, 2020)",module1,M__Quinoline,[M] Quinoline,disease
+"ESRD (Wang, 2020)",module1,P__PWY.5484,[P] glycolysis II (from fructose 6-phosphate),disease
+"ESRD (Wang, 2020)",module1,P__PWY.5676,[P] acetyl-CoA fermentation to butanoate,disease
+"ESRD (Wang, 2020)",module1,P__PWY.5686_Cluster281,[P] UMP biosynthesis I [Clustered features],healthy
+"ESRD (Wang, 2020)",module1,P__PWY.6385,[P] peptidoglycan biosynthesis III (mycobacteria),healthy
+"ESRD (Wang, 2020)",module1,P__PWY.6897,[P] thiamine diphosphate salvage II,healthy
+"ESRD (Wang, 2020)",module1,P__PWY.6901,[P] superpathway of glucose and xylose degradation,disease
+"ESRD (Wang, 2020)",module1,P__PWY.7237,"[P] _myo_-, _chiro_- and _scyllo_-inositol degradation",healthy
+"ESRD (Wang, 2020)",module1,P__PWY.7953,[P] UDP-MurNAc-pentapeptide biosynthesis III,healthy
+"ESRD (Wang, 2020)",module1,P__PWY.8004,[P] Entner-Doudoroff pathway I,disease
+"ESRD (Wang, 2020)",module1,T__Coprococcus_eutactus,[T] Coprococcus_eutactus,healthy
+"ESRD (Wang, 2020)",module1,T__Eggerthella_lenta,[T] Eggerthella_lenta,disease
+"ESRD (Wang, 2020)",module1,T__Eubacterium_ramulus,[T] Eubacterium_ramulus,healthy
+"ESRD (Wang, 2020)",module1,T__Flavonifractor_plautii,[T] Flavonifractor_plautii,disease
+"ESRD (Wang, 2020)",module1,T__Gordonibacter_pamelaeae,[T] Gordonibacter_pamelaeae,disease
+"ESRD (Wang, 2020)",module1,T__Lachnospira_pectinoschiza,[T] Lachnospira_pectinoschiza,healthy
+"ESRD (Wang, 2020)",module1,T__Megamonas_funiformis,[T] Megamonas_funiformis,healthy
+"ESRD (Wang, 2020)",module1,T__Megamonas_hypermegale,[T] Megamonas_hypermegale,healthy
+"ESRD (Wang, 2020)",module1,T__Prevotella_copri,[T] Prevotella_copri,healthy
+"ESRD (Wang, 2020)",module1,T__Roseburia_faecis,[T] Roseburia_faecis,healthy
+"ESRD (Wang, 2020)",module1,T__Roseburia_intestinalis,[T] Roseburia_intestinalis,healthy
+"ESRD (Wang, 2020)",module1,T__Ruminococcus_callidus,[T] Ruminococcus_callidus,healthy
+"ESRD (Wang, 2020)",module1,T__Ruthenibacterium_lactatiformans,[T] Ruthenibacterium_lactatiformans,disease
+"ESRD (Wang, 2020)",module1,T__Turicimonas_muris,[T] Turicimonas_muris,healthy
+"ESRD (Wang, 2020)",module2,M__2.4.Imidazolidinedione..1.methyl.,[M] 2.4.Imidazolidinedione..1.methyl.,disease
+"ESRD (Wang, 2020)",module2,M__Dimethyl.sulfone,[M] Dimethyl.sulfone,non-significant
+"ESRD (Wang, 2020)",module2,M__Toluene,[M] Toluene,healthy
+"ESRD (Wang, 2020)",module2,P__PWY.7111,[P] pyruvate fermentation to isobutanol (engineered),disease
+"ESRD (Wang, 2020)",module2,P__PWY.I9,[P] L-cysteine biosynthesis VI (reverse transsulfuration),disease
+"ESRD (Wang, 2020)",module2,T__Streptococcus_salivarius,[T] Streptococcus_salivarius,non-significant
+"ESRD (Wang, 2020)",module3,M__2.Tetradecanone,[M] 2.Tetradecanone,non-significant
+"ESRD (Wang, 2020)",module3,P__PWY.5941,[P] glycogen degradation II,non-significant
+"ESRD (Wang, 2020)",module3,T__Fusicatenibacter_saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
+"ESRD (Wang, 2020)",module4,M__.S..3.4.Dimethylpentanol,[M] .S..3.4.Dimethylpentanol,disease
+"ESRD (Wang, 2020)",module4,M__1.Hexadecanol,[M] 1.Hexadecanol,disease
+"ESRD (Wang, 2020)",module4,M__13.Methyltetradecanal,[M] 13.Methyltetradecanal,non-significant
+"ESRD (Wang, 2020)",module4,M__5.Tetradecene...E..,[M] 5.Tetradecene...E..,non-significant
+"ESRD (Wang, 2020)",module4,M__Cyclohexanol..4.ethenyl.4.methyl.3..1.methylethenyl..,[M] Cyclohexanol..4.ethenyl.4.methyl.3..1.methylethenyl..,non-significant
+"ESRD (Wang, 2020)",module4,M__E.2.Hexadecacen.1.ol,[M] E.2.Hexadecacen.1.ol,non-significant
+"ESRD (Wang, 2020)",module4,M__n.Pentadecanol,[M] n.Pentadecanol,non-significant
+"ESRD (Wang, 2020)",module4,M__Octadecane,[M] Octadecane,non-significant
+"ESRD (Wang, 2020)",module4,M__Octadecanol,[M] Octadecanol,disease
+"ESRD (Wang, 2020)",module4,P__PWY.6969,[P] TCA cycle V (2-oxoglutarate synthase),non-significant
+"ESRD (Wang, 2020)",module4,P__PWY.7220_Cluster354,[P] adenosine deoxyribonucleotides _de novo_ biosynthesis II [Clustered features],disease
+"ESRD (Wang, 2020)",module4,P__TRNA.CHARGING.PWY,[P] tRNA charging,healthy
+"ESRD (Wang, 2020)",module4,T__Alistipes_putredinis,[T] Alistipes_putredinis,non-significant
+"ESRD (Wang, 2020)",module4,T__Barnesiella_intestinihominis,[T] Barnesiella_intestinihominis,non-significant
+"ESRD (Wang, 2020)",module4,T__Eubacterium_siraeum,[T] Eubacterium_siraeum,disease
+"ESRD (Wang, 2020)",module4,T__Faecalibacterium_prausnitzii,[T] Faecalibacterium_prausnitzii,non-significant
+"ESRD (Wang, 2020)",module4,T__Odoribacter_splanchnicus,[T] Odoribacter_splanchnicus,non-significant
+"ESRD (Wang, 2020)",module4,T__Oscillibacter_sp_57_20,[T] Oscillibacter_sp_57_20,healthy
+"HT (Li, 2017)",module1,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
+"HT (Li, 2017)",module1,P__GALACT.GLUCUROCAT.PWY,[P] superpathway of hexuronide and hexuronate degradation,healthy
+"HT (Li, 2017)",module1,P__GALACTUROCAT.PWY,[P] D-galacturonate degradation I,healthy
+"HT (Li, 2017)",module1,P__GLUCUROCAT.PWY,[P] superpathway of &beta;-D-glucuronosides degradation,healthy
+"HT (Li, 2017)",module1,P__PWY.6507,[P] 4-deoxy-L-_threo_-hex-4-enopyranuronate degradation,healthy
+"HT (Li, 2017)",module1,P__PWY0.1296,[P] purine ribonucleosides degradation,healthy
+"HT (Li, 2017)",module1,T__Bacteroides.intestinalis,[T] Bacteroides_intestinalis,healthy
+"HT (Li, 2017)",module1,T__Faecalibacterium.prausnitzii,[T] Faecalibacterium_prausnitzii,non-significant
+"HT (Li, 2017)",module1,T__Gemmiger.formicilis,[T] Gemmiger_formicilis,non-significant
+"HT (Li, 2017)",module1,T__Holdemania.filiformis,[T] Holdemania_filiformis,healthy
+"HT (Li, 2017)",module1,T__Prevotella.copri,[T] Prevotella_copri,non-significant
+"HT (Li, 2017)",module1,T__Roseburia.hominis,[T] Roseburia_hominis,healthy
+"IGT (Karlsson, 2013)",module1,P__PWY.5850_Cluster282,[P] superpathway of menaquinol-6 biosynthesis [Clustered features],healthy
+"IGT (Karlsson, 2013)",module1,P__PWY.7254_Cluster351,[P] TCA cycle VII (acetate-producers) [Clustered features],non-significant
+"IGT (Karlsson, 2013)",module1,T__Clostridium.disporicum,[T] Clostridium_disporicum,non-significant
+"IGT (Karlsson, 2013)",module1,T__Enterocloster.asparagiformis,[T] Enterocloster_asparagiformis,non-significant
+"IGT (Karlsson, 2013)",module1,T__Escherichia.coli,[T] Escherichia_coli,non-significant
+"IGT (Karlsson, 2013)",module2,P__P108.PWY,[P] pyruvate fermentation to propanoate I,non-significant
+"IGT (Karlsson, 2013)",module2,T__Alistipes.putredinis,[T] Alistipes_putredinis,non-significant
+"IGT (Karlsson, 2013)",module2,T__Butyricimonas.synergistica,[T] Butyricimonas_synergistica,non-significant
+"IGT (Karlsson, 2013)",module3,P__GOLPDLCAT.PWY,"[P] SP of glycerol deg. to 1,3-propanediol",disease
+"IGT (Karlsson, 2013)",module3,P__HOMOSER.METSYN.PWY,[P] L-methionine biosynthesis I,non-significant
+"IGT (Karlsson, 2013)",module3,P__MET.SAM.PWY_Cluster214,[P] superpathway of _S_-adenosyl-L-methionine biosynthesis [Clustered features],non-significant
+"IGT (Karlsson, 2013)",module3,P__PWY.5347,[P] superpathway of L-methionine biosynthesis (transsulfuration),non-significant
+"IGT (Karlsson, 2013)",module3,T__Anaerostipes.hadrus,[T] Anaerostipes_hadrus,non-significant
+"IGT (Karlsson, 2013)",module3,T__Dorea.formicigenerans,[T] Dorea_formicigenerans,non-significant
+"IGT (Karlsson, 2013)",module4,P__NAGLIPASYN.PWY,[P] lipid IV[A] biosynthesis,non-significant
+"IGT (Karlsson, 2013)",module4,P__PWY.6147,[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis I,non-significant
+"IGT (Karlsson, 2013)",module4,P__PWY.7539,[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis III,non-significant
+"IGT (Karlsson, 2013)",module4,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
+"IGT (Karlsson, 2013)",module4,P__PYRIDOXSYN.PWY,[P] pyridoxal 5'-phosphate biosynthesis I,non-significant
+"IGT (Karlsson, 2013)",module4,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
+"IGT (Karlsson, 2013)",module4,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
+"IGT (Karlsson, 2013)",module4,T__Bacteroides.xylanisolvens,[T] Bacteroides_xylanisolvens,non-significant
+"IGT (Karlsson, 2013)",module4,T__Parabacteroides.distasonis,[T] Parabacteroides_distasonis,non-significant
+"ME-CFS (Nagy-Szakal, 2017)",module1,P__P163.PWY,[P] L-lysine fermentation to acetate and butanoate,disease
+"ME-CFS (Nagy-Szakal, 2017)",module1,P__PWY.5676,[P] acetyl-CoA fermentation to butanoate,non-significant
+"ME-CFS (Nagy-Szakal, 2017)",module1,P__PWY.6588,[P] pyruvate fermentation to acetone,disease
+"ME-CFS (Nagy-Szakal, 2017)",module1,T__Anaerotruncus.colihominis,[T] Anaerotruncus_colihominis,non-significant
+"ME-CFS (Nagy-Szakal, 2017)",module1,T__Bilophila.wadsworthia,[T] Bilophila_wadsworthia,non-significant
+"ME-CFS (Nagy-Szakal, 2017)",module1,T__Flavonifractor.plautii,[T] Flavonifractor_plautii,disease
+"ME-CFS (Nagy-Szakal, 2017)",module1,T__Intestinimonas.butyriciproducens,[T] Intestinimonas_butyriciproducens,disease
+"ME-CFS (Nagy-Szakal, 2017)",module2,P__PWY.1042,[P] glycolysis IV,healthy
+"ME-CFS (Nagy-Szakal, 2017)",module2,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
+MS (MetaCardis),module1,P__M00079,[P] Keratan sulfate degradation,non-significant
+MS (MetaCardis),module1,P__M00376,[P] 3-Hydroxypropionate bi-cycle,non-significant
+MS (MetaCardis),module1,P__M00485,[P] M00485 DEPRECATED PATHWAY/MODULE,non-significant
+MS (MetaCardis),module1,P__M00698,"[P] Multidrug resistance, efflux pump BpeEF-OprC",non-significant
+MS (MetaCardis),module1,S__SERUM_ABS_2_oleoylglycerol,[S] SERUM_ABS_2_oleoylglycerol,disease
+MS (MetaCardis),module1,S__SERUM_ABS_alpha_ketoglutaric_acid,[S] SERUM_ABS_alpha_ketoglutaric_acid,disease
+MS (MetaCardis),module1,S__SERUM_ABS_D_glucose_1,[S] SERUM_ABS_D_glucose_1,disease
+MS (MetaCardis),module1,S__SERUM_ABS_D_mannose_1,[S] SERUM_ABS_D_mannose_1,disease
+MS (MetaCardis),module1,S__SERUM_ABS_lactamide_1,[S] SERUM_ABS_lactamide_1,disease
+MS (MetaCardis),module1,S__SERUM_ABS_pyruvic_acid,[S] SERUM_ABS_pyruvic_acid,disease
+MS (MetaCardis),module1,S__SERUM_NMR_ABSOLUTE_Glutamic_acid,[S] SERUM_NMR_ABSOLUTE_Glutamic_acid,disease
+MS (MetaCardis),module1,S__SERUM_NMR_ABSOLUTE_Isoleucine,[S] SERUM_NMR_ABSOLUTE_Isoleucine,disease
+MS (MetaCardis),module1,S__SERUM_NMR_ABSOLUTE_Pyruvic_acid,[S] SERUM_NMR_ABSOLUTE_Pyruvic_acid,disease
+MS (MetaCardis),module1,T__Bacteroides_dorei_vulgatus,[T] Bacteroides_dorei_vulgatus,non-significant
+MS (MetaCardis),module1,T__Bilophila_wadsworthia,[T] Bilophila_wadsworthia,disease
+MS (MetaCardis),module1,T__Clostridium_bolteae,[T] Clostridium_bolteae,non-significant
+MS (MetaCardis),module1,T__motu_linkage_group_349,[T] motu_linkage_group_349,disease
+MS (MetaCardis),module1,T__motu_linkage_group_456,[T] motu_linkage_group_456,disease
+MS (MetaCardis),module1,T__Parabacteroides_merdae,[T] Parabacteroides_merdae,disease
+MS (MetaCardis),module1,T__Pseudoflavonifractor_capillosus,[T] Pseudoflavonifractor_capillosus,disease
+MS (MetaCardis),module1,T__Ruminococcus_sp__5_1_39BFAA,[T] Ruminococcus_sp__5_1_39BFAA,disease
+MS (MetaCardis),module2,P__M00189,[P] M00189 DEPRECATED PATHWAY/MODULE,disease
+MS (MetaCardis),module2,P__M00566,[P] M00566 DEPRECATED PATHWAY/MODULE,non-significant
+MS (MetaCardis),module2,T__Collinsella_aerofaciens,[T] Collinsella_aerofaciens,disease
+MS (MetaCardis),module2,T__Coprococcus_catus,[T] Coprococcus_catus,non-significant
+MS (MetaCardis),module2,T__Dorea_formicigenerans,[T] Dorea_formicigenerans,non-significant
+MS (MetaCardis),module2,T__Eubacterium_hallii,[T] Eubacterium_hallii,disease
+MS (MetaCardis),module3,P__M00127,"[P] Thiamine biosynthesis, prokaryotes, AIR (+ DXP/tyrosine) => TMP/TPP",non-significant
+MS (MetaCardis),module3,P__M00207,[P] M00207 DEPRECATED PATHWAY/MODULE,healthy
+MS (MetaCardis),module3,S__SERUM_ABS_citric_acid,[S] SERUM_ABS_citric_acid,non-significant
+MS (MetaCardis),module3,S__SERUM_ABS_methyl_linolenate,[S] SERUM_ABS_methyl_linolenate,non-significant
+MS (MetaCardis),module3,S__SERUM_ABS_p_cresol,[S] SERUM_ABS_p_cresol,non-significant
+MS (MetaCardis),module3,S__SERUM_ABS_phytanic_acid,[S] SERUM_ABS_phytanic_acid,non-significant
+MS (MetaCardis),module3,S__SERUM_NMR_ABSOLUTE_3.Hydroxybutyric_acid,[S] SERUM_NMR_ABSOLUTE_3.Hydroxybutyric_acid,non-significant
+MS (MetaCardis),module3,T__motu_linkage_group_103,[T] motu_linkage_group_103,healthy
+MS (MetaCardis),module3,T__motu_linkage_group_120,[T] motu_linkage_group_120,non-significant
+MS (MetaCardis),module3,T__motu_linkage_group_206,[T] motu_linkage_group_206,non-significant
+MS (MetaCardis),module3,T__motu_linkage_group_646,[T] motu_linkage_group_646,healthy
+MS (MetaCardis),module3,T__Prevotella_copri,[T] Prevotella_copri,non-significant
+"Pre-HT (Li, 2017)",module1,P__CENTFERM.PWY_Cluster138,[P] pyruvate fermentation to butanoate [Clustered features],healthy
+"Pre-HT (Li, 2017)",module1,P__PWY.7209,[P] superpathway of pyrimidine ribonucleosides degradation,non-significant
+"Pre-HT (Li, 2017)",module1,T__Actinomyces.sp..ICM47,[T] Actinomyces sp ICM47,non-significant
+"Pre-HT (Li, 2017)",module1,T__Bifidobacterium.pseudocatenulatum,[T] Bifidobacterium_pseudocatenulatum,non-significant
+"Pre-HT (Li, 2017)",module1,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,non-significant
+"Pre-HT (Li, 2017)",module1,T__Roseburia.inulinivorans,[T] Roseburia_inulinivorans,non-significant
+"Pre-HT (Li, 2017)",module2,P__ANAEROFRUCAT.PWY,[P] homolactic fermentation,non-significant
+"Pre-HT (Li, 2017)",module2,P__CATECHOL.ORTHO.CLEAVAGE.PWY_Cluster137,[P] catechol degradation to &beta;-ketoadipate [Clustered features],non-significant
+"Pre-HT (Li, 2017)",module2,P__GLYCOLYSIS,[P] glycolysis I (from glucose 6-phosphate),non-significant
+"Pre-HT (Li, 2017)",module2,P__GOLPDLCAT.PWY,"[P] SP of glycerol deg. to 1,3-propanediol",non-significant
+"Pre-HT (Li, 2017)",module2,P__P105.PWY,[P] TCA cycle IV (2-oxoglutarate decarboxylase),non-significant
+"Pre-HT (Li, 2017)",module2,P__P221.PWY,[P] octane oxidation,non-significant
+"Pre-HT (Li, 2017)",module2,P__PROTOCATECHUATE.ORTHO.CLEAVAGE.PWY_Cluster213,[P] protocatechuate degradation II [Clustered features],non-significant
+"Pre-HT (Li, 2017)",module2,P__PWY.3801,[P] sucrose degradation II (sucrose synthase),non-significant
+"Pre-HT (Li, 2017)",module2,P__PWY.5484,[P] glycolysis II (from fructose 6-phosphate),non-significant
+"Pre-HT (Li, 2017)",module2,P__PWY.6892,[P] Thiazole component - thiamine diphosphate biosynthesis I,non-significant
+"Pre-HT (Li, 2017)",module2,P__PWY.7013,"[P] (S)-propane-1,2-diol degradation",non-significant
+"Pre-HT (Li, 2017)",module2,P__PWY.7254,[P] TCA cycle VII (acetate-producers),non-significant
+"Pre-HT (Li, 2017)",module2,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
+"Pre-HT (Li, 2017)",module2,P__REDCITCYC,[P] TCA cycle VI (Helicobacter),non-significant
+"Pre-HT (Li, 2017)",module2,P__THISYN.PWY,[P] SP of thiamine diphosphate biosynthesis I,non-significant
+"Pre-HT (Li, 2017)",module2,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
+"Pre-HT (Li, 2017)",module2,T__Bilophila.wadsworthia,[T] Bilophila_wadsworthia,healthy
+"Pre-HT (Li, 2017)",module2,T__Clostridium.sp..CAG.58,[T] Clostridium sp CAG 58,non-significant
+"Pre-HT (Li, 2017)",module2,T__Firmicutes.bacterium.CAG.83,[T] Firmicutes bacterium CAG 83,non-significant
+"Pre-HT (Li, 2017)",module2,T__Holdemania.filiformis,[T] Holdemania_filiformis,healthy
+"Pre-HT (Li, 2017)",module2,T__Klebsiella.pneumoniae,[T] Klebsiella_pneumoniae,non-significant
+"Pre-HT (Li, 2017)",module2,T__Klebsiella.variicola,[T] Klebsiella_variicola,non-significant
+"Pre-HT (Li, 2017)",module2,T__Megasphaera.elsdenii,[T] Megasphaera_elsdenii,non-significant
+"Pre-HT (Li, 2017)",module2,T__Prevotella.copri,[T] Prevotella_copri,non-significant
+"Schizofrenia (Zhu, 2020)",module1,P__DAPLYSINESYN.PWY,[P] L-lysine biosynthesis I,non-significant
+"Schizofrenia (Zhu, 2020)",module1,P__NONMEVIPP.PWY,[P] methylerythritol phosphate pathway I,disease
+"Schizofrenia (Zhu, 2020)",module1,P__P124.PWY,[P] glucose fermentation to lactic acid (Bifidobacteria),disease
+"Schizofrenia (Zhu, 2020)",module1,P__PWY.5121,[P] superpathway of geranylgeranyl diphosphate biosynthesis II (via MEP),disease
+"Schizofrenia (Zhu, 2020)",module1,P__PWY.622,[P] starch biosynthesis,disease
+"Schizofrenia (Zhu, 2020)",module1,P__PWY.7209,[P] superpathway of pyrimidine ribonucleosides degradation,disease
+"Schizofrenia (Zhu, 2020)",module1,P__PWY.7560,[P] methylerythritol phosphate pathway II,disease
+"Schizofrenia (Zhu, 2020)",module1,T__.Clostridium..innocuum,[T] Clostridium innocuum,disease
+"Schizofrenia (Zhu, 2020)",module1,T__Bifidobacterium.bifidum,[T] Bifidobacterium_bifidum,disease
+"Schizofrenia (Zhu, 2020)",module1,T__Bifidobacterium.longum,[T] Bifidobacterium_longum,disease
+"Schizofrenia (Zhu, 2020)",module1,T__Bifidobacterium.pseudocatenulatum,[T] Bifidobacterium_pseudocatenulatum,non-significant
+"Schizofrenia (Zhu, 2020)",module1,T__Dorea.formicigenerans,[T] Dorea_formicigenerans,disease
+"Schizofrenia (Zhu, 2020)",module1,T__Eggerthella.lenta,[T] Eggerthella_lenta,non-significant
+"Schizofrenia (Zhu, 2020)",module1,T__Hungatella.hathewayi,[T] Hungatella_hathewayi,disease
+"Schizofrenia (Zhu, 2020)",module1,T__Ruthenibacterium.lactatiformans,[T] Ruthenibacterium_lactatiformans,disease
+"Schizofrenia (Zhu, 2020)",module2,P__FASYN.INITIAL.PWY,[P] superpathway of fatty acid biosynthesis initiation,non-significant
+"Schizofrenia (Zhu, 2020)",module2,P__PWY.5659,[P] GDP-mannose biosynthesis,non-significant
+"Schizofrenia (Zhu, 2020)",module2,T__Phocaeicola.vulgatus,[T] Phocaeicola_vulgatus,healthy
+"Schizofrenia (Zhu, 2020)",module2,T__Prevotella.copri,[T] Prevotella_copri,non-significant
+"Schizofrenia (Zhu, 2020)",module3,P__PWY.5941,[P] glycogen degradation II,non-significant
+"Schizofrenia (Zhu, 2020)",module3,P__PWY.6478,[P] GDP-D-_glycero_-&alpha;-D-_manno_-heptose biosynthesis,non-significant
+"Schizofrenia (Zhu, 2020)",module3,P__PWY.6572,[P] chondroitin sulfate degradation I (bacterial),non-significant
+"Schizofrenia (Zhu, 2020)",module3,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
+"Schizofrenia (Zhu, 2020)",module3,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
+"Schizofrenia (Zhu, 2020)",module3,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,non-significant
+"Schizofrenia (Zhu, 2020)",module3,T__Flavonifractor.plautii,[T] Flavonifractor_plautii,disease
+"STH (Rubel, 2020)",module1,P__DENOVOPURINE2.PWY,[P] superpathway of purine nucleotides _de novo_ biosynthesis II,disease
+"STH (Rubel, 2020)",module1,P__PWY.7187,[P] pyrimidine deoxyribonucleotides _de novo_ biosynthesis II,disease
+"STH (Rubel, 2020)",module1,P__PWY.841,[P] SP of purine nucleotides (de novo) biosynthesis I,disease
+"STH (Rubel, 2020)",module1,P__PWY0.162,[P] superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis,disease
+"STH (Rubel, 2020)",module1,T__Lachnospira.eligens,[T] Lachnospira_eligens,disease
+"STH (Rubel, 2020)",module1,T__Phascolarctobacterium.succinatutens,[T] Phascolarctobacterium_succinatutens,disease
+"STH (Rubel, 2020)",module1,T__Prevotella.copri,[T] Prevotella_copri,non-significant
+"STH (Rubel, 2020)",module1,T__Prevotella.sp..CAG.1092,[T] Prevotella sp CAG 1092,disease
+"STH (Rubel, 2020)",module1,T__Treponema.succinifaciens,[T] Treponema_succinifaciens,disease
+"STH (Rubel, 2020)",module2,P__COBALSYN.PWY,[P] SP of adenosylcobalamin salvage from cobinamide I,healthy
+"STH (Rubel, 2020)",module2,P__PENTOSE.P.PWY,[P] pentose phosphate pathway,non-significant
+"STH (Rubel, 2020)",module2,P__PWY.2941,[P] L-lysine biosynthesis II,healthy
+"STH (Rubel, 2020)",module2,P__PWY.5659,[P] GDP-mannose biosynthesis,healthy
+"STH (Rubel, 2020)",module2,P__PWY.5941,[P] glycogen degradation II,healthy
+"STH (Rubel, 2020)",module2,P__PWY.7323,[P] SP of GDP-mannose-derived O-antigen ...,non-significant
+"STH (Rubel, 2020)",module2,P__TEICHOICACID.PWY,[P] poly(glycerol phosphate) wall teichoic acid biosynthesis,healthy
+"STH (Rubel, 2020)",module2,T__Alistipes.putredinis,[T] Alistipes_putredinis,healthy
+"STH (Rubel, 2020)",module2,T__Alistipes.shahii,[T] Alistipes_shahii,healthy
+"STH (Rubel, 2020)",module2,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,healthy
+"STH (Rubel, 2020)",module2,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,healthy
+"STH (Rubel, 2020)",module2,T__Bacteroides.xylanisolvens,[T] Bacteroides_xylanisolvens,healthy
+"STH (Rubel, 2020)",module2,T__Fusicatenibacter.saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
+"STH (Rubel, 2020)",module2,T__Phocaeicola.vulgatus,[T] Phocaeicola_vulgatus,healthy
+"STH (Rubel, 2020)",module3,P__GALACTARDEG.PWY_Cluster138,[P] D-galactarate degradation I [Clustered features],disease
+"STH (Rubel, 2020)",module3,P__GLUCARDEG.PWY,[P] _D_-glucarate degradation I,non-significant
+"STH (Rubel, 2020)",module3,P__GLUCOSE1PMETAB.PWY,[P] glucose and glucose-1-phosphate degradation,non-significant
+"STH (Rubel, 2020)",module3,P__GLYOXYLATE.BYPASS,[P] glyoxylate cycle,disease
+"STH (Rubel, 2020)",module3,P__P461.PWY,"[P] hexitol fermentation to lactate, formate, ethanol and acetate",disease
+"STH (Rubel, 2020)",module3,T__Clostridium.sp..CAG.167,[T] Clostridium sp CAG 167,healthy
+"STH (Rubel, 2020)",module3,T__Escherichia.coli,[T] Escherichia_coli,disease
+"STH (Rubel, 2020)",module3,T__Klebsiella.pneumoniae,[T] Klebsiella_pneumoniae,non-significant
+"STH (Rubel, 2020)",module3,T__Klebsiella.quasipneumoniae,[T] Klebsiella_quasipneumoniae,non-significant
+"STH (Rubel, 2020)",module3,T__Klebsiella.variicola,[T] Klebsiella_variicola,non-significant
+"STH (Rubel, 2020)",module4,P__ARGSYN.PWY_Cluster112,[P] L-arginine biosynthesis I (via L-ornithine) [Clustered features],non-significant
+"STH (Rubel, 2020)",module4,P__ARGSYNBSUB.PWY,[P] L-arginine biosynthesis II (acetyl cycle),non-significant
+"STH (Rubel, 2020)",module4,P__PWY.4981,[P] L-proline biosynthesis II (from arginine),non-significant
+"STH (Rubel, 2020)",module4,P__PWY0.1296,[P] purine ribonucleosides degradation,non-significant
+"STH (Rubel, 2020)",module4,P__PYRIDNUCSYN.PWY,[P] NAD _de novo_ biosynthesis I,non-significant
+"STH (Rubel, 2020)",module4,T__Firmicutes.bacterium.CAG.110,[T] Firmicutes bacterium CAG 110,disease
+"STH (Rubel, 2020)",module4,T__Oscillibacter.sp..57_20,[T] Oscillibacter sp 57_20,non-significant
+"STH (Rubel, 2020)",module4,T__Oscillibacter.sp..CAG.241,[T] Oscillibacter sp CAG 241,non-significant
+"T2D (Karlsson, 2013)",module1,P__PWY.6892,[P] Thiazole component - thiamine diphosphate biosynthesis I,non-significant
+"T2D (Karlsson, 2013)",module1,T__Alistipes.shahii,[T] Alistipes_shahii,healthy
+"T2D (Karlsson, 2013)",module1,T__Barnesiella.intestinihominis,[T] Barnesiella_intestinihominis,non-significant
+"T2D (Karlsson, 2013)",module1,T__Blautia.wexlerae,[T] Blautia_wexlerae,non-significant
+"T2D (Karlsson, 2013)",module1,T__Odoribacter.splanchnicus,[T] Odoribacter_splanchnicus,non-significant
+"T2D (Karlsson, 2013)",module2,P__P108.PWY,[P] pyruvate fermentation to propanoate I,non-significant
+"T2D (Karlsson, 2013)",module2,P__PWY.4984,[P] urea cycle,non-significant
+"T2D (Karlsson, 2013)",module2,T__Alistipes.putredinis,[T] Alistipes_putredinis,non-significant
+"T2D (Karlsson, 2013)",module3,P__METHGLYUT.PWY,[P] superpathway of methylglyoxal degradation,non-significant
+"T2D (Karlsson, 2013)",module3,P__PWY.5656,[P] mannosylglycerate biosynthesis I,non-significant
+"T2D (Karlsson, 2013)",module3,T__Escherichia.coli,[T] Escherichia_coli,non-significant
+"T2D (Karlsson, 2013)",module3,T__Faecalitalea.cylindroides,[T] Faecalitalea_cylindroides,non-significant
+"T2D (Karlsson, 2013)",module4,P__NAGLIPASYN.PWY,[P] lipid IV[A] biosynthesis,non-significant
+"T2D (Karlsson, 2013)",module4,P__PHOSLIPSYN.PWY,[P] SP of phospholipid biosynthesis III (E. coli),non-significant
+"T2D (Karlsson, 2013)",module4,P__PWY.1269,[P] CMP-3-deoxy-D-manno-octulosonate biosynthesis,non-significant
+"T2D (Karlsson, 2013)",module4,P__PWY.5941,[P] glycogen degradation II,non-significant
+"T2D (Karlsson, 2013)",module4,P__PWY.6147_Cluster299,[P] 6-hydroxymethyl-dihydropterin diphosphate biosynthesis I [Clustered features],non-significant
+"T2D (Karlsson, 2013)",module4,P__PWY.6572,[P] chondroitin sulfate degradation I (bacterial),non-significant
+"T2D (Karlsson, 2013)",module4,P__PWY0.845,[P] SP of pyridoxal 5'-phosphate biosynthesis/salvage,non-significant
+"T2D (Karlsson, 2013)",module4,P__PYRIDOXSYN.PWY,[P] pyridoxal 5'-phosphate biosynthesis I,non-significant
+"T2D (Karlsson, 2013)",module4,T__Adlercreutzia.equolifaciens,[T] Adlercreutzia_equolifaciens,non-significant
+"T2D (Karlsson, 2013)",module4,T__Bacteroides.ovatus,[T] Bacteroides_ovatus,non-significant
+"T2D (Karlsson, 2013)",module4,T__Bacteroides.thetaiotaomicron,[T] Bacteroides_thetaiotaomicron,non-significant
+"T2D (Karlsson, 2013)",module4,T__Bacteroides.uniformis,[T] Bacteroides_uniformis,non-significant
+"T2D (Karlsson, 2013)",module4,T__Oscillibacter.sp..57_20,[T] Oscillibacter sp 57_20,non-significant
+"T2D (Karlsson, 2013)",module4,T__Paraprevotella.xylaniphila,[T] Paraprevotella_xylaniphila,non-significant
+T2D (MetaCardis),module1,P__M00009,"[P] Citrate cycle (TCA cycle, Krebs cycle)",disease
+T2D (MetaCardis),module1,P__M00035,[P] Methionine degradation,healthy
+T2D (MetaCardis),module1,P__M00168,"[P] CAM (Crassulacean acid metabolism), dark",disease
+T2D (MetaCardis),module1,P__M00171,"[P] C4-dicarboxylic acid cycle, NAD - malic enzyme type",healthy
+T2D (MetaCardis),module1,P__M00189,[P] M00189 DEPRECATED PATHWAY/MODULE,disease
+T2D (MetaCardis),module1,P__M00429,[P] M00429 DEPRECATED PATHWAY/MODULE,healthy
+T2D (MetaCardis),module1,S__SERUM_ABS_D_glucose_1,[S] SERUM_ABS_D_glucose_1,disease
+T2D (MetaCardis),module1,S__SERUM_ABS_indolepropionic_acid,[S] SERUM_ABS_indolepropionic_acid,healthy
+T2D (MetaCardis),module1,S__SERUM_ABS_L_P_lactic_acid,[S] SERUM_ABS_L_P_lactic_acid,disease
+T2D (MetaCardis),module1,S__SERUM_ABS_lactamide_1,[S] SERUM_ABS_lactamide_1,disease
+T2D (MetaCardis),module1,S__SERUM_ABS_lactose_1,[S] SERUM_ABS_lactose_1,disease
+T2D (MetaCardis),module1,S__SERUM_ABS_p_cresol,[S] SERUM_ABS_p_cresol,healthy
+T2D (MetaCardis),module1,S__SERUM_NMR_ABSOLUTE_Isoleucine,[S] SERUM_NMR_ABSOLUTE_Isoleucine,disease
+T2D (MetaCardis),module1,T__Bacteroides_dorei_vulgatus,[T] Bacteroides_dorei_vulgatus,disease
+T2D (MetaCardis),module1,T__Bilophila_wadsworthia,[T] Bilophila_wadsworthia,disease
+T2D (MetaCardis),module1,T__Clostridium_bolteae,[T] Clostridium_bolteae,disease
+T2D (MetaCardis),module1,T__motu_linkage_group_103,[T] motu_linkage_group_103,healthy
+T2D (MetaCardis),module1,T__motu_linkage_group_212,[T] motu_linkage_group_212,healthy
+T2D (MetaCardis),module1,T__motu_linkage_group_307,[T] motu_linkage_group_307,healthy
+T2D (MetaCardis),module1,T__motu_linkage_group_517,[T] motu_linkage_group_517,healthy
+T2D (MetaCardis),module1,T__motu_linkage_group_551,[T] motu_linkage_group_551,disease
+T2D (MetaCardis),module2,S__SERUM_ABS_D_lyxose_2,[S] SERUM_ABS_D_lyxose_2,disease
+T2D (MetaCardis),module2,T__Escherichia_coli,[T] Escherichia_coli,disease
+T2D (MetaCardis),module3,P__M00198,[P] M00198 DEPRECATED PATHWAY/MODULE,non-significant
+T2D (MetaCardis),module3,P__M00275,[P] M00275 DEPRECATED PATHWAY/MODULE,disease
+T2D (MetaCardis),module3,P__M00276,[P] M00276 DEPRECATED PATHWAY/MODULE,disease
+T2D (MetaCardis),module3,T__Clostridium_ramosum,[T] Clostridium_ramosum,disease
+T2D (MetaCardis),module3,T__Clostridium_sp__HGF2,[T] Clostridium_sp__HGF2,non-significant
+T2D (MetaCardis),module3,T__Coprococcus_catus,[T] Coprococcus_catus,non-significant
+T2D (MetaCardis),module3,T__motu_linkage_group_624,[T] motu_linkage_group_624,non-significant
+T2D (MetaCardis),module3,T__Ruminococcus_sp__SR1_5,[T] Ruminococcus_sp__SR1_5,non-significant
+T2D (MetaCardis),module3,T__X_Ruminococcus__torques,[T] Ruminococcus_torques,disease
+T2D (MetaCardis),module4,P__M00185,[P] M00185 DEPRECATED PATHWAY/MODULE,non-significant
+T2D (MetaCardis),module4,S__SERUM_TMAO_TMA,[S] SERUM_TMAO_TMA,non-significant
+T2D (MetaCardis),module4,T__Eubacterium_hallii,[T] Eubacterium_hallii,non-significant
+T2D (MetaCardis),module4,T__Faecalibacterium_prausnitzii,[T] Faecalibacterium_prausnitzii,non-significant
+T2D (MetaCardis),module4,T__motu_linkage_group_104,[T] motu_linkage_group_104,non-significant
+T2D (MetaCardis),module4,T__motu_linkage_group_310,[T] motu_linkage_group_310,non-significant
+T2D (MetaCardis),module4,T__Ruminococcus_bromii,[T] Ruminococcus_bromii,non-significant
+T2D (MetaCardis),module5,P__M00373,[P] Ethylmalonyl pathway,non-significant
+T2D (MetaCardis),module5,P__M00568,"[P] Catechol ortho-cleavage, catechol => 3-oxoadipate",non-significant
+T2D (MetaCardis),module5,P__M00641,"[P] Multidrug resistance, efflux pump MexEF-OprN",non-significant
+T2D (MetaCardis),module5,T__Bacteroides_uniformis,[T] Bacteroides_uniformis,non-significant
+T2D (MetaCardis),module5,T__Prevotella_copri,[T] Prevotella_copri,non-significant
+"UC (Franzosa, 2019)",module1,M__C18.neg_Cluster_0079..undecanedionate,[M] Undecanedionate,healthy
+"UC (Franzosa, 2019)",module1,M__C18.neg_Cluster_2021..urobilin,[M] Urobilin (II),healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.neg_Cluster_0082..nicotinate,[M] Nicotinic acid (II),healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.neg_Cluster_0220..3.methyladipate.pimelate,[M] 3-methyladipate / pimelate,healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.neg_Cluster_0441..sebacate,[M] Sebacate,healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.neg_Cluster_1303..lithocholate,[M] HILIC.neg_Cluster_1303..lithocholate,healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_0062..nicotinic.acid,[M] Nicotinic acid (I),healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_0090..creatine,[M] HILIC.pos_Cluster_0090..creatine,disease
+"UC (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_0184..pyridoxamine,[M] Pyridoxamine (I),healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_0268..pyridoxamine,[M] Pyridoxamine (II),healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_0521..L.1.2.3.4.tetrahydro.beta.carboline.3.carboxylic.acid.,[M] THBC-CA,healthy
+"UC (Franzosa, 2019)",module1,M__HILIC.pos_Cluster_2093..urobilin.,[M] Urobilin (I),healthy
+"UC (Franzosa, 2019)",module1,P__1CMET2.PWY,[P] folate transformations III (_E. coli_),healthy
+"UC (Franzosa, 2019)",module1,P__COMPLETE.ARO.PWY,[P] superpathway of aromatic amino acid biosynthesis,healthy
+"UC (Franzosa, 2019)",module1,P__HEMESYN2.PWY,[P] heme _b_ biosynthesis II (oxygen-independent),non-significant
+"UC (Franzosa, 2019)",module1,P__METHGLYUT.PWY,[P] superpathway of methylglyoxal degradation,disease
+"UC (Franzosa, 2019)",module1,P__PANTOSYN.PWY,[P] superpathway of coenzyme A biosynthesis I (bacteria),healthy
+"UC (Franzosa, 2019)",module1,P__PWY.6163,[P] chorismate biosynthesis from 3-dehydroquinate,healthy
+"UC (Franzosa, 2019)",module1,P__PWY0.1298,[P] superpathway of pyrimidine deoxyribonucleosides degradation,disease
+"UC (Franzosa, 2019)",module1,T__Alistipes_shahii,[T] Alistipes_shahii,healthy
+"UC (Franzosa, 2019)",module1,T__Dorea_formicigenerans,[T] Dorea_formicigenerans,healthy
+"UC (Franzosa, 2019)",module1,T__Escherichia_coli,[T] Escherichia_coli,non-significant
+"UC (Franzosa, 2019)",module1,T__Eubacterium_hallii,[T] Eubacterium_hallii,healthy
+"UC (Franzosa, 2019)",module1,T__Fusicatenibacter_saccharivorans,[T] Fusicatenibacter_saccharivorans,healthy
+"UC (Franzosa, 2019)",module1,T__Gemmiger_formicilis,[T] Gemmiger_formicilis,healthy
+"UC (Franzosa, 2019)",module1,T__Roseburia_hominis,[T] Roseburia_hominis,healthy
+"UC (Franzosa, 2019)",module1,T__Ruthenibacterium_lactatiformans,[T] Ruthenibacterium_lactatiformans,healthy
+"UC (Franzosa, 2019)",module2,M__HILIC.neg_Cluster_0133..4.nitrophenol,[M] 4-nitrophenol,disease
+"UC (Franzosa, 2019)",module2,P__P108.PWY,[P] pyruvate fermentation to propanoate I,disease
+"UC (Franzosa, 2019)",module2,P__PENTOSE.P.PWY,[P] pentose phosphate pathway,disease
+"UC (Franzosa, 2019)",module2,P__PWY.5677,[P] succinate fermentation to butanoate,non-significant
+"UC (Franzosa, 2019)",module2,T__Blautia_producta,[T] Blautia_producta,disease
+"UC (Franzosa, 2019)",module2,T__Blautia_wexlerae,[T] Blautia_wexlerae,non-significant
+"UC (Franzosa, 2019)",module2,T__Clostridium_spiroforme,[T] Clostridium_spiroforme,non-significant
+"UC (Franzosa, 2019)",module2,T__Dorea_sp_CAG_317,[T] Dorea_sp_CAG_317,disease
+"UC (Franzosa, 2019)",module2,T__Flavonifractor_plautii,[T] Flavonifractor_plautii,disease
+"UC (Franzosa, 2019)",module3,M__HILIC.neg_Cluster_0036..glycerate,[M] HILIC.neg_Cluster_0036..glycerate,non-significant
+"UC (Franzosa, 2019)",module3,M__HILIC.neg_Cluster_0079..4.hydroxybenzaldehyde,[M] HILIC.neg_Cluster_0079..4.hydroxybenzaldehyde,non-significant
+"UC (Franzosa, 2019)",module3,M__HILIC.neg_Cluster_0552..pantothete,[M] HILIC.neg_Cluster_0552..pantothete,healthy
+"UC (Franzosa, 2019)",module3,M__HILIC.neg_Cluster_0562..ethyl.glucuronide,[M] HILIC.neg_Cluster_0562..ethyl.glucuronide,disease
+"UC (Franzosa, 2019)",module3,M__HILIC.pos_Cluster_0134..proline.betaine,[M] HILIC.pos_Cluster_0134..proline.betaine,non-significant
+"UC (Franzosa, 2019)",module3,M__HILIC.pos_Cluster_0295..arginine,[M] HILIC.pos_Cluster_0295..arginine,non-significant
+"UC (Franzosa, 2019)",module3,M__HILIC.pos_Cluster_0524..N.acetyl.L.arginine,[M] N-acetyl-L-arginine,healthy
+"UC (Franzosa, 2019)",module3,P__ANAEROFRUCAT.PWY,[P] homolactic fermentation,disease
+"UC (Franzosa, 2019)",module3,P__FASYN.INITIAL.PWY,[P] superpathway of fatty acid biosynthesis initiation,non-significant
+"UC (Franzosa, 2019)",module3,P__GLYCOLYSIS,[P] glycolysis I (from glucose 6-phosphate),disease
+"UC (Franzosa, 2019)",module3,P__LACTOSECAT.PWY,[P] lactose and galactose degradation I,non-significant
+"UC (Franzosa, 2019)",module3,P__OANTIGEN.PWY,[P] _O_-antigen building blocks biosynthesis (_E. coli_),non-significant
+"UC (Franzosa, 2019)",module3,P__P124.PWY,[P] glucose fermentation to lactic acid (Bifidobacteria),non-significant
+"UC (Franzosa, 2019)",module3,P__PWY.2941,[P] L-lysine biosynthesis II,non-significant
+"UC (Franzosa, 2019)",module3,P__PWY.5484,[P] glycolysis II (from fructose 6-phosphate),disease
+"UC (Franzosa, 2019)",module3,P__PWY.622,[P] starch biosynthesis,non-significant
+"UC (Franzosa, 2019)",module3,P__PWY.8187,[P] L-arginine degradation XIII (reductive Stickland reaction),non-significant
+"UC (Franzosa, 2019)",module3,P__PWY0.162,[P] superpathway of pyrimidine ribonucleotides _de novo_ biosynthesis,non-significant
+"UC (Franzosa, 2019)",module3,P__SER.GLYSYN.PWY,[P] superpathway of L-serine and glycine biosynthesis I,non-significant
+"UC (Franzosa, 2019)",module3,T__Actinomyces_odontolyticus,[T] Actinomyces_odontolyticus,non-significant
+"UC (Franzosa, 2019)",module3,T__Actinomyces_oris,[T] Actinomyces_oris,non-significant
+"UC (Franzosa, 2019)",module3,T__Bifidobacterium_adolescentis,[T] Bifidobacterium_adolescentis,non-significant
+"UC (Franzosa, 2019)",module3,T__Bifidobacterium_longum,[T] Bifidobacterium_longum,non-significant
+"UC (Franzosa, 2019)",module3,T__Blautia_hydrogenotrophica,[T] Blautia_hydrogenotrophica,non-significant
+"UC (Franzosa, 2019)",module3,T__Clostridium_leptum,[T] Clostridium_leptum,disease
+"UC (Franzosa, 2019)",module3,T__Collinsella_aerofaciens,[T] Collinsella_aerofaciens,non-significant
+"UC (Franzosa, 2019)",module3,T__Collinsella_massiliensis,[T] Collinsella_massiliensis,non-significant
+"UC (Franzosa, 2019)",module3,T__Collinsella_stercoris,[T] Collinsella_stercoris,non-significant
+"UC (Franzosa, 2019)",module3,T__Eggerthella_lenta,[T] Eggerthella_lenta,non-significant
+"UC (Franzosa, 2019)",module4,P__NONOXIPENT.PWY,[P] pentose phosphate pathway (non-oxidative branch) I,non-significant
+"UC (Franzosa, 2019)",module4,P__PWY.5695,[P] inosine 5'-phosphate degradation,non-significant
+"UC (Franzosa, 2019)",module4,P__PWY.5941,[P] glycogen degradation II,non-significant
+"UC (Franzosa, 2019)",module4,P__PWY.5973,[P] cis-vaccenate biosynthesis,non-significant
+"UC (Franzosa, 2019)",module4,P__PWY.7663,[P] gondoate biosynthesis (anaerobic),non-significant
+"UC (Franzosa, 2019)",module4,P__PWY.8178,[P] pentose phosphate pathway (non-oxidative branch) II,non-significant
+"UC (Franzosa, 2019)",module4,T__Alistipes_putredinis,[T] Alistipes_putredinis,non-significant
+"UC (Franzosa, 2019)",module4,T__Odoribacter_splanchnicus,[T] Odoribacter_splanchnicus,non-significant
+"UC (Nielsen, 2014)",module1,P__PWY.6163,[P] chorismate biosynthesis from 3-dehydroquinate,non-significant
+"UC (Nielsen, 2014)",module1,T__Adlercreutzia.equolifaciens,[T] Adlercreutzia_equolifaciens,healthy
+"UC (Nielsen, 2014)",module1,T__Eisenbergiella.tayi,[T] Eisenbergiella_tayi,non-significant
+"UC (Nielsen, 2014)",module1,T__Gemmiger.formicilis,[T] Gemmiger_formicilis,healthy
+"UC (Nielsen, 2014)",module1,T__Ruminococcus.bromii,[T] Ruminococcus_bromii,healthy
+"UC (Nielsen, 2014)",module2,P__P162.PWY,[P] L-glutamate degradation V (via hydroxyglutarate),non-significant
+"UC (Nielsen, 2014)",module2,P__PWY.6471,[P] peptidoglycan biosynthesis IV (_Enterococcus faecium_),non-significant
+"UC (Nielsen, 2014)",module2,T__Firmicutes.bacterium.CAG.94,[T] Firmicutes bacterium CAG 94,non-significant
+"UC (Nielsen, 2014)",module3,P__GALACTARDEG.PWY_Cluster200,[P] D-galactarate degradation I [Clustered features],non-significant
+"UC (Nielsen, 2014)",module3,P__GLUCARDEG.PWY,[P] _D_-glucarate degradation I,non-significant
+"UC (Nielsen, 2014)",module3,P__PWY.6629,[P] superpathway of L-tryptophan biosynthesis,non-significant
+"UC (Nielsen, 2014)",module3,P__PWY.6630,[P] superpathway of L-tyrosine biosynthesis,non-significant
+"UC (Nielsen, 2014)",module3,P__SER.GLYSYN.PWY,[P] superpathway of L-serine and glycine biosynthesis I,non-significant
+"UC (Nielsen, 2014)",module3,T__.Clostridium..innocuum,[T] Clostridium innocuum,non-significant
+"UC (Nielsen, 2014)",module3,T__.Clostridium..symbiosum,[T] Clostridium symbiosum,non-significant
+"UC (Nielsen, 2014)",module3,T__.Ruminococcus..gnavus,[T] Ruminococcus gnavus,non-significant
+"UC (Nielsen, 2014)",module3,T__Clostridium.bolteae.CAG.59,[T] Clostridium bolteae CAG 59,non-significant
+"UC (Nielsen, 2014)",module3,T__Enterocloster.citroniae,[T] Enterocloster_citroniae,non-significant
+"UC (Nielsen, 2014)",module3,T__Erysipelatoclostridium.ramosum,[T] Erysipelatoclostridium_ramosum,non-significant
+"UC (Nielsen, 2014)",module3,T__Ruthenibacterium.lactatiformans,[T] Ruthenibacterium_lactatiformans,non-significant
+"UC (Nielsen, 2014)",module4,P__KETOGLUCONMET.PWY,[P] ketogluconate metabolism,non-significant
+"UC (Nielsen, 2014)",module4,P__POLYAMSYN.PWY,[P] superpathway of polyamine biosynthesis I,non-significant
+"UC (Nielsen, 2014)",module4,T__Escherichia.coli,[T] Escherichia_coli,non-significant
