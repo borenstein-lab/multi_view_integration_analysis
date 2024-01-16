@@ -18,13 +18,12 @@ library(stringr)
 library(RColorBrewer)
 library(ggplot2)
 library(dplyr)
-#library(igraph)
+library(ggnewscale)
 library(pheatmap)
 library(cowplot)
 library(kableExtra)
 library(conflicted)
 library(pROC)
-#library(RCy3)
 library(circlize)
 library(patchwork)
 
@@ -165,12 +164,32 @@ modules_overview <- sens_analysis_modules %>%
               mutate(module = paste0('module', module_id)) %>%
               select(dataset,run_id,module,mean_module_auc),
             by = c('dataset', 'run_id', 'module')) %>%
+  left_join(summary_module_aucs %>% 
+              filter(run != 'true') %>% 
+              select(-run) %>%
+              rename(run_id = setting) %>% 
+              mutate(module = paste0('module', module_id)) %>%
+              group_by(dataset,run_id,module) %>% 
+              summarise(mean_module_auc_shuffled = mean(mean_module_auc), 
+                        sd_module_auc_shuffled = sd(mean_module_auc, na.rm=T), .groups='drop') %>%
+              select(dataset,run_id,module,mean_module_auc_shuffled,sd_module_auc_shuffled),
+            by = c('dataset', 'run_id', 'module')) %>%
   left_join(bind_rows(inter_view_corr, .id = 'dataset') %>%
               filter(run == 'true') %>% 
               select(-run) %>%
               rename(run_id = settings) %>% 
               mutate(module = paste0('module', module)) %>%
               select(dataset,run_id,module,avg_spear_corr),
+            by = c('dataset', 'run_id', 'module')) %>%
+  left_join(bind_rows(inter_view_corr, .id = 'dataset') %>%
+              filter(run != 'true') %>% 
+              select(-run) %>%
+              rename(run_id = settings) %>% 
+              mutate(module = paste0('module', module)) %>%
+              group_by(dataset,run_id,module) %>% 
+              summarise(avg_spear_corr_shuffled = mean(avg_spear_corr), 
+                        sd_spear_corr_shuffled = sd(avg_spear_corr, na.rm=T), .groups='drop') %>%
+              select(dataset,run_id,module,avg_spear_corr_shuffled,sd_spear_corr_shuffled),
             by = c('dataset', 'run_id', 'module')) 
 
 all_settings_overview <- modules_overview %>%
@@ -181,7 +200,7 @@ all_settings_overview <- modules_overview %>%
             max_module_auc = round(max(mean_module_auc),2),
             n_omic_correlation_modules = sum(multi_view & avg_spear_corr > 0.2),
             max_omic_corr = round(max(avg_spear_corr),2),
-            n_interesting_modules = sum(multi_view & avg_spear_corr > 0.2 & mean_module_auc > 0.7 & (n_feats %in% 5:16)),
+            # n_interesting_modules = sum(multi_view & avg_spear_corr > 0.2 & mean_module_auc > 0.7),
             n_avg_feats = mean(n_feats), 
             n_feats_detail = paste0(n_feats, collapse = ','),
             .groups = "drop") %>%
@@ -242,21 +261,6 @@ all_settings_overview %>%
   theme(legend.position = "bottom") +
   theme(plot.margin = unit(c(1,95,1,1), 'points'))
 ```
-
-```{r}
-tmp <- all_settings_overview %>%
-  select(dataset, run_id,
-         n_interesting_modules,
-         max_module_auc,
-         max_omic_corr,
-         n_omic_correlation_modules,
-         n_feats_detail) %>%
-  mutate(run_id = gsub('nrep_10//nfol_5//ncom_5','...',run_id)) %>%
-  filter(max_module_auc>0.7) # & !is.na(max_omic_corr) & max_omic_corr>0.2)
-
-tmp 
-```
-
 
 # 2. Select pipeline settings
 
@@ -441,6 +445,71 @@ names(sens_analysis_runs) <- new_dataset_names[names(sens_analysis_runs)]
 names(pipeline_params_per_dataset) <- new_dataset_names[names(pipeline_params_per_dataset)]
 ```
 
+### Rename modules so that 'better' modules are ordered first
+
+This is done only for visualization purposes.
+
+```{r}
+modules_overview <- modules_overview %>%
+  mutate(is_interesting = multi_view &
+           (mean_module_auc > mean_module_auc_shuffled) &
+           (!is.na(avg_spear_corr)) &
+           (avg_spear_corr > avg_spear_corr_shuffled) &
+           (mean_module_auc > 0.7)) %>%
+  # Patch for ordering modules by how interesting they are
+  group_by(dataset, run_id, is_interesting) %>%
+  mutate(tmp = rank(ifelse(multi_view,-mean_module_auc,0), ties.method='random')) %>%
+  ungroup() %>%
+  mutate(tmp = ifelse(is_interesting, tmp, tmp+10)) %>%
+  group_by(dataset, run_id) %>%
+  mutate(new_id = paste0('module',rank(tmp))) %>%
+  ungroup() %>%
+  select(-tmp) %>%
+  rename(module_original = module) %>%
+  rename(module = new_id)
+
+# Now update these new ID's in all relevant tables
+
+## Small mapping table (assumes one setting per dataset, as is the case here)
+tmp <- modules_overview %>% select(dataset, module_original, module)
+
+sens_analysis_modules <- sens_analysis_modules %>%
+  rename(module_original = module) %>%
+  left_join(tmp, by = c('dataset','module_original'))
+
+summary_module_aucs <- summary_module_aucs %>%
+  mutate(module_original = paste0('module',module_id)) %>%
+  left_join(tmp, by = c('dataset','module_original')) %>%
+  mutate(module_id = as.numeric(gsub('module','',module))) %>%
+  select(-module, -module_original)
+
+for (d in datasets) {
+  inter_view_corr[[d]] <- inter_view_corr[[d]] %>%
+    mutate(module = paste0('module',module)) %>%
+    rename(module_original = module) %>%
+    left_join(tmp %>% filter(dataset==d) %>% select(-dataset), by = 'module_original') %>%
+    mutate(module = as.numeric(gsub('module','',module))) %>%
+    select(-module_original)
+  
+  module_variance_expl[[d]] <- module_variance_expl[[d]] %>%
+    mutate(module = paste0('module',module)) %>%
+    rename(module_original = module) %>%
+    left_join(tmp %>% filter(dataset==d) %>% select(-dataset), by = 'module_original') %>%
+    mutate(module = as.numeric(gsub('module','',module))) %>%
+    select(-module_original)
+  
+  tmp_map <- tmp %>% filter(dataset==d) %>% pull(module)
+  names(tmp_map) <- tmp %>% filter(dataset==d) %>% pull(module_original)
+  tmp_map['label'] = 'label'
+  latent_vars[[d]] <- lapply(latent_vars[[d]], function(df, tmp_map) {
+    colnames(df) <- tmp_map[colnames(df)]; 
+    return(df[,order(colnames(df))])
+    }, 
+    tmp_map)
+}
+```
+
+### Save module sizes
 
 ```{r}
 # Save module sizes
@@ -652,7 +721,7 @@ rm(tmp, d, p)
 ## 5.3. Overall AUC, components vs. shuffled
 
 ```{r fig.height=4, fig.width=7}
-plot_overall_summary_module_aucs(rf_results, summary_aucs, datasets_A)
+plot_overall_modules_aucs(rf_results, summary_aucs, datasets_A)
 ```
 
 ## 5.4. Module summary plots
@@ -663,12 +732,11 @@ Panels, left to right:
 * Cross-view correlations  
 * Module AUC  
 
-```{r fig.height=8.5, fig.width=6}
-module_stats_summary <- 
-  plot_module_stats(
+```{r fig.height=10, fig.width=6}
+plot_module_stats(
     sens_analysis_modules, 
-    module_cross_view_corrs, 
-    summary_module_aucs %>% 
+    # I add results of early integration just for reference (if show_rf=T)
+    modules_overview %>% 
       left_join(
         rf_results %>% select(dataset, mean_auc, sd_auc) %>% 
           rename(mean_auc_rf = mean_auc, sd_auc_rf = sd_auc), 
@@ -678,25 +746,24 @@ module_stats_summary <-
     dataset_order = datasets,
     show_rf = FALSE)
 
-module_stats_summary <- module_stats_summary %>%
-  filter(dataset %in% datasets) %>%
+# Add AUC results when using 1st PC's of all modules
+modules_overview <- modules_overview %>%
   left_join(summary_aucs %>%
               filter(run == 'true') %>%
               select(dataset, mean_overall_rf_auc, sd_overall_rf_auc),
             by = 'dataset') 
 
 # Use only modules that have >1 feature types and >=3 features (as already filtered in the table above)
+modules_overview2 <- modules_overview %>% filter(multi_view)
 sens_analysis_modules <- sens_analysis_modules %>%
-  mutate(module = as.numeric(gsub('module','',module))) %>%
-  inner_join(module_stats_summary, by = c('dataset','module')) 
+  inner_join(modules_overview2 %>% select(-module_original, -run_id), by = c('dataset','module')) 
 ```
 
-```{r fig.height=6.7, fig.width=5.7}
+```{r fig.height=6.9, fig.width=5.7}
 # Only main datasets
-tmp <- plot_module_stats(
+plot_module_stats(
     sens_analysis_modules, 
-    module_cross_view_corrs, 
-    summary_module_aucs %>% 
+    modules_overview %>% 
       left_join(
         rf_results %>% select(dataset, mean_auc, sd_auc) %>% 
           rename(mean_auc_rf = mean_auc, sd_auc_rf = sd_auc), 
@@ -705,15 +772,13 @@ tmp <- plot_module_stats(
     feature_type_color_map,
     dataset_order = datasets_A,
     show_rf = FALSE)
-rm(tmp)
 ```
 
-```{r fig.height=6, fig.width=6}
+```{r fig.height=6, fig.width=7}
 # All other datasets
-tmp <- plot_module_stats(
+plot_module_stats(
     sens_analysis_modules, 
-    module_cross_view_corrs, 
-    summary_module_aucs %>% 
+    modules_overview %>% 
       left_join(
         rf_results %>% select(dataset, mean_auc, sd_auc) %>% 
           rename(mean_auc_rf = mean_auc, sd_auc_rf = sd_auc), 
@@ -722,7 +787,6 @@ tmp <- plot_module_stats(
     feature_type_color_map,
     dataset_order = datasets_B,
     show_rf = FALSE)
-rm(tmp)
 ```
 
 
@@ -730,24 +794,24 @@ rm(tmp)
 
 ```{r results='hold'}
 message('Modules were identified for ', 
-        n_distinct(module_stats_summary$dataset[module_stats_summary$dataset %in% datasets_A]), 
+        n_distinct(modules_overview2$dataset[modules_overview2$dataset %in% datasets_A]), 
         ' datasets of ', length(datasets_A), ' analyzed')
 
-message(min(table(module_stats_summary$dataset[module_stats_summary$dataset %in% datasets_A])), '-',
-        max(table(module_stats_summary$dataset[module_stats_summary$dataset %in% datasets_A])), 
+message(min(table(modules_overview2$dataset[modules_overview2$dataset %in% datasets_A])), '-',
+        max(table(modules_overview2$dataset[modules_overview2$dataset %in% datasets_A])), 
         ' modules were identified per dataset, average: ',
-        round(mean(table(module_stats_summary$dataset[module_stats_summary$dataset %in% datasets_A])),2))
+        round(mean(table(modules_overview2$dataset[modules_overview2$dataset %in% datasets_A])),2))
 
 message('Module sizes ranged between ',
-        min(module_stats_summary$n_features[module_stats_summary$dataset %in% datasets_A]), ' to ',
-        max(module_stats_summary$n_features[module_stats_summary$dataset %in% datasets_A]), 
+        min(modules_overview2$n_feats[modules_overview2$dataset %in% datasets_A]), ' to ',
+        max(modules_overview2$n_feats[modules_overview2$dataset %in% datasets_A]), 
         ', average: ',
-        round(mean(module_stats_summary$n_features[module_stats_summary$dataset %in% datasets_A]), 2))
+        round(mean(modules_overview2$n_feats[modules_overview2$dataset %in% datasets_A]), 2))
 
-tmp_signif_comps_per_dataset <- module_stats_summary %>%
+tmp_signif_comps_per_dataset <- modules_overview2 %>%
   filter(dataset %in% datasets_A) %>%
   mutate(dataset = factor(dataset)) %>%
-  filter(mean_module_auc > 0.7 & mean_module_auc > mean_shuf_auc) %>%
+  filter(is_interesting) %>%
   group_by(dataset, .drop = FALSE) %>%
   summarize(N = n())
   
@@ -956,24 +1020,26 @@ sens_analysis_modules <- sens_analysis_modules %>%
 ## Save modules overview - S4
 
 ```{r}
-module_stats_summary %>%
-  mutate(mean_shuf_auc = round(mean_shuf_auc, 3)) %>%
-  mutate(sd_shuf_auc = round(sd_shuf_auc, 3)) %>%
+modules_overview2 %>%
+  mutate(mean_module_auc_shuffled = round(mean_module_auc_shuffled, 3)) %>%
+  mutate(sd_module_auc_shuffled = round(sd_module_auc_shuffled, 3)) %>%
   mutate(mean_module_auc = round(mean_module_auc, 3)) %>%
   mutate(mean_overall_rf_auc = round(mean_overall_rf_auc, 3)) %>%
   mutate(`Pipeline settings` = pipeline_params_per_dataset[dataset]) %>%
-  relocate(dataset, module, n_features) %>%
+  relocate(dataset, module, n_feats) %>%
   rename(Dataset = dataset) %>%
-  rename(`Module size` = n_features) %>%
+  rename(`Module size` = n_feats) %>%
   rename(Module = module) %>%
   rename(`Module AUC` = mean_module_auc) %>%
-  rename(`Average shuffled module AUC (Null model)` = mean_shuf_auc) %>%
-  rename(`SD shuffled module AUC (Null model)` = sd_shuf_auc) %>%
-  rename(`Average inter-view correlations` = avg_spear_corr) %>%
-  rename(`Average shuffled inter-view correlations (Null model)` = mean_shuf_corr) %>%
-  rename(`SD shuffled inter-view correlations (Null model)` = sd_shuf_corr) %>%
+  rename(`Average shuffled module AUC (Null model)` = mean_module_auc_shuffled) %>%
+  rename(`SD shuffled module AUC (Null model)` = sd_module_auc_shuffled) %>%
+  rename(`Average inter-view spearman correlations` = avg_spear_corr) %>%
+  rename(`Average shuffled inter-view spearman correlations (Null model)` = avg_spear_corr_shuffled) %>%
+  rename(`SD shuffled inter-view spearman correlations (Null model)` = sd_spear_corr_shuffled) %>%
   rename(`All modules AUC (Random Forest) - cross-validation average` = mean_overall_rf_auc) %>%
   rename(`All modules AUC (Random Forest) - cross-validation SD` = sd_overall_rf_auc) %>%
+  select(-is_interesting,-multi_view,-run_id,-module_original) %>%
+  arrange(Dataset, Module) %>%
   write_csv("docs/Table_S4.csv")
 ```
 
@@ -987,6 +1053,7 @@ sens_analysis_modules %>%
   rename(Feature = feature) %>%
   rename(`Feature description` = description) %>%
   rename(`Increased in?` = increased_in) %>%
+  arrange(Dataset, Module, Feature) %>%
   write_csv("docs/Table_S5.csv")
 ```
 
@@ -995,15 +1062,18 @@ Print statistics comparing modules to RF contributors:
 ```{r}
 tmp <- sens_analysis_modules %>%
   filter(dataset %in% datasets_A) %>%
-  filter(mean_module_auc>0.7) %>%
+  filter((mean_module_auc > mean_module_auc_shuffled) &
+           (!is.na(avg_spear_corr)) &
+           (avg_spear_corr > avg_spear_corr_shuffled) &
+           (mean_module_auc > 0.7)) %>%
   select(dataset, module, feature) %>%
   left_join(rf_feat_imp_sum %>% select(dataset, feature, contributor), by = c('dataset','feature')) %>%
   group_by(dataset, module) %>%
-  summarise(n_features = n(), perc_contributors = 100*sum(contributor, na.rm = T)/sum(!is.na(contributor)), .groups='drop') %>%
-  pull(perc_contributors)
-message('Examining the XX modules with an AUC > 0.7, we observe that, on average, only ',
-        round(mean(tmp),2),'% (SD: ',round(sd(tmp),2),
+  summarise(n_features = n(), perc_contributors = 100*sum(contributor, na.rm = T)/sum(!is.na(contributor)), .groups='drop')
+message('Examining the ',nrow(tmp),' modules with an AUC > 0.7, we observe that, on average, only ',
+        round(mean(tmp$perc_contributors),2),'% (SD: ',round(sd(tmp$perc_contributors),2),
         '%) of module features were also contributors in the RF early integration models.')
+rm(tmp)
 ```
 
 
@@ -1013,9 +1083,9 @@ Only non-singleton clusters are listed, and only if these clusters were selected
 
 ```{r}
 all_within_mod_cors <- data.frame()
-for (i in 1:nrow(module_stats_summary)) {
-  ds <- module_stats_summary$dataset[i]
-  modu <- module_stats_summary$module[i]
+for (i in 1:nrow(modules_overview2)) {
+  ds <- modules_overview2$dataset[i]
+  modu <- modules_overview2$module[i]
   feat_list <- sens_analysis_modules %>%
     filter(dataset == ds) %>%
     filter(module == modu) %>%
@@ -1150,7 +1220,7 @@ for (fs in common_feats) {
     theme(axis.text.y = element_text(lineheight = 0.7, size = 7)) +
     theme(plot.margin = unit(c(10,95,1,1), 'points'))
   
-  print(p)
+  # print(p)
   all_plots[[fs]] <- p
 }
 
@@ -1166,6 +1236,7 @@ all_plots$`[T] Bacteroides_uniformis`
 
 ```{r, eval=FALSE}
 n_perm <- 1000
+set.seed(123)
 
 modules_taxa <- sens_analysis_modules %>%
   select(dataset, module, feature) %>%
@@ -1227,7 +1298,7 @@ message('Species in MintTea modules are significnatly more likely to appear with
   '% [',
   paste(round(quantile(100*null_prob/1000, probs = c(0.025,0.975)),2), collapse='%-'),
   '%], p-value: ',
-  sum(true_prob<=null_prob)/1000
+  (sum(true_prob<=null_prob)+1)/1000,
   ')')
 ```
 
@@ -1239,7 +1310,7 @@ message('Species in MintTea modules are significnatly more likely to appear with
 Components within the same dataset are not compared (not expected to overlap).
 
 ```{r COMP_INTERSECTIONS}
-module_intersections <- module_stats_summary %>% 
+module_intersections <- modules_overview2 %>% 
   filter(dataset %in% CMD_datasets) %>%
   tidyr::expand(tidyr::nesting(dataset, module), 
                 tidyr::nesting(dataset, module), .name_repair = "minimal") %>%
@@ -1369,23 +1440,17 @@ tmp <- module_intersections %>%
   mutate(score = -log10(fisher_fdr)) %>%
   mutate(signif = (fisher_fdr<=0.1))
 
-tmp$score2 <- 1 - (tmp$score / max(tmp$score))
-
-all_modules <- module_stats_summary %>% 
+all_modules <- modules_overview2 %>% 
   filter(dataset %in% CMD_datasets) %>%
+  arrange(dataset, module) %>%
   mutate(dataset_module = paste(dataset, module, sep = ' / ')) %>%
-  mutate(is_predictive = (mean_module_auc>0.7)) %>%
-  select(dataset_module, dataset, module, is_predictive) %>%
+  mutate(is_interesting = (mean_module_auc>0.7 & mean_module_auc>mean_module_auc_shuffled & avg_spear_corr>avg_spear_corr_shuffled)) %>%
+  select(dataset_module, dataset, module, is_interesting) %>%
   group_by(dataset) %>%
   mutate(n_modules_total = n(), line_id = row_number()) %>%
   ungroup() %>%
   mutate(gap_after = ifelse(line_id == n_modules_total, 3, 0)) %>%
   arrange(dataset_module) 
-
-# Highlight modules that include a specific species  
-# B.longum_modules <- gsub('\'','20',unique(paste(all_plots$T__Bifidobacterium_longum$data$dataset, all_plots$T__Bifidobacterium_longum$data$module, sep = ' / ')))
-# tmp$B_longum_pair <- (tmp$module_left %in% B.longum_modules) & (tmp$module_right %in% B.longum_modules)  
-# all_modules$has_B_longum <- all_modules$dataset_module %in% B.longum_modules
 
 circos.clear()
 circos.par(gap.degree = all_modules$gap_after)
@@ -1395,7 +1460,6 @@ circos.initialize(all_modules$dataset_module, xlim = c(0, 1))
 circos.track(ylim = c(0, 1), track.height = 0.06)
 
 # Color by dataset
-# dark2_palette <- brewer.pal(8, "Dark2")
 ds_to_color <- colorRampPalette(
   c('grey40','darkorchid4',
     'blue4','dodgerblue4',
@@ -1421,13 +1485,9 @@ for(ds in unique(all_modules$dataset)) {
 
 # Further highlight predictive modules
 for(i in 1:nrow(all_modules)) {
-  if (all_modules$is_predictive[i]) {
-    #highlight.sector(c(all_modules$dataset_module[i]), track.index = 1, col = ds_to_color[all_modules$dataset[i]])
+  if (all_modules$is_interesting[i]) {
     circos.points(x = 0.5, y = 0.5, sector.index = all_modules$dataset_module[i], track.index = 1, cex = 1.5, pch = 16)
   }
-  # if (all_modules$has_B_longum[i]) {
-  #   circos.points(x = 0.5, y = 0.5, sector.index = all_modules$dataset_module[i], track.index = 1, cex = 1.5, pch = 16, col = 'darkorange3')
-  # }
 }
 
 # Draw links
@@ -1438,16 +1498,13 @@ for(i in 1:nrow(tmp)) {
     sector.index2 = paste(tmp$ds_right[i], '/', tmp$module_right[i]), 
     point2 = c(0, 1), 
     col = add_transparency(
-      'grey', #ifelse(tmp$B_longum_pair[i], 'darkorange3', 'grey'),  
-      #transparency = tmp$score2[i]
+      'grey', 
       transparency = ifelse(tmp$signif[i], 0.2, 0.8)
       ),
     h.ratio = 0.8)
 }
 
 circos.clear()
-
-#dev.off()
 ```
 
 # 10. Network visualization
@@ -1458,20 +1515,20 @@ Network visualization with CytoScape / [iGraph](https://kateto.net/network-visua
 library(igraph)
 library(RCy3)
 
-for(i in 1:nrow(modules_overview)) {
+for(i in 1:nrow(modules_overview2)) {
   
   # Skip trivial modules
-  if (is.na(modules_overview$avg_spear_corr[i])) next;
-  if (modules_overview$avg_spear_corr[i] < 0.3) next;
-  if (modules_overview$mean_module_auc[i] < 0.6) next;
-  if (modules_overview$n_feats[i] > 24) next;
-  if (modules_overview$n_feats[i] < 4) next;
+  if (is.na(modules_overview2$avg_spear_corr[i])) next;
+  if (modules_overview2$avg_spear_corr[i] < 0.3) next;
+  if (modules_overview2$mean_module_auc[i] < 0.6) next;
+  if (modules_overview2$n_feats[i] > 24) next;
+  if (modules_overview2$n_feats[i] < 4) next;
   
   # Extract dataset name and module ID
-  d <- modules_overview$dataset[i]
-  modu <- as.numeric(gsub('module','',modules_overview$module[i]))
+  d <- modules_overview2$dataset[i]
+  modu <- as.numeric(gsub('module','',modules_overview2$module[i]))
   edge_cutoff <- gsub('keep_1[0-9]//des_0\\.[0-9]//nrep_10//nfol_5//ncom_5//edge_','',
-                      modules_overview$run_id[i]) %>% as.numeric()
+                      modules_overview2$run_id[i]) %>% as.numeric()
   
   # Create list of edges 
   feats_to_plot <- sens_analysis_modules %>%
@@ -1548,18 +1605,18 @@ rm(edges, vertices, d, modu, feats_to_plot, i, edge_cutoff)
 final_grid_plots <- list()
 label_colors <- c('disease'='darkred','healthy'='grey60')
 
-for(i in 1:nrow(modules_overview)) {
+for(i in 1:nrow(modules_overview2)) {
   
   # Skip trivial modules
-  if (is.na(modules_overview$avg_spear_corr[i])) next;
-  if (modules_overview$avg_spear_corr[i] < 0.3) next;
-  if (modules_overview$mean_module_auc[i] < 0.6) next;
-  if (modules_overview$n_feats[i] > 20) next;
-  if (modules_overview$n_feats[i] < 4) next;
+  if (is.na(modules_overview2$avg_spear_corr[i])) next;
+  if (modules_overview2$avg_spear_corr[i] < 0.3) next;
+  if (modules_overview2$mean_module_auc[i] < 0.6) next;
+  if (modules_overview2$n_feats[i] > 20) next;
+  if (modules_overview2$n_feats[i] < 4) next;
   
   # Extract dataset name and module ID
-  d <- modules_overview$dataset[i] %>% unname()
-  modu <- as.numeric(gsub('module','',modules_overview$module[i]))
+  d <- modules_overview2$dataset[i] %>% unname()
+  modu <- as.numeric(gsub('module','',modules_overview2$module[i]))
   
   # Get features
   feats_to_plot <- sens_analysis_modules %>%
@@ -1745,79 +1802,41 @@ for(met in c('AGE','BMI_C','aHEI','DASH','DDS','DRUGTOTAL')) {
 }
 ```
 
-
-```{r eval=FALSE, fig.height=8, fig.width=8}
-library(factoextra)
-res.pca <- prcomp(tmp %>% select(where(is.numeric)) %>% na.omit(), scale = TRUE)
-fviz_pca_var(res.pca, axes = c(1, 2),
-             col.var = "contrib", # Color by contributions to the PC
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE     # Avoid text overlapping
-             )
-```
-
-
-```{r eval=FALSE}
-library(ppcor)
-# Map correlations between the 3 amino acids: Phe, Val, Leu and top CRC-associated species in Yachida et al.
-crc_species <- c(
-  'T__Fusobacterium.nucleatum.subsp..nucleatum',
-  'T__Fusobacterium.nucleatum.subsp..animalis',
-  'T__Fusobacterium.nucleatum.subsp..fusiforme_Cluster257',
-  'T__Parvimonas.micra',
-  'T__Fusobacterium.nucleatum.subsp..vincentii',
-  'T__Fusobacterium.nucleatum.subsp..polymorphum',
-  'T__Atopobium.parvulum',
-  'T__Actinomyces.odontolyticus',
-  'T__Bilophila.wadsworthia',
-  'T__Peptostreptococcus.anaerobius',
-  'T__Peptostreptococcus.stomatis',
-  'T__Gemella.morbillorum',
-  'T__Akkermansia.muciniphila',
-  'T__Fusobacterium.simiae',
-  'T__Fusobacterium.canifelinum',
-  'T__Gemella.haemolysans'
-  )
-
-other_mm <- c('M__C00123_Leu','M__C00183_Val','M__C00079_Phe')
+```{r eval=FALSE, warning=FALSE}
+# MS module 1 includes 8 species, 4 pathways, and 9 serum metabolites.
+# We check how likely it is that 19 of 108 correlations between serum metabolites and species/pathways are significant (108 = 9*(8+4))
 
 tmp <- data.frame()
-for (mm in c('M__Cysteine.glutathione.disulphide..Divalent')) {
-  for (ss in crc_species) {
-    mm_vec <- diablo_input$`CRC (Yachida, 2019)`$X$M[,mm]
-    ss_vec <- diablo_input$`CRC (Yachida, 2019)`$X$`T`[,ss]
-    spear <- cor.test(mm_vec, ss_vec, method = 'spearman')
-    pspear <- pcor.test(mm_vec, ss_vec, z = as.numeric(diablo_input$`CRC (Yachida, 2019)`$Y == 'disease'), method = 'spearman')
-    tmp <- bind_rows(
-      tmp,
-      data.frame(
-        metab = mm,
-        species = ss,
-        spear_rho = spear$estimate,
-        spear_p = spear$p.value,
-        pspear_rho = pspear$estimate,
-        pspear_p = pspear$p.value
-      )
-    )
+tmp_diab_in <- diablo_input$`MS (MetaCardis)`
+
+for (i in 1:1000) {
+  cat('.')
+  tmp_metabs <- tmp_diab_in$X$S[,sample(ncol(tmp_diab_in$X$S),9)]
+  tmp_micr <- bind_cols(
+    tmp_diab_in$X$`T`[,sample(ncol(tmp_diab_in$X$`T`),8)],
+    tmp_diab_in$X$P[,sample(ncol(tmp_diab_in$X$P),4)]
+  ) %>% as.matrix()
+  
+  ps <- c()
+  for (j in 1:9) {
+    for (k in 1:12) {
+      cor_res <- cor.test(tmp_metabs[,j], 
+                          tmp_micr[,k], 
+                          method = 'spearman')
+      ps <- c(ps, cor_res$p.value)
+    }
   }
   
-  for (ss in other_mm) {
-    mm_vec <- diablo_input$`CRC (Yachida, 2019)`$X$M[,mm]
-    ss_vec <- diablo_input$`CRC (Yachida, 2019)`$X$M[,ss]
-    spear <- cor.test(mm_vec, ss_vec, method = 'spearman')
-    pspear <- pcor.test(mm_vec, ss_vec, z = as.numeric(diablo_input$`CRC (Yachida, 2019)`$Y == 'disease'), method = 'spearman')
-    tmp <- bind_rows(
-      tmp,
-      data.frame(
-        metab = mm,
-        metab2 = ss,
-        spear_rho = spear$estimate,
-        spear_p = spear$p.value,
-        pspear_rho = pspear$estimate,
-        pspear_p = pspear$p.value
-      )
+  ps_correct <- p.adjust(ps, method='fdr')
+  
+  tmp <- bind_rows(
+    tmp,
+    data.frame(
+      i = i,
+      n = length(ps_correct),
+      num_signif = sum(ps_correct < 0.05)
     )
-  }
+  )
 }
 ```
 
