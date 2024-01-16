@@ -4,10 +4,13 @@ require(tidyverse)
 require(broom.helpers)
 require(readr)
 
-source("Boruta/boruta.R")
+source("src/ml_pipeline/Boruta/boruta.R")
 
 fs_boruta <- function(data_df, quantileThresh = 0.9, verbose = TRUE, maxRuns = 50, withTentative = TRUE, addLogs = TRUE) {
   logs <- list()
+  
+  data_df <- data_df %>%
+    mutate(DiseaseState = factor(DiseaseState, levels = c('healthy','disease'))) 
   
   results <- Boruta(DiseaseState ~ .,
                     data = data_df,
@@ -23,9 +26,7 @@ fs_boruta <- function(data_df, quantileThresh = 0.9, verbose = TRUE, maxRuns = 5
   if (verbose) 
     log_debug("Boruta: {logs[['boruta_n_confirmed']]} confirmed, {logs[['boruta_n_rejected']]} rejected, {logs[['boruta_n_tentative']]} tentative.")
   
-  selected_cols <- getSelectedAttributes(results, withTentative = withTentative) %>%
-    .clean_backticks()  # for variable names with spaces
-  
+  selected_cols <- getSelectedAttributes(results, withTentative = withTentative) 
   selected_cols <- c('DiseaseState', selected_cols)
   filtered_data <- data_df %>% select(all_of(selected_cols))
 
@@ -200,7 +201,7 @@ fs_altmann <- function(data_df, p_threshold = 0.1, n = NULL, addLogs = TRUE) {
   rf_obj <- 
     rand_forest(mode = "classification", mtry = capped_mtry) %>%
     set_mode("classification") %>%
-    set_engine("ranger", importance = "permutation", num.threads = config::get("ranger_n_threads"))
+    set_engine("ranger", importance = "permutation", num.threads = config$ranger_n_threads)
   
   # Fit RF
   final_model <- workflow() %>%

@@ -1,7 +1,7 @@
 # Adapted from: https://github.com/cran/Boruta/tree/master/R
 
-source('Boruta/importance.R')
-source('Boruta/tools.R')
+source('src/ml_pipeline/Boruta/importance.R')
+source('src/ml_pipeline/Boruta/tools.R')
 
 # Core of Boruta
 

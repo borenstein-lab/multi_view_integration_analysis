@@ -1,0 +1,198 @@
+---
+title: "Main results analysis"
+output:
+  html_document:
+    css: custom_notebook_formatting.css
+    toc: true
+    toc_depth: 3
+    df_print: paged
+    code_folding: hide
+---
+
+## Preparations
+
+```{r PREPS, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(cowplot)
+library(readr)
+library(stringr)
+library(dplyr)
+library(kableExtra)
+library(afex)
+
+options(scipen = 100)
+knitr::opts_chunk$set(results = "hold", fig.align = 'center')
+source('src/analyses/plotting_functions.R')
+#source('src/ml_pipeline/preprocessing.R')
+```
+
+## Load results
+
+Load data from previously organized rdata file.
+
+```{r LOAD_REUSLTS, results='hold'}
+all_rdata_path <- 'data/ml_output/results_tables/results_for_analysis.RData'
+load(all_rdata_path)
+rm(all_rdata_path)
+```
+
+Change to "pretty" dataset names and narrow to "main" datasets only.
+
+```{r}
+datasets_A <- c('cd_franzosa_2019','cirrhosis_qin_2014','crc_feng_2015',
+                'crc_s3_s4_yachida_2019','esrd_wang_2020','metacardis_1_8',
+                'metacardis_3_8','sth_rubel_2020','uc_franzosa_2019')
+
+cv_datasets_summary <- cv_datasets_summary %>% filter(dataset %in% datasets_A)
+cv_results <- cv_results %>% filter(dataset %in% datasets_A)
+feat_imp <- feat_imp %>% filter(dataset %in% datasets_A)
+feat_imp_sum <- feat_imp_sum %>% filter(dataset %in% datasets_A)
+
+# Pretty names:
+new_dataset_names <-c(
+  "cd_franzosa_2019"="CD (Franzosa, 2019)",
+  "cirrhosis_qin_2014"="Cirrhosis (Qin, 2014)",
+  "crc_feng_2015"="CRC (Feng, 2015)",
+  "crc_s3_s4_yachida_2019"="CRC (Yachida, 2019)",
+  "crc_yu_2015"="CRC (Yu, 2015)",
+  "esrd_wang_2020"="ESRD (Wang, 2020)",
+  "metacardis_1_8"="MS (MetaCardis)",
+  "metacardis_3_8"="T2D (MetaCardis)",
+  "sth_rubel_2020"="STH (Rubel, 2020)",
+  "uc_franzosa_2019"="UC (Franzosa, 2019)",
+  "uc_spain_nielsen_2014"="UC (Nielsen, 2014)",
+  # More from CMD
+  't2d_karlsson_2013'='T2D (Karlsson, 2013)',
+  'ht_li_2017'='HT (Li, 2017)',
+  'crc_wirbel_2018'='CRC (Wirbel, 2018)',
+  'crc_vogtmann_2016'='CRC (Vogtmann, 2016)',
+  'crc_zeller_2014'='CRC (Zeller, 2014)',
+  'igt_karlsson_2013'='IGT (Karlsson, 2013)',
+  'me_cfs_nagySzakal_2017'='ME-CFS (Nagy-Szakal, 2017)',
+  'schizofrenia_zhu_2020'='Schizofrenia (Zhu, 2020)',
+  'pre_ht_li_2017'='Pre-HT (Li, 2017)'
+  )
+
+cv_datasets_summary$dataset <- new_dataset_names[cv_datasets_summary$dataset]
+cv_results$dataset <- new_dataset_names[cv_results$dataset]
+feat_imp$dataset <- new_dataset_names[feat_imp$dataset]
+feat_imp_sum$dataset <- new_dataset_names[feat_imp_sum$dataset]
+```
+
+
+### Descriptive statistics
+
+```{r FIRST_CV_STATS, results='hold'}
+cv_datasets_summary %>% 
+  filter(!shuffled) %>%
+  select(-shuffled, -tuned, -feature_set_type, -fs_type) %>%
+  kbl(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) 
+```
+
+### More settings
+
+```{r}
+# datasets_to_focus_on <- c(
+#   'cd_franzosa_2019',
+#   'uc_franzosa_2019',
+#   'crc_s3_s4_yachida_2019',
+#   'cirrhosis_qin_2014'
+# )
+```
+
+```{r}
+feature_type_color_map = 
+  c("T" = "firebrick4", 
+    "S" = "chartreuse4", 
+    "P" = "darkorange3", 
+    "M" = "midnightblue", 
+    "All" = "grey30")
+
+# Save number of folds/repeats
+n_folds <- n_distinct(cv_results$fold_id)
+```
+
+## Supplementary Table S2: Random forest model performance results using early integration
+
+```{r}
+cv_datasets_summary %>%
+  left_join(
+    cv_results %>%
+      group_by(dataset, shuffled) %>%
+      summarise(avg_feat_final = round(mean(n_features_for_train_final),3),
+                sd_auc = round(sd(out_of_fold_test_auc, na.rm=T),3), 
+                .groups = 'drop'),
+    by = c('dataset','shuffled')
+  ) %>%
+  filter(!shuffled) %>%
+  select(dataset, feature_set_type, fs_type, 
+         n_features_origin_T, n_features_origin_P, n_features_origin_M, n_features_origin_S,
+         avg_feat_final, mean_out_of_fold_test_auc, sd_auc) %>%
+  mutate(mean_out_of_fold_test_auc = round(mean_out_of_fold_test_auc, 3)) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Features used` = feature_set_type) %>%
+  rename(`Feature selection method` = fs_type) %>%
+  rename(`Number of original features - T (Taxa)` = n_features_origin_T) %>%
+  rename(`Number of original features - S (Serum metabolites)` = n_features_origin_S) %>%
+  rename(`Number of original features - P (Pathways)` = n_features_origin_P) %>%
+  rename(`Number of original features - M (Fecal metabolites)` = n_features_origin_M) %>%
+  rename(`Average number of features selected for final model` = avg_feat_final) %>%
+  rename(`Cross-validated average AUC` = mean_out_of_fold_test_auc) %>%
+  rename(`Cross-validated SD AUC` = sd_auc) %>%
+  write_csv("docs/Table_S2.csv")
+```
+
+## Plot: Number of samples and number of features
+
+A. Number of samples per study. C, controls (dark grey); D, disease (light grey). 
+B. Average number of original features from each type. 
+(Or: number of features selected by the feature-selection process and used for final training. The average is over the cross-validation process).
+
+```{r, fig.height=7, fig.width=3.5, warning = FALSE}
+plot_basic_stats2(
+  cv_results = cv_results, 
+  feature_type_color_map = feature_type_color_map
+  )
+```
+
+```{r, fig.height=5.2, fig.width=5, warning = FALSE}
+# plot_basic_stats(
+#   cv_results = cv_results, 
+#   feature_type_color_map = feature_type_color_map
+#   )
+```
+
+## Feature importance analysis
+
+### Supplementary Table S3
+
+Only provided for models with an AUC > 0.7, and contributing features.
+
+```{r}
+feat_imp_sum %>%
+  filter(mean_out_of_fold_test_auc > 0.7) %>%
+  select(dataset, feature_set_type, feature, 
+         n_times_selected, mean_importance, 
+         combined_fdr, contributor) %>%
+  mutate(mean_importance = round(mean_importance, 5)) %>%
+  mutate(combined_fdr = ifelse(
+    combined_fdr < 0.00001, '< 0.00001', 
+    round(combined_fdr, 5))) %>%
+  rename(Dataset = dataset) %>%
+  rename(`Feature set` = feature_set_type) %>%
+  rename(`Feature name` = feature) %>%
+  rename(`RF permutation importance, averaged over folds` = mean_importance) %>%
+  rename(`Altmann FDR-corrected p value, aggregated over folds using Fisher's method` = combined_fdr) %>%
+  rename(`Number of times selected by feature selection (out of 100 repeats/folds)` = n_times_selected) %>%
+  filter(contributor) %>%
+  rename(`Overall contributor` = contributor) %>%
+  mutate(`Feature description` = get_feature_descriptions(`Feature name`)) %>%
+  write_csv("docs/Table_S3.csv")
+```
+
+## Session info
+
+```{r}
+sessionInfo()
+```

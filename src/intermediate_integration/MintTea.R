@@ -124,8 +124,8 @@ MintTea <- function(
     param_diablo_keepX = c(10),
     param_diablo_design = c(0.5),
     param_n_repeats = c(10),
-    param_n_folds = c(10),
-    param_diablo_ncomp = c(3),
+    param_n_folds = c(5),
+    param_diablo_ncomp = c(5),
     param_edge_thresholds = c(0.8),
     n_evaluation_repeats = 5,
     n_evaluation_folds = 10,
@@ -169,45 +169,45 @@ MintTea <- function(
   log_debug("Starting MintTea")
   
   # Parameter validations
-  if (! is.numeric(param_diablo_keepX)) log_fatal('Invalid argument to *param_diablo_keepX*')
-  if (min(param_diablo_keepX) < 3) log_fatal('Invalid argument to *param_diablo_keepX* (values should be >= 3)')
-  if (! is.numeric(param_diablo_design)) log_fatal('Invalid argument to *param_diablo_design*')
-  if (max(param_diablo_design) > 1) log_fatal('Invalid argument to *param_diablo_design* (values should be between 0 to 1)')
-  if (min(param_diablo_design) < 0) log_fatal('Invalid argument to *param_diablo_design* (values should be between 0 to 1)')
-  if (! is.numeric(param_n_repeats)) log_fatal('Invalid argument to *param_n_repeats*')
-  if (! is.numeric(param_n_folds)) log_fatal('Invalid argument to *param_n_folds*')
-  if (! is.numeric(param_diablo_ncomp)) log_fatal('Invalid argument to *param_diablo_ncomp*')
-  if (min(param_diablo_ncomp) < 0) log_fatal('Invalid argument to *param_diablo_ncomp* (values should be between 1 to ~10)')
-  if (max(param_diablo_ncomp) > 10) log_fatal('Invalid argument to *param_diablo_ncomp* (values should be between 1 to ~10)')
-  if (! is.numeric(param_edge_thresholds)) log_fatal('Invalid argument to *param_edge_thresholds*')
-  if (max(param_edge_thresholds) >= 1) log_fatal('Invalid argument to *param_edge_thresholds* (values should be between 0 to 1)')
-  if (min(param_edge_thresholds) <= 0) log_fatal('Invalid argument to *param_edge_thresholds* (values should be between 0 to 1)')
+  if (! is.numeric(param_diablo_keepX)) stop('Invalid argument to *param_diablo_keepX*')
+  if (min(param_diablo_keepX) < 3) stop('Invalid argument to *param_diablo_keepX* (values should be >= 3)')
+  if (! is.numeric(param_diablo_design)) stop('Invalid argument to *param_diablo_design*')
+  if (max(param_diablo_design) > 1) stop('Invalid argument to *param_diablo_design* (values should be between 0 to 1)')
+  if (min(param_diablo_design) < 0) stop('Invalid argument to *param_diablo_design* (values should be between 0 to 1)')
+  if (! is.numeric(param_n_repeats)) stop('Invalid argument to *param_n_repeats*')
+  if (! is.numeric(param_n_folds)) stop('Invalid argument to *param_n_folds*')
+  if (! is.numeric(param_diablo_ncomp)) stop('Invalid argument to *param_diablo_ncomp*')
+  if (min(param_diablo_ncomp) < 0) stop('Invalid argument to *param_diablo_ncomp* (values should be between 1 to ~10)')
+  if (max(param_diablo_ncomp) > 10) stop('Invalid argument to *param_diablo_ncomp* (values should be between 1 to ~10)')
+  if (! is.numeric(param_edge_thresholds)) stop('Invalid argument to *param_edge_thresholds*')
+  if (max(param_edge_thresholds) >= 1) stop('Invalid argument to *param_edge_thresholds* (values should be between 0 to 1)')
+  if (min(param_edge_thresholds) <= 0) stop('Invalid argument to *param_edge_thresholds* (values should be between 0 to 1)')
   if (length(view_prefixes) > 4) log_warn('MintTea was not tested for more than 4 views.')
   if (length(view_prefixes) > 4) log_warn('MintTea was not tested for more than 4 views.')
-  if (any(str_length(view_prefixes) == 0)) log_fatal('Invalid view prefix (empty character)')
-  if (any(! sapply(view_prefixes, is_valid_r_name))) log_fatal('Invalid view prefix (should comply to valid R variable names. See: www.w3schools.com/r/r_variables_name.asp)')
+  if (any(str_length(view_prefixes) == 0)) stop('Invalid view prefix (empty character)')
+  if (any(! sapply(view_prefixes, is_valid_r_name))) stop('Invalid view prefix (should comply to valid R variable names. See: www.w3schools.com/r/r_variables_name.asp)')
   
   # Data validations
   ## Verify required columns are included
-  if (! study_group_column %in% colnames(proc_data)) log_fatal("Could not find study_group_column in data table") 
-  if (! sample_id_column %in% colnames(proc_data)) log_fatal("Could not find sample_id_column in data table")
+  if (! study_group_column %in% colnames(proc_data)) stop("Could not find study_group_column in data table") 
+  if (! sample_id_column %in% colnames(proc_data)) stop("Could not find sample_id_column in data table")
   
   ## Verify no missing fields
-  if (sum(is.na(proc_data)) > 0) log_fatal("Missing values currently not supported.")
+  if (sum(is.na(proc_data)) > 0) stop("Missing values currently not supported.")
   
   ## Verify unique sample ID
-  if (sum(duplicated(proc_data[[sample_id_column]])) > 0) log_fatal("Sample ID's are not unique.")
+  if (sum(duplicated(proc_data[[sample_id_column]])) > 0) stop("Sample ID's are not unique.")
   
   ## Verify supported study group labels (TODO: support arbitrary labels)
-  if (sum(! proc_data[[study_group_column]] %in% c('healthy','disease')) > 0) log_fatal("Study-group labels currently supported: 'healthy' and 'disease' only.")
-  if (n_distinct(proc_data[[study_group_column]]) == 1) log_fatal("Only one study group provided. 2 required.")
+  if (sum(! proc_data[[study_group_column]] %in% c('healthy','disease')) > 0) stop("Study-group labels currently supported: 'healthy' and 'disease' only.")
+  if (n_distinct(proc_data[[study_group_column]]) == 1) stop("Only one study group provided. 2 required.")
   
   ## Verify all columns are numeric
   if (sum(apply(proc_data %>% 
                 select(-all_of(c(study_group_column, sample_id_column))), 
                 MARGIN = 2, 
                 FUN = is.numeric)) < (ncol(proc_data)-2))
-    log_fatal("Found non-numeric features. Only numeric features are supported.")
+    stop("Found non-numeric features. Only numeric features are supported.")
     
   # 1. Organize input to DIABLO
   # ----------------------------------------------------------------
@@ -216,7 +216,7 @@ MintTea <- function(
     study_group_column, 
     sample_id_column,
     view_prefixes,
-    min_features_per_view = param_diablo_keepX)
+    min_features_per_view = min(param_diablo_keepX))
   log_debug("Completed data preparations")
   
   # 2. Wrap DIABLO in a repeated sub-sampling procedure 
@@ -272,26 +272,6 @@ MintTea <- function(
         max.iter = 300,
         design = diablo_design
       )
-      
-      # Make prediction on held out samples using DIABLO's approach 
-      # predictions <- predict(tmp_diablo_out, held_out_data$X)
-      #
-      # Calculate auroc on held out data
-      # tmp <- data.frame(
-      #   preds = predictions$AveragedPredict[,1,], 
-      #   true_label = held_out_data$Y
-      #   )
-      # cv_aucs_v <- lapply(
-      #   1:diablo_ncomp, 
-      #   function(i) get_auc(paste0("preds.dim", i), tmp)
-      #   )
-      # names(cv_aucs_v) <- paste0("auc_comp", 1:diablo_ncomp)
-      # 
-      # cv_aucs <- bind_rows(
-      #   cv_aucs, 
-      #   data.frame(cv_aucs_v) %>%
-      #     mutate(fold_id = fold_id) 
-      # )
       
       # Save all non-zero loadings
       tmp_loadings <- organize_diablo_loadings(tmp_diablo_out) %>%
@@ -777,5 +757,6 @@ MintTea <- function(
               module_aucs = module_aucs,
               cv_overall_auc = cv_overall_auc,
               summary_module_aucs = summary_module_aucs,
-              summary_overall_aucs = summary_overall_aucs))
+              summary_overall_aucs = summary_overall_aucs,
+              modules_list = modules_list))
 }

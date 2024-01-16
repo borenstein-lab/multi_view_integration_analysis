@@ -88,7 +88,7 @@ cluster_cluster_features <- function(dataset = NULL,
   # Rename relevant features 
   # (features that are representatives of bigger clusters)
   feature_name_map <- clusters$feature_name_map
-  feature_name_map <- c('DiseaseState' = 'DiseaseState', feature_name_map)
+  feature_name_map['DiseaseState'] <- 'DiseaseState'
   clustered_dataset <- clustered_dataset %>%
     rename_with(function(x) {return(feature_name_map[x])})
 
