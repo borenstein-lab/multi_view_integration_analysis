@@ -98,4 +98,5 @@ For questions about the pipeline, please contact elbo@tauex.tau.ac.il.
 ***
 
 <sup>1</sup> Gross, Samuel M., and Robert Tibshirani. "Collaborative regression." Biostatistics 16.2 (2015): 326-338.
+
 <sup>2</sup> Singh, Amrit, et al. "DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays." Bioinformatics 35.17 (2019): 3055-3062.
