@@ -285,7 +285,7 @@ plot_basic_stats2 <- function(cv_results, feature_type_color_map) {
     xlab(NULL) +
     ylab("Number of\nfeatures") +
     scale_fill_manual(name = NULL, values = feature_type_color_map,
-                      guide = guide_legend(reverse = TRUE)) +
+                      guide = guide_legend(reverse = TRUE, byrow = T)) +
     theme(panel.grid.major.y = element_blank()) +
     theme(panel.grid.major.x = element_line(linewidth = 0.5, color = "grey93")) +
     theme(axis.text.y = element_blank()) +
@@ -296,7 +296,7 @@ plot_basic_stats2 <- function(cv_results, feature_type_color_map) {
     theme(strip.placement = "outside") +
     theme(strip.text.y.left = element_text(size = 10, angle = 0, hjust = 1)) +
     theme(panel.spacing.y = unit(6, "points")) +
-    theme(legend.position = 'bottom')
+    theme(legend.key.size = unit(0.5, 'cm'), legend.spacing = unit(0.3, 'cm'))
   
   print(p)
 }
