@@ -14,7 +14,7 @@ method_colors <- c('DIABLO' = '#96D4CA', 'MultiCCA' = '#254e70', 'MintTea' = 'fi
 ```
 
 ```{r}
-d <- 'cirrhosis_qin_2014'
+d <- 'cd_franzosa_2019'
 
 d1 <- read_csv(paste0("src/analyses/minttea_comparisons_results/false_discovery_results_",d,".csv"), 
                show_col_types = FALSE) %>%
@@ -110,15 +110,15 @@ tmp <- tmp %>%
   ungroup() 
 
 p2 <- ggplot(tmp %>% filter(keepX_category == 'Avg. component size: ~20'),
-             aes(x = perc_samples_to_exclude2, y = perc_shared_feats_mean, group = method, fill = method)) +
+             aes(x = perc_samples_to_exclude2, y = perc_shared_feats_mean/100, group = method, fill = method)) +
   geom_col(color = 'black', position = position_dodge(.8), alpha = 0.7, width = .7) +
-  geom_errorbar(aes(ymin = perc_shared_feats_mean - perc_shared_feats_sd,
-                    ymax = perc_shared_feats_mean + perc_shared_feats_sd),
+  geom_errorbar(aes(ymin = perc_shared_feats_mean/100 - perc_shared_feats_sd/100,
+                    ymax = perc_shared_feats_mean/100 + perc_shared_feats_sd/100),
                 width = 0.3, position=position_dodge(.8)) +
   scale_fill_manual(values = method_colors, name = 'Method') +
   theme_bw() +
-  ylab("Individual features\nshared between models") +
-  scale_y_continuous(expand = expansion(mult = c(0, .1))) +
+  ylab("Percent of features\nshared between models") +
+  scale_y_continuous(labels = scales::percent, expand = expansion(mult = c(0, .1))) +
   xlab(paste0('Subsample size\n(% of total samples, N = ',n_samples_tot,')')) +
   theme(axis.text = element_text(size = 9)) +
   theme(axis.title = element_text(size = 13))
