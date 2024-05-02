@@ -1,3 +1,16 @@
+❗ _Update [01/05/2024]:_ MintTea can now be installed as an R package directly from GitHub, by running the following:
+
+```
+install.packages(devtools)  
+library(devtools)   
+install_github("efratmuller/MintTea")   
+library(MintTea)
+```
+
+For details about usage, load the library and see: `?MintTea`.
+
+***
+
 This folder includes all code related to the intermediate integration (__MintTea__) pipeline.
 
 **Table of contents:**
@@ -8,7 +21,7 @@ This folder includes all code related to the intermediate integration (__MintTea
 <a id="ch1"></a>
 ## MintTea overview
 
-MintTea is a method for identifying multi-omic modules of features that are both associated with a disease state and present strong associations between the different omics. It is based on sparse generalized canonical correlation analysis (sgCCA), where the disease label is encoded as an additional 'dummy' omic, as previously suggested by Gross & Tibshirani (2015)<sup>1</sup>, Singh et al. (2019<sup>2</sup>, see [DIABLO](http://mixomics.org/mixdiablo/)), and others. For further details see our preprint: https://www.biorxiv.org/content/10.1101/2023.07.03.547607v3.
+MintTea is a method for identifying multi-omic modules of features that are both associated with a disease state and present strong associations between the different omics. It is based on sparse generalized canonical correlation analysis (sgCCA), where the disease label is encoded as an additional 'dummy' omic, as previously suggested by Gross & Tibshirani (2015)<sup>1</sup>, Singh et al. (2019<sup>2</sup>, see [DIABLO](http://mixomics.org/mixdiablo/)), and others. For further details see: Muller, Efrat, Itamar Shiryan, and Elhanan Borenstein. __"Multi-omic integration of microbiome data for identifying disease-associated modules."__ _Nature Communications_ 15.1 (2024): 2621. [Link](https://www.nature.com/articles/s41467-024-46888-3)
 
 <img src="https://github.com/borenstein-lab/multi_view_integration_analysis/blob/main/docs/wiki_figure.png" width="700">
 
